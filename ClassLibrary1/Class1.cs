@@ -105,46 +105,42 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
             }*/
             
-            if (Function.Call<bool>(Hash.IS_VEHICLE_IN_GARAGE_AREA, Game.Player.Character.CurrentVehicle)) {
-                UI.ShowSubtitle("Player is in Garage", 1250);
-            }
-            
             if (!firstCheckpointReached) {
                 World.DrawMarker(MarkerType.VerticalCylinder, race1Start, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
-            }
-
-            if (!firstCheckpointReached &&
-                Game.Player.Character.IsInVehicle() &&
-                Game.Player.Character.IsInRangeOf(race1Start, 5f)) {
-                UI.ShowSubtitle("first checkpoint reached", 1250);
-                firstCheckpointReached = true;
-                race_started = true;
             }
 
             if (Game.Player.Character.IsInVehicle()) {
                 new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
 
-                if (!(vehicles[1] == null))
+                if (!firstCheckpointReached &&
+                Game.Player.Character.IsInRangeOf(race1Start, 5f))
                 {
-                    new UIResText("vehicles[1] is set", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
+                    UI.ShowSubtitle("first checkpoint reached", 1250);
+                    //Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
+                    firstCheckpointReached = true;
+                    race_started = true;
+                }
 
-                    if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
-                    {
-                        new UIResText("vehicles[1] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
-                        playerInRaceCar = true;
+                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
+                {
+                    new UIResText("fast car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
+                    if (!copsCalled) {
+                        //Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
+                        copsCalled = true;
                     }
-                    if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
-                    {
-                        new UIResText("vehicles[0] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
-                        playerInRaceCar = true;
-                    }
+                    playerInRaceCar = true;
+                }
+                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
+                {
+                    new UIResText("Slow, reliable car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
+                    playerInRaceCar = true;
+                }
 
-                    if (playerInRaceCar &&
-                        !race_started) {
-                        race_started = true;
-                        UI.ShowSubtitle("Race started!", 1250);
-                        World.CreateBlip(race1Start);
-                    }
+                if (playerInRaceCar &&
+                    !race_started) {
+                    race_started = true;
+                    UI.ShowSubtitle("Race started!", 1250);
+                    World.CreateBlip(race1Start);
                 }
                 
             }
@@ -180,6 +176,10 @@ namespace ModForResearchTUB
                     UI.ShowSubtitle("trying to call race", 1250);
                     initFirstRace();
                     break;
+                case Keys.F11:
+                    UI.ShowSubtitle("Teleport Player to customization", 1250);
+                    teleportPlayerToCarCustomization();
+                    break;
                 default:
                     break;
             }
@@ -209,20 +209,8 @@ namespace ModForResearchTUB
             //Function.Call(Hash.CLEAR_AREA_OF_VEHICLES);
             //Function.Call(Hash.SET_MISSION_FLAG);
             // create a blip on the map
-            /*Blip blip = World.CreateBlip(
-                player.GetOffsetInWorldCoords(new Vector3(0, 10, 0)),
-                5.0f
-            );
-            // seems to make the blip white
-            Function.Call(Hash.SET_ENTITY_AS_MISSION_ENTITY, blip);*/
 
-            Function.Call(
-                Hash.SET_PED_COORDS_KEEP_VEHICLE,
-                Game.Player.Character,
-                car_selection.X,
-                car_selection.Y,
-                car_selection.Z
-            );
+            Game.Player.Character.Position = car_selection;
 
             /*
           // 5 meters in front of the player
