@@ -116,7 +116,7 @@ namespace ModForResearchTUB
                 Game.Player.Character.IsInRangeOf(race1Start, 5f))
                 {
                     UI.ShowSubtitle("first checkpoint reached", 1250);
-                    //Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
+                    Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
                     firstCheckpointReached = true;
                     race_started = true;
                 }
@@ -125,7 +125,8 @@ namespace ModForResearchTUB
                 {
                     new UIResText("fast car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
                     if (!copsCalled) {
-                        //Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
+                        Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
+                        Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
                         copsCalled = true;
                     }
                     playerInRaceCar = true;
@@ -201,11 +202,13 @@ namespace ModForResearchTUB
             player.Task.ClearAllImmediately(); // give back control to player
 
             // clear vehicles
+            /*
             foreach (Vehicle car in vehicles)
             {
                 car.MarkAsNoLongerNeeded();
                 Function.Call(Hash.SET_VEHICLE_AS_NO_LONGER_NEEDED, car);
             }
+            */
             //Function.Call(Hash.CLEAR_AREA_OF_VEHICLES);
             //Function.Call(Hash.SET_MISSION_FLAG);
             // create a blip on the map
