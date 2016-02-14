@@ -21,7 +21,9 @@ namespace ModForResearchTUB
         List<Blip> blips = new List<Blip>();
         bool car_config_done = false;
         bool race_started = false;
+        bool playerInRaceCar = false;
         bool firstCheckpointReached = false;
+        bool copsCalled = false;
 
         Entity checkpoint;
 
@@ -102,11 +104,11 @@ namespace ModForResearchTUB
                 UI.ShowSubtitle("Checkpoint reached", 1250);
                 Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
             }*/
-            /*
+            
             if (Function.Call<bool>(Hash.IS_VEHICLE_IN_GARAGE_AREA, Game.Player.Character.CurrentVehicle)) {
                 UI.ShowSubtitle("Player is in Garage", 1250);
             }
-            */
+            
             if (!firstCheckpointReached) {
                 World.DrawMarker(MarkerType.VerticalCylinder, race1Start, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
             }
@@ -129,12 +131,19 @@ namespace ModForResearchTUB
                     if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
                     {
                         new UIResText("vehicles[1] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
-                        UI.ShowSubtitle("Fast car", 1250);
+                        playerInRaceCar = true;
                     }
                     if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
                     {
                         new UIResText("vehicles[0] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
-                        UI.ShowSubtitle("Slow, reliable car", 1250);
+                        playerInRaceCar = true;
+                    }
+
+                    if (playerInRaceCar &&
+                        !race_started) {
+                        race_started = true;
+                        UI.ShowSubtitle("Race started!", 1250);
+                        World.CreateBlip(race1Start);
                     }
                 }
                 
@@ -147,20 +156,6 @@ namespace ModForResearchTUB
         // KeyDown Event
         public void KeyDownEvent(object sender, KeyEventArgs e)
         {
-            /*if (Game.IsKeyPressed(Keys.F11))
-            {
-                UI.ShowSubtitle("[F11] KeyDown", 1250);
-                Ped player = Game.Player.Character;
-                Vector3 spawn_pos = new Vector3(
-                    player.Position.X + (player.ForwardVector.X * 5),
-                    player.Position.Y + (player.ForwardVector.Y * 5),
-                    player.Position.Z + (player.ForwardVector.Z * 5)
-                );
-                GTA.World.CreateBlip(spawn_pos);
-                World.CreateBlip(player.GetOffsetInWorldCoords(new Vector3(0, 15, 0)));
-                // Blip blip = UI.ADD_BLIP_FOR_COORD(Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 15, 0));
-            }*/
-
             // Check KeyDown KeyCode
             switch (e.KeyCode)
             {
@@ -273,8 +268,8 @@ namespace ModForResearchTUB
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle1, 255, 255, 255);
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle1, 255, 255, 255);
 
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255,50,0);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 128, 0);
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255,0,0);
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 50, 0);
 
                 Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
 
