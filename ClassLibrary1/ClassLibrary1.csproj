@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NativeUI">
+      <HintPath>G:\SteamLibrary\steamapps\common\Grand Theft Auto V\scripts\NativeUI.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptHookVDotNet">
       <HintPath>G:\Uni\Bachelorarbeit\ScriptHookVDotNet\ScriptHookVDotNet.dll</HintPath>
     </Reference>

@@ -7,6 +7,7 @@ using GTA.Math;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
+using NativeUI;
 #endregion
 
 namespace ModForResearchTUB
@@ -20,6 +21,7 @@ namespace ModForResearchTUB
         List<Blip> blips = new List<Blip>();
         bool car_config_done = false;
         bool race_started = false;
+        bool firstCheckpointReached = false;
 
         Entity checkpoint;
 
@@ -50,6 +52,10 @@ namespace ModForResearchTUB
         // OnTick Event
         public void OnTickEvent(object sender, EventArgs e)
         {
+            var res = UIMenu.GetScreenResolutionMantainRatio();
+            var safe = UIMenu.GetSafezoneBounds();
+            const int interval = 45;
+
             // 1 Second Timer
             if (timer_1s <= Game.GameTime)
             {
@@ -74,6 +80,11 @@ namespace ModForResearchTUB
                 Boolean IsPlayerPlaying = Game.Player.IsPlaying; // Shortcut with ScriptHookDotNet Game class
             }
 
+            /*
+            *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
+            *   make it so that AI can not be shot
+            */
+
             /*if (!race_started &&
                 Game.Player.Character.IsInVehicle() &&
                 Game.Player.Character.CurrentVehicle == vehicles[0] ||
@@ -91,16 +102,44 @@ namespace ModForResearchTUB
                 UI.ShowSubtitle("Checkpoint reached", 1250);
                 Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
             }*/
-
-            if (Game.Player.Character.CurrentVehicle == vehicles[0]) {
-                UI.ShowSubtitle("Slow car", 1250);
+            /*
+            if (Function.Call<bool>(Hash.IS_VEHICLE_IN_GARAGE_AREA, Game.Player.Character.CurrentVehicle)) {
+                UI.ShowSubtitle("Player is in Garage", 1250);
+            }
+            */
+            if (!firstCheckpointReached) {
+                World.DrawMarker(MarkerType.VerticalCylinder, race1Start, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
             }
 
-            if (Game.Player.Character.CurrentVehicle == vehicles[1])
-            {
-                UI.ShowSubtitle("Fast car", 1250);
+            if (!firstCheckpointReached &&
+                Game.Player.Character.IsInVehicle() &&
+                Game.Player.Character.IsInRangeOf(race1Start, 5f)) {
+                UI.ShowSubtitle("first checkpoint reached", 1250);
+                firstCheckpointReached = true;
+                race_started = true;
             }
 
+            if (Game.Player.Character.IsInVehicle()) {
+                new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
+
+                if (!(vehicles[1] == null))
+                {
+                    new UIResText("vehicles[1] is set", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
+
+                    if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
+                    {
+                        new UIResText("vehicles[1] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
+                        UI.ShowSubtitle("Fast car", 1250);
+                    }
+                    if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
+                    {
+                        new UIResText("vehicles[0] equals current vehicle", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 100), 0.3f, Color.White).Draw();
+                        UI.ShowSubtitle("Slow, reliable car", 1250);
+                    }
+                }
+                
+            }
+           
             // Do something every tick here
             //GTA.Native.Function.Call(Hash._SHOW_CURSOR_THIS_FRAME);
         }
@@ -166,8 +205,6 @@ namespace ModForResearchTUB
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
-            Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
-
             // clear vehicles
             foreach (Vehicle car in vehicles)
             {
@@ -191,33 +228,6 @@ namespace ModForResearchTUB
                 car_selection.Y,
                 car_selection.Z
             );
-
-            //Game.Player.Character.Rotation = car_spawn_player_heading; seems to CRASH the game
-
-            // create an offset in front right of the player
-            //Vector3 checkpoint_coords = player.GetOffsetInWorldCoords(new Vector3(10f, 10f, 0));
-            Blip blip = World.CreateBlip(race1Start);
-            blips.Add(blip);
-            blip.Sprite = BlipSprite.Race;
-            // create a race checkpoint with direction arrow
-            checkpoint = Function.Call<Entity>(
-                    Hash.CREATE_CHECKPOINT,
-                    0,
-                    race1Start.X,
-                    race1Start.Y,
-                    race1Start.Z - 1,
-                    race1End.X,
-                    race1End.Y,
-                    race1End.Z,
-                    5.0f,
-                    255,
-                    200,
-                    0,
-                    127,
-                    0
-                );
-
-            Function.Call(Hash.SET_CHECKPOINT_CYLINDER_HEIGHT, checkpoint, 5.0f, 15.0f, 5.0f);
 
             /*
           // 5 meters in front of the player
@@ -258,6 +268,35 @@ namespace ModForResearchTUB
                 // make fast vehicle locked, but able to break and enter
                 Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
                 Function.Call(Hash.SET_VEHICLE_NEEDS_TO_BE_HOTWIRED, vehicle2, true);
+
+                // make the fast one colorful, the other one white
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle1, 255, 255, 255);
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle1, 255, 255, 255);
+
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255,50,0);
+                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 128, 0);
+
+                Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
+
+                Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
+
+                Function.Call(
+                    Hash.DRAW_SPOT_LIGHT,
+                    car1_spawnpoint.X, // x
+                    car1_spawnpoint.Y, // y
+                    car1_spawnpoint.Z + 10f, // z
+                    0f, // direction x
+                    0f, // direction y
+                    -10f, // direction z, make it point downwards
+                    255, // R
+                    255, // G
+                    255, // B
+                    100f, // distance
+                    2f, // brightness
+                    0.0f, // roundness
+                    13f, // radius
+                    1f // fadeout
+                );
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
