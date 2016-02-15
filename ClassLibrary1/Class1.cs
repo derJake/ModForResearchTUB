@@ -24,8 +24,7 @@ namespace ModForResearchTUB
         bool playerInRaceCar = false;
         bool firstCheckpointReached = false;
         bool copsCalled = false;
-
-        Entity checkpoint;
+        int currentBlip = -1;
 
         Vector3 car_selection = new Vector3(-789.2762f, -2417.304f, 14.57072f);
         Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
@@ -67,16 +66,6 @@ namespace ModForResearchTUB
                 // NATIVE EXEMPLE
                 // NativeDB http://www.dev-c.com/nativedb/
 
-                // Call a Native without a return value
-                //GTA.Native.Function.Call(Hash.SET_ALL_RANDOM_PEDS_FLEE, Game.Player, true);
-                //Ped[] closePeds = World.GetNearbyPeds(Game.Player.Character, 12f);
-                //foreach (Ped ped in closePeds)
-                //{
-                //    // Kill the peds!
-                //    if (!ped.IsPlayer)
-                //        ped.Health = -100;
-                //}
-
                 // Call a Native function with a return value
                 Boolean nativeIsPlayerPlaying = GTA.Native.Function.Call<Boolean>(Hash.IS_PLAYER_PLAYING, Game.Player);
                 Boolean IsPlayerPlaying = Game.Player.IsPlaying; // Shortcut with ScriptHookDotNet Game class
@@ -86,27 +75,14 @@ namespace ModForResearchTUB
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
             */
-
-            /*if (!race_started &&
-                Game.Player.Character.IsInVehicle() &&
-                Game.Player.Character.CurrentVehicle == vehicles[0] ||
-                Game.Player.Character.CurrentVehicle == vehicles[1])
-            {
-                race_started = true;
-                Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)GTA.Control.VehicleExit);
-                UI.ShowSubtitle("Player is driving", 1250);
-            }*/
-
-            // check if player has reached the first marker and remove it
-            /*if (race_started &&
-                Game.Player.Character.IsInRangeOf(race1Start, 5f) &&
-                Game.Player.Character.IsInVehicle()) {
-                UI.ShowSubtitle("Checkpoint reached", 1250);
-                Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
-            }*/
             
-            if (!firstCheckpointReached) {
-                World.DrawMarker(MarkerType.VerticalCylinder, race1Start, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
+            if (race_started &&
+                playerInRaceCar &&
+                !firstCheckpointReached) {
+                World.DrawMarker(MarkerType.HorizontalCircleSkinny_Arrow, race1Start, race1End, new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
+                if (currentBlip >= 0) {
+                    Function.Call(Hash.SET_BLIP_ROUTE, blips[currentBlip], true);
+                }
             }
 
             if (Game.Player.Character.IsInVehicle()) {
@@ -115,10 +91,11 @@ namespace ModForResearchTUB
                 if (!firstCheckpointReached &&
                 Game.Player.Character.IsInRangeOf(race1Start, 5f))
                 {
-                    UI.ShowSubtitle("first checkpoint reached", 1250);
+                    UI.ShowSubtitle("first checkpoint reached", 3000);
                     Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
                     firstCheckpointReached = true;
                     race_started = true;
+                    clearStuffUp();
                 }
 
                 if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
@@ -141,7 +118,10 @@ namespace ModForResearchTUB
                     !race_started) {
                     race_started = true;
                     UI.ShowSubtitle("Race started!", 1250);
-                    World.CreateBlip(race1Start);
+                    Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)GTA.Control.VehicleExit);
+                    Blip blip = World.CreateBlip(race1Start);
+                    blips.Add(blip);
+                    currentBlip = blips.IndexOf(blip);
                 }
                 
             }
@@ -201,27 +181,8 @@ namespace ModForResearchTUB
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
-            // clear vehicles
-            /*
-            foreach (Vehicle car in vehicles)
-            {
-                car.MarkAsNoLongerNeeded();
-                Function.Call(Hash.SET_VEHICLE_AS_NO_LONGER_NEEDED, car);
-            }
-            */
-            //Function.Call(Hash.CLEAR_AREA_OF_VEHICLES);
-            //Function.Call(Hash.SET_MISSION_FLAG);
-            // create a blip on the map
-
             Game.Player.Character.Position = car_selection;
-
-            /*
-          // 5 meters in front of the player
-          var position = player.GetOffsetInWorldCoords(new Vector3(0, 5, 0));
-
-          // At 90 degrees to the players heading
-          var heading = player.Heading - 90;
-          */
+            Game.Player.Character.Heading = car_spawn_heading;
 
             //Function.Call(Hash.REQUEST_MODEL, VehicleHash.Buffalo);
             var vehicle1Model = new Model(VehicleHash.Buffalo);
@@ -309,22 +270,25 @@ namespace ModForResearchTUB
         }
 
         protected void clearStuffUp() {
+            UI.ShowSubtitle("clearing stuff up", 1250);
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
-
-            Function.Call(Hash.DELETE_CHECKPOINT, checkpoint);
 
             // clear vehicles
             foreach (Vehicle car in vehicles)
             {
                 car.MarkAsNoLongerNeeded();
-                Function.Call(Hash.SET_VEHICLE_AS_NO_LONGER_NEEDED, car);
+                car.Delete();
             }
 
             // clear blips
             foreach (Blip blip in blips) {
-                Function.Call(Hash.SET_ENTITY_AS_NO_LONGER_NEEDED, blip);
+                Function.Call(Hash.SET_ENTITY_AS_NO_LONGER_NEEDED, blip.Handle);
+                blip.Remove();
             }
+
+            race_started = false;
+            currentBlip = -1;
         }
 
         #endregion
