@@ -18,13 +18,13 @@ namespace ModForResearchTUB
         int timer_1s = 0;
         List<Model> models = new List<Model>();
         List<Vehicle> vehicles = new List<Vehicle>();
-        List<Blip> blips = new List<Blip>();
+        Blip currentBlip;
+        Vector3[] checkpoints;
         bool car_config_done = false;
         bool race_started = false;
         bool playerInRaceCar = false;
-        bool firstCheckpointReached = false;
         bool copsCalled = false;
-        int currentBlip = -1;
+        int currentCheckpoint = -1;
 
         Vector3 car_selection = new Vector3(-789.2762f, -2417.304f, 14.57072f);
         Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
@@ -55,7 +55,6 @@ namespace ModForResearchTUB
         {
             var res = UIMenu.GetScreenResolutionMantainRatio();
             var safe = UIMenu.GetSafezoneBounds();
-            const int interval = 45;
 
             // 1 Second Timer
             if (timer_1s <= Game.GameTime)
@@ -77,27 +76,43 @@ namespace ModForResearchTUB
             */
             
             if (race_started &&
-                playerInRaceCar &&
-                !firstCheckpointReached) {
-                World.DrawMarker(MarkerType.HorizontalCircleSkinny_Arrow, race1Start, race1End, new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
-                if (currentBlip >= 0) {
-                    Function.Call(Hash.SET_BLIP_ROUTE, blips[currentBlip], true);
+                playerInRaceCar) {
+                if (currentCheckpoint >= 0) {
+                    World.DrawMarker(MarkerType.VerticalCylinder, checkpoints[currentCheckpoint], new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
+                    // aim to next checkpoint
+                    if (currentCheckpoint + 1 < checkpoints.Length)
+                    {
+                        World.DrawMarker(MarkerType.ChevronUpx2, checkpoints[currentCheckpoint], checkpoints[currentCheckpoint + 1], new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
+                    }
+                    // display finish marker
+                    else {
+                        World.DrawMarker(MarkerType.CheckeredFlagRect, checkpoints[currentCheckpoint], new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
+                    }
+                    new UIResText(string.Format("currentCheckpoint is {0}", currentCheckpoint), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
                 }
             }
 
             if (Game.Player.Character.IsInVehicle()) {
                 new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
 
-                if (!firstCheckpointReached &&
-                Game.Player.Character.IsInRangeOf(race1Start, 5f))
+                if (race_started && 
+                    Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint], 5f))
                 {
-                    UI.ShowSubtitle("first checkpoint reached", 3000);
-                    Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
-                    firstCheckpointReached = true;
-                    race_started = true;
-                    clearStuffUp();
+                    UI.ShowSubtitle(string.Format("checkpoint {0} reached", currentCheckpoint + 1), 3000);
+                    // finish race, if last checkpoint is reached
+                    if (currentCheckpoint == checkpoints.Length) {
+                        Function.Call(Hash.CLEAR_PLAYER_WANTED_LEVEL, Game.Player);
+                        clearStuffUp();
+                    }
+
+                    // set next checkpoint
+                    currentCheckpoint++;
+                    currentBlip.Remove();
+                    currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
+                    Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
                 }
 
+                // check which car player is using
                 if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
                 {
                     new UIResText("fast car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
@@ -118,10 +133,9 @@ namespace ModForResearchTUB
                     !race_started) {
                     race_started = true;
                     UI.ShowSubtitle("Race started!", 1250);
-                    Function.Call(Hash.DISABLE_CONTROL_ACTION, 0, (int)GTA.Control.VehicleExit);
-                    Blip blip = World.CreateBlip(race1Start);
-                    blips.Add(blip);
-                    currentBlip = blips.IndexOf(blip);
+                    Game.DisableControl(0, GTA.Control.VehicleExit);
+                    currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
+                    Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
                 }
                 
             }
@@ -183,6 +197,14 @@ namespace ModForResearchTUB
 
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_heading;
+
+            checkpoints = new Vector3[5];
+            checkpoints[0] = race1Start;
+            checkpoints[1] = new Vector3(-810.6682f, -2249.965f, 17.24915f);
+            checkpoints[2] = new Vector3(-144.3558f, -1749.146f, 30.12419f);
+            checkpoints[3] = new Vector3(64.65392f, -1285.516f, 29.33747f);
+            checkpoints[4] = race1End;
+            currentCheckpoint = 0;
 
             //Function.Call(Hash.REQUEST_MODEL, VehicleHash.Buffalo);
             var vehicle1Model = new Model(VehicleHash.Buffalo);
@@ -281,14 +303,11 @@ namespace ModForResearchTUB
                 car.Delete();
             }
 
-            // clear blips
-            foreach (Blip blip in blips) {
-                Function.Call(Hash.SET_ENTITY_AS_NO_LONGER_NEEDED, blip.Handle);
-                blip.Remove();
-            }
+            // clear map blip
+            currentBlip.Remove();
 
             race_started = false;
-            currentBlip = -1;
+            currentCheckpoint = -1;
         }
 
         #endregion
