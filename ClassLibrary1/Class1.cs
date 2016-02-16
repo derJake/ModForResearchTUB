@@ -57,20 +57,6 @@ namespace ModForResearchTUB
             var res = UIMenu.GetScreenResolutionMantainRatio();
             var safe = UIMenu.GetSafezoneBounds();
 
-            // 1 Second Timer
-            if (timer_1s <= Game.GameTime)
-            {
-                // Reset Timer
-                timer_1s = Game.GameTime + 1000;
-
-                // NATIVE EXEMPLE
-                // NativeDB http://www.dev-c.com/nativedb/
-
-                // Call a Native function with a return value
-                Boolean nativeIsPlayerPlaying = GTA.Native.Function.Call<Boolean>(Hash.IS_PLAYER_PLAYING, Game.Player);
-                Boolean IsPlayerPlaying = Game.Player.IsPlaying; // Shortcut with ScriptHookDotNet Game class
-            }
-
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
