@@ -20,17 +20,18 @@ namespace ModForResearchTUB
         List<Vehicle> vehicles = new List<Vehicle>();
         Blip currentBlip;
         Vector3[] checkpoints;
+        int currentMarker;
         bool car_config_done = false;
         bool race_started = false;
         bool playerInRaceCar = false;
         bool copsCalled = false;
         int currentCheckpoint = -1;
 
-        Vector3 car_selection = new Vector3(-789.2762f, -2417.304f, 14.57072f);
+        Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
         Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
         Vector3 car2_spawnpoint = new Vector3(-795.5708f, -2425.815f, 14.57072f);
         float car_spawn_heading = 147.0f;
-        Vector3 car_spawn_player_heading = new Vector3(-793.0905f, -2427.258f, 14.57072f);
+        float car_spawn_player_heading = 48.0f;
         Vector3 race1Start = new Vector3(-1015.348f, -2715.956f, 12.58948f);
         Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
@@ -78,16 +79,6 @@ namespace ModForResearchTUB
             if (race_started &&
                 playerInRaceCar) {
                 if (currentCheckpoint >= 0) {
-                    World.DrawMarker(MarkerType.VerticalCylinder, checkpoints[currentCheckpoint], new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
-                    // aim to next checkpoint
-                    if (currentCheckpoint + 1 < checkpoints.Length)
-                    {
-                        World.DrawMarker(MarkerType.ChevronUpx2, checkpoints[currentCheckpoint], checkpoints[currentCheckpoint + 1], new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
-                    }
-                    // display finish marker
-                    else {
-                        World.DrawMarker(MarkerType.CheckeredFlagRect, checkpoints[currentCheckpoint], new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 15f), Color.FromArgb(150, 255, 200, 0));
-                    }
                     new UIResText(string.Format("currentCheckpoint is {0}", currentCheckpoint), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
                 }
             }
@@ -106,7 +97,33 @@ namespace ModForResearchTUB
                     }
 
                     // set next checkpoint
+                    Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
                     currentCheckpoint++;
+                    Vector3 coords = checkpoints[currentCheckpoint];
+                    Vector3 nextCoords;
+                    if (currentCheckpoint < (checkpoints.Length - 1)) {
+                        // if there are checkpoints left, get the next one's coordinates
+                        nextCoords = checkpoints[currentCheckpoint + 1];
+                    } else {
+                        nextCoords = new Vector3(0,0,0);
+                    }
+                    
+                    currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT, 
+                        2, // type
+                        coords.X,
+                        coords.Y,
+                        coords.Z - 1,
+                        nextCoords.X, // facing next checkpoint?
+                        nextCoords.Y,
+                        nextCoords.Z,
+                        5.0f,    // radius
+                        255,    // R
+                        155,     // G
+                        0,        // B
+                        100,    // Alpha
+                        0
+                        );
+
                     currentBlip.Remove();
                     currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
                     Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
@@ -134,6 +151,31 @@ namespace ModForResearchTUB
                     race_started = true;
                     UI.ShowSubtitle("Race started!", 1250);
                     Game.DisableControl(0, GTA.Control.VehicleExit);
+                    Vector3 coords = checkpoints[currentCheckpoint];
+                    Vector3 nextCoords;
+                    if (currentCheckpoint < (checkpoints.Length - 1))
+                    {
+                        // if there are checkpoints left, get the next one's coordinates
+                        nextCoords = checkpoints[currentCheckpoint + 1];
+                    }
+                    else {
+                        nextCoords = new Vector3(0, 0, 0);
+                    }
+                    currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
+                        2, // type
+                        coords.X,
+                        coords.Y,
+                        coords.Z - 1,
+                        nextCoords.X, // facing next checkpoint?
+                        nextCoords.Y,
+                        nextCoords.Z,
+                        5.0f,    // radius
+                        255,    // R
+                        155,     // G
+                        0,        // B
+                        100,    // Alpha
+                        0
+                        );
                     currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
                     Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
                 }
@@ -196,7 +238,7 @@ namespace ModForResearchTUB
             player.Task.ClearAllImmediately(); // give back control to player
 
             Game.Player.Character.Position = car_selection;
-            Game.Player.Character.Heading = car_spawn_heading;
+            Game.Player.Character.Heading = car_spawn_player_heading;
 
             checkpoints = new Vector3[5];
             checkpoints[0] = race1Start;
