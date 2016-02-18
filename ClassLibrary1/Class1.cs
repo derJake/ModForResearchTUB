@@ -452,18 +452,12 @@ namespace ModForResearchTUB
             // make player look at cars
             Game.Player.Character.Task.StandStill(5000);
 
-            Game.DisableControl(0, GTA.Control.CursorX);
-            Game.DisableControl(0, GTA.Control.CursorY);
-
             UI.ShowSubtitle("slow car, good traction", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
             UI.ShowSubtitle("racecar (STEAL!)", 2500);
             Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
             Wait(2500);
-
-            Game.EnableControl(0, GTA.Control.CursorX);
-            Game.EnableControl(0, GTA.Control.CursorY);
         }
 
         protected void teleportPlayerToCarCustomization() {
