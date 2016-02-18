@@ -361,6 +361,16 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
+            /*
+
+                stored for later, maybe create some props?
+
+                    Object CREATE_OBJECT(Hash modelHash, float x, float y, float z, BOOL networkHandle,
+  BOOL createHandle, BOOL dynamic)
+
+                BOOL PLACE_OBJECT_ON_GROUND_PROPERLY(Object object)    
+
+            */
             // set up everything for logging
             resetLoggingVariables();
 
