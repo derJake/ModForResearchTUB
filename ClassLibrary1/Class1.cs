@@ -93,6 +93,7 @@ namespace ModForResearchTUB
                 int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
 
                 new UIResText(String.Format("speed: {0}", Game.Player.Character.CurrentVehicle.Speed), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
+                new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * 1.60934f)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
 
                 // if the timer was reset, there was a collision
                 if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle) {
