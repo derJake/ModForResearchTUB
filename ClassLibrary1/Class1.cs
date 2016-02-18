@@ -37,6 +37,9 @@ namespace ModForResearchTUB
         int numOfTimesDrivingOnPavement;
         int numOfTimesDrivingAgaingstTraffic;
 
+        int startedDrivingOnPavement;
+        int startedDrivingAgainstTraffic;
+
         int cumulativeTimeOnPavement;
         int cumulativeTimeDrivingAgainstTraffic;
         int raceStartTime;
@@ -105,8 +108,30 @@ namespace ModForResearchTUB
                 lastMaxTimeSinceHitPed = currentTimeSinceHitPed;
 
                 // player is currently driving on pavement
-                if (currentTimeSinceDrivingOnPavement == 0) {
-                    new UIResText("on pavement", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 325), 0.3f, Color.OrangeRed).Draw();
+                if (currentTimeSinceDrivingOnPavement == 0)
+                {
+                    // start counter
+                    if (startedDrivingOnPavement == 0)
+                    {
+                        startedDrivingOnPavement = Game.GameTime;
+                    }
+                    // show status
+                    new UIResText(
+                        String.Format(
+                            "on pavement for {0}s",
+                            (Game.GameTime - startedDrivingOnPavement) / 1000),
+                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                        Convert.ToInt32(res.Height) - safe.Y - 350),
+                        0.3f,
+                        Color.OrangeRed
+                        ).Draw();
+                } else if (currentTimeSinceDrivingOnPavement > 0) { // player drove on pavement, but isn't any longer
+                    if (startedDrivingOnPavement > 0) {
+                        // add the time interval
+                        cumulativeTimeOnPavement += Game.GameTime - startedDrivingOnPavement;
+                        // reset counter
+                        startedDrivingOnPavement = 0;
+                    }
                 }
 
                 // if the timer was reset, player drove on pavement
@@ -139,7 +164,7 @@ namespace ModForResearchTUB
                 {
                     // finish race, if last checkpoint is reached
                     if ((currentCheckpoint + 1) == checkpoints.Length) {
-                        UI.ShowSubtitle("Race finished!", 3000);
+                        UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
 
@@ -309,15 +334,6 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
-            // make player look at cars
-            Game.Player.Character.Task.StandStill(5000);
-            
-            UI.ShowSubtitle("slow car, good traction", 2500);
-            Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
-            Wait(2500);
-            UI.ShowSubtitle("racecar (STEAL!)", 2500);
-            Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
-            
             // set up everything for logging
             resetLoggingVariables();
 
@@ -395,7 +411,21 @@ namespace ModForResearchTUB
             vehicle1Model.MarkAsNoLongerNeeded();
             vehicle2Model.MarkAsNoLongerNeeded();
 
+            // make player look at cars
+            Game.Player.Character.Task.StandStill(5000);
 
+            Game.DisableControl(0, GTA.Control.CursorX);
+            Game.DisableControl(0, GTA.Control.CursorY);
+
+            UI.ShowSubtitle("slow car, good traction", 2500);
+            Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
+            Wait(2500);
+            UI.ShowSubtitle("racecar (STEAL!)", 2500);
+            Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
+            Wait(2500);
+
+            Game.EnableControl(0, GTA.Control.CursorX);
+            Game.EnableControl(0, GTA.Control.CursorY);
         }
 
         protected void teleportPlayerToCarCustomization() {
@@ -441,9 +471,10 @@ namespace ModForResearchTUB
         }
 
         protected void writeRaceDataToLog() {
+            Logger.Log("--------------------------------");
             Logger.Log(String.Format("race started: {0}", raceStartTime));
             Logger.Log(String.Format("race ended: {0}", raceEndTime));
-            Logger.Log(String.Format("time taken: {0}", raceEndTime - raceStartTime));
+            Logger.Log(String.Format("time taken: {0}", (raceEndTime - raceStartTime) / 1000));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
@@ -462,6 +493,9 @@ namespace ModForResearchTUB
             numOfHitPeds = 0;
             numOfTimesDrivingOnPavement = 0;
             numOfTimesDrivingAgaingstTraffic = 0;
+
+            startedDrivingOnPavement = 0;
+            startedDrivingAgainstTraffic = 0;
 
             raceStartTime = -1;
             raceEndTime = -1;
