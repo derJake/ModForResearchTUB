@@ -92,6 +92,8 @@ namespace ModForResearchTUB
                 int currentTimeSinceDrivingOnPavement = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_ON_PAVEMENT, Game.Player);
                 int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
 
+                new UIResText(String.Format("speed: {0}", Game.Player.Character.CurrentVehicle.Speed), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
+
                 // if the timer was reset, there was a collision
                 if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle) {
                     numOfHitVehicles++;
@@ -119,7 +121,7 @@ namespace ModForResearchTUB
                     new UIResText(
                         String.Format(
                             "on pavement for {0}s",
-                            (Game.GameTime - startedDrivingOnPavement) / 1000),
+                            Math.Round(((float)(Game.GameTime - startedDrivingOnPavement) / 1000), 1)),
                         new Point(Convert.ToInt32(res.Width) - safe.X - 180,
                         Convert.ToInt32(res.Height) - safe.Y - 350),
                         0.3f,
@@ -143,8 +145,33 @@ namespace ModForResearchTUB
                 lastMaxTimeSincePavement = currentTimeSinceDrivingOnPavement;
 
                 // player is currently driving against traffic
-                if (currentTimeSinceDrivingAgainstTraffic == 0) {
-                    new UIResText("against traffic", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 350), 0.3f, Color.OrangeRed).Draw();
+                if (currentTimeSinceDrivingAgainstTraffic == 0)
+                {
+                    // start counter
+                    if (startedDrivingAgainstTraffic == 0)
+                    {
+                        startedDrivingAgainstTraffic = Game.GameTime;
+                    }
+                    // show status
+                    new UIResText(
+                        String.Format(
+                            "against traffic {0}s",
+                            Math.Round(((float)(Game.GameTime - startedDrivingAgainstTraffic) / 1000), 1)),
+                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                        Convert.ToInt32(res.Height) - safe.Y - 375),
+                        0.3f,
+                        Color.OrangeRed
+                        ).Draw();
+                }
+                else if (currentTimeSinceDrivingAgainstTraffic > 0)
+                { // player drove on pavement, but isn't any longer
+                    if (startedDrivingAgainstTraffic > 0)
+                    {
+                        // add the time interval
+                        cumulativeTimeDrivingAgainstTraffic += Game.GameTime - startedDrivingAgainstTraffic;
+                        // reset counter
+                        startedDrivingAgainstTraffic = 0;
+                    }
                 }
 
                 // if the timer was reset, player drove against traffic
@@ -472,15 +499,15 @@ namespace ModForResearchTUB
 
         protected void writeRaceDataToLog() {
             Logger.Log("--------------------------------");
-            Logger.Log(String.Format("race started: {0}", raceStartTime));
-            Logger.Log(String.Format("race ended: {0}", raceEndTime));
-            Logger.Log(String.Format("time taken: {0}", (raceEndTime - raceStartTime) / 1000));
+            Logger.Log(String.Format("race started: {0}ms", raceStartTime));
+            Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
+            Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
             Logger.Log(String.Format("Number of times player has driven against on pavement: {0}", numOfTimesDrivingOnPavement));
-            Logger.Log(String.Format("Cumulative time on pavement: {0}", cumulativeTimeOnPavement));
-            Logger.Log(String.Format("Cumulative time driving against traffic: {0}", cumulativeTimeDrivingAgainstTraffic));
+            Logger.Log(String.Format("Cumulative time on pavement: {0}", Math.Round((float)cumulativeTimeOnPavement/1000, 2)));
+            Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic, 2)));
         }
 
         protected void resetLoggingVariables() {
