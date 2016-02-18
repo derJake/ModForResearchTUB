@@ -245,7 +245,7 @@ namespace ModForResearchTUB
                 // check which car player is using
                 if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
                 {
-                    new UIResText("fast car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
+                    new UIResText("Car with good acceleration", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
                     if (!copsCalled) {
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
@@ -256,7 +256,7 @@ namespace ModForResearchTUB
                 }
                 if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
                 {
-                    new UIResText("Slow, reliable car", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
+                    new UIResText("Car with good traction", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
                     playerInRaceCar = true;
                 }
 
@@ -377,7 +377,7 @@ namespace ModForResearchTUB
 
             // add some checkpoints for our race
             checkpoints = new Vector3[5];
-            checkpoints[0] = race1Start;
+            checkpoints[0] = new Vector3(-807.8585f, -2466.344f, 14.45607f);
             checkpoints[1] = new Vector3(-810.6682f, -2249.965f, 17.24915f);
             checkpoints[2] = new Vector3(-144.3558f, -1749.146f, 30.12419f);
             checkpoints[3] = new Vector3(64.65392f, -1285.516f, 29.33747f);
@@ -452,12 +452,38 @@ namespace ModForResearchTUB
             // make player look at cars
             Game.Player.Character.Task.StandStill(5000);
 
-            UI.ShowSubtitle("slow car, good traction", 2500);
+            // create a camera to look through
+            Camera cam = World.CreateCamera(
+                new Vector3(-799.5338f, -2427f, 14.52622f), // position
+                new Vector3(9f, 0f, -82.57458f), // rotation
+                90f
+            );
+
+            // switch to this camera
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+
+            UI.ShowSubtitle("Racecar (locked with alarm)", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
-            UI.ShowSubtitle("racecar (STEAL!)", 2500);
+
+            // create a camera to look through
+            cam = World.CreateCamera(
+                new Vector3(-793.5338f, -2430f, 14.52622f), // position
+                new Vector3(10f, 0f, -92.57458f), // rotation
+                90f
+            );
+
+            // switch to this camera
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+            
+            UI.ShowSubtitle("Normal car with good traction", 2500);
             Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
             Wait(2500);
+
+            // switch back to main cam
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
+
+            UI.ShowSubtitle("Choose one to start the race!", 2500);
         }
 
         protected void teleportPlayerToCarCustomization() {
