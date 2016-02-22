@@ -82,6 +82,12 @@ namespace ModForResearchTUB
             *   make it so that AI can not be shot
             */
 
+            if (Game.Player.IsDead || Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true)) {
+                clearStuffUp();
+                resetLoggingVariables();
+                return;
+            }
+
             if (Game.Player.Character.IsInVehicle()) {
                 new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
                 logVariables();
@@ -230,6 +236,11 @@ namespace ModForResearchTUB
                         0
                         );
                     currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
+
+                    if (currentCheckpoint == (checkpoints.Length - 1)) {
+                        currentBlip.Sprite = BlipSprite.RaceFinish;
+                    }
+
                     Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
 
                     raceStartTime = Game.GameTime;
