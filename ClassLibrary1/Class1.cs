@@ -27,6 +27,9 @@ namespace ModForResearchTUB
         bool copsCalled = false;
         int currentCheckpoint = -1;
 
+        int speeds;
+        int numOfSpeeds;
+
         int lastMaxTimeSinceHitVehicle;
         int lastMaxTimeSinceHitPed;
         int lastMaxTimeSincePavement;
@@ -74,136 +77,64 @@ namespace ModForResearchTUB
         {
             var res = UIMenu.GetScreenResolutionMantainRatio();
             var safe = UIMenu.GetSafezoneBounds();
-
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
             */
-            
-            if (race_started &&
-                playerInRaceCar) {
-                if (currentCheckpoint >= 0) {
-                    new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
-                }
-
-                // logging some variables
-                int currentTimeSinceHitVehicle = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_HIT_VEHICLE, Game.Player);
-                int currentTimeSinceHitPed = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_HIT_PED, Game.Player);
-                int currentTimeSinceDrivingOnPavement = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_ON_PAVEMENT, Game.Player);
-                int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
-
-                new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
-                new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * 1.60934f)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
-
-                // if the timer was reset, there was a collision
-                if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle) {
-                    numOfHitVehicles++;
-                }
-                // either way, save new timer
-                lastMaxTimeSinceHitVehicle = currentTimeSinceHitVehicle;
-
-                // if the timer was reset, there was a collision
-                if (currentTimeSinceHitPed < lastMaxTimeSinceHitPed)
-                {
-                    numOfHitPeds++;
-                }
-                // either way, save new timer
-                lastMaxTimeSinceHitPed = currentTimeSinceHitPed;
-
-                // player is currently driving on pavement
-                if (currentTimeSinceDrivingOnPavement == 0)
-                {
-                    // start counter
-                    if (startedDrivingOnPavement == 0)
-                    {
-                        startedDrivingOnPavement = Game.GameTime;
-                    }
-                    // show status
-                    new UIResText(
-                        String.Format(
-                            "on pavement for {0}s",
-                            Math.Round(((float)(Game.GameTime - startedDrivingOnPavement) / 1000), 1)),
-                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
-                        Convert.ToInt32(res.Height) - safe.Y - 350),
-                        0.3f,
-                        Color.OrangeRed
-                        ).Draw();
-                } else if (currentTimeSinceDrivingOnPavement > 0) { // player drove on pavement, but isn't any longer
-                    if (startedDrivingOnPavement > 0) {
-                        // add the time interval
-                        cumulativeTimeOnPavement += Game.GameTime - startedDrivingOnPavement;
-                        // reset counter
-                        startedDrivingOnPavement = 0;
-                    }
-                }
-
-                // if the timer was reset, player drove on pavement
-                if (currentTimeSinceDrivingOnPavement < lastMaxTimeSincePavement)
-                {
-                    numOfTimesDrivingOnPavement++;
-                }
-                // either way, save new timer
-                lastMaxTimeSincePavement = currentTimeSinceDrivingOnPavement;
-
-                // player is currently driving against traffic
-                if (currentTimeSinceDrivingAgainstTraffic == 0)
-                {
-                    // start counter
-                    if (startedDrivingAgainstTraffic == 0)
-                    {
-                        startedDrivingAgainstTraffic = Game.GameTime;
-                    }
-                    // show status
-                    new UIResText(
-                        String.Format(
-                            "against traffic {0}s",
-                            Math.Round(((float)(Game.GameTime - startedDrivingAgainstTraffic) / 1000), 1)),
-                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
-                        Convert.ToInt32(res.Height) - safe.Y - 375),
-                        0.3f,
-                        Color.OrangeRed
-                        ).Draw();
-                }
-                else if (currentTimeSinceDrivingAgainstTraffic > 0)
-                { // player drove on pavement, but isn't any longer
-                    if (startedDrivingAgainstTraffic > 0)
-                    {
-                        // add the time interval
-                        cumulativeTimeDrivingAgainstTraffic += Game.GameTime - startedDrivingAgainstTraffic;
-                        // reset counter
-                        startedDrivingAgainstTraffic = 0;
-                    }
-                }
-
-                // if the timer was reset, player drove against traffic
-                if (currentTimeSinceDrivingAgainstTraffic < lastMaxTimeSinceAgainstTraffic)
-                {
-                    numOfTimesDrivingAgaingstTraffic++;
-                }
-                // either way, save new timer
-                lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
-            }
 
             if (Game.Player.Character.IsInVehicle()) {
                 new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
+                logVariables();
+
+                if (race_started)
+                {
+                    if (currentCheckpoint >= 0)
+                    {
+                        new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
+                    }
+                }
 
                 if (race_started && 
                     Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint], 5f))
                 {
-                    // finish race, if last checkpoint is reached
+                    // FINISHED, if last checkpoint is reached
                     if ((currentCheckpoint + 1) == checkpoints.Length) {
                         UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
 
+                        Game.Player.CanControlCharacter = false;
+
+                        // camera FX
+                        Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
+                        if (Game.Player.Character.IsInVehicle())
+                            Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
+                        World.DestroyAllCameras();
+                        World.RenderingCamera = World.CreateCamera(GameplayCamera.Position, GameplayCamera.Rotation, 60f);
+
+                        // play sounds
+                        Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
+                        Wait(750);
+                        Function.Call(Hash.PLAY_SOUND_FRONTEND, 0, "CHECKPOINT_UNDER_THE_BRIDGE", "HUD_MINI_GAME_SOUNDSET");
+                        Wait(2000);
+
+                        // reset camera stuff
+                        Function.Call(Hash._STOP_SCREEN_EFFECT, "HeistCelebPass");
+                        World.RenderingCamera = null;
+
                         raceEndTime = Game.GameTime;
+
+                        Game.Player.CanControlCharacter = true;
 
                         writeRaceDataToLog();
                         clearStuffUp();
                         return;
                     }
 
+                    // show the players current position
                     UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
+                    // play sound
+                    Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
                     // set next checkpoint
                     Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
@@ -249,7 +180,7 @@ namespace ModForResearchTUB
                     if (!copsCalled) {
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
-                        Game.Player.Character.CurrentVehicle.StartAlarm();
+                        vehicles[1].StartAlarm();
                         copsCalled = true;
                     }
                     playerInRaceCar = true;
@@ -351,6 +282,116 @@ namespace ModForResearchTUB
                 //remove any ped,vehucle,Blip,prop,.... that you create
                 clearStuffUp();
             }
+        }
+
+        protected void logVariables() {
+            var res = UIMenu.GetScreenResolutionMantainRatio();
+            var safe = UIMenu.GetSafezoneBounds();
+
+            // logging some variables
+            int currentTimeSinceHitVehicle = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_HIT_VEHICLE, Game.Player);
+            int currentTimeSinceHitPed = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_HIT_PED, Game.Player);
+            int currentTimeSinceDrivingOnPavement = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_ON_PAVEMENT, Game.Player);
+            int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
+
+            speeds += (int)Math.Round(Game.Player.Character.CurrentVehicle.Speed);
+            numOfSpeeds++;
+
+            new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * 1.60934f)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
+
+            // if the timer was reset, there was a collision
+            if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle)
+            {
+                numOfHitVehicles++;
+            }
+            // either way, save new timer
+            lastMaxTimeSinceHitVehicle = currentTimeSinceHitVehicle;
+
+            // if the timer was reset, there was a collision
+            if (currentTimeSinceHitPed < lastMaxTimeSinceHitPed)
+            {
+                numOfHitPeds++;
+            }
+            // either way, save new timer
+            lastMaxTimeSinceHitPed = currentTimeSinceHitPed;
+
+            // player is currently driving on pavement
+            if (currentTimeSinceDrivingOnPavement == 0)
+            {
+                // start counter
+                if (startedDrivingOnPavement == 0)
+                {
+                    startedDrivingOnPavement = Game.GameTime;
+                }
+                // show status
+                new UIResText(
+                    String.Format(
+                        "on pavement for {0}s",
+                        Math.Round(((float)(Game.GameTime - startedDrivingOnPavement) / 1000), 1)),
+                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                    Convert.ToInt32(res.Height) - safe.Y - 350),
+                    0.3f,
+                    Color.OrangeRed
+                    ).Draw();
+            }
+            else if (currentTimeSinceDrivingOnPavement > 0)
+            { // player drove on pavement, but isn't any longer
+                if (startedDrivingOnPavement > 0)
+                {
+                    // add the time interval
+                    cumulativeTimeOnPavement += Game.GameTime - startedDrivingOnPavement;
+                    // reset counter
+                    startedDrivingOnPavement = 0;
+                }
+            }
+
+            // if the timer was reset, player drove on pavement
+            if (currentTimeSinceDrivingOnPavement < lastMaxTimeSincePavement)
+            {
+                numOfTimesDrivingOnPavement++;
+            }
+            // either way, save new timer
+            lastMaxTimeSincePavement = currentTimeSinceDrivingOnPavement;
+
+            // player is currently driving against traffic
+            if (currentTimeSinceDrivingAgainstTraffic == 0)
+            {
+                // start counter
+                if (startedDrivingAgainstTraffic == 0)
+                {
+                    startedDrivingAgainstTraffic = Game.GameTime;
+                }
+                // show status
+                new UIResText(
+                    String.Format(
+                        "against traffic {0}s",
+                        Math.Round(((float)(Game.GameTime - startedDrivingAgainstTraffic) / 1000), 1)),
+                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                    Convert.ToInt32(res.Height) - safe.Y - 375),
+                    0.3f,
+                    Color.OrangeRed
+                    ).Draw();
+            }
+            else if (currentTimeSinceDrivingAgainstTraffic > 0)
+            { // player drove on pavement, but isn't any longer
+                if (startedDrivingAgainstTraffic > 0)
+                {
+                    // add the time interval
+                    cumulativeTimeDrivingAgainstTraffic += Game.GameTime - startedDrivingAgainstTraffic;
+                    // reset counter
+                    startedDrivingAgainstTraffic = 0;
+                }
+            }
+
+            // if the timer was reset, player drove against traffic
+            if (currentTimeSinceDrivingAgainstTraffic < lastMaxTimeSinceAgainstTraffic)
+            {
+                numOfTimesDrivingAgaingstTraffic++;
+            }
+            // either way, save new timer
+            lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
         }
 
         protected void initFirstRace() {
@@ -461,6 +502,10 @@ namespace ModForResearchTUB
 
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+            // play sound
+            
+            
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
             UI.ShowSubtitle("Racecar (locked with alarm)", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
@@ -475,7 +520,9 @@ namespace ModForResearchTUB
 
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
-            
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+
             UI.ShowSubtitle("Normal car with good traction", 2500);
             Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
             Wait(2500);
@@ -514,11 +561,15 @@ namespace ModForResearchTUB
                 car.Delete();
             }
 
+            vehicles = new List<Vehicle>();
+
             // clear map blip
             currentBlip.Remove();
+            currentBlip = null;
 
             // delete 3D marker
             Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+            currentMarker = -1;
 
             race_started = false;
             currentCheckpoint = -1;
@@ -533,6 +584,8 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("race started: {0}ms", raceStartTime));
             Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
+            Logger.Log(String.Format("average speed: {0}m/h", Math.Round((float)speeds/(float)numOfSpeeds)));
+            Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * 1.60934f)));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
@@ -543,6 +596,9 @@ namespace ModForResearchTUB
 
         protected void resetLoggingVariables() {
             // reset logging variables
+            speeds = 0;
+            numOfSpeeds = 0;
+
             lastMaxTimeSinceHitVehicle = -1;
             lastMaxTimeSinceHitPed = -1;
             lastMaxTimeSincePavement = -1;
