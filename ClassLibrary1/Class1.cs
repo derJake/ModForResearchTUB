@@ -82,14 +82,15 @@ namespace ModForResearchTUB
             *   make it so that AI can not be shot
             */
 
-            if (Game.Player.IsDead || Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true)) {
+            if (race_started &&
+                (Game.Player.IsDead ||
+                Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true))) {
                 clearStuffUp();
                 resetLoggingVariables();
                 return;
             }
 
             if (Game.Player.Character.IsInVehicle()) {
-                new UIResText("player is driving", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 300), 0.3f, Color.White).Draw();
                 logVariables();
 
                 if (race_started)
@@ -428,12 +429,26 @@ namespace ModForResearchTUB
             resetLoggingVariables();
 
             // add some checkpoints for our race
-            checkpoints = new Vector3[5];
+            checkpoints = new Vector3[19];
             checkpoints[0] = new Vector3(-807.8585f, -2466.344f, 14.45607f);
             checkpoints[1] = new Vector3(-810.6682f, -2249.965f, 17.24915f);
-            checkpoints[2] = new Vector3(-144.3558f, -1749.146f, 30.12419f);
-            checkpoints[3] = new Vector3(64.65392f, -1285.516f, 29.33747f);
-            checkpoints[4] = race1End;
+            checkpoints[2] = new Vector3(-693.1211f, -2117.945f, 13.12339f);
+            checkpoints[3] = new Vector3(-382.7377f, -1838.06f, 21.37794f);
+            checkpoints[4] = new Vector3(-246.3216f, -1826.909f, 28.96538f);
+            checkpoints[5] = new Vector3(-144.3558f, -1749.146f, 30.12419f);
+            checkpoints[6] = new Vector3(-44.43723f, -1630.049f, 28.96328f);
+            checkpoints[7] = new Vector3(64.23303f, -1515.456f, 28.93484f);
+            checkpoints[8] = new Vector3(138.5995f, -1370.135f, 28.83117f);
+            checkpoints[9] = new Vector3(117.2407f, -1356.73f, 28.88704f);
+            checkpoints[10] = new Vector3(64.65392f, -1285.516f, 29.33747f);
+            checkpoints[11] = new Vector3(64.58669f, -1160.968f, 28.951f);
+            checkpoints[12] = new Vector3(96.58853f, -1026.16f, 29.03582f);
+            checkpoints[13] = new Vector3(82.72692f, -982.808f, 29.01929f);
+            checkpoints[14] = new Vector3(-11.1925f, -931.7217f, 28.90791f);
+            checkpoints[15] = new Vector3(32.22876f, -773.1832f, 43.85289f);
+            checkpoints[16] = new Vector3(-65.03999f, -725.1259f, 43.86914f);
+            checkpoints[17] = new Vector3(-76.04148f, -749.7919f, 43.77972f);
+            checkpoints[18] = race1End;
             currentCheckpoint = 0;
 
             // load the two models
