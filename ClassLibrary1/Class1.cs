@@ -29,6 +29,9 @@ namespace ModForResearchTUB
 
         int speeds;
         int numOfSpeeds;
+        int maxSpeed;
+
+        const float mTokm = 1.60934f;
 
         int lastMaxTimeSinceHitVehicle;
         int lastMaxTimeSinceHitPed;
@@ -47,6 +50,8 @@ namespace ModForResearchTUB
         int cumulativeTimeDrivingAgainstTraffic;
         int raceStartTime;
         int raceEndTime;
+
+        String car;
 
         Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
         Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
@@ -189,6 +194,7 @@ namespace ModForResearchTUB
                         Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
                         vehicles[1].StartAlarm();
                         copsCalled = true;
+                        car = "Player is in fast car";
                     }
                     playerInRaceCar = true;
                 }
@@ -196,6 +202,7 @@ namespace ModForResearchTUB
                 {
                     new UIResText("Car with good traction", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
                     playerInRaceCar = true;
+                    car = "Player is in car with good traction";
                 }
 
                 // start the race and set first marker + blip
@@ -306,12 +313,18 @@ namespace ModForResearchTUB
             int currentTimeSinceDrivingOnPavement = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_ON_PAVEMENT, Game.Player);
             int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
 
-            speeds += (int)Math.Round(Game.Player.Character.CurrentVehicle.Speed);
+            var currentSpeed = Game.Player.Character.CurrentVehicle.Speed;
+
+            speeds += (int)Math.Round(currentSpeed);
             numOfSpeeds++;
+
+            if (currentSpeed > maxSpeed) {
+                maxSpeed = (int)Math.Round(currentSpeed);
+            }
 
             new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
             new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
-            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * 1.60934f)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * mTokm)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
 
             // if the timer was reset, there was a collision
             if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle)
@@ -607,11 +620,14 @@ namespace ModForResearchTUB
 
         protected void writeRaceDataToLog() {
             Logger.Log("--------------------------------");
+            Logger.Log(car);
             Logger.Log(String.Format("race started: {0}ms", raceStartTime));
             Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("average speed: {0}m/h", Math.Round((float)speeds/(float)numOfSpeeds)));
-            Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * 1.60934f)));
+            Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * mTokm)));
+            Logger.Log(String.Format("maximum speed: {0}m/h", maxSpeed));
+            Logger.Log(String.Format("maximum speed: {0}km/h", Math.Round((float)maxSpeed * mTokm)));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
@@ -624,6 +640,7 @@ namespace ModForResearchTUB
             // reset logging variables
             speeds = 0;
             numOfSpeeds = 0;
+            maxSpeed = 0;
 
             lastMaxTimeSinceHitVehicle = -1;
             lastMaxTimeSinceHitPed = -1;
