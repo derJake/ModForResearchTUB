@@ -10,6 +10,16 @@ This is a modification intended for use with the popular game GTA V.
 * when the player enters one of the cars, he/she is prompted to drive through checkpoints, composing a route
 * at the last checkpoint, several variables are written to a log file
 
+## TO DO
+
+* Create more races / decision events
+   *    use ramp for jump or take safe route
+   *    go cross-country (risking collisions with foliage and rocks) or take road
+   *    buy better engine/turbo or something with better traction
+* log running red lights
+* display introduction / tutorial more clearly
+* show some decisive parts of the race track beforehand
+
 ## Dependencies:
 * [ScriptHook V] or .NET, if you compile from source
 * [NativeUI]
