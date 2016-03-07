@@ -64,6 +64,8 @@ namespace ModForResearchTUB
         // Main Script
         public Main()
         {
+            World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
+
             // Tick Interval
             //Interval = 10;
 
@@ -421,6 +423,7 @@ namespace ModForResearchTUB
 
         protected void initFirstRace() {
             UI.ShowSubtitle("initializing first race", 1250);
+            World.CurrentDayTime = new TimeSpan(9, 0, 0);
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
