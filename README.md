@@ -9,6 +9,7 @@ This is a modification intended for use with the popular game GTA V.
 * the other one is accelerating fast, harder to handle and sounds an alarm, thereby informing the police
 * when the player enters one of the cars, he/she is prompted to drive through checkpoints, composing a route
 * at the last checkpoint, several variables are written to a log file
+
 ## Dependencies:
 * [ScriptHook V] or .NET, if you compile from source
 * [NativeUI]
