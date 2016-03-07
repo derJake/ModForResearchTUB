@@ -16,6 +16,8 @@ This is a modification intended for use with the popular game GTA V.
    *    use ramp for jump or take safe route
    *    go cross-country (risking collisions with foliage and rocks) or take road
    *    buy better engine/turbo or something with better traction
+   *    race against opponents or drive alone
+   *    Pass garbage truck appear on narrow road or wait patiently
 * log running red lights
 * display introduction / tutorial more clearly
 * show some decisive parts of the race track beforehand
