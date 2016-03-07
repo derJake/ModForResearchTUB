@@ -31,6 +31,13 @@ namespace ModForResearchTUB
         int numOfSpeeds;
         int maxSpeed;
 
+        int lastTimeBrake;
+        int numBrakeApplied;
+        int lastTimeHandbrake;
+        int numHandBrakeApplied;
+        int cumulativeTimeBraking;
+        int cumulativeTimeHandbraking;
+
         const float mTokm = 1.60934f;
 
         int lastMaxTimeSinceHitVehicle;
@@ -268,6 +275,12 @@ namespace ModForResearchTUB
                 case Keys.E:
                     UI.ShowSubtitle("[E] KeyDown", 1250);
                     break;
+                case Keys.S:
+                    lastTimeBrake = Game.GameTime;
+                    break;
+                case Keys.Space:
+                    lastTimeHandbrake = Game.GameTime;
+                    break;
                 default:
                     break;
             }
@@ -289,6 +302,21 @@ namespace ModForResearchTUB
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
                     teleportPlayerToCarCustomization();
+                    break;
+                case Keys.S:
+                    if (lastTimeBrake > 0) {
+                        numBrakeApplied++;
+                        cumulativeTimeBraking += (Game.GameTime - lastTimeBrake);
+                        lastTimeBrake = 0;
+                    }
+                    break;
+                case Keys.Space:
+                    if (lastTimeHandbrake > 0)
+                    {
+                        numHandBrakeApplied++;
+                        cumulativeTimeHandbraking += (Game.GameTime - lastTimeHandbrake);
+                        lastTimeHandbrake = 0;
+                    }
                     break;
                 default:
                     break;
@@ -419,6 +447,10 @@ namespace ModForResearchTUB
             }
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
+
+            foreach (var prop in World.GetNearbyProps(Game.Player.Character.Position, 20)) {
+
+            }
         }
 
         protected void initFirstRace() {
@@ -498,6 +530,7 @@ namespace ModForResearchTUB
                 // make fast vehicle locked, but able to break and enter
                 Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
                 Function.Call(Hash.SET_VEHICLE_NEEDS_TO_BE_HOTWIRED, vehicle2, true);
+                vehicle2.HasAlarm = true;
 
                 // make the fast one colorful, the other one white
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle1, 255, 255, 255);
@@ -631,6 +664,10 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * mTokm)));
             Logger.Log(String.Format("maximum speed: {0}m/h", maxSpeed));
             Logger.Log(String.Format("maximum speed: {0}km/h", Math.Round((float)maxSpeed * mTokm)));
+            Logger.Log(String.Format("Number of times player applied brakes: {0}", numBrakeApplied));
+            Logger.Log(String.Format("Number of times player applied handbrake: {0}", numHandBrakeApplied));
+            Logger.Log(String.Format("Cumulative time spent braking: {0}s", Math.Round((float)cumulativeTimeBraking/1000, 2)));
+            Logger.Log(String.Format("Cumulative time spent on handbrake: {0}s", Math.Round((float)cumulativeTimeHandbraking/1000, 2)));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
@@ -644,6 +681,13 @@ namespace ModForResearchTUB
             speeds = 0;
             numOfSpeeds = 0;
             maxSpeed = 0;
+
+            numBrakeApplied = 0;
+            numHandBrakeApplied = 0;
+            lastTimeBrake = 0;
+            lastTimeHandbrake = 0;
+            cumulativeTimeBraking = 0;
+            cumulativeTimeHandbraking = 0;
 
             lastMaxTimeSinceHitVehicle = -1;
             lastMaxTimeSinceHitPed = -1;
