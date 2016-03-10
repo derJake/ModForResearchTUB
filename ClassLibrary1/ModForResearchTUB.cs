@@ -71,7 +71,7 @@ namespace ModForResearchTUB
         // Main Script
         public Main()
         {
-            World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
+            // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
 
             // Tick Interval
             //Interval = 10;
