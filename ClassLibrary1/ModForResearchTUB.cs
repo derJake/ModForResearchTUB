@@ -458,6 +458,7 @@ namespace ModForResearchTUB
         protected void initFirstRace() {
             UI.ShowSubtitle("initializing first race", 1250);
             World.CurrentDayTime = new TimeSpan(9, 0, 0);
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "RAIN");
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
