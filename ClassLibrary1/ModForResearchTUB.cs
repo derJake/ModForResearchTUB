@@ -18,6 +18,7 @@ namespace ModForResearchTUB
         int timer_1s = 0;
         List<Model> models = new List<Model>();
         List<Vehicle> vehicles = new List<Vehicle>();
+        List<int> trafficSignalHashes = new List<int>;
         Blip currentBlip;
         Vector3[] checkpoints;
         int currentMarker;
@@ -71,6 +72,9 @@ namespace ModForResearchTUB
         // Main Script
         public Main()
         {
+            trafficSignalHashes.Add(-655644382);
+            trafficSignalHashes.Add(862871082);
+            trafficSignalHashes.Add(1043035044);
             // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
 
             // Tick Interval
