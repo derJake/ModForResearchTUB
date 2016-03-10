@@ -448,8 +448,10 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
-            foreach (var prop in World.GetNearbyProps(Game.Player.Character.Position, 20)) {
-
+            foreach (Prop prop in World.GetNearbyProps(Game.Player.Character.Position, 20)) {
+                if (prop.Model.Hash == 1777231328) {
+                    // do something with that info
+                }
             }
         }
 
