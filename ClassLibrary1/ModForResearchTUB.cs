@@ -18,7 +18,7 @@ namespace ModForResearchTUB
         int timer_1s = 0;
         List<Model> models = new List<Model>();
         List<Vehicle> vehicles = new List<Vehicle>();
-        List<int> trafficSignalHashes = new List<int>;
+        List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip;
         Vector3[] checkpoints;
         int currentMarker;
@@ -452,9 +452,18 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
-            foreach (Prop prop in World.GetNearbyProps(Game.Player.Character.Position, 20)) {
-                if (prop.Model.Hash == 1777231328) {
+            foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 20)) {
+                if (trafficSignalHashes.Contains(ent.Model.Hash)) {
                     // do something with that info
+                    // ent.ForwardVector
+                    var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
+                    new UIResText(
+                        String.Format("traffic light is near at {0}, heading {1}", dist, ent.Heading),
+                        new Point(Convert.ToInt32(res.Width) - safe.X - 300,
+                        Convert.ToInt32(res.Height) - safe.Y - 900),
+                        0.3f,
+                        Color.Aqua
+                    ).Draw();
                 }
             }
         }
