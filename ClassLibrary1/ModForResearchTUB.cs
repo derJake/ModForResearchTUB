@@ -452,9 +452,14 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
+            // get forward vector to check for traffic lights in front of car
+            var fv = Game.Player.Character.CurrentVehicle.ForwardVector;
+            var pos = Game.Player.Character.CurrentVehicle.Position;
+
             foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50)) {
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
-                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70) {
+                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70 &&
+                    ent.IsInArea(pos,pos + (fv * 50f), 50f)) {
                     // do something with that info
                     // ent.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
