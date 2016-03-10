@@ -452,8 +452,9 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
-            foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 20)) {
-                if (trafficSignalHashes.Contains(ent.Model.Hash)) {
+            foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50)) {
+                if (trafficSignalHashes.Contains(ent.Model.Hash) &&
+                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70) {
                     // do something with that info
                     // ent.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
@@ -465,7 +466,7 @@ namespace ModForResearchTUB
                         Color.Aqua
                     ).Draw();
 
-                    World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.FromArgb(200, 255, 255, 255));
+                    World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Aqua);
                 }
             }
         }
