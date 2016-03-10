@@ -458,12 +458,14 @@ namespace ModForResearchTUB
                     // ent.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
                     new UIResText(
-                        String.Format("traffic light is near at {0}, heading {1}", dist, ent.Heading),
+                        String.Format("traffic light is near at {0}, heading {1}, position {2}", dist, ent.Heading, ent.Position),
                         new Point(Convert.ToInt32(res.Width) - safe.X - 300,
                         Convert.ToInt32(res.Height) - safe.Y - 900),
                         0.3f,
                         Color.Aqua
                     ).Draw();
+
+                    World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.FromArgb(200, 255, 255, 255));
                 }
             }
         }
