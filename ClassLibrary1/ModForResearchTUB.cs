@@ -223,6 +223,8 @@ namespace ModForResearchTUB
         protected void startFirstRace() {
             // try and free terrain loading restriction, so car won't fall through the ground
             Function.Call(Hash.CLEAR_HD_AREA);
+            Function.Call(Hash.CLEAR_FOCUS);
+
             race_started = true;
             UI.ShowSubtitle("Race started!", 1250);
 
