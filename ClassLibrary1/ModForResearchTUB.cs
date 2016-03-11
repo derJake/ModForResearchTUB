@@ -75,6 +75,15 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(-655644382);
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
+
+            // try and load this area already
+            Function.Call(Hash.SET_HD_AREA,
+                car1_spawnpoint.X,
+                car1_spawnpoint.Y,
+                car1_spawnpoint.Z,
+                50f
+            );
+
             // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
 
             // Tick Interval
@@ -221,53 +230,64 @@ namespace ModForResearchTUB
                 // start the race and set first marker + blip
                 if (playerInRaceCar &&
                     !race_started) {
-                    race_started = true;
-                    UI.ShowSubtitle("Race started!", 1250);
-
-                    // don't let player exit his racecar by conventional means
-                    Game.DisableControl(0, GTA.Control.VehicleExit);
-
-                    // disable shooting from car?
-                    Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
-
-                    // select the first checkpoint
-                    Vector3 coords = checkpoints[currentCheckpoint];
-                    Vector3 nextCoords;
-                    if (currentCheckpoint < (checkpoints.Length - 1))
-                    {
-                        // if there are checkpoints left, get the next one's coordinates
-                        nextCoords = checkpoints[currentCheckpoint + 1];
-                    }
-                    else {
-                        nextCoords = new Vector3(0, 0, 0);
-                    }
-                    currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
-                        2, // type
-                        coords.X,
-                        coords.Y,
-                        coords.Z - 1,
-                        nextCoords.X, // facing next checkpoint?
-                        nextCoords.Y,
-                        nextCoords.Z,
-                        5.0f,    // radius
-                        255,    // R
-                        155,     // G
-                        0,        // B
-                        100,    // Alpha
-                        0
-                        );
-                    currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
-
-                    if (currentCheckpoint == (checkpoints.Length - 1)) {
-                        currentBlip.Sprite = BlipSprite.RaceFinish;
-                    }
-
-                    Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
-
-                    raceStartTime = Game.GameTime;
+                    startFirstRace();
+                    drawCurrentCheckpoint();
                 }
                 
             }
+        }
+
+        protected void drawCurrentCheckpoint() {
+            // select the first checkpoint
+            Vector3 coords = checkpoints[currentCheckpoint];
+            Vector3 nextCoords;
+            if (currentCheckpoint < (checkpoints.Length - 1))
+            {
+                // if there are checkpoints left, get the next one's coordinates
+                nextCoords = checkpoints[currentCheckpoint + 1];
+            }
+            else {
+                nextCoords = new Vector3(0, 0, 0);
+            }
+            currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
+                2, // type
+                coords.X,
+                coords.Y,
+                coords.Z - 1,
+                nextCoords.X, // facing next checkpoint?
+                nextCoords.Y,
+                nextCoords.Z,
+                5.0f,    // radius
+                255,    // R
+                155,     // G
+                0,        // B
+                100,    // Alpha
+                0
+                );
+            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
+
+            if (currentCheckpoint == (checkpoints.Length - 1))
+            {
+                currentBlip.Sprite = BlipSprite.RaceFinish;
+            }
+
+            Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
+        }
+
+        protected void startFirstRace() {
+            // try and free terrain loading restriction, so car won't fall through the ground
+            Function.Call(Hash.CLEAR_HD_AREA);
+            race_started = true;
+            UI.ShowSubtitle("Race started!", 1250);
+
+            // don't let player exit his racecar by conventional means
+            Game.DisableControl(0, GTA.Control.VehicleExit);
+            Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 1";
+
+            // disable shooting from car?
+            Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
+
+            raceStartTime = Game.GameTime;
         }
 
         // KeyDown Event
@@ -491,8 +511,36 @@ namespace ModForResearchTUB
 
         protected void initFirstRace() {
             UI.ShowSubtitle("initializing first race", 1250);
+
+            Function.Call(Hash.CLEAR_ANGLED_AREA_OF_VEHICLES,
+                car1_spawnpoint.X,
+                car1_spawnpoint.Y,
+                car1_spawnpoint.Z,
+                car2_spawnpoint.X,
+                car2_spawnpoint.Y,
+                car2_spawnpoint.Z,
+                false,
+                false,
+                false,
+                false,
+                false
+            );
+
+            Function.Call(Hash._SET_FOCUS_AREA,
+                car1_spawnpoint.X,
+                car1_spawnpoint.Y,
+                car1_spawnpoint.Z,
+                car2_spawnpoint.X,
+                car2_spawnpoint.Y,
+                car2_spawnpoint.Z
+             );
+
+            // set time of day
             World.CurrentDayTime = new TimeSpan(9, 0, 0);
+
+            // set weather to rain
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "RAIN");
+
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
