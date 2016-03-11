@@ -165,46 +165,8 @@ namespace ModForResearchTUB
                         return;
                     }
 
-                    // show the players current position
-                    UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
-                    // play sound
-                    Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
-
-                    // set next checkpoint
-                    Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
                     currentCheckpoint++;
-                    Vector3 coords = checkpoints[currentCheckpoint];
-                    Vector3 nextCoords;
-                    int type;
-                    if (currentCheckpoint < (checkpoints.Length - 1)) {
-                        // if there are checkpoints left, get the next one's coordinates
-                        nextCoords = checkpoints[currentCheckpoint + 1];
-                        type = 2;
-                    } else {
-                        type = 14;
-                        nextCoords = new Vector3(0,0,0);
-                        coords.Z = coords.Z + 3f;
-                    }
-                    
-                    currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT, 
-                        type, // type
-                        coords.X,
-                        coords.Y,
-                        coords.Z - 1,
-                        nextCoords.X, // facing next checkpoint?
-                        nextCoords.Y,
-                        nextCoords.Z,
-                        5.0f,    // radius
-                        255,    // R
-                        155,     // G
-                        0,        // B
-                        100,    // Alpha
-                        0 // number displayed in marker, if type is 42-44
-                        );
-
-                    currentBlip.Remove();
-                    currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
-                    Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
+                    drawCurrentCheckpoint();
                 }
 
                 // check which car player is using
@@ -238,19 +200,32 @@ namespace ModForResearchTUB
         }
 
         protected void drawCurrentCheckpoint() {
+            // show the players current position
+            UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
+            // play sound
+            Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+
+            // set next checkpoint
+            Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+
             // select the first checkpoint
             Vector3 coords = checkpoints[currentCheckpoint];
             Vector3 nextCoords;
+            int type;
             if (currentCheckpoint < (checkpoints.Length - 1))
             {
                 // if there are checkpoints left, get the next one's coordinates
                 nextCoords = checkpoints[currentCheckpoint + 1];
+                type = 2;
             }
             else {
+                type = 14;
                 nextCoords = new Vector3(0, 0, 0);
+                coords.Z = coords.Z + 3f;
             }
+
             currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
-                2, // type
+                type, // type
                 coords.X,
                 coords.Y,
                 coords.Z - 1,
@@ -262,15 +237,11 @@ namespace ModForResearchTUB
                 155,     // G
                 0,        // B
                 100,    // Alpha
-                0
+                0 // number displayed in marker, if type is 42-44
                 );
+
+            currentBlip.Remove();
             currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
-
-            if (currentCheckpoint == (checkpoints.Length - 1))
-            {
-                currentBlip.Sprite = BlipSprite.RaceFinish;
-            }
-
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
 
@@ -288,6 +259,10 @@ namespace ModForResearchTUB
             Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
 
             raceStartTime = Game.GameTime;
+        }
+
+        protected void finishFirstRace() {
+            
         }
 
         // KeyDown Event
