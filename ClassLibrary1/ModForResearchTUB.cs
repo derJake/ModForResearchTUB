@@ -469,7 +469,13 @@ namespace ModForResearchTUB
                     // TODO: span vector v* between player and entity and calculate angle between v* and Game.Player.Character.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
                     new UIResText(
-                        String.Format("traffic light is near at {0}, heading {1}, position {2}", dist, ent.Heading, ent.Position),
+                        String.Format(
+                            "traffic light is near at {0}, heading {1}, position {2}, is playing anim {3}",
+                            dist,
+                            ent.Heading,
+                            ent.Position,
+                            Function.Call<bool>(Hash.IS_ENTITY_PLAYING_ANIM, ent, "v_traffic_lights", "prop_trafficdiv_02_uv_5", 3)
+                        ),
                         new Point(Convert.ToInt32(res.Width) - safe.X - 300,
                         Convert.ToInt32(res.Height) - safe.Y - 900),
                         0.3f,
