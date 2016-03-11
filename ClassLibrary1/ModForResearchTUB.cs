@@ -93,8 +93,8 @@ namespace ModForResearchTUB
         // OnTick Event
         public void OnTickEvent(object sender, EventArgs e)
         {
-            var res = UIMenu.GetScreenResolutionMantainRatio();
-            var safe = UIMenu.GetSafezoneBounds();
+            SizeF res = UIMenu.GetScreenResolutionMantainRatio();
+            Point safe = UIMenu.GetSafezoneBounds();
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
@@ -109,7 +109,7 @@ namespace ModForResearchTUB
             }
 
             if (Game.Player.Character.IsInVehicle()) {
-                logVariables();
+                logVariables(res, safe);
 
                 if (race_started)
                 {
@@ -337,9 +337,7 @@ namespace ModForResearchTUB
             }
         }
 
-        protected void logVariables() {
-            var res = UIMenu.GetScreenResolutionMantainRatio();
-            var safe = UIMenu.GetSafezoneBounds();
+        protected void logVariables(SizeF res, Point safe) {
 
             // logging some variables
             int currentTimeSinceHitVehicle = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_HIT_VEHICLE, Game.Player);
@@ -452,14 +450,20 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
+            checkForRedlights(res, safe);
+        }
+
+        protected Boolean checkForRedlights(SizeF res, Point safe) {
             // get forward vector to check for traffic lights in front of car
             var fv = Game.Player.Character.CurrentVehicle.ForwardVector;
             var pos = Game.Player.Character.CurrentVehicle.Position;
 
-            foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50)) {
+            foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50))
+            {
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                     Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70 &&
-                    ent.IsInArea(pos,pos + (fv * 50f), 50f)) {
+                    ent.IsInArea(pos, pos + (fv * 50f), 50f))
+                {
                     // do something with that info
                     // ent.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
@@ -472,8 +476,10 @@ namespace ModForResearchTUB
                     ).Draw();
 
                     World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Aqua);
+                    return true;
                 }
             }
+            return false;
         }
 
         protected void initFirstRace() {
