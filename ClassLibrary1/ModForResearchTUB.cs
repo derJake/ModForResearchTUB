@@ -133,32 +133,7 @@ namespace ModForResearchTUB
                 {
                     // FINISHED, if last checkpoint is reached
                     if ((currentCheckpoint + 1) == checkpoints.Length) {
-                        UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
-                        Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
-                        Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
-
-                        Game.Player.CanControlCharacter = false;
-
-                        // camera FX
-                        Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
-                        if (Game.Player.Character.IsInVehicle())
-                            Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
-                        World.DestroyAllCameras();
-                        World.RenderingCamera = World.CreateCamera(GameplayCamera.Position, GameplayCamera.Rotation, 60f);
-
-                        // play sounds
-                        Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
-                        Wait(750);
-                        Function.Call(Hash.PLAY_SOUND_FRONTEND, 0, "CHECKPOINT_UNDER_THE_BRIDGE", "HUD_MINI_GAME_SOUNDSET");
-                        Wait(2000);
-
-                        // reset camera stuff
-                        Function.Call(Hash._STOP_SCREEN_EFFECT, "HeistCelebPass");
-                        World.RenderingCamera = null;
-
-                        raceEndTime = Game.GameTime;
-
-                        Game.Player.CanControlCharacter = true;
+                        finishFirstRace();
 
                         writeRaceDataToLog();
                         clearStuffUp();
@@ -262,7 +237,32 @@ namespace ModForResearchTUB
         }
 
         protected void finishFirstRace() {
-            
+            UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
+            Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
+            Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
+
+            Game.Player.CanControlCharacter = false;
+
+            // camera FX
+            Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
+            if (Game.Player.Character.IsInVehicle())
+                Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
+            World.DestroyAllCameras();
+            World.RenderingCamera = World.CreateCamera(GameplayCamera.Position, GameplayCamera.Rotation, 60f);
+
+            // play sounds
+            Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
+            Wait(750);
+            Function.Call(Hash.PLAY_SOUND_FRONTEND, 0, "CHECKPOINT_UNDER_THE_BRIDGE", "HUD_MINI_GAME_SOUNDSET");
+            Wait(2000);
+
+            // reset camera stuff
+            Function.Call(Hash._STOP_SCREEN_EFFECT, "HeistCelebPass");
+            World.RenderingCamera = null;
+
+            raceEndTime = Game.GameTime;
+
+            Game.Player.CanControlCharacter = true;
         }
 
         // KeyDown Event
