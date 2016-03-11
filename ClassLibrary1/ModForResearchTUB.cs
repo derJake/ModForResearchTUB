@@ -466,6 +466,7 @@ namespace ModForResearchTUB
                 {
                     // do something with that info
                     // ent.ForwardVector
+                    // TODO: span vector v* between player and entity and calculate angle between v* and Game.Player.Character.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
                     new UIResText(
                         String.Format("traffic light is near at {0}, heading {1}, position {2}", dist, ent.Heading, ent.Position),
