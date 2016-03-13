@@ -19,7 +19,7 @@ namespace ModForResearchTUB
         List<Model> models = new List<Model>();
         List<Vehicle> vehicles = new List<Vehicle>();
         List<int> trafficSignalHashes = new List<int>(3);
-        Blip currentBlip;
+        Blip currentBlip = null;
         Vector3[] checkpoints;
         int currentMarker;
         bool car_config_done = false;
@@ -122,6 +122,9 @@ namespace ModForResearchTUB
 
                 if (race_started)
                 {
+                    // just in case
+                    // Function.Call(Hash.STOP_PLAYER_SWITCH); doesn't really stop player from switching
+                    
                     if (currentCheckpoint >= 0)
                     {
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
@@ -177,12 +180,16 @@ namespace ModForResearchTUB
         protected void drawCurrentCheckpoint() {
             // show the players current position
             UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
+            UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
+
             // play sound
             Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
             // set next checkpoint
-            Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
-
+            if (currentMarker > 0)
+            {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+            }
             // select the first checkpoint
             Vector3 coords = checkpoints[currentCheckpoint];
             Vector3 nextCoords;
@@ -215,7 +222,10 @@ namespace ModForResearchTUB
                 0 // number displayed in marker, if type is 42-44
                 );
 
-            currentBlip.Remove();
+            if (currentBlip != null)
+            {
+                currentBlip.Remove();
+            }
             currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
