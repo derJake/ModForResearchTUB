@@ -255,6 +255,9 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
 
+            // make weather nice again
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW, "CLEARING");
+
             Game.Player.CanControlCharacter = false;
 
             // camera FX
