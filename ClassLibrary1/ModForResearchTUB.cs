@@ -61,6 +61,8 @@ namespace ModForResearchTUB
 
         String car;
 
+        int car_health;
+
         Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
         Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
         Vector3 car2_spawnpoint = new Vector3(-795.5708f, -2425.815f, 14.57072f);
@@ -260,6 +262,8 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_WEATHER_TYPE_NOW, "CLEARING");
 
             Game.Player.CanControlCharacter = false;
+
+            car_health = Game.Player.Character.CurrentVehicle.Health;
 
             // camera FX
             Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
@@ -529,7 +533,7 @@ namespace ModForResearchTUB
              );
 
             // set time of day
-            World.CurrentDayTime = new TimeSpan(9, 0, 0);
+            World.CurrentDayTime = new TimeSpan(8, 30, 0);
 
             // set weather to rain
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "RAIN");
@@ -735,6 +739,7 @@ namespace ModForResearchTUB
         protected void writeRaceDataToLog() {
             Logger.Log("--------------------------------");
             Logger.Log(car);
+            Logger.Log(String.Format("car health: {0}", car_health));
             Logger.Log(String.Format("race started: {0}ms", raceStartTime));
             Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
@@ -784,6 +789,8 @@ namespace ModForResearchTUB
 
             cumulativeTimeDrivingAgainstTraffic = 0;
             cumulativeTimeOnPavement = 0;
+
+            car_health = -1;
         }
 
         #endregion
