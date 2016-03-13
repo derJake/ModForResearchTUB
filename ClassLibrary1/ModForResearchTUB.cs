@@ -250,6 +250,7 @@ namespace ModForResearchTUB
 
         protected void finishFirstRace() {
             UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
+            UI.Notify(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000));
 
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
