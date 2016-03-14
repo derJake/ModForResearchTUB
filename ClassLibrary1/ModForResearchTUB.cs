@@ -126,7 +126,13 @@ namespace ModForResearchTUB
                 {
                     // just in case
                     // Function.Call(Hash.STOP_PLAYER_SWITCH); doesn't really stop player from switching
-                    
+
+                    // don't let player exit his racecar by conventional means
+                    Game.DisableControl(0, GTA.Control.VehicleExit);
+
+                    // disable shooting from car?
+                    Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
+
                     if (currentCheckpoint >= 0)
                     {
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
@@ -136,6 +142,7 @@ namespace ModForResearchTUB
                 if (race_started && 
                     Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint], 5f))
                 {
+
                     // show the players current position
                     UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
                     UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
@@ -239,13 +246,8 @@ namespace ModForResearchTUB
 
             race_started = true;
             UI.ShowSubtitle("Race started!", 1250);
-
-            // don't let player exit his racecar by conventional means
-            Game.DisableControl(0, GTA.Control.VehicleExit);
+            
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 1";
-
-            // disable shooting from car?
-            Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
 
             raceStartTime = Game.GameTime;
         }
