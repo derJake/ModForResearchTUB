@@ -136,6 +136,10 @@ namespace ModForResearchTUB
                 if (race_started && 
                     Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint], 5f))
                 {
+                    // show the players current position
+                    UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
+                    UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
+
                     // FINISHED, if last checkpoint is reached
                     if ((currentCheckpoint + 1) == checkpoints.Length) {
                         finishFirstRace();
@@ -180,10 +184,6 @@ namespace ModForResearchTUB
         }
 
         protected void drawCurrentCheckpoint() {
-            // show the players current position
-            UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
-            UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
-
             // play sound
             Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
