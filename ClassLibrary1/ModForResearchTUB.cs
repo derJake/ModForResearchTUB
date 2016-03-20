@@ -175,6 +175,8 @@ namespace ModForResearchTUB
                         {
                             currentFinish();
 
+                            
+
                             writeRaceDataToLog();
                             clearStuffUp();
                             return;
@@ -492,7 +494,7 @@ namespace ModForResearchTUB
             currentMarker = -1;
 
             race_started = false;
-            currentCheckpoint = -1;
+            currentCheckpoint = 0;
 
             resetLoggingVariables();
             Wait(3000);
@@ -500,7 +502,6 @@ namespace ModForResearchTUB
         }
 
         protected void writeRaceDataToLog() {
-            Logger.Log(String.Format("car health: {0}", car_health));
             Logger.Log(String.Format("race started: {0}ms", raceStartTime));
             Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
