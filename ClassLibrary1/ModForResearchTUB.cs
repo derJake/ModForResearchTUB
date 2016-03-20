@@ -25,7 +25,7 @@ namespace ModForResearchTUB
         
         int currentCheckpoint = -1;
 
-        int currentRace = 0;
+        int currentRace = -1;
         RaceInterface[] races;
         delegate void CurrentInitHandler();
         delegate void CurrentStartHandler();
@@ -100,6 +100,7 @@ namespace ModForResearchTUB
         private void setUpRaces() {
             races = new RaceInterface[1];
             races[0] = new RaceCarvsCar();
+            currentRace = 0;
         }
 
         private void setCurrentRaceFunctions() {
@@ -269,7 +270,7 @@ namespace ModForResearchTUB
                     break;
                 case Keys.F10:
                     UI.ShowSubtitle("trying to call race", 1250);
-                    initFirstRace();
+                    currentInit();
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
