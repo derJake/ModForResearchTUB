@@ -10,6 +10,7 @@ namespace ModForResearchTUB
     interface RaceInterface
     {
         void initRace();
+        bool checkRaceStartCondition();
         void startRace();
         void handleOnTick();
         void finishRace();
