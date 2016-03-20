@@ -110,7 +110,6 @@ namespace ModForResearchTUB
             currentStart = races[currentRace].startRace;
             currentOnTick = races[currentRace].handleOnTick;
             currentFinish = races[currentRace].finishRace;
-            checkpoints = races[currentRace].getCheckpoints();
         }
 
         #region Events
@@ -275,6 +274,7 @@ namespace ModForResearchTUB
                 case Keys.F10:
                     UI.ShowSubtitle("trying to call race", 1250);
                     currentInit();
+                    checkpoints = races[currentRace].getCheckpoints();
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
