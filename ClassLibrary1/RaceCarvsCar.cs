@@ -77,6 +77,10 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("car health: {0}", car_health));
 
             Game.Player.CanControlCharacter = true;
+
+            foreach (Vehicle car in vehicles) {
+                car.MarkAsNoLongerNeeded();
+            }
         }
 
         public Vector3[] getCheckpoints()
