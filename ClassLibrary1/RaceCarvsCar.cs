@@ -96,6 +96,9 @@ namespace ModForResearchTUB
         {
             UI.ShowSubtitle("initializing first race", 1250);
 
+            // try to clear parking lot where cars are spawned
+            // TO DO: check, if the boolean parameters have been documented
+            // TO DO: spawn cars on the other side of the curb, to avoid false positives
             Function.Call(Hash.CLEAR_ANGLED_AREA_OF_VEHICLES,
                 car1_spawnpoint.X,
                 car1_spawnpoint.Y,
@@ -110,6 +113,7 @@ namespace ModForResearchTUB
                 false
             );
 
+            // try to load detailed terrain
             Function.Call(Hash._SET_FOCUS_AREA,
                 car1_spawnpoint.X,
                 car1_spawnpoint.Y,
@@ -194,8 +198,6 @@ namespace ModForResearchTUB
 
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255, 0, 0);
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 50, 0);
-
-                Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
 
                 Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
 
