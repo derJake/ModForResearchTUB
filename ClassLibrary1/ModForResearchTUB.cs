@@ -76,6 +76,10 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
 
+            // separator to show start of new log
+            // TO DO: Should this be on a day-by-day basis?
+            Logger.Log("----------------------------------------------------------");
+
             // registers the races / courses / whatever you want to call it
             setUpRaces();
 
