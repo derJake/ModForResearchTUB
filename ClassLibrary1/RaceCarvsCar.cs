@@ -4,6 +4,7 @@ using GTA.Native;
 using NativeUI;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -288,19 +289,16 @@ namespace ModForResearchTUB
             // check which car player is using
             if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
             {
-                new UIResText("Car with good acceleration", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 250), 0.3f, Color.White).Draw();
                 Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
                 Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
                 vehicles[1].StartAlarm();
-                copsCalled = true;
-                car = "Player is in fast car";
+                Logger.Log("Player is in fast car");
                 playerInRaceCar = true;
             }
             if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
             {
-                new UIResText("Car with good traction", new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 200), 0.3f, Color.White).Draw();
                 playerInRaceCar = true;
-                car = "Player is in car with good traction";
+                Logger.Log("Player is in car with good traction");
             }
 
             return playerInRaceCar;

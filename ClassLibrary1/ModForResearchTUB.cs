@@ -67,8 +67,6 @@ namespace ModForResearchTUB
         int raceStartTime;
         int raceEndTime;
 
-        String car;
-
         int car_health;
 
         // Main Script
