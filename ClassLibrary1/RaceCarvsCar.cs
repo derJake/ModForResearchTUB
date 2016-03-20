@@ -235,6 +235,8 @@ namespace ModForResearchTUB
                 90f
             );
 
+            // TO DO: move camera around
+
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
             // play sound
