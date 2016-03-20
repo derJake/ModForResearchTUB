@@ -52,6 +52,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_WEATHER_TYPE_NOW, "CLEARING");
 
             Game.Player.CanControlCharacter = false;
+            Game.Player.Character.IsInvincible = true;
 
             // camera FX
             Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
@@ -76,6 +77,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("car health: {0}", car_health));
 
+            Game.Player.Character.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
 
             foreach (Vehicle car in vehicles) {
