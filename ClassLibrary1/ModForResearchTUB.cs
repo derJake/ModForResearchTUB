@@ -16,7 +16,6 @@ namespace ModForResearchTUB
     {
         // Variables
         int timer_1s = 0;
-        List<Model> models = new List<Model>();
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null;
         Vector3[] checkpoints;
@@ -24,7 +23,6 @@ namespace ModForResearchTUB
         bool car_config_done = false;
         bool race_started = false;
         
-        bool copsCalled = false;
         int currentCheckpoint = -1;
 
         int currentRace = 0;
@@ -72,14 +70,6 @@ namespace ModForResearchTUB
         String car;
 
         int car_health;
-
-        Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
-        Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
-        Vector3 car2_spawnpoint = new Vector3(-795.5708f, -2425.815f, 14.57072f);
-        float car_spawn_heading = 147.0f;
-        float car_spawn_player_heading = 48.0f;
-        Vector3 race1Start = new Vector3(-1015.348f, -2715.956f, 12.58948f);
-        Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
         // Main Script
         public Main()
