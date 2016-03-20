@@ -201,6 +201,8 @@ namespace ModForResearchTUB
 
                 Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
 
+                // needs to be done onTick, me thinks
+                /*
                 Function.Call(
                     Hash.DRAW_SPOT_LIGHT,
                     car1_spawnpoint.X, // x
@@ -217,7 +219,7 @@ namespace ModForResearchTUB
                     0.0f, // roundness
                     13f, // radius
                     1f // fadeout
-                );
+                );*/
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
