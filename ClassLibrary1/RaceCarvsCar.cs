@@ -53,8 +53,6 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = false;
 
-            
-
             // camera FX
             Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
             if (Game.Player.Character.IsInVehicle())
