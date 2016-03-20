@@ -189,6 +189,7 @@ namespace ModForResearchTUB
                 else if (races[currentRace].checkRaceStartCondition()) {
                     // start the race and set first marker + blip
                     race_started = true;
+                    Game.Player.Character.Health = 100;
                     currentStart();
                     drawCurrentCheckpoint();
                 }
@@ -505,6 +506,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("race started: {0}ms", raceStartTime));
             Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
+            Logger.Log(String.Format("player health: {0}/100", Game.Player.Character.Health));
             Logger.Log(String.Format("average speed: {0}m/h", Math.Round((float)speeds/(float)numOfSpeeds)));
             Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * mTokm)));
             Logger.Log(String.Format("maximum speed: {0}m/h", maxSpeed));
