@@ -145,15 +145,17 @@ namespace ModForResearchTUB
                     Game.DisableControl(0, GTA.Control.SelectNextWeapon);
                     Game.DisableControl(0, GTA.Control.SelectPrevWeapon);
                     Game.DisableControl(0, GTA.Control.SelectWeapon);
+                    // disable shooting from car?
+                    Game.DisableControl(0, GTA.Control.AccurateAim);
+                    Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
+                    // this actually seems to prevent shooting out of the car's window
+                    Game.DisableControl(0, GTA.Control.Aim);
                     Game.DisableControl(0, GTA.Control.VehicleAim);
                     Game.DisableControl(0, GTA.Control.VehicleSelectNextWeapon);
                     Game.DisableControl(0, GTA.Control.VehicleSelectPrevWeapon);
 
                     // don't let player exit his racecar by conventional means
                     Game.DisableControl(0, GTA.Control.VehicleExit);
-
-                    // disable shooting from car?
-                    Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
 
                     if (currentCheckpoint >= 0)
                     {
