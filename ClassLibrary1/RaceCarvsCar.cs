@@ -277,7 +277,7 @@ namespace ModForResearchTUB
 
             race_started = true;
             UI.ShowSubtitle("Race started!", 1250);
-            Logger.Log("");
+            Logger.Log(String.Format("race started: {0}ms", Game.GameTime));
 
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 1";
 
