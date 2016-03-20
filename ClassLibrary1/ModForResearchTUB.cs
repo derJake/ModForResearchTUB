@@ -23,7 +23,7 @@ namespace ModForResearchTUB
         bool car_config_done = false;
         bool race_started = false;
         
-        int currentCheckpoint = -1;
+        int currentCheckpoint = 0;
 
         int currentRace = -1;
         RaceInterface[] races;
