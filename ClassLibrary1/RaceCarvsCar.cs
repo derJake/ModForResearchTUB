@@ -80,7 +80,10 @@ namespace ModForResearchTUB
 
             foreach (Vehicle car in vehicles) {
                 car.MarkAsNoLongerNeeded();
+                car.Delete();
             }
+
+            vehicles = new List<Vehicle>();
         }
 
         public Vector3[] getCheckpoints()
