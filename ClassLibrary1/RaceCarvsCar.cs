@@ -19,6 +19,8 @@ namespace ModForResearchTUB
 
         private int raceStartTime;
 
+        private String car_taken;
+
         private List<Vehicle> vehicles = new List<Vehicle>();
 
         private Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
@@ -41,6 +43,9 @@ namespace ModForResearchTUB
 
         public void finishRace()
         {
+            // log which car was taken
+            Logger.Log(car_taken);
+
             UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
             UI.Notify(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000));
 
@@ -296,13 +301,13 @@ namespace ModForResearchTUB
                 Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
                 Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
                 vehicles[1].StartAlarm();
-                Logger.Log("Player is in fast car");
+                car_taken = "Player is in fast car";
                 playerInRaceCar = true;
             }
             if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
             {
                 playerInRaceCar = true;
-                Logger.Log("Player is in car with good traction");
+                car_taken = "Player is in car with good traction";
             }
 
             return playerInRaceCar;
