@@ -73,8 +73,6 @@ namespace ModForResearchTUB
 
             var raceEndTime = Game.GameTime;
             var car_health = Game.Player.Character.CurrentVehicle.Health;
-            Logger.Log(String.Format("race ended: {0}ms", raceEndTime));
-            Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("car health: {0}", car_health));
 
             Game.Player.Character.IsInvincible = false;
@@ -288,7 +286,6 @@ namespace ModForResearchTUB
             Function.Call(Hash.CLEAR_FOCUS);
 
             UI.ShowSubtitle("Race started!", 1250);
-            Logger.Log(String.Format("race started: {0}ms", Game.GameTime));
 
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 1";
 

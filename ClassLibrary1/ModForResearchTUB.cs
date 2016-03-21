@@ -76,9 +76,7 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
 
-            // separator to show start of new log
-            // TO DO: Should this be on a day-by-day basis?
-            Logger.Log("----------------------------------------------------------");
+            
 
             // registers the races / courses / whatever you want to call it
             setUpRaces();
@@ -175,7 +173,7 @@ namespace ModForResearchTUB
                         {
                             currentFinish();
 
-                            
+                            raceEndTime = Game.GameTime;
 
                             writeRaceDataToLog();
                             clearStuffUp();
@@ -189,7 +187,15 @@ namespace ModForResearchTUB
                 else if (races[currentRace].checkRaceStartCondition()) {
                     // start the race and set first marker + blip
                     race_started = true;
+
+                    // heal player before start of race
                     Game.Player.Character.Health = 100;
+                    raceStartTime = Game.GameTime;
+
+                    // separator to show start of new log
+                    // TO DO: Should this be on a day-by-day basis?
+                    Logger.Log("----------------------------------------------------------");
+
                     currentStart();
                     drawCurrentCheckpoint();
                 }
