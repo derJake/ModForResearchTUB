@@ -36,7 +36,7 @@ namespace ModForResearchTUB
         CurrentOnTickHandler currentOnTick;
         CurrentFinishHandler currentFinish;
 
-        int speeds;
+        float speeds;
         int numOfSpeeds;
         int maxSpeed;
 
@@ -338,16 +338,16 @@ namespace ModForResearchTUB
 
             var currentSpeed = Game.Player.Character.CurrentVehicle.Speed;
 
-            speeds += (int)Math.Round(currentSpeed);
+            speeds += currentSpeed;
             numOfSpeeds++;
 
             if (currentSpeed > maxSpeed) {
                 maxSpeed = (int)Math.Round(currentSpeed);
             }
 
-            new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
-            new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
-            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * mTokm)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
+            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * mTokm, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
 
             // if the timer was reset, there was a collision
             if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle)
@@ -523,8 +523,8 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("player health: {0}/100", Game.Player.Character.Health));
             Logger.Log(String.Format("car health: {0}/1000", car_health));
-            Logger.Log(String.Format("average speed: {0}m/h", Math.Round((float)speeds/(float)numOfSpeeds)));
-            Logger.Log(String.Format("average speed: {0}km/h", Math.Round(((float)speeds / (float)numOfSpeeds) * mTokm)));
+            Logger.Log(String.Format("average speed: {0}m/h", speeds/(float)numOfSpeeds));
+            Logger.Log(String.Format("average speed: {0}km/h",(speeds / (float)numOfSpeeds) * mTokm));
             Logger.Log(String.Format("maximum speed: {0}m/h", maxSpeed));
             Logger.Log(String.Format("maximum speed: {0}km/h", Math.Round((float)maxSpeed * mTokm)));
             Logger.Log(String.Format("Number of times player applied brakes: {0}", numBrakeApplied));
