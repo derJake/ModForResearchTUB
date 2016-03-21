@@ -71,10 +71,6 @@ namespace ModForResearchTUB
             Function.Call(Hash._STOP_SCREEN_EFFECT, "HeistCelebPass");
             World.RenderingCamera = null;
 
-            var raceEndTime = Game.GameTime;
-            var car_health = Game.Player.Character.CurrentVehicle.Health;
-            Logger.Log(String.Format("car health: {0}", car_health));
-
             Game.Player.Character.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
 
