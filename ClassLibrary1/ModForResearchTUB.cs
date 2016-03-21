@@ -523,9 +523,9 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("player health: {0}/100", Game.Player.Character.Health));
             Logger.Log(String.Format("car health: {0}/1000", car_health));
-            Logger.Log(String.Format("average speed: {0}m/h", speeds/(float)numOfSpeeds));
+            Logger.Log(String.Format("average speed: {0}mph", speeds/(float)numOfSpeeds));
             Logger.Log(String.Format("average speed: {0}km/h",(speeds / (float)numOfSpeeds) * mTokm));
-            Logger.Log(String.Format("maximum speed: {0}m/h", maxSpeed));
+            Logger.Log(String.Format("maximum speed: {0}mph", maxSpeed));
             Logger.Log(String.Format("maximum speed: {0}km/h", Math.Round((float)maxSpeed * mTokm)));
             Logger.Log(String.Format("Number of times player applied brakes: {0}", numBrakeApplied));
             Logger.Log(String.Format("Number of times player applied handbrake: {0}", numHandBrakeApplied));
