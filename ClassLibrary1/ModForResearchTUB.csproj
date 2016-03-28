@@ -7,8 +7,8 @@
     <ProjectGuid>{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>ModForResearchTUB</RootNamespace>
+    <AssemblyName>ModForResearchTUB</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RaceToWoodmill.cs" />
     <Compile Include="RaceInterface.cs" />
     <Compile Include="ModForResearchTUB.cs" />
     <Compile Include="Logger.cs" />
