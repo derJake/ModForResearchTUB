@@ -19,6 +19,7 @@ namespace ModForResearchTUB
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null;
         Tuple<Vector3, Nullable<Vector3>>[] checkpoints;
+        float checkpoint_radius = 5;
         int currentMarker;
         bool car_config_done = false;
         bool race_started = false;
@@ -143,7 +144,8 @@ namespace ModForResearchTUB
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
                     }
 
-                    if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint], 5f))
+                    if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item1, checkpoint_radius) ||
+                        (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)))
                     {
 
                         // show the players current position
