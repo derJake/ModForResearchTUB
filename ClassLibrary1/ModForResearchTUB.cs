@@ -209,6 +209,7 @@ namespace ModForResearchTUB
             Vector3 coords = checkpoints[currentCheckpoint].Item1;
             Vector3 nextCoords;
 
+            // create /replace a blip on the map
             if (currentBlip != null)
             {
                 currentBlip.Remove();
@@ -216,6 +217,7 @@ namespace ModForResearchTUB
             currentBlip = World.CreateBlip(checkpoints[currentCheckpoint].Item1);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
 
+            // set graphics depending on wether it's the last checkpoint or not
             int type;
             if (currentCheckpoint < (checkpoints.Length - 1))
             {
@@ -230,6 +232,7 @@ namespace ModForResearchTUB
                 currentBlip.Sprite = BlipSprite.RaceFinish;
             }
 
+            // actually create the 3D marker
             currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 type, // type
                 coords.X,
