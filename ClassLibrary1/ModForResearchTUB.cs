@@ -166,6 +166,8 @@ namespace ModForResearchTUB
                             clearStuffUp();
                             if (currentRace < races.Length - 1) {
                                 ++currentRace;
+                                setCurrentRaceFunctions();
+                                currentInit();
                             }
                             return;
                         }
