@@ -98,8 +98,9 @@ namespace ModForResearchTUB
         }
 
         private void setUpRaces() {
-            races = new RaceInterface[1];
+            races = new RaceInterface[2];
             races[0] = new RaceCarvsCar();
+            races[1] = new RaceToWoodmill();
             currentRace = 0;
         }
 
@@ -163,6 +164,9 @@ namespace ModForResearchTUB
 
                             writeRaceDataToLog();
                             clearStuffUp();
+                            if (currentRace < races.Length - 1) {
+                                ++currentRace;
+                            }
                             return;
                         }
 
