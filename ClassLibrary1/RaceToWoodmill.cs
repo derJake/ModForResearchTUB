@@ -19,10 +19,10 @@ namespace ModForResearchTUB
 
         private Vehicle raceVehicle;
 
-        private Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
-        private Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
-        private float car_spawn_heading = 147.0f;
-        private float car_spawn_player_heading = 48.0f;
+        private Vector3 car_selection = new Vector3(-165.2556f, 4902.245f, 339.2019f);
+        private Vector3 car1_spawnpoint = new Vector3(-169.1039f, 4904.683f, 338.1536f);
+        private float car_spawn_heading = 98.08312f;
+        private float car_spawn_player_heading = 72.78187f;
 
         public RaceToWoodmill() {
             // try and load this area already
@@ -139,7 +139,7 @@ namespace ModForResearchTUB
             checkpoints[18] = new Vector3();
 
             // load the two models
-            var vehicle1Model = new Model(VehicleHash.Buffalo);
+            var vehicle1Model = new Model(VehicleHash.TriBike3);
             vehicle1Model.Request(500);
 
             if (vehicle1Model.IsInCdImage &&
@@ -151,7 +151,7 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the slower, reliable car
-                raceVehicle = World.CreateVehicle(VehicleHash.Buffalo, car1_spawnpoint, car_spawn_heading);
+                raceVehicle = World.CreateVehicle(VehicleHash.TriBike3, car1_spawnpoint, car_spawn_heading);
                 // create the racecar
 
                 // make the fast one colorful, the other one white
