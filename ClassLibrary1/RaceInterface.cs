@@ -16,6 +16,6 @@ namespace ModForResearchTUB
         void finishRace();
 
         void setCurrentCheckpoint(int index);
-        Vector3[] getCheckpoints();
+        Tuple<Vector3, Nullable<Vector3>>[] getCheckpoints();
     }
 }
