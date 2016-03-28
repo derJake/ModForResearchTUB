@@ -18,7 +18,7 @@ namespace ModForResearchTUB
         int timer_1s = 0;
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null;
-        Vector3[] checkpoints;
+        Tuple<Vector3, Nullable<Vector3>>[] checkpoints;
         int currentMarker;
         bool car_config_done = false;
         bool race_started = false;
