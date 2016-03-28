@@ -206,13 +206,13 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
             }
             // select the first checkpoint
-            Vector3 coords = checkpoints[currentCheckpoint];
+            Vector3 coords = checkpoints[currentCheckpoint].Item1;
             Vector3 nextCoords;
             int type;
             if (currentCheckpoint < (checkpoints.Length - 1))
             {
                 // if there are checkpoints left, get the next one's coordinates
-                nextCoords = checkpoints[currentCheckpoint + 1];
+                nextCoords = checkpoints[currentCheckpoint + 1].Item1;
                 type = 2;
             }
             else {
@@ -241,7 +241,7 @@ namespace ModForResearchTUB
             {
                 currentBlip.Remove();
             }
-            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint]);
+            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint].Item1);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
 
