@@ -208,6 +208,14 @@ namespace ModForResearchTUB
             // select the first checkpoint
             Vector3 coords = checkpoints[currentCheckpoint].Item1;
             Vector3 nextCoords;
+
+            if (currentBlip != null)
+            {
+                currentBlip.Remove();
+            }
+            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint].Item1);
+            Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
+
             int type;
             if (currentCheckpoint < (checkpoints.Length - 1))
             {
@@ -219,6 +227,7 @@ namespace ModForResearchTUB
                 type = 14;
                 nextCoords = new Vector3(0, 0, 0);
                 coords.Z = coords.Z + 3f;
+                currentBlip.Sprite = BlipSprite.RaceFinish;
             }
 
             currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
@@ -236,13 +245,6 @@ namespace ModForResearchTUB
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
-
-            if (currentBlip != null)
-            {
-                currentBlip.Remove();
-            }
-            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint].Item1);
-            Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
 
         protected void disableUnwantedControls() {
