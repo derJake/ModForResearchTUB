@@ -38,7 +38,7 @@ namespace ModForResearchTUB
 
         float speeds;
         int numOfSpeeds;
-        int maxSpeed;
+        float maxSpeed;
 
         int lastTimeBrake;
         int numBrakeApplied;
@@ -342,7 +342,7 @@ namespace ModForResearchTUB
             numOfSpeeds++;
 
             if (currentSpeed > maxSpeed) {
-                maxSpeed = (int)Math.Round(currentSpeed);
+                maxSpeed = currentSpeed;
             }
 
             new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
@@ -526,7 +526,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("average speed: {0}mph", speeds/(float)numOfSpeeds));
             Logger.Log(String.Format("average speed: {0}km/h",(speeds / (float)numOfSpeeds) * mTokm));
             Logger.Log(String.Format("maximum speed: {0}mph", maxSpeed));
-            Logger.Log(String.Format("maximum speed: {0}km/h", Math.Round((float)maxSpeed * mTokm)));
+            Logger.Log(String.Format("maximum speed: {0}km/h", maxSpeed * mTokm));
             Logger.Log(String.Format("Number of times player applied brakes: {0}", numBrakeApplied));
             Logger.Log(String.Format("Number of times player applied handbrake: {0}", numHandBrakeApplied));
             Logger.Log(String.Format("Cumulative time spent braking: {0}s", Math.Round((float)cumulativeTimeBraking/1000, 2)));
