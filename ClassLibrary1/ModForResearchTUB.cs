@@ -147,6 +147,8 @@ namespace ModForResearchTUB
                     if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item1, checkpoint_radius) ||
                         (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)))
                     {
+                        // play sound
+                        Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
                         // show the players current position
                         UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
@@ -175,7 +177,7 @@ namespace ModForResearchTUB
                         }
 
                         currentCheckpoint++;
-                        drawCurrentCheckpoint();
+                        setupNextCheckpoint();
                     }
                 }
                 else if (races[currentRace].checkRaceStartCondition()) {
@@ -191,43 +193,69 @@ namespace ModForResearchTUB
                     Logger.Log("----------------------------------------------------------");
 
                     currentStart();
-                    drawCurrentCheckpoint();
+                    setupNextCheckpoint();
                 }
             }
         }
 
-        protected void drawCurrentCheckpoint() {
-            // play sound
-            Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+        protected void setupNextCheckpoint() {
+            Nullable<Vector3> nextCoords = null;
+            int type = 14; // finish checkpoint
+            if (currentCheckpoint < (checkpoints.Length - 1)) {
+                nextCoords = checkpoints[currentCheckpoint + 1].Item1;
+                type = 2;
+            }
+            // draw a regular checkpoint
+            drawCurrentCheckpoint(
+                checkpoints[currentCheckpoint].Item1,
+                nextCoords,
+                255,
+                155,
+                0,
+                type
+            );
 
+            // alternative (dangerous) checkpoint
+            if (checkpoints[currentCheckpoint].Item2.HasValue) {
+
+                // if the alternative route isn't finished, point to the next alternative checkpoint
+                if (currentCheckpoint < (checkpoints.Length - 1) &&
+                    checkpoints[currentCheckpoint + 1].Item2.HasValue) {
+                    nextCoords = checkpoints[currentCheckpoint + 1].Item2.Value;
+                }
+
+                // draw alternative checkpoint in red
+                drawCurrentCheckpoint(
+                    checkpoints[currentCheckpoint].Item2.Value,
+                    nextCoords,
+                    255,
+                    0,
+                    0,
+                    type
+                );
+            }
+        }
+
+        protected void drawCurrentCheckpoint(Vector3 coords, Nullable<Vector3> possibleNextCoords, int R, int G, int B, int type) {
+            Vector3 nextCoords = new Vector3();
             // set next checkpoint
             if (currentMarker > 0)
             {
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
             }
-            // select the first checkpoint
-            Vector3 coords = checkpoints[currentCheckpoint].Item1;
-            Vector3 nextCoords;
 
             // create /replace a blip on the map
             if (currentBlip != null)
             {
                 currentBlip.Remove();
             }
-            currentBlip = World.CreateBlip(checkpoints[currentCheckpoint].Item1);
+            currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
 
             // set graphics depending on wether it's the last checkpoint or not
-            int type;
-            if (currentCheckpoint < (checkpoints.Length - 1))
-            {
-                // if there are checkpoints left, get the next one's coordinates
-                nextCoords = checkpoints[currentCheckpoint + 1].Item1;
-                type = 2;
-            }
-            else {
-                type = 14;
-                nextCoords = new Vector3(0, 0, 0);
+            if (possibleNextCoords.HasValue) {
+                nextCoords = possibleNextCoords.Value;
+            } else {
                 coords.Z = coords.Z + 3f;
                 currentBlip.Sprite = BlipSprite.RaceFinish;
             }
