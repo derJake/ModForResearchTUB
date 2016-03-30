@@ -183,6 +183,9 @@ namespace ModForResearchTUB
         }
 
         protected void setupNextCheckpoint() {
+            // set the map blip
+            setCurrentBlip(checkpoints[currentCheckpoint].Item1);
+
             Nullable<Vector3> nextCoords = null;
             int type = 14; // finish checkpoint
             if (currentCheckpoint < (checkpoints.Length - 1)) {
@@ -220,14 +223,7 @@ namespace ModForResearchTUB
             }
         }
 
-        protected void drawCurrentCheckpoint(Vector3 coords, Nullable<Vector3> possibleNextCoords, int R, int G, int B, int type) {
-            Vector3 nextCoords = new Vector3();
-            // set next checkpoint
-            if (currentMarker > 0)
-            {
-                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
-            }
-
+        protected void setCurrentBlip(Vector3 coords) {
             // create /replace a blip on the map
             if (currentBlip != null)
             {
@@ -235,6 +231,16 @@ namespace ModForResearchTUB
             }
             currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
+        }
+
+        protected void drawCurrentCheckpoint(Vector3 coords, Nullable<Vector3> possibleNextCoords, int R, int G, int B, int type) {
+            UI.Notify("drawCurrentCheckpoint()");
+            Vector3 nextCoords = new Vector3();
+            // set next checkpoint
+            if (currentMarker > 0)
+            {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+            }
 
             // set graphics depending on wether it's the last checkpoint or not
             if (possibleNextCoords.HasValue) {
