@@ -322,7 +322,8 @@ namespace ModForResearchTUB
 
         public bool checkRaceStartCondition()
         {
-            if (Game.Player.Character.IsInVehicle()) {
+            if (Game.Player.Character.IsInVehicle() &&
+                vehicles.Count == 2) {
                 // check which car player is using
                 if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
                 {
