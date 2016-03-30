@@ -163,6 +163,8 @@ namespace ModForResearchTUB
                                 ++currentRace;
                                 checkpoints = races[currentRace].getCheckpoints();
                                 races[currentRace].initRace();
+                            } else {
+                                UI.Notify("This was the last race!");
                             }
                             return;
                         }
@@ -171,10 +173,11 @@ namespace ModForResearchTUB
                         setupNextCheckpoint();
                     }
                 }
-                else if (currentRace > 0 && 
+                else if (currentRace >= 0 && 
                     currentRace < races.Length &&
                     races[currentRace] != null &&
                     races[currentRace].checkRaceStartCondition()) {
+                    UI.Notify(String.Format("Started race {0}/{1}", currentRace + 1, races.Length));
                     // start the race and set first marker + blip
                     race_started = true;
 
