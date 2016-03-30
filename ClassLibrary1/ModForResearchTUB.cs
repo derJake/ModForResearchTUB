@@ -28,14 +28,6 @@ namespace ModForResearchTUB
 
         int currentRace = -1;
         RaceInterface[] races;
-        delegate void CurrentInitHandler();
-        delegate void CurrentStartHandler();
-        delegate void CurrentOnTickHandler();
-        delegate void CurrentFinishHandler();
-        CurrentInitHandler currentInit;
-        CurrentStartHandler currentStart;
-        CurrentOnTickHandler currentOnTick;
-        CurrentFinishHandler currentFinish;
 
         float speeds;
         int numOfSpeeds;
@@ -77,13 +69,8 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
 
-            
-
             // registers the races / courses / whatever you want to call it
             setUpRaces();
-
-            // delegates handling to the current race object
-            setCurrentRaceFunctions();
 
             // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
 
@@ -103,13 +90,6 @@ namespace ModForResearchTUB
             races[0] = new RaceCarvsCar();
             races[1] = new RaceToWoodmill();
             currentRace = 0;
-        }
-
-        private void setCurrentRaceFunctions() {
-            currentInit = races[currentRace].initRace;
-            currentStart = races[currentRace].startRace;
-            currentOnTick = races[currentRace].handleOnTick;
-            currentFinish = races[currentRace].finishRace;
         }
 
         #region Events
@@ -161,7 +141,7 @@ namespace ModForResearchTUB
                             car_health = Game.Player.Character.CurrentVehicle.Health;
 
                             // have current race do it's finish stuff
-                            currentFinish();
+                            races[currentRace].finishRace();
 
                             // log the current time
                             raceEndTime = Game.GameTime;
@@ -170,8 +150,8 @@ namespace ModForResearchTUB
                             clearStuffUp();
                             if (currentRace < races.Length - 1) {
                                 ++currentRace;
-                                setCurrentRaceFunctions();
-                                currentInit();
+                                checkpoints = races[currentRace].getCheckpoints();
+                                races[currentRace].initRace();
                             }
                             return;
                         }
@@ -192,7 +172,7 @@ namespace ModForResearchTUB
                     // TO DO: Should this be on a day-by-day basis?
                     Logger.Log("----------------------------------------------------------");
 
-                    currentStart();
+                    races[currentRace].startRace();
                     setupNextCheckpoint();
                 }
             }
@@ -332,8 +312,8 @@ namespace ModForResearchTUB
                     break;
                 case Keys.F10:
                     UI.ShowSubtitle("trying to call race", 1250);
-                    currentInit();
                     checkpoints = races[currentRace].getCheckpoints();
+                    races[currentRace].initRace();
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
