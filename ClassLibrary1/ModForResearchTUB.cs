@@ -18,7 +18,7 @@ namespace ModForResearchTUB
         int timer_1s = 0;
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null;
-        Tuple<Vector3, Nullable<Vector3>>[] checkpoints;
+        Tuple<Vector3, Vector3?>[] checkpoints;
         float checkpoint_radius = 5;
         int currentMarker;
         bool car_config_done = false;
@@ -186,7 +186,7 @@ namespace ModForResearchTUB
             // set the map blip
             setCurrentBlip(checkpoints[currentCheckpoint].Item1);
 
-            Nullable<Vector3> nextCoords = null;
+            Vector3? nextCoords = null;
             int type = 14; // finish checkpoint
             if (currentCheckpoint < (checkpoints.Length - 1)) {
                 nextCoords = checkpoints[currentCheckpoint + 1].Item1;
@@ -233,7 +233,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
 
-        protected void drawCurrentCheckpoint(Vector3 coords, Nullable<Vector3> possibleNextCoords, int R, int G, int B, int type) {
+        protected void drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
             UI.Notify("drawCurrentCheckpoint()");
             Vector3 nextCoords = new Vector3();
             // set next checkpoint
