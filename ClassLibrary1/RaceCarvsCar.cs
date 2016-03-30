@@ -212,26 +212,6 @@ namespace ModForResearchTUB
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 50, 0);
 
                 Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
-
-                // needs to be done onTick, me thinks
-                /*
-                Function.Call(
-                    Hash.DRAW_SPOT_LIGHT,
-                    car1_spawnpoint.X, // x
-                    car1_spawnpoint.Y, // y
-                    car1_spawnpoint.Z + 10f, // z
-                    0f, // direction x
-                    0f, // direction y
-                    -10f, // direction z, make it point downwards
-                    255, // R
-                    255, // G
-                    255, // B
-                    100f, // distance
-                    200f, // brightness
-                    0.0f, // roundness
-                    13f, // radius
-                    1f // fadeout
-                );*/
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
