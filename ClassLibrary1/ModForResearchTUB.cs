@@ -100,6 +100,9 @@ namespace ModForResearchTUB
         {
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
+
+            new UIResText(String.Format("race_initialized: {0}", race_initialized), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.Black).Draw();
+
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
@@ -155,7 +158,7 @@ namespace ModForResearchTUB
                             clearStuffUp();
 
                             // switch to next race, if there is one
-                            if (currentRace < races.Length - 1) {
+                            if (currentRace < (races.Length - 1)) {
                                 ++currentRace;
                                 checkpoints = races[currentRace].getCheckpoints();
                                 races[currentRace].initRace();
@@ -539,18 +542,23 @@ namespace ModForResearchTUB
             player.Task.ClearAllImmediately(); // give back control to player
 
             // clear map blip
-            currentBlip.Remove();
-            currentBlip = null;
+            if (currentBlip != null)
+            {
+                currentBlip.Remove();
+                currentBlip = null;
+            }
 
             // delete 3D marker
-            Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
-            currentMarker = -1;
+            if (currentMarker > 0) {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+                currentMarker = -1;
+            }
 
             race_started = false;
             currentCheckpoint = 0;
 
             resetLoggingVariables();
-            Wait(3000);
+            //Wait(3000);
             UI.ShowSubtitle("Everything reset", 3000);
         }
 
