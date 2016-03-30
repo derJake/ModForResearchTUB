@@ -115,15 +115,19 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    // log speed, collisions, brakes, etc.
                     logVariables(res, safe);
 
+                    // have stay player in car and not shoot at things
                     disableUnwantedControls();
 
+                    // display what the next checkpoint to be reached is
                     if (currentCheckpoint >= 0)
                     {
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
                     }
 
+                    // check if player is near (alternative) checkpoint
                     if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item1, checkpoint_radius) ||
                         (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)))
                     {
