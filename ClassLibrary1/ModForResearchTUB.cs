@@ -91,6 +91,7 @@ namespace ModForResearchTUB
             races[0] = new RaceCarvsCar();
             races[1] = new RaceToWoodmill();
             currentRace = 0;
+            UI.Notify("races set up");
         }
 
         #region Events
@@ -170,7 +171,9 @@ namespace ModForResearchTUB
                         setupNextCheckpoint();
                     }
                 }
-                else if (races[currentRace].checkRaceStartCondition()) {
+                else if (currentRace > 0 && 
+                    currentRace < races.Length &&
+                    races[currentRace].checkRaceStartCondition()) {
                     // start the race and set first marker + blip
                     race_started = true;
 
@@ -327,11 +330,14 @@ namespace ModForResearchTUB
                     UI.ShowSubtitle("[E] KeyUp", 1250);
                     break;
                 case Keys.F10:
-                    if (!race_initialized && !race_started) {
+                    if (!race_initialized && 
+                        !race_started &&
+                        currentRace >= 0 &&
+                        currentRace < races.Length) {
                         UI.ShowSubtitle("trying to call race", 1250);
+                        race_initialized = true;
                         checkpoints = races[currentRace].getCheckpoints();
                         races[currentRace].initRace();
-                        race_initialized = true;
                     }
                     break;
                 case Keys.F11:
