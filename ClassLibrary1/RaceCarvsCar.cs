@@ -21,7 +21,7 @@ namespace ModForResearchTUB
 
         private String car_taken;
 
-        private List<Vehicle> vehicles = new List<Vehicle>();
+        private Vehicle[] vehicles = new Vehicle[2];
 
         private Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
         private Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
@@ -86,7 +86,7 @@ namespace ModForResearchTUB
                 car.Delete();
             }
 
-            vehicles = new List<Vehicle>();
+            vehicles = new Vehicle[2];
         }
 
         public Tuple<Vector3, Nullable<Vector3>>[] getCheckpoints()
@@ -104,6 +104,7 @@ namespace ModForResearchTUB
             initCalled++;
             UI.ShowSubtitle("initializing first race", 1250);
             UI.Notify(String.Format("Car vs Car {0}", initCalled));
+            Logger.Log("RaceCarvsCar.initRace()");
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
@@ -192,8 +193,8 @@ namespace ModForResearchTUB
                 var vehicle1 = World.CreateVehicle(VehicleHash.Buffalo, car1_spawnpoint, car_spawn_heading);
                 // create the racecar
                 var vehicle2 = World.CreateVehicle(VehicleHash.RapidGT, car2_spawnpoint, car_spawn_heading);
-                vehicles.Add(vehicle1);
-                vehicles.Add(vehicle2);
+                vehicles[0] = vehicle1;
+                vehicles[1] = vehicle2;
 
                 // open driver side door for player
                 Function.Call(Hash.SET_VEHICLE_DOOR_OPEN, vehicle1, 0, true, false);
@@ -269,6 +270,7 @@ namespace ModForResearchTUB
 
         public void startRace()
         {
+            Logger.Log("RaceCarvsCar.startRace()");
             // try and free terrain loading restriction, so car won't fall through the ground
             Function.Call(Hash.CLEAR_HD_AREA);
             Function.Call(Hash.CLEAR_FOCUS);
@@ -283,9 +285,9 @@ namespace ModForResearchTUB
         public bool checkRaceStartCondition()
         {
             if (Game.Player.Character.IsInVehicle() &&
-                vehicles.Count == 2) {
+                vehicles.Length == 2) {
                 // check which car player is using
-                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
+                if (vehicles[1] != null && Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
                 {
                     Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
                     Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
@@ -293,7 +295,7 @@ namespace ModForResearchTUB
                     car_taken = "Player is in fast car";
                     playerInRaceCar = true;
                 }
-                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
+                if (vehicles[0] != null && Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
                 {
                     playerInRaceCar = true;
                     car_taken = "Player is in car with good traction";
