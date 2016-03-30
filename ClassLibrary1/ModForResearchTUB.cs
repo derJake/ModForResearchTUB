@@ -173,6 +173,7 @@ namespace ModForResearchTUB
                 }
                 else if (currentRace > 0 && 
                     currentRace < races.Length &&
+                    races[currentRace] != null &&
                     races[currentRace].checkRaceStartCondition()) {
                     // start the race and set first marker + blip
                     race_started = true;
@@ -185,8 +186,8 @@ namespace ModForResearchTUB
                     // TO DO: Should this be on a day-by-day basis?
                     Logger.Log("----------------------------------------------------------");
 
-                    races[currentRace].startRace();
                     setupNextCheckpoint();
+                    races[currentRace].startRace();
                 }
             }
         }
