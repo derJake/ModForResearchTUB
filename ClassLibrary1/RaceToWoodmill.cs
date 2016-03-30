@@ -13,7 +13,7 @@ namespace ModForResearchTUB
 {
     class RaceToWoodmill : Script, RaceInterface
     {
-        private Tuple<Vector3, Nullable<Vector3>>[] checkpoints;
+        private Tuple<Vector3, Vector3?>[] checkpoints;
 
         private int raceStartTime;
 
@@ -74,7 +74,7 @@ namespace ModForResearchTUB
             raceVehicle.Delete();
         }
 
-        public Tuple<Vector3, Nullable<Vector3>>[] getCheckpoints()
+        public Tuple<Vector3, Vector3?>[] getCheckpoints()
         {
             return checkpoints;
         }
@@ -86,6 +86,8 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            Logger.Log("RaceToWoodmill.initRace()");
+            UI.Notify("RaceToWoodmill.initRace()");
             UI.ShowSubtitle("initializing woodmill track", 1250);
 
             // try to clear parking lot where cars are spawned
@@ -117,11 +119,11 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // add some checkpoints for our race
-            Tuple<Vector3, Nullable<Vector3>>[] checkpointlist = 
+            Tuple<Vector3, Vector3?>[] checkpointlist = 
             {
-                new Tuple<Vector3, Nullable<Vector3>>(new Vector3(-221.3511f, 4903.089f, 314.3157f), null),
-                new Tuple<Vector3, Nullable<Vector3>>(new Vector3(-239.7362f, 4914.677f, 301.6244f), new Vector3(-244.3771f, 4907.458f, 303.7904f)),
-                new Tuple<Vector3, Nullable<Vector3>>(new Vector3(-285.9736f, 4956.554f, 257.6557f), new Vector3(-301.7302f, 4947.52f, 267.1712f))
+                new Tuple<Vector3, Vector3?>(new Vector3(-221.3511f, 4903.089f, 314.3157f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-239.7362f, 4914.677f, 301.6244f), new Vector3(-244.3771f, 4907.458f, 303.7904f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-285.9736f, 4956.554f, 257.6557f), new Vector3(-301.7302f, 4947.52f, 267.1712f))
             };
 
             this.checkpoints = checkpointlist;
