@@ -31,6 +31,8 @@ namespace ModForResearchTUB
         private Vector3 race1Start = new Vector3(-1015.348f, -2715.956f, 12.58948f);
         private Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
+        private int initCalled = 0;
+
         public RaceCarvsCar() {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
@@ -99,8 +101,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            initCalled++;
             UI.ShowSubtitle("initializing first race", 1250);
-            UI.Notify("Car vs Car");
+            UI.Notify(String.Format("Car vs Car {0}", initCalled));
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
