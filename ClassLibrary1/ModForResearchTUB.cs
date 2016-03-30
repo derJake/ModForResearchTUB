@@ -153,6 +153,8 @@ namespace ModForResearchTUB
 
                             writeRaceDataToLog();
                             clearStuffUp();
+
+                            // switch to next race, if there is one
                             if (currentRace < races.Length - 1) {
                                 ++currentRace;
                                 checkpoints = races[currentRace].getCheckpoints();
