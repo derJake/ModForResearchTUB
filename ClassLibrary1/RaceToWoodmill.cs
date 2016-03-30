@@ -170,16 +170,9 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("Racecar (locked with alarm)", 2500);
+            UI.ShowSubtitle("~blahh~ REPLACE", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
-
-            // create a camera to look through
-            cam = World.CreateCamera(
-                new Vector3(-793.5338f, -2430f, 14.52622f), // position
-                new Vector3(10f, 0f, -92.57458f), // rotation
-                90f
-            );
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
@@ -208,7 +201,7 @@ namespace ModForResearchTUB
         public bool checkRaceStartCondition()
         {
             // check which car player is using
-            return Game.Player.Character.CurrentVehicle.Equals(raceVehicle);
+            return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
     }
 }
