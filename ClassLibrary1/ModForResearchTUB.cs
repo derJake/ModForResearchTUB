@@ -23,6 +23,7 @@ namespace ModForResearchTUB
         int currentMarker;
         bool car_config_done = false;
         bool race_started = false;
+        bool race_initialized = false;
         
         int currentCheckpoint = 0;
 
@@ -321,9 +322,12 @@ namespace ModForResearchTUB
                     UI.ShowSubtitle("[E] KeyUp", 1250);
                     break;
                 case Keys.F10:
-                    UI.ShowSubtitle("trying to call race", 1250);
-                    checkpoints = races[currentRace].getCheckpoints();
-                    races[currentRace].initRace();
+                    if (!race_initialized && !race_started) {
+                        UI.ShowSubtitle("trying to call race", 1250);
+                        checkpoints = races[currentRace].getCheckpoints();
+                        races[currentRace].initRace();
+                        race_initialized = true;
+                    }
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
