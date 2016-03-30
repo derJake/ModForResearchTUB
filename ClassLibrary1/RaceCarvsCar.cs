@@ -318,21 +318,22 @@ namespace ModForResearchTUB
 
         public bool checkRaceStartCondition()
         {
-            // check which car player is using
-            if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
-            {
-                Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
-                Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
-                vehicles[1].StartAlarm();
-                car_taken = "Player is in fast car";
-                playerInRaceCar = true;
+            if (Game.Player.Character.IsInVehicle()) {
+                // check which car player is using
+                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[1]))
+                {
+                    Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 3, false);
+                    Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
+                    vehicles[1].StartAlarm();
+                    car_taken = "Player is in fast car";
+                    playerInRaceCar = true;
+                }
+                if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
+                {
+                    playerInRaceCar = true;
+                    car_taken = "Player is in car with good traction";
+                }
             }
-            if (Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
-            {
-                playerInRaceCar = true;
-                car_taken = "Player is in car with good traction";
-            }
-
             return playerInRaceCar;
         }
     }
