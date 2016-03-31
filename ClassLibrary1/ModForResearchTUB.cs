@@ -118,6 +118,8 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    new UIResText(String.Format("race {0}/{1}", currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.AntiqueWhite).Draw();
+
                     // log speed, collisions, brakes, etc.
                     logVariables(res, safe);
 
@@ -547,6 +549,7 @@ namespace ModForResearchTUB
 
         protected void clearStuffUp() {
             Ped player = Game.Player.Character;
+            Vector3 pos = player.Position;
             player.Task.ClearAllImmediately(); // give back control to player
 
             // clear map blip
@@ -561,6 +564,19 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
                 currentMarker = -1;
             }
+
+            // hopefully this prevents falling through the ground
+            Function.Call(Hash.CLEAR_HD_AREA);
+            Function.Call(Hash.CLEAR_FOCUS);
+
+            // drop wanted level
+            Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
+            Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
+
+            // try and remove left cars
+            Function.Call(Hash.CLEAR_AREA_OF_VEHICLES,
+               pos.X, pos.Y, pos.Z, 1000, false, false, false, false, false
+            );
 
             race_started = false;
             currentCheckpoint = 0;
