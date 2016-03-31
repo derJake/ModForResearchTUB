@@ -101,9 +101,10 @@ namespace ModForResearchTUB
         {
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
-
-            new UIResText(String.Format("checkpoints: ", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
-
+            if (checkpoints != null)
+            {
+                new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
+            }
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
