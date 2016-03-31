@@ -123,6 +123,9 @@ namespace ModForResearchTUB
                 false
             );
 
+            // maybe this will do?
+            Function.Call(Hash.CLEAR_AREA_OF_VEHICLES, 0, 0, 0, 10000, false, false, false, false, false);
+
             // try to load detailed terrain
             Function.Call(Hash._SET_FOCUS_AREA,
                 car1_spawnpoint.X,
