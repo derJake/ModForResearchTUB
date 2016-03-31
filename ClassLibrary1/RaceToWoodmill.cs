@@ -32,6 +32,16 @@ namespace ModForResearchTUB
                 car1_spawnpoint.Z,
                 50f
             );
+
+            // add some checkpoints for our race
+            Tuple<Vector3, Vector3?>[] checkpointlist =
+            {
+                new Tuple<Vector3, Vector3?>(new Vector3(-221.3511f, 4903.089f, 314.3157f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-239.7362f, 4914.677f, 301.6244f), new Vector3(-244.3771f, 4907.458f, 303.7904f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-285.9736f, 4956.554f, 257.6557f), new Vector3(-301.7302f, 4947.52f, 267.1712f))
+            };
+
+            this.checkpoints = checkpointlist;
         }
 
         public void finishRace()
@@ -117,16 +127,6 @@ namespace ModForResearchTUB
             // teleport player and turn him towards cars
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
-
-            // add some checkpoints for our race
-            Tuple<Vector3, Vector3?>[] checkpointlist = 
-            {
-                new Tuple<Vector3, Vector3?>(new Vector3(-221.3511f, 4903.089f, 314.3157f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-239.7362f, 4914.677f, 301.6244f), new Vector3(-244.3771f, 4907.458f, 303.7904f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-285.9736f, 4956.554f, 257.6557f), new Vector3(-301.7302f, 4947.52f, 267.1712f))
-            };
-
-            this.checkpoints = checkpointlist;
 
             // load the two models
             var vehicle1Model = new Model(VehicleHash.TriBike3);
