@@ -41,6 +41,32 @@ namespace ModForResearchTUB
                 car1_spawnpoint.Z,
                 50f
             );
+
+            // add some checkpoints for our race
+            Tuple<Vector3, Vector3?>[] checkpointlist = {
+                new Tuple<Vector3, Vector3?>(new Vector3(-807.8585f, -2466.344f, 14.45607f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-810.6682f, -2249.965f, 17.24915f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-693.1211f, -2117.945f, 13.12339f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-382.7377f, -1838.06f, 21.37794f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-246.3216f, -1826.909f, 28.96538f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-144.3558f, -1749.146f, 30.12419f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-44.43723f, -1630.049f, 28.96328f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(64.23303f, -1515.456f, 28.93484f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(138.5995f, -1370.135f, 28.83117f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(117.2407f, -1356.73f, 28.88704f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(64.65392f, -1285.516f, 29.33747f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(64.58669f, -1160.968f, 28.951f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(96.58853f, -1026.16f, 29.03582f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(82.72692f, -982.808f, 29.01929f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-11.1925f, -931.7217f, 28.90791f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(32.22876f, -773.1832f, 43.85289f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-65.03999f, -725.1259f, 43.86914f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-76.04148f, -749.7919f, 43.77972f), null),
+                new Tuple<Vector3, Vector3?>(race1End, null)
+            };
+            currentCheckpoint = 0;
+
+            this.checkpoints = checkpointlist;
         }
 
         public void finishRace()
@@ -148,32 +174,6 @@ namespace ModForResearchTUB
             // teleport player and turn him towards cars
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
-
-            // add some checkpoints for our race
-            Tuple<Vector3, Vector3?>[] checkpointlist = {
-                new Tuple<Vector3, Vector3?>(new Vector3(-807.8585f, -2466.344f, 14.45607f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-810.6682f, -2249.965f, 17.24915f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-693.1211f, -2117.945f, 13.12339f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-382.7377f, -1838.06f, 21.37794f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-246.3216f, -1826.909f, 28.96538f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-144.3558f, -1749.146f, 30.12419f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-44.43723f, -1630.049f, 28.96328f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(64.23303f, -1515.456f, 28.93484f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(138.5995f, -1370.135f, 28.83117f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(117.2407f, -1356.73f, 28.88704f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(64.65392f, -1285.516f, 29.33747f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(64.58669f, -1160.968f, 28.951f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(96.58853f, -1026.16f, 29.03582f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(82.72692f, -982.808f, 29.01929f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-11.1925f, -931.7217f, 28.90791f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(32.22876f, -773.1832f, 43.85289f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-65.03999f, -725.1259f, 43.86914f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-76.04148f, -749.7919f, 43.77972f), null),
-                new Tuple<Vector3, Vector3?>(race1End, null)
-            };
-            currentCheckpoint = 0;
-
-            this.checkpoints = checkpointlist;
 
             // load the two models
             var vehicle1Model = new Model(VehicleHash.Buffalo);
