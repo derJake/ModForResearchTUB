@@ -102,8 +102,6 @@ namespace ModForResearchTUB
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
 
-            new UIResText(String.Format("race_initialized: {0}", race_initialized), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.Black).Draw();
-
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
