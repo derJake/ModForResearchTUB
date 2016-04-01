@@ -21,11 +21,13 @@ namespace ModForResearchTUB
         Tuple<Vector3, Vector3?>[] checkpoints;
         float checkpoint_radius = 5;
         int currentMarker;
+        int currentAlternativeMarker;
         bool car_config_done = false;
         bool race_started = false;
         bool race_initialized = false;
         
         int currentCheckpoint = 0;
+        bool altCheckpointAvailable = false;
 
         int currentRace = -1;
         RaceInterface[] races;
@@ -90,7 +92,7 @@ namespace ModForResearchTUB
             races = new RaceInterface[2];
             races[0] = new RaceCarvsCar();
             races[1] = new RaceToWoodmill();
-            currentRace = 0;
+            currentRace = 1;
             UI.Notify("races set up");
         }
 
@@ -133,6 +135,14 @@ namespace ModForResearchTUB
                     if (currentCheckpoint >= 0)
                     {
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
+                    }
+
+                    // debug stuff
+                    new UIResText(String.Format("altCheckpointAvailable: {0}", altCheckpointAvailable), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 100), 0.3f, Color.White).Draw();
+                    if (altCheckpointAvailable) {
+                        var coords = checkpoints[currentCheckpoint].Item2.Value;
+                        new UIResText(String.Format("coords: {0}, {1}, {2}", coords.X, coords.Y, coords.Z), new Point((Convert.ToInt32(res.Width) - safe.X - 350), 125), 0.3f, Color.White).Draw();
+                        new UIResText(String.Format("distance: {0}", World.GetDistance(coords, Game.Player.Character.Position)), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 145), 0.3f, Color.AntiqueWhite).Draw();
                     }
 
                     // check if player is near (alternative) checkpoint
@@ -202,6 +212,11 @@ namespace ModForResearchTUB
             // set the map blip
             setCurrentBlip(checkpoints[currentCheckpoint].Item1);
 
+            if (currentMarker > 0)
+            {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
+            }
+
             Vector3? nextCoords = null;
             int type = 14; // finish checkpoint
             if (currentCheckpoint < (checkpoints.Length - 1)) {
@@ -209,7 +224,7 @@ namespace ModForResearchTUB
                 type = 2;
             }
             // draw a regular checkpoint
-            drawCurrentCheckpoint(
+            currentMarker = drawCurrentCheckpoint(
                 checkpoints[currentCheckpoint].Item1,
                 nextCoords,
                 255,
@@ -219,16 +234,22 @@ namespace ModForResearchTUB
             );
 
             // alternative (dangerous) checkpoint
-            if (checkpoints[currentCheckpoint].Item2.HasValue) {
+            if (checkpoints[currentCheckpoint].Item2.HasValue)
+            {
+
+                // debug stuff
+                altCheckpointAvailable = true;
+                UI.Notify("alt checkpoint");
 
                 // if the alternative route isn't finished, point to the next alternative checkpoint
                 if (currentCheckpoint < (checkpoints.Length - 1) &&
-                    checkpoints[currentCheckpoint + 1].Item2.HasValue) {
+                    checkpoints[currentCheckpoint + 1].Item2.HasValue)
+                {
                     nextCoords = checkpoints[currentCheckpoint + 1].Item2.Value;
                 }
 
                 // draw alternative checkpoint in red
-                drawCurrentCheckpoint(
+                currentAlternativeMarker = drawCurrentCheckpoint(
                     checkpoints[currentCheckpoint].Item2.Value,
                     nextCoords,
                     255,
@@ -236,6 +257,9 @@ namespace ModForResearchTUB
                     0,
                     type
                 );
+            }
+            else {
+                altCheckpointAvailable = false;
             }
         }
 
@@ -249,14 +273,11 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
         }
 
-        protected void drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
+        protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
             UI.Notify("drawCurrentCheckpoint()");
             Vector3 nextCoords = new Vector3();
             // set next checkpoint
-            if (currentMarker > 0)
-            {
-                Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
-            }
+            
 
             // set graphics depending on wether it's the last checkpoint or not
             if (possibleNextCoords.HasValue) {
@@ -267,7 +288,7 @@ namespace ModForResearchTUB
             }
 
             // actually create the 3D marker
-            currentMarker = Function.Call<int>(Hash.CREATE_CHECKPOINT,
+            return Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 type, // type
                 coords.X,
                 coords.Y,
@@ -276,9 +297,9 @@ namespace ModForResearchTUB
                 nextCoords.Y,
                 nextCoords.Z,
                 5.0f,    // radius
-                255,    // R
-                155,     // G
-                0,        // B
+                R,    // R
+                G,     // G
+                B,        // B
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
