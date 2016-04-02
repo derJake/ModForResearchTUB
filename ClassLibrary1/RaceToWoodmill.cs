@@ -59,6 +59,15 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3?>(new Vector3(-355.1001f, 4988.495f, 210.0325f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-377.4987f, 4951.176f, 197.1729f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-413.6729f, 4927.945f, 179.1848f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-475.3094f, 4969.138f, 149.8499f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-523.5085f, 5028.522f, 132.5715f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-587.2845f, 5068.314f, 134.9643f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-599.2308f, 5101.148f, 125.7583f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-581.5574f, 5157.62f, 105.0425f), new Vector3(-591.7618f, 5168.102f, 102.9612f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-547.3408f, 5157.711f, 95.6012f), new Vector3(-584.4101f, 5183.821f, 94.07907f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-552.1667f, 5211.077f, 81.92912f), new Vector3(-582.4078f, 5198.053f, 88.21198f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-663.0966f, 5232.301f, 77.80328f), new Vector3(-582.3427f, 5216.197f, 79.25137f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-578.9683f, 5248.079f, 70.07695f), null),
             };
 
             this.checkpoints = checkpointlist;
