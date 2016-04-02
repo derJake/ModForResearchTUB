@@ -103,10 +103,6 @@ namespace ModForResearchTUB
         {
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
-            if (checkpoints != null)
-            {
-                new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
-            }
             /*
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
@@ -123,6 +119,11 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    if (checkpoints != null)
+                    {
+                        new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
+                    }
+
                     new UIResText(String.Format("race {0}/{1}", currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
 
                     // log speed, collisions, brakes, etc.
