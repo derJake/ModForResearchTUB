@@ -89,10 +89,11 @@ namespace ModForResearchTUB
         }
 
         private void setUpRaces() {
-            races = new RaceInterface[2];
+            races = new RaceInterface[3];
             races[0] = new RaceCarvsCar();
             races[1] = new RaceToWoodmill();
-            currentRace = 1;
+            races[2] = new RaceSuburban();
+            currentRace = 2;
             UI.Notify("races set up");
         }
 
