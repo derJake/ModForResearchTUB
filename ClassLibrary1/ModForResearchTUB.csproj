@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RaceSuburban.cs" />
     <Compile Include="RaceToWoodmill.cs" />
     <Compile Include="RaceInterface.cs" />
     <Compile Include="ModForResearchTUB.cs" />
