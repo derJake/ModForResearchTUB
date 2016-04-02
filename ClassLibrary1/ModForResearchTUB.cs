@@ -278,7 +278,6 @@ namespace ModForResearchTUB
             //UI.Notify("drawCurrentCheckpoint()");
             Vector3 nextCoords = new Vector3();
             // set next checkpoint
-            
 
             // set graphics depending on wether it's the last checkpoint or not
             if (possibleNextCoords.HasValue) {
@@ -297,7 +296,7 @@ namespace ModForResearchTUB
                 nextCoords.X, // facing next checkpoint?
                 nextCoords.Y,
                 nextCoords.Z,
-                5.0f,    // radius
+                checkpoint_radius,    // radius
                 R,    // R
                 G,     // G
                 B,        // B
