@@ -275,7 +275,7 @@ namespace ModForResearchTUB
         }
 
         protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
-            UI.Notify("drawCurrentCheckpoint()");
+            //UI.Notify("drawCurrentCheckpoint()");
             Vector3 nextCoords = new Vector3();
             // set next checkpoint
             
