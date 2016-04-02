@@ -207,7 +207,7 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~blahh~ REPLACE", 2500);
+            UI.ShowSubtitle("~bla~ Drive downhill to the woodmill!", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
 
