@@ -218,6 +218,11 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
             }
 
+            if (currentAlternativeMarker > 0)
+            {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentAlternativeMarker);
+            }
+
             Vector3? nextCoords = null;
             int type = 14; // finish checkpoint
             if (currentCheckpoint < (checkpoints.Length - 1)) {
