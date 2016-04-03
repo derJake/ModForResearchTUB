@@ -20,8 +20,10 @@ namespace ModForResearchTUB
         private Vehicle raceVehicle;
 
         private Vector3 car1_spawnpoint = new Vector3(-478.9794f, 654.7506f, 143.7375f);
+        private Vector3 player_spawnpoint = new Vector3(-482.3359f, 654.1779f, 144.0759f);
         private float car_spawn_heading = 61f;
         private Vector3 obstacle_spawnpoint = new Vector3(-813.8827f, 706.9035f, 146.8423f);
+        private Vector3 obstacle_trigger = new Vector3(-779.8662f, 706.8424f, 144.8662f);
         private Vehicle obstacle;
         private float obstacle_spawn_heading = 19.92268f;
 
@@ -131,8 +133,8 @@ namespace ModForResearchTUB
             player.Task.ClearAllImmediately(); // give back control to player
 
             // teleport player and turn him towards cars
-            Game.Player.Character.Position = car1_spawnpoint;
-            Game.Player.Character.Heading = car_spawn_heading;
+            player.Position = player_spawnpoint;
+            player.Heading = 309;
 
             // load the car model
             var vehicle1Model = new Model(VehicleHash.Surge);
@@ -169,7 +171,7 @@ namespace ModForResearchTUB
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
-                Game.Player.Character.Position + new Vector3(5f, 5f, 0), // position
+                new Vector3(-481.0917f, 658.4233f, 143.9391f), // position
                 new Vector3(9f, 0f, -82.57458f), // rotation
                 90f
             );
@@ -186,7 +188,7 @@ namespace ModForResearchTUB
 
             UI.ShowSubtitle("~bla~ Drive around the neighbourhood!", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
-            Wait(2500);
+            Wait(5000);
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
