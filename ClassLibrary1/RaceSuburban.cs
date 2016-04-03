@@ -116,9 +116,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
-            Logger.Log("RaceToWoodmill.initRace()");
-            UI.Notify("RaceToWoodmill.initRace()");
-            UI.ShowSubtitle("initializing woodmill track", 1250);
+            Logger.Log("RaceSuburban.initRace()");
+            UI.Notify("RaceSuburban.initRace()");
+            UI.ShowSubtitle("initializing suburban track", 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
