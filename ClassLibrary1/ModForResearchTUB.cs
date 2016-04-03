@@ -26,6 +26,7 @@ namespace ModForResearchTUB
         bool race_started = false;
         bool race_initialized = false;
         bool abort_race = false;
+        bool race_has_on_tick = true;
 
         int currentCheckpoint = 0;
         bool altCheckpointAvailable = false;
@@ -131,6 +132,18 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    if (race_has_on_tick)
+                    {
+                        try
+                        {
+                            races[currentRace].handleOnTick();
+                        }
+                        catch (NotImplementedException)
+                        {
+                            race_has_on_tick = false;
+                        }
+                    }
+
                     if (checkpoints != null)
                     {
                         new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
