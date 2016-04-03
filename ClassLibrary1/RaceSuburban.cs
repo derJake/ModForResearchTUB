@@ -25,7 +25,11 @@ namespace ModForResearchTUB
         private Vector3 obstacle_spawnpoint = new Vector3(-813.8827f, 706.9035f, 146.8423f);
         private Vector3 obstacle_trigger = new Vector3(-779.8662f, 706.8424f, 144.8662f);
         private Vehicle obstacle;
+        private Ped obstacle_driver;
+        private Vector3 obstacle_driver_spawnpoint = new Vector3(-817.1896f, 709.8116f, 147.2454f);
+        private Vector3 obstacle_target = new Vector3(-1042.243f, 775.3391f, 167.1406f);
         private float obstacle_spawn_heading = 19.92268f;
+        private bool obstacle_started = false;
 
         public RaceSuburban() {
             // try and load this area already
@@ -39,6 +43,8 @@ namespace ModForResearchTUB
             // add some checkpoints for our race
             Tuple<Vector3, Vector3?>[] checkpointlist =
             {
+                new Tuple<Vector3, Vector3?>(new Vector3(-499.3143f, 662.8717f, 140.9828f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-539.3671f, 669.1696f, 143.0276f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-632.4818f, 692.2712f, 150.6278f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-667.5978f, 701.4254f, 153.4151f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-681.6805f, 690.8635f, 153.9171f), null),
@@ -88,6 +94,9 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
 
+            obstacle_driver.Delete();
+            obstacle.Delete();
+
             raceVehicle.MarkAsNoLongerNeeded();
             raceVehicle.Delete();
         }
@@ -99,7 +108,10 @@ namespace ModForResearchTUB
 
         public void handleOnTick()
         {
-            throw new NotImplementedException();
+            if (!obstacle_started &&
+                Game.Player.Character.IsInRangeOf(obstacle_trigger, 5.0f)) {
+                obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
+            }
         }
 
         public void initRace()
@@ -161,13 +173,49 @@ namespace ModForResearchTUB
                 Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, raceVehicle, true);
             }
 
-            vehicle1Model.MarkAsNoLongerNeeded();
+            // load the car model
+            var obstacleModel = new Model(VehicleHash.Trash);
+            obstacleModel.Request(500);
+
+            if (obstacleModel.IsInCdImage &&
+                obstacleModel.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!obstacleModel.IsLoaded)
+                    Script.Wait(100);
+
+                // create the slower, reliable car
+                obstacle = World.CreateVehicle(VehicleHash.Trash, obstacle_spawnpoint, obstacle_spawn_heading);
+            }
+
+            // load the driver model
+            var driver = new Model(PedHash.GarbageSMY);
+            driver.Request(500);
+
+            driver.MarkAsNoLongerNeeded();
+
+            if (driver.IsInCdImage &&
+                driver.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!driver.IsLoaded)
+                    Script.Wait(100);
+
+                // create the slower, reliable car
+                obstacle_driver = World.CreatePed(driver, obstacle_driver_spawnpoint);
+                obstacle_driver.Task.EnterVehicle(obstacle, VehicleSeat.Driver);
+                obstacle_driver.SetIntoVehicle(obstacle, VehicleSeat.Driver);
+            }
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
+            Game.Player.CanControlCharacter = false;
+
             // make player look at cars
-            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 50f);
+            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver);
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
@@ -212,21 +260,7 @@ namespace ModForResearchTUB
 
             raceStartTime = Game.GameTime;
 
-            // load the car model
-            var obstacleModel = new Model(VehicleHash.Trash);
-            obstacleModel.Request(500);
-
-            if (obstacleModel.IsInCdImage &&
-                obstacleModel.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!obstacleModel.IsLoaded)
-                    Script.Wait(100);
-
-                // create the slower, reliable car
-                obstacle = World.CreateVehicle(VehicleHash.Trash, obstacle_spawnpoint, obstacle_spawn_heading);
-            }
+            Game.Player.CanControlCharacter = true;
         }
 
         public bool checkRaceStartCondition()
