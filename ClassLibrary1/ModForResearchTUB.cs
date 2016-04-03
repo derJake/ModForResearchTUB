@@ -25,7 +25,8 @@ namespace ModForResearchTUB
         bool car_config_done = false;
         bool race_started = false;
         bool race_initialized = false;
-        
+        bool abort_race = false;
+
         int currentCheckpoint = 0;
         bool altCheckpointAvailable = false;
 
@@ -109,12 +110,22 @@ namespace ModForResearchTUB
             *   make it so that AI can not be shot
             */
 
-            if (race_started &&
-                (Game.Player.IsDead ||
-                Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true))) {
-                clearStuffUp();
-                resetLoggingVariables();
-                return;
+            if (race_started) {
+                if (Game.Player.IsDead) {
+                    abort_race = true;
+                    Logger.Log("player died");
+                }
+                if (Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true)) {
+                    abort_race = true;
+                    Logger.Log("player was arrested");
+                }
+
+                if (abort_race)
+                {
+                    clearStuffUp();
+                    resetLoggingVariables();
+                    return;
+                }
             }
 
             if (Game.Player.Character.IsInVehicle()) {
