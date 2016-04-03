@@ -22,8 +22,8 @@ namespace ModForResearchTUB
         private Vector3 car1_spawnpoint = new Vector3(-478.9794f, 654.7506f, 143.7375f);
         private Vector3 player_spawnpoint = new Vector3(-482.3359f, 654.1779f, 144.0759f);
         private float car_spawn_heading = 61f;
-        private Vector3 obstacle_spawnpoint = new Vector3(-813.8827f, 706.9035f, 146.8423f);
-        private Vector3 obstacle_trigger = new Vector3(-779.8662f, 706.8424f, 144.8662f);
+        private Vector3 obstacle_spawnpoint = new Vector3(-813.8827f, 710.9035f, 146.8423f);
+        private Vector3 obstacle_trigger = new Vector3(-777.0529f, 704.7166f, 144.5829f);
         private Vehicle obstacle;
         private Ped obstacle_driver;
         private Vector3 obstacle_driver_spawnpoint = new Vector3(-817.1896f, 709.8116f, 147.2454f);
