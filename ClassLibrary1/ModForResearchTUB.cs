@@ -70,6 +70,9 @@ namespace ModForResearchTUB
 
         int car_health;
 
+        bool raceCarHasBlip = false;
+        Blip raceCarBlip;
+
         // Main Script
         public Main()
         {
@@ -99,7 +102,7 @@ namespace ModForResearchTUB
             races[1] = new RaceToWoodmill();
             races[2] = new RaceSuburban();
             races[3] = new RaceDesert();
-            currentRace = 0;
+            currentRace = 3;
             UI.Notify("races set up");
         }
 
@@ -132,6 +135,9 @@ namespace ModForResearchTUB
                     return;
                 }
             }
+
+            // check if player is still in his vehicle and mark it on the map otherwise
+            toggleRaceCarBlip();
 
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
@@ -360,6 +366,22 @@ namespace ModForResearchTUB
 
             // don't let player exit his racecar by conventional means
             Game.DisableControl(0, GTA.Control.VehicleExit);
+        }
+
+        private void toggleRaceCarBlip() {
+            if (race_started &&
+                !raceCarHasBlip &&
+                !Game.Player.Character.IsInVehicle())
+            {
+                raceCarBlip = Game.Player.LastVehicle.AddBlip();
+                raceCarBlip.Color = BlipColor.Blue;
+                raceCarHasBlip = true;
+            }
+            else if (raceCarHasBlip &&
+              Game.Player.Character.IsInVehicle()) {
+                raceCarBlip.Remove();
+                raceCarHasBlip = false;
+            }
         }
 
         // KeyDown Event
@@ -730,6 +752,11 @@ namespace ModForResearchTUB
             numOfTimesUpsideDown = 0;
 
             car_health = -1;
+
+            raceCarHasBlip = false;
+            if (raceCarBlip != null) {
+                raceCarBlip.Remove();
+            }
         }
 
         #endregion
