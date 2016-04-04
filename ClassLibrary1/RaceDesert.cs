@@ -117,10 +117,10 @@ namespace ModForResearchTUB
             );
 
             // set time of day
-            World.CurrentDayTime = new TimeSpan(19, 15, 0);
+            World.CurrentDayTime = new TimeSpan(18, 35, 0);
 
             // set weather to rain
-            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEARING");
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "FOGGY");
 
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
