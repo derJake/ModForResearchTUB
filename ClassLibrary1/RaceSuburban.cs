@@ -117,6 +117,7 @@ namespace ModForResearchTUB
                 }
                 obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
                 obstacle_started = true;
+                Logger.Log(String.Format("garbage truck started driving at {0}", Game.GameTime));
             }
         }
 
