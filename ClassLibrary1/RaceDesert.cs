@@ -97,9 +97,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
-            Logger.Log("RaceToWoodmill.initRace()");
-            UI.Notify("RaceToWoodmill.initRace()");
-            UI.ShowSubtitle("initializing woodmill track", 1250);
+            Logger.Log("Desert Track Initialization");
+            UI.Notify("Desert Track Initialization");
+            UI.ShowSubtitle("Desert Track Initialization", 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
@@ -129,8 +129,8 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
-            // load the two models
-            var vehicle1Model = new Model(VehicleHash.TriBike3);
+            // load the vehicle model
+            var vehicle1Model = new Model(VehicleHash.Banshee);
             vehicle1Model.Request(500);
 
             if (vehicle1Model.IsInCdImage &&
@@ -141,9 +141,8 @@ namespace ModForResearchTUB
                 while (!vehicle1Model.IsLoaded)
                     Script.Wait(100);
 
-                // create the slower, reliable car
-                raceVehicle = World.CreateVehicle(VehicleHash.TriBike3, car1_spawnpoint, car_spawn_heading);
-                // create the racecar
+                // create the vehicle
+                raceVehicle = World.CreateVehicle(VehicleHash.Banshee, car1_spawnpoint, car_spawn_heading);
 
                 // make the fast one colorful, the other one white
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 255, 255, 255);
@@ -178,7 +177,7 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~bla~ Drive downhill to the woodmill!", 2500);
+            UI.ShowSubtitle("~bla~ Drive to the overlook!", 2500);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
 
@@ -186,7 +185,6 @@ namespace ModForResearchTUB
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
             Game.Player.Character.IsInvincible = false;
 
-            UI.ShowSubtitle("Choose one to start the race!", 2500);
         }
 
         public void setCurrentCheckpoint(int index)
