@@ -280,7 +280,6 @@ namespace ModForResearchTUB
 
                 // debug stuff
                 altCheckpointAvailable = true;
-                UI.Notify("alt checkpoint");
 
                 // if the alternative route isn't finished, point to the next alternative checkpoint
                 if (currentCheckpoint < (checkpoints.Length - 1) &&
