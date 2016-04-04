@@ -128,9 +128,9 @@ namespace ModForResearchTUB
         public void initRace()
         {
             initCalled++;
-            UI.ShowSubtitle("initializing first race", 1250);
-            UI.Notify(String.Format("Car vs Car {0}", initCalled));
-            Logger.Log("RaceCarvsCar.initRace()");
+            UI.ShowSubtitle("Car vs. Car Initialization", 1250);
+            UI.Notify("Car vs. Car Initialization");
+            Logger.Log("Car vs. Car Initialization");
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
