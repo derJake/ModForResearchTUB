@@ -19,10 +19,10 @@ namespace ModForResearchTUB
 
         private Vehicle raceVehicle;
 
-        private Vector3 car_selection = new Vector3(233.4025f, 5246.316f, 602.2096f);
-        private Vector3 car1_spawnpoint = new Vector3(230.0952f, 5246.52f, 601.8268f);
-        private float car_spawn_heading = 61f;
-        private float car_spawn_player_heading = 72.78187f;
+        private Vector3 car_selection = new Vector3(2770.514f, 3461.25f, 55.6087f);
+        private Vector3 car1_spawnpoint = new Vector3(2768.046f, 3456.5f, 55.2822f);
+        private float car_spawn_heading = 245.6047f;
+        private float car_spawn_player_heading = 165.074f;
 
         public RaceDesert() {
             // try and load this area already
@@ -36,38 +36,9 @@ namespace ModForResearchTUB
             // add some checkpoints for our race
             Tuple<Vector3, Vector3?>[] checkpointlist =
             {
-                new Tuple<Vector3, Vector3?>(new Vector3(207.0003f, 5251.836f, 598.4952f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(188.9684f, 5229.752f, 582.10f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(137.2646f, 5189.865f, 550.0045f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(134.155f, 5224.851f, 544.7256f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(115.9152f, 5188.102f, 532.106f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(113.1634f, 5106.065f, 510.8601f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(100.6905f, 5072.818f, 495.969f), new Vector3(87.26577f, 5069.991f, 492.8376f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(93.55081f, 5022.612f, 464.4376f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(38.55313f, 5052.62f, 458.7467f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(17.90152f, 5036.686f, 453.4427f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-9.454967f, 5008.137f, 436.741f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-72.11463f, 4945.062f, 390.1153f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-107.3159f, 4931.15f, 373.186f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-134.2825f, 4915.77f, 353.9966f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-184.3996f, 4901.407f, 332.1235f), null),
-                //new Tuple<Vector3, Vector3?>(new Vector3(-55.57574f, 4999.408f, 406.6459f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-221.3511f, 4903.089f, 314.3157f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-239.7362f, 4914.677f, 301.6244f), new Vector3(-244.3771f, 4907.458f, 303.7904f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-285.9736f, 4956.554f, 257.6557f), new Vector3(-301.7302f, 4947.52f, 267.1712f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-328.7078f, 4994.859f, 226.7433f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-355.1001f, 4988.495f, 210.0325f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-377.4987f, 4951.176f, 197.1729f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-413.6729f, 4927.945f, 179.1848f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-475.3094f, 4969.138f, 149.8499f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-523.5085f, 5028.522f, 132.5715f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-587.2845f, 5068.314f, 134.9643f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-599.2308f, 5101.148f, 125.7583f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-581.5574f, 5157.62f, 105.0425f), new Vector3(-591.7618f, 5168.102f, 102.9612f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-547.3408f, 5157.711f, 95.6012f), new Vector3(-584.4101f, 5183.821f, 94.07907f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-552.1667f, 5211.077f, 81.92912f), new Vector3(-582.4078f, 5198.053f, 88.21198f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-663.0966f, 5232.301f, 77.80328f), new Vector3(-582.3427f, 5216.197f, 79.25137f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-578.9683f, 5248.079f, 70.07695f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(2755.279f, 3407.343f, 55.81804f), new Vector3(2725.262f, 3430.425f, 55.95811f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(2039.139f, 3321.247f, 45.25034f), new Vector3(3212.786f, 3462.548f, 63.5235f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(2039.588f, 3454.929f, 43.42058f), null),
             };
 
             this.checkpoints = checkpointlist;
