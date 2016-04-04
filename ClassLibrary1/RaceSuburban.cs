@@ -73,12 +73,12 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = true;
 
             // camera FX
-            Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
+            Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 1000, true);
             if (Game.Player.Character.IsInVehicle())
                 Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
             World.DestroyAllCameras();
-            World.RenderingCamera = World.CreateCamera(Game.Player.Character.Position, GameplayCamera.Rotation, 90f);
-            World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
+            World.RenderingCamera = World.CreateCamera(new Vector3(-877.6011f, 708.1453f, 149f), new Vector3(7f, 0, 235f), 90f);
+            World.RenderingCamera.PointAt(Game.Player.Character);
             World.RenderingCamera.DepthOfFieldStrength = 200f;
 
             // play sounds
@@ -110,6 +110,11 @@ namespace ModForResearchTUB
         {
             if (!obstacle_started &&
                 Game.Player.Character.IsInRangeOf(obstacle_trigger, 5.0f)) {
+                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 7.0f)) {
+                    if (!car.Equals(obstacle)) {
+                        car.Delete();
+                    }
+                }
                 obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
             }
         }
