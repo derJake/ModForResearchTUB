@@ -54,7 +54,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
 
             // make weather nice again
-            Function.Call(Hash.SET_WEATHER_TYPE_NOW, "CLEARING");
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW, "EXTRASUNNY");
 
             Game.Player.CanControlCharacter = false;
             Game.Player.Character.IsInvincible = true;
