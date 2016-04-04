@@ -109,7 +109,7 @@ namespace ModForResearchTUB
         public void handleOnTick()
         {
             if (!obstacle_started &&
-                Game.Player.Character.IsInRangeOf(obstacle_trigger, 5.0f)) {
+                Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f)) {
                 foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 7.0f)) {
                     if (!car.Equals(obstacle)) {
                         car.Delete();
