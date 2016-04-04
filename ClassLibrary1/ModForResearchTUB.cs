@@ -60,6 +60,9 @@ namespace ModForResearchTUB
         int startedDrivingOnPavement;
         int startedDrivingAgainstTraffic;
 
+        int lastTimeUpsideDown = -1;
+        int numOfTimesUpsideDown = 0;
+
         int cumulativeTimeOnPavement;
         int cumulativeTimeDrivingAgainstTraffic;
         int raceStartTime;
@@ -441,6 +444,20 @@ namespace ModForResearchTUB
             int currentTimeSinceDrivingAgainstTraffic = Function.Call<int>(Hash.GET_TIME_SINCE_PLAYER_DROVE_AGAINST_TRAFFIC, Game.Player);
 
             var currentSpeed = Game.Player.Character.CurrentVehicle.Speed;
+            var ud = Game.Player.Character.CurrentVehicle.IsUpsideDown;
+
+            // log time if player's vehicle is upside down
+            if (ud
+                && lastTimeUpsideDown == -1)
+            {
+                lastTimeUpsideDown = Game.GameTime;
+            }
+            // if player's vehicle has been upside down, but is no longer
+            else if (!ud &&
+                lastTimeUpsideDown > 0) {
+                lastTimeUpsideDown = -1;
+                numOfTimesUpsideDown++;
+            }
 
             speeds += currentSpeed;
             numOfSpeeds++;
@@ -665,6 +682,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("Number of times player has driven against on pavement: {0}", numOfTimesDrivingOnPavement));
             Logger.Log(String.Format("Cumulative time on pavement: {0}", Math.Round((float)cumulativeTimeOnPavement/1000, 2)));
             Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic/1000, 2)));
+            Logger.Log(String.Format("Times vehicle was upside down: {0}", numOfTimesUpsideDown));
         }
 
         protected void resetLoggingVariables() {
@@ -697,6 +715,9 @@ namespace ModForResearchTUB
 
             cumulativeTimeDrivingAgainstTraffic = 0;
             cumulativeTimeOnPavement = 0;
+
+            lastTimeUpsideDown = -1;
+            numOfTimesUpsideDown = 0;
 
             car_health = -1;
         }
