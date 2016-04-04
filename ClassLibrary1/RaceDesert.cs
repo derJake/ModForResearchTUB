@@ -64,8 +64,8 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle())
                 Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
             World.DestroyAllCameras();
-            World.RenderingCamera = World.CreateCamera(new Vector3(-584.9957f, 5245.587f, 70.46933f), GameplayCamera.Rotation, 90f);
-            World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
+            World.RenderingCamera = World.CreateCamera(new Vector3(2042.984f, 3454.698f, 43.34477f), new Vector3(8.392754f, 0, 54.17673f), 90f);
+            World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024acef));
             World.RenderingCamera.DepthOfFieldStrength = 200f;
 
             // play sounds
@@ -130,7 +130,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // load the vehicle model
-            var vehicle1Model = new Model(VehicleHash.Banshee);
+            var vehicle1Model = new Model(VehicleHash.Ruffian);
             vehicle1Model.Request(500);
 
             if (vehicle1Model.IsInCdImage &&
@@ -142,7 +142,7 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the vehicle
-                raceVehicle = World.CreateVehicle(VehicleHash.Banshee, car1_spawnpoint, car_spawn_heading);
+                raceVehicle = World.CreateVehicle(VehicleHash.Ruffian, car1_spawnpoint, car_spawn_heading);
 
                 // make the fast one colorful, the other one white
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 255, 255, 255);
