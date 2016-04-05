@@ -418,6 +418,10 @@ namespace ModForResearchTUB
                         currentRace >= 0 &&
                         currentRace < races.Length) {
                         UI.ShowSubtitle("trying to call race", 1250);
+
+                        // TODO: save player name and store log under that name
+                        // Function.Call(Hash.DISPLAY_ONSCREEN_KEYBOARD, 1, "FMMC_MPM_NA", "", "", "", "", "", 30);
+
                         race_initialized = true;
                         checkpoints = races[currentRace].getCheckpoints();
                         races[currentRace].initRace();
@@ -479,6 +483,16 @@ namespace ModForResearchTUB
                 lastTimeUpsideDown > 0) {
                 lastTimeUpsideDown = -1;
                 numOfTimesUpsideDown++;
+            }
+
+            // check if player's car collided with stuff
+            var car = Game.Player.Character.CurrentVehicle;
+            if (Function.Call<bool>(Hash.HAS_ENTITY_COLLIDED_WITH_ANYTHING, car)) {
+                foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 1f)) {
+                    if (Function.Call<bool>(Hash.HAS_ENTITY_BEEN_DAMAGED_BY_ENTITY, ent, car, true)) {
+                        UI.Notify(String.Format("dmg: {0}", ent.GetType()));
+                    }
+                }
             }
 
             speeds += currentSpeed;
