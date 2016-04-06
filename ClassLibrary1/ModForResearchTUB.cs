@@ -420,7 +420,17 @@ namespace ModForResearchTUB
                         UI.ShowSubtitle("trying to call race", 1250);
 
                         // TODO: save player name and store log under that name
-                        // Function.Call(Hash.DISPLAY_ONSCREEN_KEYBOARD, 1, "FMMC_MPM_NA", "", "", "", "", "", 30);
+                        //Function.Call(Hash.DISPLAY_ONSCREEN_KEYBOARD, 1, "FMMC_MPM_NA", "", "", "", "", "", 30);
+
+                        //while (Function.Call<int>(Hash.UPDATE_ONSCREEN_KEYBOARD) == 0)
+                        //{
+                        //    Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, 0);
+                        //    Script.Wait(0);
+                        //}
+                        //String res = Function.Call<String>(Hash.GET_ONSCREEN_KEYBOARD_RESULT);
+                        //if (res == null) return res;
+                        //String model = Function.Call<String>(Hash.GET_ONSCREEN_KEYBOARD_RESULT);
+                        //UI.Notify(model);
 
                         race_initialized = true;
                         checkpoints = races[currentRace].getCheckpoints();
