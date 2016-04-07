@@ -75,6 +75,12 @@ namespace ModForResearchTUB
 
         String currentPlayerName = "";
 
+        List<Tuple<Entity, Vehicle>> carsStoppedNearestToTrafficLights = new List<Tuple<Entity, Vehicle>>();
+        Entity lastRedlight;
+        Vehicle lastNearestVehicleToRedlight;
+        float lastNearestVehicleDistance = 0;
+        int numOfRedlights = 0;
+
         // Main Script
         public Main()
         {
@@ -104,7 +110,7 @@ namespace ModForResearchTUB
             races[1] = new RaceToWoodmill();
             races[2] = new RaceSuburban();
             races[3] = new RaceDesert();
-            currentRace = 3;
+            currentRace = 0;
             UI.Notify("races set up");
         }
 
@@ -624,29 +630,23 @@ namespace ModForResearchTUB
             var fv = Game.Player.Character.CurrentVehicle.ForwardVector;
             var pos = Game.Player.Character.CurrentVehicle.Position;
 
+            if (lastRedlight != null &&
+                lastNearestVehicleToRedlight != null &&
+                Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight)) {
+                World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(), new Vector3(3f, 3f, 3f), Color.Red);
+            }
+
+            Entity lastTrafficLight = null;
+            Vehicle carStoppedNearestToTrafficLight = null;
+
+            // look at all entities around the player
             foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50))
             {
-                // check for other cars in front of player looking in the same direction
-                if (ent.GetType().Equals(Game.Player.Character.CurrentVehicle.GetType())
-                    && Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30 &&
-                    ent.IsInArea(pos, (pos + (fv * 50f)), 90f)) {
-
-                    // check if they are stopped at a red light
-                    var stopped = Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, ent);
-                    if (stopped) {
-                        World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Red);
-
-                    }
-                }
-
                 // get traffic lights in front of player, that look roughly in the same direction
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                     Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70 &&
-                    ent.IsInArea(pos, pos + (fv * 50f), 50f))
+                    ent.IsInArea(pos, pos + (fv * 50f), 0.523599f))
                 {
-                    // do something with that info
-                    // ent.ForwardVector
-                    // TODO: span vector v* between player and entity and calculate angle between v* and Game.Player.Character.ForwardVector
                     var dist = World.GetDistance(Game.Player.Character.Position, ent.Position);
                     new UIResText(
                         String.Format(
@@ -663,9 +663,39 @@ namespace ModForResearchTUB
                     ).Draw();
 
                     World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Aqua);
-                    return true;
+
+                    lastTrafficLight = ent;
+                    lastRedlight = ent;
+
+                    break;
                 }
             }
+
+            // if a traffic light was near, get cars nearby
+            if (lastTrafficLight != null) {
+                foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character, 50f))
+                {
+                    // check for other cars in front of player looking in the same direction
+                    if (Math.Abs(car.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30 &&
+                        car.IsInArea(pos, (pos + (fv * 50f)), 0.523599f))
+                    {
+
+                        // check if they are stopped at a red light
+                        if (Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, car))
+                        {
+                            World.DrawMarker(MarkerType.VerticalCylinder, car.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Red);
+
+                            // store the car that's nearest to the traffic light and it's distance
+                            if (carStoppedNearestToTrafficLight == null ||
+                                World.GetDistance(lastTrafficLight.Position, car.Position) < World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position)) {
+                                lastNearestVehicleDistance = World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position);
+                                lastNearestVehicleToRedlight = carStoppedNearestToTrafficLight;
+                            }
+                        }
+                    }
+                }
+            }
+
             return false;
         }
 
@@ -793,6 +823,8 @@ namespace ModForResearchTUB
             if (raceCarBlip != null) {
                 raceCarBlip.Remove();
             }
+
+            numOfRedlights = 0;
         }
 
         #endregion
