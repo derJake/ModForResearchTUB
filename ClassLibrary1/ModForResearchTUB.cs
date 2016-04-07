@@ -632,7 +632,7 @@ namespace ModForResearchTUB
             float checkDistance = 50f;
             var pad = 25f;
             var nearLimit = pos + new Vector3(-pad, 0, pad);
-            var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0));
+            var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0)) + new Vector3(0, 0, -pad);
 
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
