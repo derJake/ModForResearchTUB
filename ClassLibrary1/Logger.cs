@@ -10,7 +10,7 @@
     {
         public static void Log(object message)
         {
-            File.AppendAllText("MyModLogFile.log", DateTime.Now + " : " + message + Environment.NewLine);
+            File.AppendAllText("ModForResearchTUB-" + DateTime.Now.ToString("yyyy-MM-dd") +".log", DateTime.Now + " : " + message + Environment.NewLine);
         }
     }
 }
