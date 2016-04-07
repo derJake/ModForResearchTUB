@@ -626,12 +626,14 @@ namespace ModForResearchTUB
 
             foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 50))
             {
+                // check for other cars in front of player looking in the same direction
                 if (ent.GetType().Equals(Game.Player.Character.CurrentVehicle.GetType())
                     && Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30 &&
                     ent.IsInArea(pos, (pos + (fv * 50f)), 90f)) {
                     var stopped = Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, ent);
                     if (stopped) {
                         World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Red);
+
                     }
                 }
 
