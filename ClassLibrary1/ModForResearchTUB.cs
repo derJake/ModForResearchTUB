@@ -631,7 +631,7 @@ namespace ModForResearchTUB
             var pos = Game.Player.Character.CurrentVehicle.Position;
             float checkDistance = 50f;
             var pad = 25f;
-            var nearLimit = pos + new Vector3(-pad, 0, pad);
+            var nearLimit = pos + pad * new Vector3(-fv.Y, fv.X, 0);
             var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0)) + new Vector3(0, 0, -pad);
             var color = Color.White;
 
