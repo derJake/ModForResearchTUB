@@ -639,6 +639,7 @@ namespace ModForResearchTUB
                     }
                 }
 
+                // get traffic lights in front of player, that look roughly in the same direction
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                     Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70 &&
                     ent.IsInArea(pos, pos + (fv * 50f), 50f))
