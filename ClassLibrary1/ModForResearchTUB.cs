@@ -650,7 +650,7 @@ namespace ModForResearchTUB
                 // get traffic lights in front of player, that look roughly in the same direction
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                     Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70f &&
-                    ent.IsInArea(nearLimit, farLimit, 0.523599f))
+                    ent.IsInArea(nearLimit, farLimit, 0))
                 {
                     var dist = World.GetDistance(pos, ent.Position);
                     new UIResText(
@@ -679,7 +679,7 @@ namespace ModForResearchTUB
                 {
                     // check for other cars in front of player looking in the same direction
                     if (Math.Abs(car.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30 &&
-                        car.IsInArea(nearLimit, farLimit, 0.523599f))
+                        car.IsInArea(nearLimit, farLimit, 0))
                     {
 
                         // check if they are stopped at a red light
