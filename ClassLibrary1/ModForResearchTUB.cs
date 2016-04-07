@@ -633,6 +633,7 @@ namespace ModForResearchTUB
             var pad = 25f;
             var nearLimit = pos + new Vector3(-pad, 0, pad);
             var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0)) + new Vector3(0, 0, -pad);
+            var color = Color.White;
 
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
@@ -685,6 +686,7 @@ namespace ModForResearchTUB
                         if (Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, car))
                         {
                             World.DrawMarker(MarkerType.VerticalCylinder, car.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Red);
+                            color = Color.Red;
 
                             // store the car that's nearest to the traffic light and it's distance
                             if (carStoppedNearestToTrafficLight == null ||
@@ -697,6 +699,12 @@ namespace ModForResearchTUB
                     }
                 }
             }
+
+            World.DrawMarker(MarkerType.DebugSphere, pos + fv * checkDistance, new Vector3(0, 0, 0), new Vector3(0f, 0f, 0f), new Vector3(2f, 2f, 2f), color);
+
+            World.DrawMarker(MarkerType.UpsideDownCone, nearLimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(2f, 2f, 2f), Color.Aqua);
+
+            World.DrawMarker(MarkerType.UpsideDownCone, farLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 2f), Color.Aqua);
 
             return false;
         }
