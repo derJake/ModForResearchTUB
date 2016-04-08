@@ -471,6 +471,7 @@ namespace ModForResearchTUB
             String name = Function.Call<String>(Hash.GET_ONSCREEN_KEYBOARD_RESULT);
             if (name == null || name.Length == 0) return false;
             UI.Notify(name);
+            currentPlayerName = name;
             return true;
         }
 
