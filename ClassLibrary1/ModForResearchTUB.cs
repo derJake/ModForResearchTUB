@@ -526,6 +526,16 @@ namespace ModForResearchTUB
                 }
             }
 
+            // display collisions
+            if (numOfCollisions > 0) {
+                new UIResText(String.Format("collisions: {0}", numOfCollisions), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 500), 0.3f, Color.Orange).Draw();
+            }
+
+            if (numOfDamagedProps > 0)
+            {
+                new UIResText(String.Format("damaged props: {0}", numOfDamagedProps), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 525), 0.3f, Color.Orange).Draw();
+            }
+
             speeds += currentSpeed;
             numOfSpeeds++;
 
