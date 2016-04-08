@@ -655,11 +655,10 @@ namespace ModForResearchTUB
                     var dist = World.GetDistance(pos, ent.Position);
                     new UIResText(
                         String.Format(
-                            "traffic light is near at {0}, heading {1}, position {2}, is playing anim {3}",
+                            "traffic light is near at {0}, heading {1}, position {2}",
                             dist,
                             ent.Heading,
-                            ent.Position,
-                            Function.Call<bool>(Hash.IS_ENTITY_PLAYING_ANIM, ent, "v_traffic_lights", "prop_trafficdiv_02_uv_5", 3)
+                            ent.Position
                         ),
                         new Point(Convert.ToInt32(res.Width) - safe.X - 300,
                         Convert.ToInt32(res.Height) - safe.Y - 900),
