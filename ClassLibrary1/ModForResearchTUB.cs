@@ -57,6 +57,8 @@ namespace ModForResearchTUB
         int numOfTimesDrivingOnPavement;
         int numOfTimesDrivingAgaingstTraffic;
 
+        int numOfCollisions = 0;
+
         int startedDrivingOnPavement;
         int startedDrivingAgainstTraffic;
 
@@ -510,7 +512,7 @@ namespace ModForResearchTUB
             if (Function.Call<bool>(Hash.HAS_ENTITY_COLLIDED_WITH_ANYTHING, car)) {
                 foreach (Entity ent in World.GetNearbyEntities(Game.Player.Character.Position, 1f)) {
                     if (ent.IsNearEntity(car, new Vector3(0, 0, 0.1f))) {
-                        UI.Notify("collision!?");
+                        numOfCollisions++;
                     }
                     //new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
                     if (Function.Call<bool>(Hash.HAS_ENTITY_BEEN_DAMAGED_BY_ENTITY, ent, car, true)) {
@@ -821,6 +823,8 @@ namespace ModForResearchTUB
             numOfHitPeds = 0;
             numOfTimesDrivingOnPavement = 0;
             numOfTimesDrivingAgaingstTraffic = 0;
+
+            numOfCollisions = 0;
 
             startedDrivingOnPavement = 0;
             startedDrivingAgainstTraffic = 0;
