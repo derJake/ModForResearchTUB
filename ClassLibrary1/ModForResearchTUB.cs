@@ -623,6 +623,14 @@ namespace ModForResearchTUB
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
             checkForRedlights(res, safe);
+
+            if (numOfRedlights > 0) {
+                new UIResText(String.Format("red lights: {0}", numOfRedlights),
+                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                    Convert.ToInt32(res.Height) - safe.Y - 375),
+                    0.3f,
+                    Color.Orange).Draw();
+            }
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
@@ -677,7 +685,7 @@ namespace ModForResearchTUB
                 foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character, checkDistance))
                 {
                     // check for other cars in front of player looking in the same direction
-                    if (Math.Abs(car.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30 &&
+                    if (Math.Abs(car.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30f &&
                         car.IsInArea(nearLimit, farLimit, 0))
                     {
 
