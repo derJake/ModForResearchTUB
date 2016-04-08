@@ -58,6 +58,7 @@ namespace ModForResearchTUB
         int numOfTimesDrivingAgaingstTraffic;
 
         int numOfCollisions = 0;
+        int numOfDamagedProps = 0;
 
         int startedDrivingOnPavement;
         int startedDrivingAgainstTraffic;
@@ -517,6 +518,9 @@ namespace ModForResearchTUB
                     //new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
                     if (Function.Call<bool>(Hash.HAS_ENTITY_BEEN_DAMAGED_BY_ENTITY, ent, car, true)) {
                         UI.Notify(String.Format("dmg: {0}", ent.GetType()));
+                        if (ent.GetType().Equals("GTA.Prop")) {
+                            numOfDamagedProps++;
+                        }
                     }
                 }
             }
@@ -825,6 +829,7 @@ namespace ModForResearchTUB
             numOfTimesDrivingAgaingstTraffic = 0;
 
             numOfCollisions = 0;
+            numOfDamagedProps = 0;
 
             startedDrivingOnPavement = 0;
             startedDrivingAgainstTraffic = 0;
