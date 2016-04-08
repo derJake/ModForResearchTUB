@@ -663,7 +663,7 @@ namespace ModForResearchTUB
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
                 Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight)) {
-                World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(), new Vector3(3f, 3f, 3f), Color.Red);
+                World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(0,0,0), new Vector3(3f, 3f, 3f), Color.Red);
             }
 
             Entity lastTrafficLight = null;
