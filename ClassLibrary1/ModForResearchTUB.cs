@@ -639,7 +639,15 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
-            checkForRedlights(res, safe);
+            try
+            {
+                checkForRedlights(res, safe);
+            }
+            catch (NullReferenceException nr) {
+                Logger.Log(nr.Source);
+                Logger.Log(nr.StackTrace);
+                Logger.Log(nr.Message);
+            }
 
             if (numOfRedlights > 0) {
                 new UIResText(String.Format("red lights: {0}", numOfRedlights),
@@ -651,9 +659,23 @@ namespace ModForResearchTUB
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
-            // get forward vector to check for traffic lights in front of car
+            if (res == null) {
+                throw new ArgumentNullException("res should not be null");
+            }
+
+            if (safe == null)
+            {
+                throw new ArgumentNullException("safe should not be null");
+            }
+
+            // get position and forward vector to check for traffic lights in front of car
             var fv = Game.Player.Character.CurrentVehicle.ForwardVector;
+            if (fv == null) { return false; }
             var pos = Game.Player.Character.CurrentVehicle.Position;
+            if (pos == null) { return false; }
+            var heading = Game.Player.Character.CurrentVehicle.Heading;
+
+            // define an area in which to look for objects
             float checkDistance = 50f;
             var pad = 25f;
             var nearLimit = pos + pad * new Vector3(-fv.Y, fv.X, 0);
@@ -674,7 +696,7 @@ namespace ModForResearchTUB
             {
                 // get traffic lights in front of player, that look roughly in the same direction
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
-                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30f &&
+                    Math.Abs(ent.Heading - heading) < 30f &&
                     ent.IsInArea(nearLimit, farLimit, 0))
                 {
                     var dist = World.GetDistance(pos, ent.Position);
@@ -692,6 +714,7 @@ namespace ModForResearchTUB
                     ).Draw();
 
                     World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Aqua);
+                    World.DrawMarker(MarkerType.UpsideDownCone, ent.Position, new Vector3(0,0,0), ent.ForwardVector, new Vector3(3f, 3f, 3f), Color.Green);
 
                     lastTrafficLight = ent;
                 }
@@ -702,7 +725,7 @@ namespace ModForResearchTUB
                 foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character, checkDistance))
                 {
                     // check for other cars in front of player looking in the same direction
-                    if (Math.Abs(car.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30f &&
+                    if (Math.Abs(car.Heading - heading) < 30f &&
                         car.IsInArea(nearLimit, farLimit, 0))
                     {
 
