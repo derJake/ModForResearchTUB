@@ -649,7 +649,7 @@ namespace ModForResearchTUB
             {
                 // get traffic lights in front of player, that look roughly in the same direction
                 if (trafficSignalHashes.Contains(ent.Model.Hash) &&
-                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 70f &&
+                    Math.Abs(ent.Heading - Game.Player.Character.CurrentVehicle.Heading) < 30f &&
                     ent.IsInArea(nearLimit, farLimit, 0))
                 {
                     var dist = World.GetDistance(pos, ent.Position);
