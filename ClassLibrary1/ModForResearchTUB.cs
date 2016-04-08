@@ -743,6 +743,7 @@ namespace ModForResearchTUB
                             // check if they are stopped at a red light
                             if (Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, car))
                             {
+                                System.Diagnostics.Debug.Assert(car.Position != null, "Assert: car.Position != null");
                                 World.DrawMarker(MarkerType.VerticalCylinder, car.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Red);
                                 color = Color.Red;
 
