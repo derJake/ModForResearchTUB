@@ -83,6 +83,7 @@ namespace ModForResearchTUB
         Vehicle lastNearestVehicleToRedlight;
         float lastNearestVehicleDistance = 0;
         int numOfRedlights = 0;
+        float stoppedRadius = 25f;
 
         // Main Script
         public Main()
@@ -734,14 +735,14 @@ namespace ModForResearchTUB
 
                     var fvTl = -lastTrafficLight.ForwardVector;
                     var entPos = lastTrafficLight.Position;
-                    var stoppedNearlimit = entPos + fvTl * checkDistance * 0.5f + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0);
+                    var stoppedNearlimit = entPos + fvTl * checkDistance * 0.5f + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0,0,pad);
                     var stoppedFarLimit = (entPos + (1.5f * checkDistance * fvTl) + 0.5f * pad * new Vector3(fvTl.Y, -fvTl.X, 0)) + new Vector3(0, 0, -pad);
 
                     World.DrawMarker(MarkerType.UpsideDownCone, stoppedNearlimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Blue);
                     World.DrawMarker(MarkerType.UpsideDownCone, stoppedFarLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Yellow);
-                    World.DrawMarker(MarkerType.VerticalCylinder, entPos + fvTl * checkDistance, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(10f, 10f, 2f), Color.Red);
+                    World.DrawMarker(MarkerType.VerticalCylinder, entPos + fvTl * checkDistance, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(stoppedRadius, stoppedRadius, 2f), Color.Aqua);
 
-                    foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character, checkDistance))
+                    foreach (Vehicle car in World.GetNearbyVehicles(entPos + fvTl * checkDistance, stoppedRadius))
                     {
                         System.Diagnostics.Debug.Assert(car != null, "Assert: car != null");
                         System.Diagnostics.Debug.Assert(nearLimit != null, "Assert: nearLimit != null");
