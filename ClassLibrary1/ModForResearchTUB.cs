@@ -685,7 +685,8 @@ namespace ModForResearchTUB
 
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
-                Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight)) {
+                Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight) &&
+                (lastNearestVehicleDistance * 0.75f) > World.GetDistance(pos,lastRedlight.Position)) {
                 World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(0,0,0), new Vector3(3f, 3f, 3f), Color.Red);
             }
 
