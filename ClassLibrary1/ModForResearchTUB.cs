@@ -683,6 +683,7 @@ namespace ModForResearchTUB
             var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0)) + new Vector3(0, 0, -pad);
             var color = Color.White;
 
+            // did player run the red light?
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
                 Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight) &&
