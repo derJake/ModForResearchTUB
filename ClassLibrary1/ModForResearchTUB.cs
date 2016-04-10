@@ -83,6 +83,7 @@ namespace ModForResearchTUB
         Vehicle lastNearestVehicleToRedlight;
         float lastNearestVehicleDistance = 0;
         int numOfRedlights = 0;
+        float checkDistance = 50f;
         float stoppedRadius = 25f;
 
         // Main Script
@@ -677,7 +678,6 @@ namespace ModForResearchTUB
             var heading = Game.Player.Character.CurrentVehicle.Heading;
 
             // define an area in which to look for objects
-            float checkDistance = 50f;
             var pad = 25f;
             var nearLimit = pos + pad * new Vector3(-fv.Y, fv.X, 0);
             var farLimit = (pos + (checkDistance * fv) + pad * new Vector3(fv.Y, -fv.X, 0)) + new Vector3(0, 0, -pad);
