@@ -775,11 +775,11 @@ namespace ModForResearchTUB
                 Logger.Log("getting stopped cars made an oopsie");
             }
 
-            World.DrawMarker(MarkerType.DebugSphere, pos + fv * checkDistance, new Vector3(0, 0, 0), new Vector3(0f, 0f, 0f), new Vector3(2f, 2f, 2f), color);
+            //World.DrawMarker(MarkerType.DebugSphere, pos + fv * checkDistance, new Vector3(0, 0, 0), new Vector3(0f, 0f, 0f), new Vector3(2f, 2f, 2f), color);
 
-            World.DrawMarker(MarkerType.UpsideDownCone, nearLimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(2f, 2f, 2f), Color.Aqua);
+            //World.DrawMarker(MarkerType.UpsideDownCone, nearLimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(2f, 2f, 2f), Color.Aqua);
 
-            World.DrawMarker(MarkerType.UpsideDownCone, farLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 2f), Color.Aqua);
+            //World.DrawMarker(MarkerType.UpsideDownCone, farLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 2f), Color.Aqua);
 
             return false;
         }
