@@ -84,7 +84,7 @@ namespace ModForResearchTUB
         float lastNearestVehicleDistance = 0;
         int numOfRedlights = 0;
         float checkDistance = 50f;
-        float stoppedRadius = 25f;
+        float stoppedRadius = 50f;
 
         // Main Script
         public Main()
