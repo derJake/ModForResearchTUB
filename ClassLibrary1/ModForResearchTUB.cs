@@ -721,8 +721,6 @@ namespace ModForResearchTUB
                         World.DrawMarker(MarkerType.VerticalCylinder, ent.Position, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 1f), Color.Aqua);
                         //World.DrawMarker(MarkerType.UpsideDownCone, ent.Position, ent.ForwardVector, new Vector3(90f,0,0), new Vector3(3f, 3f, 3f), Color.Green);
 
-                        
-
                         lastTrafficLight = ent;
                     }
                 }
