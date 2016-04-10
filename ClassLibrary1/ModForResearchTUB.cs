@@ -735,7 +735,7 @@ namespace ModForResearchTUB
 
                     var fvTl = -lastTrafficLight.ForwardVector;
                     var entPos = lastTrafficLight.Position;
-                    var stoppedNearlimit = entPos + fvTl * checkDistance * 0.5f + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0,0,pad);
+                    var stoppedNearlimit = entPos + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0,0,pad);
                     var stoppedFarLimit = (entPos + (1.5f * checkDistance * fvTl) + 0.5f * pad * new Vector3(fvTl.Y, -fvTl.X, 0)) + new Vector3(0, 0, -pad);
 
                     World.DrawMarker(MarkerType.UpsideDownCone, stoppedNearlimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Blue);
