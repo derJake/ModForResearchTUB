@@ -86,6 +86,12 @@ namespace ModForResearchTUB
         float checkDistance = 50f;
         float stoppedRadius = 50f;
 
+        //Dictionary<Keys, int> controls = new Dictionary<Keys, int>(){
+        //    {Keys.W, 0}
+        //};
+
+        List<Tuple<int, int>> keypressLengths = new List<Tuple<int, int>>();
+
         // Main Script
         public Main()
         {
