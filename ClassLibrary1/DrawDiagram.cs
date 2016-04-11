@@ -10,9 +10,9 @@ namespace ModForResearchTUB
 {
     static class DrawDiagram
     {
-        public static void renderDiagramToDisk(List<Tuple<int, int>> data, String title, String yAxisTitle, String diagramtype)
+        public static void renderDiagramToDisk(List<Tuple<String, double>> data, String title, String yAxisTitle, String diagramtype)
         {
-            using (Chart chart = new Chart() { Height = 1600, Width = 2400 })
+            using (Chart chart = new Chart() { Height = 2400, Width = 4800 })
             {
                 // Konfiguration
                 chart.Titles.Add(title);
@@ -30,7 +30,7 @@ namespace ModForResearchTUB
                 });
                 chart.Series.Add(new Series("data") { ChartType = SeriesChartType.Column });
                 // Daten
-                foreach (Tuple<int, int> entry in data) {
+                foreach (Tuple<String, double> entry in data) {
                     chart.Series["data"].Points.Add(
                         new DataPoint() {
                             AxisLabel = entry.Item1.ToString(),
