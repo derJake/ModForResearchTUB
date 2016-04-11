@@ -39,7 +39,7 @@ namespace ModForResearchTUB
                     );
                 }
                 // Ausgabe
-                chart.SaveImage(DateTime.Now.ToString("yyyy-MM-dd") + "dia.png", ChartImageFormat.Png);
+                chart.SaveImage(DateTime.Now.ToString("yyyy-MM-dd") + "-keypress-lengths.png", ChartImageFormat.Png);
             }
          }
     }
