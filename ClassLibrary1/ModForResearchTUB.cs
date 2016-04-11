@@ -226,6 +226,10 @@ namespace ModForResearchTUB
                             raceEndTime = Game.GameTime;
 
                             writeRaceDataToLog();
+
+                            DrawDiagram.renderDiagramToDisk(keypressLengths);
+
+                            // reset variables and remove vehicles/props etc.
                             clearStuffUp();
 
                             // switch to next race, if there is one
