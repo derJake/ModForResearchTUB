@@ -33,8 +33,8 @@ namespace ModForResearchTUB
                 foreach (Tuple<int, int> entry in data) {
                     chart.Series["data"].Points.Add(
                         new DataPoint() {
-                            AxisLabel = entry.Item1.ToString(),
-                            YValues = new double[] { entry.Item2 }
+                            AxisLabel = entry.Item2.ToString(),
+                            YValues = new double[] { entry.Item1 }
                         }
                     );
                 }
