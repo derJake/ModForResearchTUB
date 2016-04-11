@@ -715,6 +715,7 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
+            // save the vehicle's speed for this second
             speedBySecond.Add(new Tuple<String, double>((Game.GameTime - raceStartTime).ToString(), car.Speed));
             
             try
