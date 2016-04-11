@@ -410,6 +410,17 @@ namespace ModForResearchTUB
             // Check KeyDown KeyCode
             switch (e.KeyCode)
             {
+                case Keys.A:
+                    if (race_started) {
+                        lastKeydownA = Game.GameTime;
+                    }
+                    break;
+                case Keys.D:
+                    if (race_started)
+                    {
+                        lastKeydownD = Game.GameTime;
+                    }
+                    break;
                 case Keys.E:
                     UI.ShowSubtitle("[E] KeyDown", 1250);
                     break;
