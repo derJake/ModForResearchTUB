@@ -234,7 +234,12 @@ namespace ModForResearchTUB
 
                             writeRaceDataToLog();
 
-                            DrawDiagram.renderDiagramToDisk(keypressLengths);
+                            DrawDiagram.renderDiagramToDisk(
+                                keypressLengths,
+                                "keypresses by length",
+                                "times pressed for given amount of time",
+                                currentPlayerName + "keypress-lengths"
+                            );
 
                             // reset variables and remove vehicles/props etc.
                             clearStuffUp();
