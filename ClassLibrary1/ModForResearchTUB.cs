@@ -90,6 +90,7 @@ namespace ModForResearchTUB
         //    {Keys.W, 0}
         //};
 
+        // length of time the key was held down and amount of times it was held that long
         List<Tuple<int, int>> keypressLengths = new List<Tuple<int, int>>();
         int lastKeydownA;
         int lastKeydownD;
