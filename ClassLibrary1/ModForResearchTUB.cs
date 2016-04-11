@@ -91,6 +91,8 @@ namespace ModForResearchTUB
         //};
 
         List<Tuple<int, int>> keypressLengths = new List<Tuple<int, int>>();
+        int lastKeydownA;
+        int lastKeydownD;
 
         // Main Script
         public Main()
