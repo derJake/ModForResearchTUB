@@ -220,6 +220,10 @@ namespace ModForResearchTUB
                         UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
                         UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
 
+                        // make log entry
+                        var altCheckpointReached = (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)) ? "alternative " : "";
+                        Logger.Log(altCheckpointReached + String.Format("checkpoint {0}/{1}", currentCheckpoint + 1, checkpoints.Length));
+
                         // FINISHED, if last checkpoint is reached
                         if ((currentCheckpoint + 1) == checkpoints.Length)
                         {
