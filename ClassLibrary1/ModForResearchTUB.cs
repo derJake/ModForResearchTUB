@@ -91,6 +91,8 @@ namespace ModForResearchTUB
         //};
 
         // length of time the key was held down and amount of times it was held that long
+        static double roundTo = 5;
+        static int roundToMultiplier = Convert.ToInt32(roundTo);
         List<Tuple<int, int>> keypressLengths = new List<Tuple<int, int>>();
         int lastKeydownA;
         int lastKeydownD;
@@ -449,7 +451,7 @@ namespace ModForResearchTUB
                 case Keys.A:
                     if (race_started && lastKeydownA > 0) {
                         var length = Convert.ToInt32(Math.Round((
-                            Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/10)) * 10;
+                            Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/ roundTo)) * roundToMultiplier;
                         UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
@@ -465,7 +467,7 @@ namespace ModForResearchTUB
                     if (race_started && lastKeydownA > 0)
                     {
                         var length = Convert.ToInt32(Math.Round((
-                           Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / 10)) * 10;
+                           Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / roundTo)) * roundToMultiplier;
                         UI.ShowSubtitle(String.Format("keyup [D], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
