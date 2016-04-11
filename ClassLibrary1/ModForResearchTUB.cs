@@ -93,13 +93,13 @@ namespace ModForResearchTUB
         // length of time the key was held down and amount of times it was held that long
         static double roundTo = 5;
         static int roundToMultiplier = Convert.ToInt32(roundTo);
-        List<Tuple<int, int>> keypressLengths = new List<Tuple<int, int>>();
+        List<Tuple<String, double>> keypressLengths = new List<Tuple<String, double>>();
         int lastKeydownA;
         int lastKeydownD;
 
         // 
         int timeWindow = 1000;
-        List<Tuple<int, float>> speedBySecond = new List<Tuple<int, float>>();
+        List<Tuple<String, double>> speedBySecond = new List<Tuple<String, double>>();
 
         // Main Script
         public Main()
@@ -239,7 +239,15 @@ namespace ModForResearchTUB
                                 keypressLengths,
                                 "keypresses by length",
                                 "times pressed for given amount of time",
-                                currentPlayerName + "keypress-lengths"
+                                currentPlayerName + "-keypress-lengths"
+                            );
+
+                            // draw diagram for speed every second
+                            DrawDiagram.renderDiagramToDisk(
+                                speedBySecond,
+                                "speed by second",
+                                "speed",
+                                currentPlayerName + "-speed-by-second"
                             );
 
                             // reset variables and remove vehicles/props etc.
@@ -460,32 +468,30 @@ namespace ModForResearchTUB
             {
                 case Keys.A:
                     if (race_started && lastKeydownA > 0) {
-                        var length = Convert.ToInt32(Math.Round((
-                            Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/ roundTo)) * roundToMultiplier;
+                        var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/ roundTo) * roundToMultiplier).ToString();
                         UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
                             var index = keypressLengths.FindIndex(x => x.Item1 == length);
-                            keypressLengths[index] = new Tuple<int, int>(length, keypressLengths[index].Item2 + 1);
+                            keypressLengths[index] = new Tuple<String, double>(length, keypressLengths[index].Item2 + 1);
                         }
                         else {
-                            keypressLengths.Add(new Tuple<int, int>(length, 1));
+                            keypressLengths.Add(new Tuple<String, double>(length, 1));
                         }
                     }
                     break;
                 case Keys.D:
                     if (race_started && lastKeydownA > 0)
                     {
-                        var length = Convert.ToInt32(Math.Round((
-                           Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / roundTo)) * roundToMultiplier;
+                        var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / roundTo) * roundToMultiplier).ToString();
                         UI.ShowSubtitle(String.Format("keyup [D], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
                             var index = keypressLengths.FindIndex(x => x.Item1 == length);
-                            keypressLengths[index] = new Tuple<int, int>(length, keypressLengths[index].Item2 + 1);
+                            keypressLengths[index] = new Tuple<String, double>(length, keypressLengths[index].Item2 + 1);
                         }
                         else {
-                            keypressLengths.Add(new Tuple<int, int>(length, 1));
+                            keypressLengths.Add(new Tuple<String, double>(length, 1));
                         }
 
                     }
@@ -709,7 +715,7 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
-            speedBySecond.Add(new Tuple<int, float>(Game.GameTime - raceStartTime, car.Speed));
+            speedBySecond.Add(new Tuple<String, double>((Game.GameTime - raceStartTime).ToString(), car.Speed));
             
             try
             {
@@ -989,7 +995,8 @@ namespace ModForResearchTUB
 
             numOfRedlights = 0;
 
-            keypressLengths = new List<Tuple<int, int>>();
+            keypressLengths = new List<Tuple<String, double>>();
+            speedBySecond = new List<Tuple<String, double>>();
         }
 
         #endregion
