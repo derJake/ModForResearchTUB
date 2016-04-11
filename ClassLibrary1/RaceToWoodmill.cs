@@ -214,8 +214,6 @@ namespace ModForResearchTUB
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
             Game.Player.Character.IsInvincible = false;
-
-            UI.ShowSubtitle("Choose one to start the race!", 2500);
         }
 
         public void setCurrentCheckpoint(int index)
