@@ -969,6 +969,8 @@ namespace ModForResearchTUB
             }
 
             numOfRedlights = 0;
+
+            keypressLengths = new List<Tuple<int, int>>();
         }
 
         #endregion
