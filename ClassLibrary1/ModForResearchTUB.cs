@@ -441,6 +441,34 @@ namespace ModForResearchTUB
             // Check KeyUp KeyCode
             switch (e.KeyCode)
             {
+                case Keys.A:
+                    if (race_started && lastKeydownA > 0) {
+                        var length = (Game.GameTime - lastKeydownA/10);
+                        if (keypressLengths.Exists(x => x.Item1 == length))
+                        {
+                            var index = keypressLengths.FindIndex(x => x.Item1 == length);
+                            keypressLengths[index] = new Tuple<int, int>(length, keypressLengths[index].Item2 + 1);
+                        }
+                        else {
+                            keypressLengths.Add(new Tuple<int, int>(length, 1));
+                        }
+                    }
+                    break;
+                case Keys.D:
+                    if (race_started && lastKeydownA > 0)
+                    {
+                        var length = (Game.GameTime - lastKeydownA / 10);
+                        if (keypressLengths.Exists(x => x.Item1 == length))
+                        {
+                            var index = keypressLengths.FindIndex(x => x.Item1 == length);
+                            keypressLengths[index] = new Tuple<int, int>(length, keypressLengths[index].Item2 + 1);
+                        }
+                        else {
+                            keypressLengths.Add(new Tuple<int, int>(length, 1));
+                        }
+
+                    }
+                    break;
                 case Keys.E:
                     UI.ShowSubtitle("[E] KeyUp", 1250);
                     break;
