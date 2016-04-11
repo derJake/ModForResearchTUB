@@ -826,9 +826,9 @@ namespace ModForResearchTUB
                     var stoppedNearlimit = entPos + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0,0,pad);
                     var stoppedFarLimit = (entPos + (1.5f * checkDistance * fvTl) + 0.5f * pad * new Vector3(fvTl.Y, -fvTl.X, 0)) + new Vector3(0, 0, -pad);
 
-                    World.DrawMarker(MarkerType.UpsideDownCone, stoppedNearlimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Blue);
-                    World.DrawMarker(MarkerType.UpsideDownCone, stoppedFarLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Yellow);
-                    World.DrawMarker(MarkerType.VerticalCylinder, entPos + fvTl * checkDistance, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(stoppedRadius, stoppedRadius, 2f), Color.Aqua);
+                    //World.DrawMarker(MarkerType.UpsideDownCone, stoppedNearlimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Blue);
+                    //World.DrawMarker(MarkerType.UpsideDownCone, stoppedFarLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Yellow);
+                    //World.DrawMarker(MarkerType.VerticalCylinder, entPos + fvTl * checkDistance, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(stoppedRadius, stoppedRadius, 2f), Color.Aqua);
 
                     foreach (Vehicle car in World.GetNearbyVehicles(entPos + fvTl * checkDistance, stoppedRadius))
                     {
