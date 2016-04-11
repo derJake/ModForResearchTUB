@@ -10,12 +10,12 @@ namespace ModForResearchTUB
 {
     static class DrawDiagram
     {
-        public static void renderDiagramToDisk(List<Tuple<int, int>> data)
+        public static void renderDiagramToDisk(List<Tuple<int, int>> data, String title, String yAxisTitle, String diagramtype)
         {
             using (Chart chart = new Chart() { Height = 1600, Width = 2400 })
             {
                 // Konfiguration
-                chart.Titles.Add("Amount of Keypresses per length pressed");
+                chart.Titles.Add(title);
                 chart.ChartAreas.Add(new ChartArea("statistic")
                 {
                     AxisX = new Axis()
@@ -25,7 +25,7 @@ namespace ModForResearchTUB
                     AxisY = new Axis()
                     {
                         MajorGrid = new Grid() { LineColor = Color.LightGray, LineDashStyle = ChartDashStyle.Dot },
-                        Title = "amount"
+                        Title = yAxisTitle
                     }
                 });
                 chart.Series.Add(new Series("data") { ChartType = SeriesChartType.Column });
@@ -39,7 +39,7 @@ namespace ModForResearchTUB
                     );
                 }
                 // Ausgabe
-                chart.SaveImage(DateTime.Now.ToString("yyyy-MM-dd") + "-keypress-lengths.png", ChartImageFormat.Png);
+                chart.SaveImage(DateTime.Now.ToString("yyyy-MM-dd") + diagramtype + ".png", ChartImageFormat.Png);
             }
          }
     }
