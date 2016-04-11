@@ -716,8 +716,19 @@ namespace ModForResearchTUB
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
             // save the vehicle's speed for this second
-            speedBySecond.Add(new Tuple<String, double>((Game.GameTime - raceStartTime).ToString(), car.Speed));
-            
+            var raceTimeElapsed = (Game.GameTime - raceStartTime);
+            speedBySecond.Add(new Tuple<String, double>(raceTimeElapsed.ToString(), car.Speed));
+            // show current timer
+            new UIResText(
+                String.Format(
+                    "timer {0}s",
+                    Math.Round(Convert.ToDecimal(raceTimeElapsed)/1000, 2)),
+                new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                Convert.ToInt32(res.Height) - safe.Y - 525),
+                0.3f,
+                Color.White
+                ).Draw();
+
             try
             {
                 checkForRedlights(res, safe);
