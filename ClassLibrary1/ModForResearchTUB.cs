@@ -97,6 +97,10 @@ namespace ModForResearchTUB
         int lastKeydownA;
         int lastKeydownD;
 
+        // 
+        int timeWindow = 1000;
+        List<Tuple<int, float>> speedBySecond = new List<Tuple<int, float>>();
+
         // Main Script
         public Main()
         {
@@ -699,6 +703,8 @@ namespace ModForResearchTUB
             // either way, save new timer
             lastMaxTimeSinceAgainstTraffic = currentTimeSinceDrivingAgainstTraffic;
 
+            speedBySecond.Add(new Tuple<int, float>(Game.GameTime - raceStartTime, car.Speed));
+            
             try
             {
                 checkForRedlights(res, safe);
