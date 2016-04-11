@@ -234,6 +234,7 @@ namespace ModForResearchTUB
 
                             writeRaceDataToLog();
 
+                            // draw diagram for keypresses by length
                             DrawDiagram.renderDiagramToDisk(
                                 keypressLengths,
                                 "keypresses by length",
