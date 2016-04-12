@@ -361,6 +361,7 @@ namespace ModForResearchTUB
             }
             currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
+            Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
         }
 
         protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
