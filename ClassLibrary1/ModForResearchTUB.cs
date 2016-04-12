@@ -751,6 +751,8 @@ namespace ModForResearchTUB
                     0.3f,
                     Color.Orange).Draw();
             }
+
+            displayClosestVehicleNode();
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
@@ -880,6 +882,22 @@ namespace ModForResearchTUB
             //World.DrawMarker(MarkerType.UpsideDownCone, farLimit + new Vector3(0, 0, pad), new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 2f), Color.Aqua);
 
             return false;
+        }
+        public Vector3 displayClosestVehicleNode() {
+            var pos = Game.Player.Character.Position;
+
+            OutputArgument outArgA = new OutputArgument();
+
+            if (Function.Call<bool>(Hash.GET_CLOSEST_VEHICLE_NODE, pos.X, pos.Y, pos.Z, outArgA, 1, 3.0, 0))
+            {
+                var res = outArgA.GetResult<Vector3>();
+
+                World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(3f, 3f, 3f), Color.White);
+
+                return res; //getting heading if the native returns true
+            }
+
+            return new Vector3();
         }
 
         public float ConvertToRadians(float angle)
