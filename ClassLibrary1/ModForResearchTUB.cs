@@ -243,7 +243,7 @@ namespace ModForResearchTUB
                                 keypressLengths,
                                 "keypresses by length",
                                 "times pressed for given amount of time",
-                                currentPlayerName + "-keypress-lengths"
+                                currentPlayerName + "-race-" + currentRace + 1 + "-keypress-lengths"
                             );
 
                             // draw diagram for speed every second
@@ -251,7 +251,7 @@ namespace ModForResearchTUB
                                 speedBySecond,
                                 "speed by second",
                                 "speed",
-                                currentPlayerName + "-speed-by-second"
+                                currentPlayerName + "-race-" + currentRace + 1 + "-speed-by-second"
                             );
 
                             // reset variables and remove vehicles/props etc.
