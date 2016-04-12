@@ -297,6 +297,7 @@ namespace ModForResearchTUB
                     vehicles[1].StartAlarm();
                     car_taken = "Player is in fast car";
                     playerInRaceCar = true;
+                    Function.Call(Hash.FLASH_WANTED_DISPLAY, true);
                 }
                 if (vehicles[0] != null && Game.Player.Character.CurrentVehicle.Equals(vehicles[0]))
                 {
