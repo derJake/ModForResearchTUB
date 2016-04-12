@@ -32,6 +32,7 @@ namespace ModForResearchTUB
         private Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
         private int initCalled = 0;
+        private bool flashWantedStopped = false;
 
         public RaceCarvsCar() {
             // try and load this area already
@@ -122,7 +123,10 @@ namespace ModForResearchTUB
 
         public void handleOnTick()
         {
-            throw new NotImplementedException();
+            if (!flashWantedStopped && Game.GameTime > raceStartTime + 10000) {
+                Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
+                flashWantedStopped = true;
+            }
         }
 
         public void initRace()
