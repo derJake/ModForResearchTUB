@@ -853,11 +853,16 @@ namespace ModForResearchTUB
                                 color = Color.Red;
 
                                 // store the car that's nearest to the traffic light and it's distance
-                                if (carStoppedNearestToTrafficLight == null ||
-                                    World.GetDistance(lastTrafficLight.Position, car.Position) < World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position)) {
-                                    lastNearestVehicleDistance = World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position);
+                                if (carStoppedNearestToTrafficLight == null) {
                                     lastNearestVehicleToRedlight = carStoppedNearestToTrafficLight;
-                                    lastRedlight = lastTrafficLight;
+                                } else {
+                                    System.Diagnostics.Debug.Assert(carStoppedNearestToTrafficLight != null, "Assert: carStoppedNearestToTrafficLight != null");
+                                    if (World.GetDistance(lastTrafficLight.Position, car.Position) < World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position))
+                                    {
+                                        lastNearestVehicleDistance = World.GetDistance(lastTrafficLight.Position, carStoppedNearestToTrafficLight.Position);
+                                        lastNearestVehicleToRedlight = carStoppedNearestToTrafficLight;
+                                        lastRedlight = lastTrafficLight;
+                                    }
                                 }
                             }
                         }
