@@ -243,21 +243,7 @@ namespace ModForResearchTUB
 
                             writeRaceDataToLog();
 
-                            // draw diagram for keypresses by length
-                            DrawDiagram.renderDiagramToDisk(
-                                keypressLengths,
-                                "keypresses by length",
-                                "times pressed for given amount of time",
-                                currentPlayerName + "-race-" + currentRace + 1 + "-keypress-lengths"
-                            );
-
-                            // draw diagram for speed every second
-                            DrawDiagram.renderDiagramToDisk(
-                                speedBySecond,
-                                "speed by second",
-                                "speed",
-                                currentPlayerName + "-race-" + currentRace + 1 + "-speed-by-second"
-                            );
+                            renderDiagrams();
 
                             // reset variables and remove vehicles/props etc.
                             clearStuffUp();
@@ -297,6 +283,48 @@ namespace ModForResearchTUB
                     races[currentRace].startRace();
                 }
             }
+        }
+
+        protected void renderDiagrams() {
+            // draw diagram for keypresses by length
+            DrawDiagram.renderDiagramToDisk(
+                keypressLengths,
+                "keypresses by length",
+                "times pressed for given amount of time",
+                currentPlayerName + "-race-" + currentRace + 1 + "-keypress-lengths"
+            );
+
+            // draw diagram for speed every tick
+            DrawDiagram.renderDiagramToDisk(
+                speedBySecond,
+                "speed by second",
+                "speed",
+                currentPlayerName + "-race-" + currentRace + 1 + "-speed-by-second"
+            );
+
+            // draw diagram for gas pedal input
+            DrawDiagram.renderDiagramToDisk(
+                gasPedalInputs,
+                "gas pedal pressed",
+                "gas",
+                currentPlayerName + "-race-" + currentRace + 1 + "-gas"
+            );
+
+            // draw diagram for brake pedal input
+            DrawDiagram.renderDiagramToDisk(
+                brakingInputs,
+                "brake pedal pressed",
+                "brake",
+                currentPlayerName + "-race-" + currentRace + 1 + "-brake"
+            );
+
+            // draw diagram for brake pedal input
+            DrawDiagram.renderDiagramToDisk(
+                steeringInputs,
+                "steering wheel input",
+                "value",
+                currentPlayerName + "-race-" + currentRace + 1 + "-steering"
+            );
         }
 
         protected void setupNextCheckpoint() {
