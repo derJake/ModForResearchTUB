@@ -582,6 +582,7 @@ namespace ModForResearchTUB
         }
 
         private bool makePlayerInputName() {
+            Function.Call(Hash.DISPLAY_ONSCREEN_KEYBOARD, 1, "FMMC_MPM_NA", "", "", "", "", "", 30);
             while (Function.Call<int>(Hash.UPDATE_ONSCREEN_KEYBOARD) == 0)
             {
                 Function.Call(Hash.DISABLE_ALL_CONTROL_ACTIONS, 0);
