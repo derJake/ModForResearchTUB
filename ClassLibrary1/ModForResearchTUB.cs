@@ -723,6 +723,7 @@ namespace ModForResearchTUB
             // save the vehicle's speed for this second
             var raceTimeElapsed = (Game.GameTime - raceStartTime);
             speedBySecond.Add(new Tuple<String, double>(raceTimeElapsed.ToString(), car.Speed));
+
             // show current timer
             new UIResText(
                 String.Format(
