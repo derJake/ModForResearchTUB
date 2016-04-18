@@ -101,6 +101,11 @@ namespace ModForResearchTUB
         int timeWindow = 1000;
         List<Tuple<String, double>> speedBySecond = new List<Tuple<String, double>>();
 
+        // controller inputs
+        List<Tuple<String, double>> gasPedalInputs = new List<Tuple<String, double>>();
+        List<Tuple<String, double>> steeringInputs = new List<Tuple<String, double>>();
+        List<Tuple<String, double>> brakingInputs = new List<Tuple<String, double>>();
+
         // Main Script
         public Main()
         {
@@ -724,6 +729,11 @@ namespace ModForResearchTUB
             var raceTimeElapsed = (Game.GameTime - raceStartTime);
             speedBySecond.Add(new Tuple<String, double>(raceTimeElapsed.ToString(), car.Speed));
 
+            // get controller values
+            gasPedalInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 11))));
+            gasPedalInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10))));
+            steeringInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9))));
+
             // show current timer
             new UIResText(
                 String.Format(
@@ -1038,6 +1048,9 @@ namespace ModForResearchTUB
 
             keypressLengths = new List<Tuple<String, double>>();
             speedBySecond = new List<Tuple<String, double>>();
+            gasPedalInputs = new List<Tuple<String, double>>();
+            steeringInputs = new List<Tuple<String, double>>();
+            brakingInputs = new List<Tuple<String, double>>();
         }
 
         #endregion
