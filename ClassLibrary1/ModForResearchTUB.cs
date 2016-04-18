@@ -550,7 +550,7 @@ namespace ModForResearchTUB
                         UI.ShowSubtitle("trying to call race", 1250);
 
                         // TODO: save player name and store log under that name
-                        //makePlayerInputName();
+                        makePlayerInputName();
 
                         race_initialized = true;
                         checkpoints = races[currentRace].getCheckpoints();
@@ -764,7 +764,7 @@ namespace ModForResearchTUB
 
             // get controller values
             gasPedalInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 11))));
-            gasPedalInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10))));
+            brakingInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10))));
             steeringInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9))));
 
             // show current timer
