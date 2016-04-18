@@ -20,12 +20,13 @@ namespace ModForResearchTUB
                 {
                     AxisX = new Axis()
                     {
-                        MajorGrid = new Grid() { Enabled = false }
+                        MajorGrid = new Grid() { Enabled = false }, TitleFont = new Font("Helvetica", 18.0f)
                     },
                     AxisY = new Axis()
                     {
                         MajorGrid = new Grid() { LineColor = Color.LightGray, LineDashStyle = ChartDashStyle.Dot },
-                        Title = yAxisTitle
+                        Title = yAxisTitle,
+                        TitleFont = new Font("Helvetica", 18.0f)
                     }
                 });
                 chart.Series.Add(new Series("data") { ChartType = SeriesChartType.Column });
