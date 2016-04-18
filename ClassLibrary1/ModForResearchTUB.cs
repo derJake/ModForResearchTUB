@@ -796,7 +796,7 @@ namespace ModForResearchTUB
                     Color.Orange).Draw();
             }
 
-            displayClosestVehicleNode();
+            //displayClosestVehicleNode();
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
