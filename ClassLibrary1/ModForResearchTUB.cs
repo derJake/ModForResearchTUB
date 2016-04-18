@@ -228,6 +228,7 @@ namespace ModForResearchTUB
                         // make log entry
                         var altCheckpointReached = (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)) ? "alternative " : "";
                         Logger.Log(altCheckpointReached + String.Format("checkpoint {0}/{1}", currentCheckpoint + 1, checkpoints.Length));
+                        Logger.Log(String.Format("time elapsed: {0}s", Math.Round(((float)Game.GameTime - (float)raceStartTime) / 1000, 2)));
 
                         // FINISHED, if last checkpoint is reached
                         if ((currentCheckpoint + 1) == checkpoints.Length)
