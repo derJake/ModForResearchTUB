@@ -20,12 +20,12 @@ namespace ModForResearchTUB
         private Vehicle raceVehicle;
         private Vehicle leader;
 
-        private Vector3 car_selection = new Vector3(2770.514f, 3461.25f, 55.6087f);
-        private Vector3 car1_spawnpoint = new Vector3(2768.046f, 3456.5f, 55.2822f);
-        private Vector3 leader_spawnpoint = new Vector3();
-        private float leader_heading = 50f;
-        private float car_spawn_heading = 245.6047f;
-        private float car_spawn_player_heading = 165.074f;
+        private Vector3 car_selection = new Vector3(1371.112f, 6495.264f, 20.00329f);
+        private Vector3 car1_spawnpoint = new Vector3(1372.046f, 6510.465f, 19.66112f);
+        private Vector3 leader_spawnpoint = new Vector3(1345.384f, 6503.437f, 19.87024f);
+        private float leader_heading = 82f;
+        private float car_spawn_heading = 94.7f;
+        private float car_spawn_player_heading = 71.70087f;
 
         public RaceConvoy() {
             // try and load this area already
