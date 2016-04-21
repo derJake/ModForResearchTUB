@@ -18,9 +18,12 @@ namespace ModForResearchTUB
         private int raceStartTime;
 
         private Vehicle raceVehicle;
+        private Vehicle leader;
 
         private Vector3 car_selection = new Vector3(2770.514f, 3461.25f, 55.6087f);
         private Vector3 car1_spawnpoint = new Vector3(2768.046f, 3456.5f, 55.2822f);
+        private Vector3 leader_spawnpoint = new Vector3();
+        private float leader_heading = 50f;
         private float car_spawn_heading = 245.6047f;
         private float car_spawn_player_heading = 165.074f;
 
@@ -112,9 +115,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
-            Logger.Log("Desert Track Initialization");
-            UI.Notify("Desert Track Initialization");
-            UI.ShowSubtitle("Desert Track Initialization", 1250);
+            Logger.Log("Convoy Track Initialization");
+            UI.Notify("Convoy Track Initialization");
+            UI.ShowSubtitle("Convoy Track Initialization", 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
@@ -145,7 +148,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // load the vehicle model
-            var vehicle1Model = new Model(VehicleHash.Ruffian);
+            var vehicle1Model = new Model(VehicleHash.Benson);
             vehicle1Model.Request(500);
 
             if (vehicle1Model.IsInCdImage &&
@@ -157,13 +160,14 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the vehicle
-                raceVehicle = World.CreateVehicle(VehicleHash.Ruffian, car1_spawnpoint, car_spawn_heading);
+                raceVehicle = World.CreateVehicle(VehicleHash.Benson, car1_spawnpoint, car_spawn_heading);
 
-                // make the fast one colorful, the other one white
+                // create the vehicle that is to be followed
+                leader = World.CreateVehicle(VehicleHash.Benson, leader_spawnpoint, leader_heading);
+
+                // set colors
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 255, 255, 255);
                 Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, raceVehicle, 255, 255, 255);
-
-                Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, raceVehicle, true);
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
@@ -176,7 +180,7 @@ namespace ModForResearchTUB
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
-                Game.Player.Character.Position, // position
+                Game.Player.Character.Position + new Vector3(0,5,0), // position
                 new Vector3(9f, 0f, -82.57458f), // rotation
                 90f
             );
@@ -192,7 +196,7 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~bla~ Drive to the overlook!", 2500);
+            UI.ShowSubtitle("~b~ Follow the other truck!", 5000);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
 
