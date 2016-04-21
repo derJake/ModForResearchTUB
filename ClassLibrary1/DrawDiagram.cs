@@ -10,6 +10,9 @@ namespace ModForResearchTUB
 {
     static class DrawDiagram
     {
+        static String fontName = "Helvetica";
+        static float fontSize = 24;
+
         public static void renderDiagramToDisk(List<Tuple<String, double>> data, String title, String yAxisTitle, String diagramtype)
         {
             using (Chart chart = new Chart() { Height = 2400, Width = 4800 })
@@ -20,13 +23,13 @@ namespace ModForResearchTUB
                 {
                     AxisX = new Axis()
                     {
-                        MajorGrid = new Grid() { Enabled = false }, TitleFont = new Font("Helvetica", 18.0f)
+                        MajorGrid = new Grid() { Enabled = false }, TitleFont = new Font(fontName, fontSize)
                     },
                     AxisY = new Axis()
                     {
                         MajorGrid = new Grid() { LineColor = Color.LightGray, LineDashStyle = ChartDashStyle.Dot },
                         Title = yAxisTitle,
-                        TitleFont = new Font("Helvetica", 18.0f)
+                        TitleFont = new Font(fontName, fontSize)
                     }
                 });
                 chart.Series.Add(new Series("data") { ChartType = SeriesChartType.Column });
