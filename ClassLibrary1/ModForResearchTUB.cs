@@ -653,7 +653,7 @@ namespace ModForResearchTUB
 
             if (numOfDamagedProps > 0)
             {
-                new UIResText(String.Format("damaged props: {0}", numOfDamagedProps), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 525), 0.3f, Color.Orange).Draw();
+                new UIResText(String.Format("damaged props: {0}", numOfDamagedProps), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 550), 0.3f, Color.Orange).Draw();
             }
 
             speeds += currentSpeed;
