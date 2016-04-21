@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawDiagram.cs" />
+    <Compile Include="RaceConvoy.cs" />
     <Compile Include="RaceSuburban.cs" />
     <Compile Include="RaceDesert.cs" />
     <Compile Include="RaceToWoodmill.cs" />
