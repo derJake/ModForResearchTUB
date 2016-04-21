@@ -138,7 +138,7 @@ namespace ModForResearchTUB
             World.CurrentDayTime = new TimeSpan(18, 35, 0);
 
             // set weather to rain
-            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "FOGGY");
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
 
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
