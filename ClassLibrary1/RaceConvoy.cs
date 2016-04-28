@@ -23,7 +23,7 @@ namespace ModForResearchTUB
         private Vector3 car_selection = new Vector3(1371.112f, 6495.264f, 20.00329f);
         private Vector3 car1_spawnpoint = new Vector3(1372.046f, 6510.465f, 19.66112f);
         private Vector3 leader_spawnpoint = new Vector3(1345.384f, 6503.437f, 19.87024f);
-        private Vector3 leader_driver_spawnpoint = new Vector3(1345.384f, 6501.437f, 19.87024f);
+        private Vector3 leader_driver_spawnpoint = new Vector3(1342.458f, 65000.011f, 19.92942f);
         private Ped leader_driver;
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
