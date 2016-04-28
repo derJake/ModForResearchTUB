@@ -256,7 +256,7 @@ namespace ModForResearchTUB
                 while (!driver.IsLoaded)
                     Script.Wait(100);
 
-                // create the slower, reliable car
+                // create the actual driver ped
                 leader_driver = World.CreatePed(driver, leader_driver_spawnpoint);
                 return true;
             }
