@@ -230,6 +230,8 @@ namespace ModForResearchTUB
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 2";
 
             raceStartTime = Game.GameTime;
+
+            leader_driver.Task.DriveTo(leader, checkpoints[checkpoints.Length - 1].Item1, 5, 30);
         }
 
         public bool checkRaceStartCondition()
