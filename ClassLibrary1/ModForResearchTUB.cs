@@ -550,7 +550,6 @@ namespace ModForResearchTUB
                         currentRace < races.Length) {
                         UI.ShowSubtitle("trying to call race", 1250);
 
-                        // TODO: save player name and store log under that name
                         makePlayerInputName();
 
                         race_initialized = true;
