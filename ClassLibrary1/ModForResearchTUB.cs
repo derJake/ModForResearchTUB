@@ -550,7 +550,7 @@ namespace ModForResearchTUB
                         currentRace < races.Length) {
                         UI.ShowSubtitle("trying to call race", 1250);
 
-                        makePlayerInputName();
+                        //makePlayerInputName();
 
                         race_initialized = true;
                         checkpoints = races[currentRace].getCheckpoints();
