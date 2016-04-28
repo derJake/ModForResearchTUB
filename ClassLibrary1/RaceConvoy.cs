@@ -23,6 +23,8 @@ namespace ModForResearchTUB
         private Vector3 car_selection = new Vector3(1371.112f, 6495.264f, 20.00329f);
         private Vector3 car1_spawnpoint = new Vector3(1372.046f, 6510.465f, 19.66112f);
         private Vector3 leader_spawnpoint = new Vector3(1345.384f, 6503.437f, 19.87024f);
+        private Vector3 leader_driver_spawnpoint = new Vector3(1345.384f, 6501.437f, 19.87024f);
+        private Ped leader_driver;
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
         private float car_spawn_player_heading = 71.70087f;
@@ -172,6 +174,12 @@ namespace ModForResearchTUB
 
             vehicle1Model.MarkAsNoLongerNeeded();
 
+            if (createDriver())
+            {
+                leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver);
+                leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
+            }
+
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
@@ -228,6 +236,29 @@ namespace ModForResearchTUB
         {
             // check which car player is using
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
+        }
+
+        private bool createDriver() {
+            // load the driver model
+            var driver = new Model(PedHash.GarbageSMY);
+            driver.Request(500);
+
+            driver.MarkAsNoLongerNeeded();
+
+            if (driver.IsInCdImage &&
+                driver.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!driver.IsLoaded)
+                    Script.Wait(100);
+
+                // create the slower, reliable car
+                leader_driver = World.CreatePed(driver, leader_driver_spawnpoint);
+                return true;
+            }
+
+            return false;
         }
     }
 }
