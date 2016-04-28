@@ -176,7 +176,7 @@ namespace ModForResearchTUB
 
             if (createDriver())
             {
-                leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver);
+                leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver, 10000, 2.0f, 16);
                 leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
             }
 
@@ -243,10 +243,8 @@ namespace ModForResearchTUB
 
         private bool createDriver() {
             // load the driver model
-            var driver = new Model(PedHash.GarbageSMY);
+            var driver = new Model(PedHash.MexLabor01AMM);
             driver.Request(500);
-
-            driver.MarkAsNoLongerNeeded();
 
             if (driver.IsInCdImage &&
                 driver.IsValid
