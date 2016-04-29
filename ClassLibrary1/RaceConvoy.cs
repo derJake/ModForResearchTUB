@@ -256,7 +256,6 @@ namespace ModForResearchTUB
 
                 // create the actual driver ped
                 leader_driver = World.CreatePed(driver, leader_driver_spawnpoint);
-                leader_driver.AddBlip();
                 return true;
             }
 
