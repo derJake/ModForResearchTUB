@@ -243,8 +243,8 @@ namespace ModForResearchTUB
 
         private bool createDriver() {
             // load the driver model
-            var driver = new Model(PedHash.MexLabor01AMM);
-            driver.Request(500);
+            var driver = new Model(PedHash.RampMex);
+            driver.Request();
 
             if (driver.IsInCdImage &&
                 driver.IsValid
