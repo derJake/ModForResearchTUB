@@ -112,7 +112,9 @@ namespace ModForResearchTUB
 
         public void handleOnTick()
         {
-            throw new NotImplementedException();
+            if (World.GetDistance(raceVehicle.Position, leader.Position) > 150f) {
+                UI.ShowSubtitle("~r~Don't lose the other truck!", 1250);
+            }
         }
 
         public void initRace()
