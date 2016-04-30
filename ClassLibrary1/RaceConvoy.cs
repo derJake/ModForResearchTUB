@@ -152,10 +152,6 @@ namespace ModForResearchTUB
 
                 // create the vehicle that is to be followed
                 leader = World.CreateVehicle(VehicleHash.Benson, leader_spawnpoint, leader_heading);
-
-                // set colors
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 255, 255, 255);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, raceVehicle, 255, 255, 255);
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
