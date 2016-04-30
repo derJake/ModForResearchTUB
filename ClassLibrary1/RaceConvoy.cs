@@ -161,6 +161,7 @@ namespace ModForResearchTUB
             {
                 leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver, 10000, 2.0f, 16);
                 leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
+                leader_driver.IsInvincible = true;
             }
 
             Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, leader, 2);
