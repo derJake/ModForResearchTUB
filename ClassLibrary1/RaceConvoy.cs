@@ -29,6 +29,7 @@ namespace ModForResearchTUB
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
         private float car_spawn_player_heading = 71.70087f;
+        private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
 
         public RaceConvoy() {
             // try and load this area already
@@ -98,6 +99,17 @@ namespace ModForResearchTUB
         {
             if (World.GetDistance(raceVehicle.Position, leader.Position) > 150f) {
                 UI.ShowSubtitle("~r~Don't lose the other truck!", 1250);
+            }
+
+            if (raceStartTime > 0)
+            {
+                distance.Add(new Tuple<String, double>(
+                    Game.GameTime.ToString(),
+                    World.GetDistance(
+                        leader.Position,
+                        Game.Player.Character.CurrentVehicle.Position
+                    )
+                ));
             }
         }
 
