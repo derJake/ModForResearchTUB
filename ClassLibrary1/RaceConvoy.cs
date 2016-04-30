@@ -152,6 +152,7 @@ namespace ModForResearchTUB
 
                 // create the vehicle that is to be followed
                 leader = World.CreateVehicle(VehicleHash.Benson, leader_spawnpoint, leader_heading);
+                leader.IsInvincible = true;
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
