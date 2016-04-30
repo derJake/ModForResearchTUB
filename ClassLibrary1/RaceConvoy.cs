@@ -233,8 +233,9 @@ namespace ModForResearchTUB
 
             raceStartTime = Game.GameTime;
 
-            leader_driver.Task.DriveTo(leader, checkpoints[checkpoints.Length - 1].Item1, 5, 30);
-            leader.AddBlip();
+            leader_driver.Task.DriveTo(leader, checkpoints[checkpoints.Length - 1].Item1, 5, 20, 110111111);
+            Blip leaderblip = leader.AddBlip();
+            leaderblip.Color = BlipColor.Blue;
         }
 
         public bool checkRaceStartCondition()
