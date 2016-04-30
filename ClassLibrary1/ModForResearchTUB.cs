@@ -263,6 +263,7 @@ namespace ModForResearchTUB
                                 checkpoints = races[currentRace].getCheckpoints();
                                 races[currentRace].initRace();
                             } else {
+                                toggleScenarios(true);
                                 UI.Notify("This was the last race!");
                             }
                             return;
