@@ -117,6 +117,9 @@ namespace ModForResearchTUB
             // registers the races / courses / whatever you want to call it
             setUpRaces();
 
+            // try to disable scenarios like angry bikers
+            toggleScenarios(false);
+
             // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
 
             // Tick Interval
@@ -1085,6 +1088,11 @@ namespace ModForResearchTUB
             gasPedalInputs = new List<Tuple<String, double>>();
             steeringInputs = new List<Tuple<String, double>>();
             brakingInputs = new List<Tuple<String, double>>();
+        }
+
+        private void toggleScenarios(bool b) {
+            Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "LOST_BIKERS", b);
+            Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "Rampage1", b);
         }
 
         #endregion
