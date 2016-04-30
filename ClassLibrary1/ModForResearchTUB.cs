@@ -157,15 +157,18 @@ namespace ModForResearchTUB
             */
 
             if (race_started) {
+                // player has died -> abort race
                 if (Game.Player.IsDead) {
                     abort_race = true;
                     Logger.Log("player died");
                 }
+                // player is being arrested -> abort race
                 if (Function.Call<Boolean>(Hash.IS_PLAYER_BEING_ARRESTED, Game.Player, true)) {
                     abort_race = true;
                     Logger.Log("player was arrested");
                 }
 
+                // reset everything after aborting race
                 if (abort_race)
                 {
                     clearStuffUp();
