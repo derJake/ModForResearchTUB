@@ -162,6 +162,8 @@ namespace ModForResearchTUB
                 leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
             }
 
+            Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, leader, 2);
+
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
