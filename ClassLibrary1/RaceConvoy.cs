@@ -170,7 +170,7 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = true;
 
             // make player look at cars
-            Game.Player.Character.Task.StandStill(5000);
+            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
