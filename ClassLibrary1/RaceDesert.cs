@@ -201,6 +201,10 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = false;
 
         }
+        public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
+        {
+            throw new NotImplementedException();
+        }
 
         public void startRace()
         {
