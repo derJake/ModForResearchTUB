@@ -202,11 +202,6 @@ namespace ModForResearchTUB
 
         }
 
-        public void setCurrentCheckpoint(int index)
-        {
-            return;
-        }
-
         public void startRace()
         {
             // try and free terrain loading restriction, so car won't fall through the ground
