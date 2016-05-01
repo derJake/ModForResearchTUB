@@ -202,7 +202,6 @@ namespace ModForResearchTUB
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
             UI.ShowSubtitle("~b~ Follow the other truck!", 5000);
-            Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
             Wait(2500);
 
             // switch back to main cam
