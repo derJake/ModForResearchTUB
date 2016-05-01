@@ -107,6 +107,8 @@ namespace ModForResearchTUB
         List<Tuple<String, double>> steeringInputs = new List<Tuple<String, double>>();
         List<Tuple<String, double>> brakingInputs = new List<Tuple<String, double>>();
 
+        private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
+
         // Main Script
         public Main()
         {
