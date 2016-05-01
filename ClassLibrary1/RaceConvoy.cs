@@ -29,7 +29,7 @@ namespace ModForResearchTUB
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
         private float car_spawn_player_heading = 71.70087f;
-        private List<Tuple<String, List<Tuple<String, double>>>> collectedData;
+        private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
 
         public RaceConvoy() {
@@ -90,7 +90,7 @@ namespace ModForResearchTUB
             raceVehicle.MarkAsNoLongerNeeded();
             raceVehicle.Delete();
 
-            collectedData.Add(new Tuple<string, List<Tuple<string, double>>>("distance", distance));
+            this.collectedData.Add(new Tuple<string, List<Tuple<string, double>>>("distance", distance));
         }
 
         public Tuple<Vector3, Vector3?>[] getCheckpoints()
@@ -259,7 +259,7 @@ namespace ModForResearchTUB
 
         public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
         {
-            return collectedData;
+            return this.collectedData;
         }
     }
 }
