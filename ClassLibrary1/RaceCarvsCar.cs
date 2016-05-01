@@ -270,9 +270,9 @@ namespace ModForResearchTUB
             UI.ShowSubtitle("Choose one to start the race!", 2500);
         }
 
-        public void setCurrentCheckpoint(int index)
+        public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
         {
-            this.currentCheckpoint = index;
+            throw new NotImplementedException();
         }
 
         public void startRace()
