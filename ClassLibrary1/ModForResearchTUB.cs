@@ -306,6 +306,16 @@ namespace ModForResearchTUB
         }
 
         protected void renderDiagrams() {
+
+            foreach (Tuple<String, List<Tuple<String, double>>> item in collectedData) {
+                DrawDiagram.renderDiagramToDisk(
+                    item.Item2,
+                    item.Item1,
+                    item.Item1,
+                    currentPlayerName + "-race-" + currentRace + 1 + item.Item1
+                );
+            }
+
             // draw diagram for keypresses by length
             DrawDiagram.renderDiagramToDisk(
                 keypressLengths,
