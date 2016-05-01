@@ -199,8 +199,6 @@ namespace ModForResearchTUB
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
             // play sound
-
-
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
             UI.ShowSubtitle("~b~ Follow the other truck!", 5000);
