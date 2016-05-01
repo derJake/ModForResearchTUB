@@ -183,7 +183,7 @@ namespace ModForResearchTUB
 
             // make player look at cars
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
-            leader_driver.SetIntoVehicle(raceVehicle VehicleSeat.Driver);
+            leader_driver.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
