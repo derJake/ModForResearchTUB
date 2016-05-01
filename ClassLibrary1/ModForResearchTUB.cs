@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 using NativeUI;
+using System.Linq;
 #endregion
 
 namespace ModForResearchTUB
@@ -251,6 +252,10 @@ namespace ModForResearchTUB
 
                             // have current race do it's finish stuff
                             races[currentRace].finishRace();
+
+                            try {
+                                collectedData.Concat(races[currentRace].getCollectedData());
+                            } catch (NotImplementedException) {}
 
                             // log the current time
                             raceEndTime = Game.GameTime;
