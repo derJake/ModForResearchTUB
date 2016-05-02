@@ -253,11 +253,7 @@ namespace ModForResearchTUB
                             // have current race do it's finish stuff
                             races[currentRace].finishRace();
 
-                            try {
-                                foreach (Tuple<String, List<Tuple<String, double>>> dataList in races[currentRace].getCollectedData()) {
-                                    collectedData.Add(dataList);
-                                }
-                            } catch (NotImplementedException) {}
+                            processCollectedData();
 
                             // log the current time
                             raceEndTime = Game.GameTime;
@@ -1118,6 +1114,32 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "Rampage1", b);
         }
 
+        private void processCollectedData() {
+            var lomont = new Lomont.LomontFFT();
+            double[] inputValues = new double[steeringInputs.Count];
+            List<Tuple<String, double>> inputFrequency = new List<Tuple<String, double>>(steeringInputs.Count);
+            int i = 0;
+
+            // put list values into array
+            foreach (Tuple<String, double> point in steeringInputs) {
+                inputValues[0] = point.Item2;
+                i++;
+            }
+
+            // do fft calculation
+            lomont.FFT(inputValues, false);
+
+            // put back calculated values into new list
+
+            try
+            {
+                foreach (Tuple<String, List<Tuple<String, double>>> dataList in races[currentRace].getCollectedData())
+                {
+                    collectedData.Add(dataList);
+                }
+            }
+            catch (NotImplementedException) { }
+        }
         #endregion
     }
 }
