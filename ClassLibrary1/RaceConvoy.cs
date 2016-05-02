@@ -186,7 +186,7 @@ namespace ModForResearchTUB
 
             // make player look at cars
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
-            leader_driver.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
@@ -225,7 +225,7 @@ namespace ModForResearchTUB
 
             raceStartTime = Game.GameTime;
 
-            leader_driver.Task.DriveTo(leader, leader_target, 5, 15, 110111111);
+            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, 110111111);
             Blip leaderblip = leader.AddBlip();
             leaderblip.Color = BlipColor.Blue;
         }
