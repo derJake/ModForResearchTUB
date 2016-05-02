@@ -254,7 +254,9 @@ namespace ModForResearchTUB
                             races[currentRace].finishRace();
 
                             try {
-                                collectedData.Concat(races[currentRace].getCollectedData());
+                                foreach (Tuple<String, List<Tuple<String, double>>> dataList in races[currentRace].getCollectedData()) {
+                                    collectedData.Add(dataList);
+                                }
                             } catch (NotImplementedException) {}
 
                             // log the current time
@@ -312,7 +314,7 @@ namespace ModForResearchTUB
                     item.Item2,
                     item.Item1,
                     item.Item1,
-                    currentPlayerName + "-race-" + currentRace + 1 + item.Item1
+                    currentPlayerName + "-race-" + (currentRace + 1) + "-" + item.Item1
                 );
             }
 
