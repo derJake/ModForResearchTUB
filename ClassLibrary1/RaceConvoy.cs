@@ -24,7 +24,7 @@ namespace ModForResearchTUB
         private Vector3 car1_spawnpoint = new Vector3(1372.046f, 6510.465f, 19.66112f);
         private Vector3 leader_spawnpoint = new Vector3(1345.384f, 6503.437f, 19.87024f);
         private Vector3 leader_driver_spawnpoint = new Vector3(1343.086f, 6506.767f, 19.7821f);
-        private Vector3 leader_target = new Vector3(-2165.281f, 4284.963f, 48.94252f);
+        private Vector3 leader_target = new Vector3(-769.6273f, 5545.085f, 33.11019f);
         private Ped leader_driver;
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
@@ -44,7 +44,9 @@ namespace ModForResearchTUB
             // add some checkpoints for our race
             Tuple<Vector3, Vector3?>[] checkpointlist =
             {
-                new Tuple<Vector3, Vector3?>(new Vector3(-2175.755f, 4268.987f, 48.95655f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-763.5227f, 5506.236f, 34.75044f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-780.5091f, 5524.204f, 33.9245f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-780.6508f, 5548.24f, 33.12004f), null),
             };
 
             this.checkpoints = checkpointlist;
