@@ -1129,7 +1129,14 @@ namespace ModForResearchTUB
             // do fft calculation
             lomont.FFT(inputValues, false);
 
+            i = 0;
+
             // put back calculated values into new list
+            foreach (double value in inputValues) {
+                inputFrequency.Add(new Tuple<String, double>(i.ToString(), value));
+            }
+
+            collectedData.Add(new Tuple<String, List<Tuple<String, double>>>("input frequency", inputFrequency));
 
             // get data point lists from current race, if there are any
             try
