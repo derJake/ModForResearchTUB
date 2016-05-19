@@ -1131,6 +1131,7 @@ namespace ModForResearchTUB
 
             // put back calculated values into new list
 
+            // get data point lists from current race, if there are any
             try
             {
                 foreach (Tuple<String, List<Tuple<String, double>>> dataList in races[currentRace].getCollectedData())
