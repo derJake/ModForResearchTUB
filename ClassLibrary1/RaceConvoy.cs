@@ -31,6 +31,7 @@ namespace ModForResearchTUB
         private float car_spawn_player_heading = 71.70087f;
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
+        private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
         public RaceConvoy() {
             // try and load this area already
@@ -153,7 +154,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // load the vehicle model
-            var vehicle1Model = new Model(VehicleHash.Benson);
+            var vehicle1Model = new Model(vehicleHash);
             vehicle1Model.Request(500);
 
             if (vehicle1Model.IsInCdImage &&
