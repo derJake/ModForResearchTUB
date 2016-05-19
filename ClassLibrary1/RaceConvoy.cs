@@ -166,10 +166,10 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the vehicle
-                raceVehicle = World.CreateVehicle(VehicleHash.Benson, car1_spawnpoint, car_spawn_heading);
+                raceVehicle = World.CreateVehicle(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
                 // create the vehicle that is to be followed
-                leader = World.CreateVehicle(VehicleHash.Benson, leader_spawnpoint, leader_heading);
+                leader = World.CreateVehicle(vehicleHash, leader_spawnpoint, leader_heading);
                 leader.IsInvincible = true;
             }
 
