@@ -1122,7 +1122,7 @@ namespace ModForResearchTUB
 
             // put list values into array
             foreach (Tuple<String, double> point in steeringInputs) {
-                inputValues[0] = point.Item2;
+                inputValues[i] = point.Item2;
                 i++;
             }
 
