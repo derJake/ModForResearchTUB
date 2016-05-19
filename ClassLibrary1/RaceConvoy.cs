@@ -73,9 +73,8 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle())
                 Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
             World.DestroyAllCameras();
-            World.RenderingCamera = World.CreateCamera(new Vector3(2047.247f, 3454.969f, 44.53693f), new Vector3(-1.169715f, -1.334299f, 83.22903f), 90f);
-            World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
-            World.RenderingCamera.DepthOfFieldStrength = 200f;
+            World.RenderingCamera = World.CreateCamera(new Vector3(-771.7985f, 5550.436f, 33.47573f), new Vector3(12.26449f, 0, 109.785f), 90f);
+            //World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
 
             // play sounds
             Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
