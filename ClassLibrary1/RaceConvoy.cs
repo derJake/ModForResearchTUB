@@ -111,12 +111,16 @@ namespace ModForResearchTUB
 
             if (raceStartTime > 0)
             {
-                distance.Add(new Tuple<String, double>(
-                    Game.GameTime.ToString(),
-                    World.GetDistance(
+                // calculate distance to leading vehicle
+                var currentDistance = World.GetDistance(
                         leader.Position,
                         Game.Player.Character.CurrentVehicle.Position
-                    )
+                    );
+
+                // log it for later diagram drawing
+                distance.Add(new Tuple<String, double>(
+                    Game.GameTime.ToString(),
+                    currentDistance
                 ));
             }
         }
