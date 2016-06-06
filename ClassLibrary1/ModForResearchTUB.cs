@@ -9,6 +9,8 @@ using System.Drawing;
 using System.Collections.Generic;
 using NativeUI;
 using System.Linq;
+using System.Globalization;
+using ModForResearchTUB.Properties;
 #endregion
 
 namespace ModForResearchTUB
@@ -110,12 +112,16 @@ namespace ModForResearchTUB
 
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
 
+        public CultureInfo CultureInfo { get; private set; }
+
         // Main Script
         public Main()
         {
             trafficSignalHashes.Add(-655644382);
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
+
+            CultureInfo = CultureInfo.CurrentCulture;
 
             // registers the races / courses / whatever you want to call it
             setUpRaces();
@@ -134,6 +140,7 @@ namespace ModForResearchTUB
             KeyUp += this.KeyUpEvent;
 
             UI.ShowSubtitle("Press [F10] to start first race", 1250);
+            UI.ShowSubtitle(Resources.ResourceManager.GetString("startracepromp", CultureInfo));
         }
 
         private void setUpRaces() {
