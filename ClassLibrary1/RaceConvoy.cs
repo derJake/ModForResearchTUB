@@ -117,7 +117,7 @@ namespace ModForResearchTUB
                         Game.Player.Character.CurrentVehicle.Position
                     );
 
-                distanceBar.Percentage = currentDistance / 200f > 1f ? 200f : currentDistance / 200f;
+                distanceBar.Percentage = currentDistance / 200f > 1f ? 1f : currentDistance / 200f;
                 barPool.Draw();
 
                 // log it for later diagram drawing
