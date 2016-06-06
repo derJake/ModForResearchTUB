@@ -237,7 +237,7 @@ namespace ModForResearchTUB
 
             raceStartTime = Game.GameTime;
 
-            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, 110111111);
+            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
             Blip leaderblip = leader.AddBlip();
             leaderblip.Color = BlipColor.Blue;
 
