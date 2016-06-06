@@ -33,6 +33,9 @@ namespace ModForResearchTUB
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
+        private TimerBarPool barPool = new TimerBarPool();
+        private BarTimerBar distanceBar;
+
         public RaceConvoy() {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
@@ -230,6 +233,9 @@ namespace ModForResearchTUB
             leader_driver.Task.DriveTo(leader, leader_target, 5, 20, 110111111);
             Blip leaderblip = leader.AddBlip();
             leaderblip.Color = BlipColor.Blue;
+
+            distanceBar = new BarTimerBar("DISTANCE");
+            barPool.Add(distanceBar);
         }
 
         public bool checkRaceStartCondition()
