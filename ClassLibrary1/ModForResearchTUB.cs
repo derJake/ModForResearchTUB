@@ -1116,9 +1116,9 @@ namespace ModForResearchTUB
 
         private void processCollectedData() {
             var lomont = new Lomont.LomontFFT();
-            // make input array length even
-            var fftInputLength = (steeringInputs.Count % 2 == 1) ? steeringInputs.Count + 1 : steeringInputs.Count;
-            double[] inputValues = new double[steeringInputs.Count];
+            // make input array length a power of two
+            var fftInputLength = Convert.ToInt32(Math.Ceiling(Math.Log(steeringInputs.Count, 2)));
+            double[] inputValues = new double[fftInputLength];
             List<Tuple<String, double>> inputFrequency = new List<Tuple<String, double>>(steeringInputs.Count);
             int i = 0;
 
@@ -1129,7 +1129,7 @@ namespace ModForResearchTUB
             }
 
             // write a 0 to the last array index, if there is no actual value to be filled
-            if (fftInputLength - steeringInputs.Count == 1) {
+            if (fftInputLength > steeringInputs.Count) {
                 inputValues[steeringInputs.Count] = 0;
             }
 
