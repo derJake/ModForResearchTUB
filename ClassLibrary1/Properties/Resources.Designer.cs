@@ -61,6 +61,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world game, where you can play a singleplayer campaign comprised of missions or compete with other players in GTA Online. ähnelt.
+        /// </summary>
+        internal static string intro1 {
+            get {
+                return ResourceManager.GetString("intro1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {
