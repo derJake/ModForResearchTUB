@@ -11,6 +11,7 @@ using NativeUI;
 using System.Linq;
 using System.Globalization;
 using ModForResearchTUB.Properties;
+using System.Resources;
 #endregion
 
 namespace ModForResearchTUB
@@ -114,6 +115,8 @@ namespace ModForResearchTUB
 
         public CultureInfo CultureInfo { get; private set; }
 
+        ResourceManager rm;
+
         // Main Script
         public Main()
         {
@@ -122,6 +125,7 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(1043035044);
 
             CultureInfo = CultureInfo.CurrentCulture;
+            rm = new ResourceManager(typeof(Resources));
 
             // registers the races / courses / whatever you want to call it
             setUpRaces();
@@ -139,8 +143,8 @@ namespace ModForResearchTUB
             KeyDown += this.KeyDownEvent;
             KeyUp += this.KeyUpEvent;
 
-            UI.ShowSubtitle("Press [F10] to start first race", 1250);
-            UI.ShowSubtitle(Resources.ResourceManager.GetString("startracepromp", CultureInfo));
+            //UI.ShowSubtitle("Press [F10] to start first race", 1250);
+            UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
         }
 
         private void setUpRaces() {
@@ -151,7 +155,7 @@ namespace ModForResearchTUB
             races[3] = new RaceCarvsCar();
             races[4] = new RaceToWoodmill();
             currentRace = 0;
-            UI.Notify("races set up");
+            UI.Notify(rm.GetString("racessetup"));
         }
 
         #region Events

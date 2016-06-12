@@ -61,6 +61,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
+        /// </summary>
+        internal static string racessetup {
+            get {
+                return ResourceManager.GetString("racessetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press [F10] to start first race ähnelt.
         /// </summary>
         internal static string startracepromp {
