@@ -33,6 +33,10 @@ namespace ModForResearchTUB
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
+        public CultureInfo CultureInfo { get; private set; }
+
+        ResourceManager rm;
+
         public RaceIntro() {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
@@ -51,6 +55,9 @@ namespace ModForResearchTUB
             };
 
             this.checkpoints = checkpointlist;
+
+            CultureInfo = CultureInfo.CurrentCulture;
+            rm = new ResourceManager(typeof(Resources));
         }
 
         public void finishRace()
