@@ -120,9 +120,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
-            Logger.Log("Convoy Track Initialization");
-            UI.Notify("Convoy Track Initialization");
-            UI.ShowSubtitle("Convoy Track Initialization", 1250);
+            Logger.Log("Intro Track Initialization");
+            UI.Notify("Intro Track Initialization");
+            UI.ShowSubtitle("Intro Track Initialization", 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
@@ -223,13 +223,9 @@ namespace ModForResearchTUB
 
             UI.ShowSubtitle("Race started!", 1250);
 
-            Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 2";
+            Game.Player.Character.CurrentVehicle.NumberPlate = "INTRO";
 
             raceStartTime = Game.GameTime;
-
-            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, 110111111);
-            Blip leaderblip = leader.AddBlip();
-            leaderblip.Color = BlipColor.Blue;
         }
 
         public bool checkRaceStartCondition()
@@ -262,6 +258,33 @@ namespace ModForResearchTUB
         public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
         {
             return this.collectedData;
+        }
+
+        private void doIntroSequence() {
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(18, 35, 0);
+
+            // set weather to rain
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
+
+            Ped player = Game.Player.Character;
+            player.Task.ClearAllImmediately(); // give back control to player
+
+            // teleport player and turn him towards cars
+            player.Position = car_selection;
+            player.Heading = car_spawn_player_heading;
+
+            // while we're showing what's to come, we don't want the player hurt
+            Game.Player.Character.IsInvincible = true;
+
+        }
+
+        private void showVector(Vector3 characterPosition, Vector3 cameraPosition, Vector3 cameraRotation) {
+
+        }
+
+        private void showEntity(Vector3 characterPosition, Vector3 cameraPosition, Entity entityOfInterest) {
+
         }
     }
 }
