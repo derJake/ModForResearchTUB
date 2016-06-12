@@ -277,9 +277,9 @@ namespace ModForResearchTUB
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
             showVector(
-                new Vector3(65.57132f, -1003.201f, 28.99743f),
-                new Vector3(59.02697f, -1003.971f, 31.08439f),
-                new Vector3(-9.303815f, 5.40721f, -84.98345f)
+                new Vector3(76.05127f, -1012.558f, 79.81089f), // character
+                new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
+                new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
         }
 
