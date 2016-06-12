@@ -294,7 +294,14 @@ namespace ModForResearchTUB
         }
 
         private void showEntity(Vector3 characterPosition, Vector3 cameraPosition, Entity entityOfInterest) {
-
+            Game.Player.Character.Position = characterPosition;
+            // create a camera to look through
+            Camera cam = World.CreateCamera(
+                cameraPosition, // position
+                cameraRotation, // rotation
+                90f // field of view
+            );
+            cam.PointAt(entityOfInterest);
         }
     }
 }
