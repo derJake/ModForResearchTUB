@@ -240,6 +240,8 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
             Wait(5000);
 
+            World.CurrentDayTime = new TimeSpan(11, 45, 0);
+
             spawnCharacters();
             showVector(
                 new Vector3(-341.388f, 1147.779f, 325.7267f),
