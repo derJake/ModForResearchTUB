@@ -59,6 +59,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RaceConvoy.cs" />
+    <Compile Include="RaceIntro.cs" />
     <Compile Include="RaceSuburban.cs" />
     <Compile Include="RaceDesert.cs" />
     <Compile Include="RaceToWoodmill.cs" />
