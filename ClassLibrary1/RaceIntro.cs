@@ -214,6 +214,18 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro1"), 5000);
             Wait(5000);
 
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(18, 35, 0);
+
+            // set weather
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "EXTRASUNNY");
+
+            showVector(
+                new Vector3(106.7525f, -502.1675f, 43.36741f), // character
+                new Vector3(111.2453f, -502.276f, 53.76136f), // camPos
+                new Vector3(2.76f, 2.67f, 83.51f) // camRot
+            );
+
             bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
             Wait(5000);
         }
