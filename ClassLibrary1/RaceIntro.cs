@@ -202,6 +202,8 @@ namespace ModForResearchTUB
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
+            Game.Player.CanControlCharacter = false;
+            Game.Player.Character.Heading = 242.65f;
             showVector(
                 new Vector3(76.05127f, -1012.558f, 79.81089f), // character
                 new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
