@@ -112,10 +112,6 @@ namespace ModForResearchTUB
 
         public void handleOnTick()
         {
-            if (World.GetDistance(raceVehicle.Position, leader.Position) > 150f) {
-                UI.ShowSubtitle("~r~Don't lose the other truck!", 1250);
-            }
-
             if (raceStartTime > 0)
             {
                 distance.Add(new Tuple<String, double>(
@@ -134,23 +130,12 @@ namespace ModForResearchTUB
             UI.Notify("Intro Track Initialization");
             UI.ShowSubtitle("Intro Track Initialization", 1250);
 
-            // try to clear parking lot where cars are spawned
-            // TO DO: check, if the boolean parameters have been documented
-            // TO DO: spawn cars on the other side of the curb, to avoid false positives
-            Function.Call(Hash.CLEAR_AREA_OF_VEHICLES,
-                car1_spawnpoint.X,
-                car1_spawnpoint.Y,
-                car1_spawnpoint.Z,
-                50f,
-                false,
-                false,
-                false,
-                false,
-                false
-            );
+            // while we're showing what's to come, we don't want the player hurt
+            Game.Player.Character.IsInvincible = true;
 
-            // set time of day
-            World.CurrentDayTime = new TimeSpan(18, 35, 0);
+            doIntroSequence();
+
+            Game.Player.Character.IsInvincible = false;
 
             // set weather to rain
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
@@ -176,53 +161,9 @@ namespace ModForResearchTUB
 
                 // create the vehicle
                 raceVehicle = World.CreateVehicle(vehicleHash, car1_spawnpoint, car_spawn_heading);
-
-                // create the vehicle that is to be followed
-                leader = World.CreateVehicle(vehicleHash, leader_spawnpoint, leader_heading);
-                leader.IsInvincible = true;
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
-
-            if (createDriver())
-            {
-                leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver, 10000, 2.0f, 16);
-                leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
-                leader_driver.IsInvincible = true;
-            }
-
-            Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, leader, 2);
-
-            // while we're showing what's to come, we don't want the player hurt
-            Game.Player.Character.IsInvincible = true;
-
-            // make player look at cars
-            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
-            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
-
-            // create a camera to look through
-            Camera cam = World.CreateCamera(
-                Game.Player.Character.Position + new Vector3(0,5,0), // position
-                new Vector3(9f, 0f, -82.57458f), // rotation
-                90f
-            );
-
-            cam.PointAt(raceVehicle);
-
-            // TO DO: move camera around
-
-            // switch to this camera
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
-            // play sound
-            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
-
-            UI.ShowSubtitle("~b~ Follow the other truck!", 5000);
-            Wait(2500);
-
-            // switch back to main cam
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
-            Game.Player.Character.IsInvincible = false;
-
         }
 
         public void startRace()
@@ -244,27 +185,6 @@ namespace ModForResearchTUB
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
 
-        private bool createDriver() {
-            // load the driver model
-            var driver = new Model(PedHash.RampMex);
-            driver.Request();
-
-            if (driver.IsInCdImage &&
-                driver.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!driver.IsLoaded)
-                    Script.Wait(100);
-
-                // create the actual driver ped
-                leader_driver = World.CreatePed(driver, leader_driver_spawnpoint);
-                return true;
-            }
-
-            return false;
-        }
-
         public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
         {
             return this.collectedData;
@@ -272,17 +192,13 @@ namespace ModForResearchTUB
 
         private void doIntroSequence() {
             // set time of day
-            World.CurrentDayTime = new TimeSpan(18, 35, 0);
+            World.CurrentDayTime = new TimeSpan(6, 35, 0);
 
-            // set weather to rain
+            // set weather
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
 
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
-
-            // teleport player and turn him towards cars
-            player.Position = car_selection;
-            player.Heading = car_spawn_player_heading;
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
@@ -291,6 +207,7 @@ namespace ModForResearchTUB
                 new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
                 new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
+            Wait(5000);
         }
 
         private void showVector(Vector3 characterPosition, Vector3 cameraPosition, Vector3 cameraRotation) {
