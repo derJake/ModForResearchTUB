@@ -218,6 +218,8 @@ namespace ModForResearchTUB
                 cameraRotation, // rotation
                 90f // field of view
             );
+            // switch to this camera
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
         }
 
         private void showEntity(Vector3 characterPosition, Vector3 cameraPosition, Entity entityOfInterest) {
@@ -229,6 +231,8 @@ namespace ModForResearchTUB
                 90f // field of view
             );
             cam.PointAt(entityOfInterest);
+            // switch to this camera
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
         }
     }
 }
