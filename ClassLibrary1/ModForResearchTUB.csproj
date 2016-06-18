@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawDiagram.cs" />
+    <Compile Include="Intro.cs" />
     <Compile Include="LomontFFT.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
