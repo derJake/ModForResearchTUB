@@ -191,6 +191,7 @@ namespace ModForResearchTUB
         }
 
         private void doIntroSequence() {
+            var bmsg = BigMessageThread.MessageInstance;
             // set time of day
             World.CurrentDayTime = new TimeSpan(6, 35, 0);
 
@@ -209,6 +210,11 @@ namespace ModForResearchTUB
                 new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
                 new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
+
+            bmsg.ShowMissionPassedMessage(rm.GetString("intro1"), 5000);
+            Wait(5000);
+
+            bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
             Wait(5000);
         }
 
