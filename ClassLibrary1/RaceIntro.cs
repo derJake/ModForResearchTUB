@@ -229,6 +229,17 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
             Wait(5000);
 
+            World.CurrentDayTime = new TimeSpan(10, 35, 0);
+
+            showVector(
+                new Vector3(53.65551f, -177.0567f, 54.96252f), // character
+                new Vector3(60.103f, -163.81f, 60.98f), // camPos
+                new Vector3(-10.33f, 0, 58.15559f) // camRot
+            );
+
+            bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
+            Wait(5000);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             Game.Player.Character.IsInvincible = false;
