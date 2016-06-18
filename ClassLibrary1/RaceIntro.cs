@@ -211,7 +211,7 @@ namespace ModForResearchTUB
                 new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
 
-            bmsg.ShowMissionPassedMessage(rm.GetString("intro1"), 5000);
+            bmsg.ShowOldMessage(rm.GetString("intro1"), 5000);
             Wait(5000);
 
             bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
