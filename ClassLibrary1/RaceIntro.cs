@@ -1,11 +1,14 @@
 ﻿using GTA;
 using GTA.Math;
 using GTA.Native;
+using ModForResearchTUB.Properties;
 using NativeUI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -305,7 +308,7 @@ namespace ModForResearchTUB
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 cameraPosition, // position
-                cameraRotation, // rotation
+                new Vector3(0,0,0), // rotation
                 90f // field of view
             );
             cam.PointAt(entityOfInterest);
