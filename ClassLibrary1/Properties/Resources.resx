@@ -120,6 +120,9 @@
   <data name="intro1" xml:space="preserve">
     <value>GTA V is an open world game, where you can play a singleplayer campaign comprised of missions or compete with other players in GTA Online.</value>
   </data>
+  <data name="intro2" xml:space="preserve">
+    <value>This study focusses on the singleplayer mode of the game.</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>
