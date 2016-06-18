@@ -240,6 +240,16 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
             Wait(5000);
 
+            spawnCharacters();
+            showVector(
+                new Vector3(-341.388f, 1147.779f, 325.7267f),
+                new Vector3(-343f, 1151, 327f),
+                new Vector3(-8.71f, 0, -179.58f)
+            );
+            World.RenderingCamera.FieldOfView = 70;
+            bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
+            Wait(5000);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
@@ -270,6 +280,41 @@ namespace ModForResearchTUB
             cam.PointAt(entityOfInterest);
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+        }
+
+        private void spawnCharacters() {
+            
+            var franklin = new Model(PedHash.Franklin);
+            franklin.Request();
+
+            if (franklin.IsInCdImage &&
+                franklin.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!franklin.IsLoaded)
+                    Script.Wait(100);
+
+                // create the actual driver ped
+                var franklin_ped = World.CreatePed(franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
+                franklin_ped.Heading = 7.05f;
+            }
+
+            var trevor = new Model(PedHash.Trevor);
+            trevor.Request();
+
+            if (trevor.IsInCdImage &&
+                trevor.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!trevor.IsLoaded)
+                    Script.Wait(100);
+
+                // create the actual driver ped
+                var trevor_ped = World.CreatePed(trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
+                trevor_ped.Heading = 7.05f;
+            }
         }
     }
 }
