@@ -228,6 +228,11 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
             Wait(5000);
+
+            // give control back and use regular camera
+            World.RenderingCamera = null;
+            Game.Player.Character.IsInvincible = false;
+            Game.Player.CanControlCharacter = true;
         }
 
         private void showVector(Vector3 characterPosition, Vector3 cameraPosition, Vector3 cameraRotation) {
