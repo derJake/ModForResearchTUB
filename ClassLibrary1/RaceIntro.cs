@@ -277,18 +277,24 @@ namespace ModForResearchTUB
 
             player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
-            showVector(
-                new Vector3(-758, 5532, 34),
-                new Vector3(-12.5f, 0, 32)
-            );
+            //showVector(
+            //    new Vector3(-758, 5532, 34),
+            //    new Vector3(-12.5f, 0, 32)
+            //);
 
             bmsg.ShowOldMessage(rm.GetString("intro5"), 5000);
 
             Vector3[] waypoints = {
-                new Vector3(-779.4083f, 5550.534f, 33.0866f)
+                new Vector3(-779.4083f, 5550.534f, 33.0866f),
+                new Vector3(-783.6174f, 5506.958f, 34.1205f),
+                new Vector3()
             };
 
-            Tuple<Vector3,Vector3>[] cameraPerspectives = new Tuple<Vector3, Vector3>[waypoints.Length];
+            Tuple<Vector3,Vector3>[] cameraPerspectives = {
+                new Tuple<Vector3, Vector3>(new Vector3(-758, 5532, 34), new Vector3(-12.5f, 0, 32)),
+                new Tuple<Vector3, Vector3>(new Vector3(), new Vector3()),
+                new Tuple<Vector3, Vector3>(new Vector3(), new Vector3())
+            };
 
             float radius = 3,
                 speed = 15;
