@@ -347,6 +347,8 @@ namespace ModForResearchTUB
         }
 
         private Vehicle createCarAt(VehicleHash carmodelhash, Vector3 coordinates, float heading) {
+            Vehicle vehicle;
+
             // load the vehicle model
             var vehicle1Model = new Model(carmodelhash);
             vehicle1Model.Request(500);
@@ -360,12 +362,14 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the vehicle
-                Vehicle vehicle = World.CreateVehicle(carmodelhash, coordinates, heading);
+                vehicle = World.CreateVehicle(carmodelhash, coordinates, heading);
+
+                return vehicle;
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
 
-            return vehicle;
+            throw new Exception("vehicle model could not be loaded");
         }
     }
 }
