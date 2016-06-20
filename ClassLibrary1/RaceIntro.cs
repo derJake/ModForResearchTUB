@@ -250,19 +250,25 @@ namespace ModForResearchTUB
                 charped.Delete();
             }
 
+            World.CurrentDayTime = new TimeSpan(16, 45, 0);
+
             // show getting into car
             showVector(
-                new Vector3(-341.388f, 1147.779f, 325.7267f),
-                new Vector3(-343f, 1151, 327f),
-                new Vector3(-8.71f, 0, -179.58f)
+                new Vector3(-759.9341f, 5537.745f, 33.48476f),
+                new Vector3(-754.44f, 5536.25f, 33.46589f),
+                new Vector3(6.91f, -2.15f, 100.23f)
+            );
+            World.RenderingCamera.FieldOfView = 45;
+            player.Heading = 155.9079f;
+
+            Vehicle car = createCarAt(
+                VehicleHash.Adder,
+                new Vector3(-761.6691f, 5533.743f, 33.50467f),
+                267.3927f
             );
 
-            Vehicle car = createCarAt(VehicleHash.Adder, player.Position + 5*player.ForwardVector, player.Heading - 90);
-
             Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
-            //Game.Player.Character.SetIntoVehicle(car, VehicleSeat.Driver);
 
-            //World.RenderingCamera.FieldOfView = 70;
             bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
             Wait(5000);
 
