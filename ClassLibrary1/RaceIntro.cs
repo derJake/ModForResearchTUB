@@ -257,6 +257,22 @@ namespace ModForResearchTUB
                 charped.Delete();
             }
 
+            // show getting into car
+            showVector(
+                new Vector3(-341.388f, 1147.779f, 325.7267f),
+                new Vector3(-343f, 1151, 327f),
+                new Vector3(-8.71f, 0, -179.58f)
+            );
+
+            Vehicle car = createCarAt(VehicleHash.Adder, player.Position + 5*player.ForwardVector, player.Heading - 90);
+
+            Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
+            //Game.Player.Character.SetIntoVehicle(car, VehicleSeat.Driver);
+
+            //World.RenderingCamera.FieldOfView = 70;
+            bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
+            Wait(5000);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
@@ -328,6 +344,28 @@ namespace ModForResearchTUB
             }
 
             return characters;
+        }
+
+        private Vehicle createCarAt(VehicleHash carmodelhash, Vector3 coordinates, float heading) {
+            // load the vehicle model
+            var vehicle1Model = new Model(carmodelhash);
+            vehicle1Model.Request(500);
+
+            if (vehicle1Model.IsInCdImage &&
+                vehicle1Model.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!vehicle1Model.IsLoaded)
+                    Script.Wait(100);
+
+                // create the vehicle
+                Vehicle vehicle = World.CreateVehicle(carmodelhash, coordinates, heading);
+            }
+
+            vehicle1Model.MarkAsNoLongerNeeded();
+
+            return vehicle;
         }
     }
 }
