@@ -287,13 +287,13 @@ namespace ModForResearchTUB
             Vector3[] waypoints = {
                 new Vector3(-779.4083f, 5550.534f, 33.0866f),
                 new Vector3(-783.6174f, 5506.958f, 34.1205f),
-                new Vector3()
+                new Vector3(-862.26f, 5447.984f, 34.16988f)
             };
 
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
                 new Tuple<Vector3, Vector3>(new Vector3(-758, 5532, 34), new Vector3(-12.5f, 0, 32)),
-                new Tuple<Vector3, Vector3>(new Vector3(), new Vector3()),
-                new Tuple<Vector3, Vector3>(new Vector3(), new Vector3())
+                new Tuple<Vector3, Vector3>(new Vector3(-793, 5539.46f, 35.21597f), new Vector3(-11.17726f, 2.175f, -169.5087f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-784.9023f, 5496.826f, 35.44334f), new Vector3(-8.351498f, 0, 135.9224f))
             };
 
             float radius = 3,
