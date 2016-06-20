@@ -64,7 +64,6 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3?>(new Vector3(-76.04148f, -749.7919f, 43.77972f), null),
                 new Tuple<Vector3, Vector3?>(race1End, null)
             };
-            currentCheckpoint = 0;
 
             this.checkpoints = checkpointlist;
         }
