@@ -19,7 +19,6 @@ namespace ModForResearchTUB
     public class Main : Script
     {
         // Variables
-        int timer_1s = 0;
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null;
         Tuple<Vector3, Vector3?>[] checkpoints;
@@ -103,7 +102,6 @@ namespace ModForResearchTUB
         int lastKeydownD;
 
         // 
-        int timeWindow = 1000;
         List<Tuple<String, double>> speedBySecond = new List<Tuple<String, double>>();
 
         // controller inputs

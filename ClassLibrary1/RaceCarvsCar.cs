@@ -14,7 +14,6 @@ namespace ModForResearchTUB
     class RaceCarvsCar : Script, RaceInterface
     {
         private Tuple<Vector3, Vector3?>[] checkpoints;
-        private int currentCheckpoint;
         private bool playerInRaceCar = false;
 
         private int raceStartTime;
