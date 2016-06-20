@@ -124,6 +124,9 @@
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>
   <data name="intro3" xml:space="preserve">
+    <value>You control one of these three player characters.</value>
+  </data>
+  <data name="intro4" xml:space="preserve">
     <value>All of the tests revolve around a driving task.</value>
   </data>
   <data name="racessetup" xml:space="preserve">

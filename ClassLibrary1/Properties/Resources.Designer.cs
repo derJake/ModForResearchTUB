@@ -79,11 +79,20 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All of the tests revolve around a driving task. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You control one of these three player characters. ähnelt.
         /// </summary>
         internal static string intro3 {
             get {
                 return ResourceManager.GetString("intro3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die All of the tests revolve around a driving task. ähnelt.
+        /// </summary>
+        internal static string intro4 {
+            get {
+                return ResourceManager.GetString("intro4", resourceCulture);
             }
         }
         
