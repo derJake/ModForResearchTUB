@@ -282,10 +282,28 @@ namespace ModForResearchTUB
                 new Vector3(-12.5f, 0, 32)
             );
 
-            List<Vector3> waypoints = new List<Vector3>(3);
-
-            player.Task.DriveTo(car, new Vector3(-779.4083f, 5550.534f, 33.0866f), 3, 15);
             bmsg.ShowOldMessage(rm.GetString("intro5"), 5000);
+
+            Vector3[] waypoints = {
+                new Vector3(-779.4083f, 5550.534f, 33.0866f)
+            };
+
+            Tuple<Vector3,Vector3>[] cameraPerspectives = new Tuple<Vector3, Vector3>[waypoints.Length];
+
+            float radius = 3,
+                speed = 15;
+
+            // have player drive through waypoints
+            for (int i = 0; i < waypoints.Length; i++) {
+                player.Task.DriveTo(car, waypoints[i], radius, speed);
+                showVector(cameraPerspectives[i].Item1, cameraPerspectives[i].Item2);
+
+                // wait for player to drive to waypoint
+                while (!player.IsInRangeOf(waypoints[i], radius)) {
+                    Wait(50);
+                }
+            }
+
             Wait(5000);
 
             // give control back and use regular camera
