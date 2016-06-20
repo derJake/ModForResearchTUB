@@ -197,9 +197,10 @@ namespace ModForResearchTUB
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
             Game.Player.CanControlCharacter = false;
-            Game.Player.Character.Heading = 242.65f;
+            player.Heading = 242.65f;
+
+            player.Position = new Vector3(76.05127f, -1012.558f, 79.81089f);
             showVector(
-                new Vector3(76.05127f, -1012.558f, 79.81089f), // character
                 new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
                 new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
@@ -213,8 +214,8 @@ namespace ModForResearchTUB
             // set weather
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "EXTRASUNNY");
 
+            player.Position = new Vector3(106.7525f, -502.1675f, 43.36741f);
             showVector(
-                new Vector3(106.7525f, -502.1675f, 43.36741f), // character
                 new Vector3(111.2453f, -502.276f, 53.76136f), // camPos
                 new Vector3(2.76f, 2.67f, 83.51f) // camRot
             );
@@ -224,8 +225,8 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(10, 35, 0);
 
+            player.Position = new Vector3(53.65551f, -177.0567f, 54.96252f);
             showVector(
-                new Vector3(53.65551f, -177.0567f, 54.96252f), // character
                 new Vector3(60.103f, -163.81f, 60.98f), // camPos
                 new Vector3(-15.33f, 0, 68.15559f) // camRot
             );
@@ -235,9 +236,10 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
+            player.Position = new Vector3(-341.388f, 1147.779f, 325.7267f);
+
             List<Ped> characters = spawnCharacters();
             showVector(
-                new Vector3(-341.388f, 1147.779f, 325.7267f),
                 new Vector3(-343f, 1151, 327f),
                 new Vector3(-8.71f, 0, -179.58f)
             );
@@ -252,9 +254,10 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(16, 45, 0);
 
+            player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
+
             // show getting into car
             showVector(
-                new Vector3(-759.9341f, 5537.745f, 33.48476f),
                 new Vector3(-754.44f, 5536.25f, 33.46589f),
                 new Vector3(6.91f, -2.15f, 100.23f)
             );
@@ -272,9 +275,9 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
             Wait(5000);
 
+            player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
             showVector(
-                new Vector3(-759.9341f, 5537.745f, 33.48476f),
                 new Vector3(-758, 5532, 34),
                 new Vector3(-12.5f, 0, 32)
             );
