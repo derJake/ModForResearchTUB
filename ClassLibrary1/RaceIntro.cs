@@ -290,8 +290,7 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = true;
         }
 
-        private void showVector(Vector3 characterPosition, Vector3 cameraPosition, Vector3 cameraRotation) {
-            Game.Player.Character.Position = characterPosition;
+        private void showVector(Vector3 cameraPosition, Vector3 cameraRotation) {
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 cameraPosition, // position
@@ -302,8 +301,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
         }
 
-        private void showEntity(Vector3 characterPosition, Vector3 cameraPosition, Entity entityOfInterest) {
-            Game.Player.Character.Position = characterPosition;
+        private void showEntity(Vector3 cameraPosition, Entity entityOfInterest) {
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 cameraPosition, // position
