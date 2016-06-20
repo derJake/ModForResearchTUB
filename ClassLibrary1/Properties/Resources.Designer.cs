@@ -97,6 +97,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You will spend most of the time in a car. ähnelt.
+        /// </summary>
+        internal static string intro5 {
+            get {
+                return ResourceManager.GetString("intro5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {

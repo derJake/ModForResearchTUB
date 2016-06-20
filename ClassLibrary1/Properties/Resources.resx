@@ -129,6 +129,9 @@
   <data name="intro4" xml:space="preserve">
     <value>All of the tests revolve around a driving task.</value>
   </data>
+  <data name="intro5" xml:space="preserve">
+    <value>You will spend most of the time in a car.</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>
