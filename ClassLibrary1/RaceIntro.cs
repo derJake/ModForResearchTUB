@@ -242,7 +242,7 @@ namespace ModForResearchTUB
                 new Vector3(-8.71f, 0, -179.58f)
             );
             World.RenderingCamera.FieldOfView = 70;
-            bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
+            bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
             Wait(5000);
 
             // delete the additional character peds
