@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="intro1" xml:space="preserve">
-    <value>GTA V is an open world game, where you can play a singleplayer campaign comprised of missions or compete with other players in GTA Online.</value>
+    <value>GTA V is an open world action game.</value>
   </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
