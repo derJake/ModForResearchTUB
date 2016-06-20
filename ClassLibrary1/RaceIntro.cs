@@ -242,7 +242,7 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
-            spawnCharacters();
+            List<Ped> characters = spawnCharacters();
             showVector(
                 new Vector3(-341.388f, 1147.779f, 325.7267f),
                 new Vector3(-343f, 1151, 327f),
@@ -251,6 +251,11 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 70;
             bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
             Wait(5000);
+
+            // delete the additional character peds
+            foreach (Ped charped in characters) {
+                charped.Delete();
+            }
 
             // give control back and use regular camera
             World.RenderingCamera = null;
