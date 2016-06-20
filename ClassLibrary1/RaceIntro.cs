@@ -284,7 +284,7 @@ namespace ModForResearchTUB
 
             List<Vector3> waypoints = new List<Vector3>(3);
 
-            Game.Player.Character.Task.DriveTo(car, new Vector3(-779.4083f, 5550.534f, 33.0866f), 3, 15);
+            player.Task.DriveTo(car, new Vector3(-779.4083f, 5550.534f, 33.0866f), 3, 15);
             bmsg.ShowOldMessage(rm.GetString("intro5"), 5000);
             Wait(5000);
 
