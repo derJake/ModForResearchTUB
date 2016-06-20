@@ -897,7 +897,7 @@ namespace ModForResearchTUB
                     }
                 }
             }
-            catch (NullReferenceException ne) {
+            catch (NullReferenceException) {
                 Logger.Log("finding traffic lights made an oopsie");
             }
 
@@ -948,7 +948,7 @@ namespace ModForResearchTUB
                         }
                     }
                 }
-            } catch (NullReferenceException ne) {
+            } catch (NullReferenceException) {
                 Logger.Log("getting stopped cars made an oopsie");
             }
 
