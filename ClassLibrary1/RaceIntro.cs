@@ -284,7 +284,9 @@ namespace ModForResearchTUB
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
         }
 
-        private void spawnCharacters() {
+        private List<Ped> spawnCharacters() {
+
+            List<Ped> characters = new List<Ped>(2);
             
             var franklin = new Model(PedHash.Franklin);
             franklin.Request();
@@ -300,6 +302,7 @@ namespace ModForResearchTUB
                 // create the actual driver ped
                 var franklin_ped = World.CreatePed(franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
                 franklin_ped.Heading = 7.05f;
+                characters.Add(franklin_ped);
             }
 
             var trevor = new Model(PedHash.Trevor);
@@ -316,7 +319,10 @@ namespace ModForResearchTUB
                 // create the actual driver ped
                 var trevor_ped = World.CreatePed(trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
                 trevor_ped.Heading = 7.05f;
+                characters.Add(trevor_ped);
             }
+
+            return characters;
         }
     }
 }
