@@ -272,6 +272,17 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
             Wait(5000);
 
+            // show driving a bit
+            showVector(
+                new Vector3(-759.9341f, 5537.745f, 33.48476f),
+                new Vector3(-758, 5532, 34),
+                new Vector3(-12.5f, 0, 32)
+            );
+
+            Game.Player.Character.Task.DriveTo(car, new Vector3(-779.4083f, 5550.534f, 33.0866f), 3, 15);
+            bmsg.ShowOldMessage(rm.GetString("intro5"), 5000);
+            Wait(5000);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
