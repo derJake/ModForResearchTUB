@@ -106,6 +106,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You will be given a start point and an end point ähnelt.
+        /// </summary>
+        internal static string intro6 {
+            get {
+                return ResourceManager.GetString("intro6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {
