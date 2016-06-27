@@ -32,6 +32,7 @@ namespace ModForResearchTUB
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Comet2;
+        private int regularIntroSceneLength = 10000;
 
         public CultureInfo CultureInfo { get; private set; }
 
@@ -200,8 +201,8 @@ namespace ModForResearchTUB
                 new Vector3(-8.138871f, 0, -116.3f) // camRot
             );
 
-            bmsg.ShowOldMessage(rm.GetString("intro1"), 5000);
-            Wait(5000);
+            bmsg.ShowOldMessage(rm.GetString("intro1"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
 
             // set time of day
             World.CurrentDayTime = new TimeSpan(18, 35, 0);
@@ -215,8 +216,8 @@ namespace ModForResearchTUB
                 new Vector3(2.76f, 2.67f, 83.51f) // camRot
             );
 
-            bmsg.ShowOldMessage(rm.GetString("intro2"), 5000);
-            Wait(5000);
+            bmsg.ShowOldMessage(rm.GetString("intro2"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
 
             World.CurrentDayTime = new TimeSpan(10, 35, 0);
 
@@ -226,8 +227,8 @@ namespace ModForResearchTUB
                 new Vector3(-15.33f, 0, 68.15559f) // camRot
             );
 
-            bmsg.ShowOldMessage(rm.GetString("intro3"), 5000);
-            Wait(5000);
+            bmsg.ShowOldMessage(rm.GetString("intro3"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
 
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
@@ -239,8 +240,8 @@ namespace ModForResearchTUB
                 new Vector3(-8.71f, 0, -179.58f)
             );
             World.RenderingCamera.FieldOfView = 70;
-            bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
-            Wait(5000);
+            bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
 
             // delete the additional character peds
             foreach (Ped charped in characters) {
@@ -267,8 +268,8 @@ namespace ModForResearchTUB
 
             Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
 
-            bmsg.ShowOldMessage(rm.GetString("intro4"), 5000);
-            Wait(5000);
+            bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
 
             player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
@@ -277,7 +278,7 @@ namespace ModForResearchTUB
             //    new Vector3(-12.5f, 0, 32)
             //);
 
-            bmsg.ShowOldMessage(rm.GetString("intro5"), 5000);
+            bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
 
             Vector3[] waypoints = {
                 new Vector3(-779.4083f, 5550.534f, 33.0866f),
@@ -305,7 +306,7 @@ namespace ModForResearchTUB
                 }
             }
 
-            Wait(5000);
+            Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
             World.RenderingCamera = null;
