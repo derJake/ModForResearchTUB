@@ -1125,7 +1125,7 @@ namespace ModForResearchTUB
         }
 
         private void processCollectedData() {
-            var lomont = new Lomont.LomontFFT();
+            /*var lomont = new Lomont.LomontFFT();
             // make input array length a power of two
             var fftInputLength = Convert.ToInt32(Math.Ceiling(Math.Log(steeringInputs.Count, 2)));
             double[] inputValues = new double[fftInputLength];
@@ -1153,7 +1153,7 @@ namespace ModForResearchTUB
                 inputFrequency.Add(new Tuple<String, double>(i.ToString(), value));
             }
 
-            collectedData.Add(new Tuple<String, List<Tuple<String, double>>>("input frequency", inputFrequency));
+            collectedData.Add(new Tuple<String, List<Tuple<String, double>>>("input frequency", inputFrequency));*/
 
             // get data point lists from current race, if there are any
             try
