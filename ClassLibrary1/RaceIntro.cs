@@ -31,7 +31,7 @@ namespace ModForResearchTUB
         private float car_spawn_player_heading = 71.70087f;
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
-        private VehicleHash vehicleHash = VehicleHash.Rumpo;
+        private VehicleHash vehicleHash = VehicleHash.Comet2;
 
         public CultureInfo CultureInfo { get; private set; }
 
