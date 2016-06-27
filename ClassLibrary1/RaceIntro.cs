@@ -283,10 +283,6 @@ namespace ModForResearchTUB
 
             player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
-            //showVector(
-            //    new Vector3(-758, 5532, 34),
-            //    new Vector3(-12.5f, 0, 32)
-            //);
 
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
 
