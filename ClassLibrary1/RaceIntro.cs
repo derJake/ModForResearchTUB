@@ -49,9 +49,7 @@ namespace ModForResearchTUB
             // add some checkpoints for our race
             Tuple<Vector3, Vector3?>[] checkpointlist =
             {
-                new Tuple<Vector3, Vector3?>(new Vector3(-763.5227f, 5506.236f, 34.75044f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-780.5091f, 5524.204f, 33.9245f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-780.6508f, 5548.24f, 33.12004f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-763.5227f, 5506.236f, 34.75044f), null)
             };
 
             this.checkpoints = checkpointlist;
