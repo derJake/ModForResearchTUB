@@ -123,7 +123,7 @@ namespace ModForResearchTUB
 
             Game.Player.Character.IsInvincible = false;
 
-            // set weather to rain
+            // set weather
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
 
             Ped player = Game.Player.Character;
