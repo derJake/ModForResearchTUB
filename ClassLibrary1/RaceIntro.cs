@@ -32,7 +32,7 @@ namespace ModForResearchTUB
         private int regularIntroSceneLength = 10000;
 
         private TimerBarPool barPool = new TimerBarPool();
-        private BarTimerBar timerBar;
+        private TextTimerBar textbar;
 
         public CultureInfo CultureInfo { get; private set; }
 
@@ -169,6 +169,9 @@ namespace ModForResearchTUB
             Game.Player.Character.CurrentVehicle.NumberPlate = "INTRO";
 
             raceStartTime = Game.GameTime;
+
+            textbar = new TextTimerBar("TIME LEFT", "10:00");
+            barPool.Add(textbar);
         }
 
         public bool checkRaceStartCondition()
