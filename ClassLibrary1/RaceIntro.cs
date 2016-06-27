@@ -284,8 +284,6 @@ namespace ModForResearchTUB
             //player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
 
-            bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
-
             Vector3[] waypoints = {
                 new Vector3(-779.4083f, 5550.534f, 33.0866f),
                 new Vector3(-783.6174f, 5506.958f, 34.1205f),
@@ -312,12 +310,9 @@ namespace ModForResearchTUB
                 }
             }
 
-
             World.CurrentDayTime = new TimeSpan(10, 30, 0);
 
             player.Position = new Vector3(1186, -3215, 5.79f);
-
-            bmsg.ShowOldMessage(rm.GetString("intro7"), regularIntroSceneLength);
 
             // point camera
             showVector(
@@ -342,6 +337,7 @@ namespace ModForResearchTUB
                 0 // number displayed in marker, if type is 42-44
                 );
 
+            bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
