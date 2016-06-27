@@ -22,10 +22,10 @@ namespace ModForResearchTUB
 
         private Vehicle raceVehicle;
 
-        private Vector3 car_selection = new Vector3(1371.112f, 6495.264f, 20.00329f);
+        private Vector3 car_selection = new Vector3(-747.7241f, -74.62083f, 41.31352f);
         private Vector3 car1_spawnpoint = new Vector3(-748.7908f, -79.43627f, 41.31476f);
         private float car_spawn_heading = 26.37f;
-        private float car_spawn_player_heading = 71.70087f;
+        private float car_spawn_player_heading = 164.5883f;
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Comet2;
