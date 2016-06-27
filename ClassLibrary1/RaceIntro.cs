@@ -316,7 +316,35 @@ namespace ModForResearchTUB
                 }
             }
 
-            //Wait(regularIntroSceneLength);
+
+            World.CurrentDayTime = new TimeSpan(10, 30, 0);
+
+            player.Position = new Vector3(1186, -3215, 5.79f);
+
+            // point camera
+            showVector(
+                new Vector3(1175, -3221, 5.284f),
+                new Vector3(14.55f, 2.2f, 77.322f)
+            );
+            World.RenderingCamera.FieldOfView = 75;
+
+            Function.Call<int>(Hash.CREATE_CHECKPOINT,
+                2, // type
+                1166.71f,
+                -3218.176f,
+                5.799773f,
+                0, // facing next checkpoint?
+                0,
+                0,
+                5,    // radius
+                255,    // R
+                155,     // G
+                0,        // B
+                100,    // Alpha
+                0 // number displayed in marker, if type is 42-44
+                );
+
+            Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
             World.RenderingCamera = null;
