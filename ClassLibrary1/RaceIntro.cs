@@ -292,7 +292,7 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3>(new Vector3(-784.9023f, 5496.826f, 35.44334f), new Vector3(-8.351498f, 0, 135.9224f))
             };
 
-            float radius = 3,
+            float radius = 5,
                 speed = 15;
 
             // have player drive through waypoints
