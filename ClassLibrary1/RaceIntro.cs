@@ -124,7 +124,7 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = false;
 
             // set weather
-            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "EXTRASUNNY");
 
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
