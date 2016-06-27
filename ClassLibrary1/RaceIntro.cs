@@ -33,6 +33,8 @@ namespace ModForResearchTUB
 
         private TimerBarPool barPool = new TimerBarPool();
         private TextTimerBar textbar;
+        private int introPlayTime = 600;
+        private int raceEndTime;
 
         public CultureInfo CultureInfo { get; private set; }
 
@@ -169,6 +171,8 @@ namespace ModForResearchTUB
             Game.Player.Character.CurrentVehicle.NumberPlate = "INTRO";
 
             raceStartTime = Game.GameTime;
+
+            raceEndTime = raceStartTime / 1000 + introPlayTime;
 
             textbar = new TextTimerBar("TIME LEFT", "10:00");
             barPool.Add(textbar);
