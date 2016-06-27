@@ -31,6 +31,9 @@ namespace ModForResearchTUB
         private VehicleHash vehicleHash = VehicleHash.Comet2;
         private int regularIntroSceneLength = 10000;
 
+        private TimerBarPool barPool = new TimerBarPool();
+        private BarTimerBar timerBar;
+
         public CultureInfo CultureInfo { get; private set; }
 
         ResourceManager rm;
