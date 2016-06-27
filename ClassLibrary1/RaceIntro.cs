@@ -27,7 +27,6 @@ namespace ModForResearchTUB
         private float car_spawn_heading = 26.37f;
         private float car_spawn_player_heading = 164.5883f;
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
-        private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Comet2;
         private int regularIntroSceneLength = 10000;
 
@@ -99,8 +98,6 @@ namespace ModForResearchTUB
 
             raceVehicle.MarkAsNoLongerNeeded();
             raceVehicle.Delete();
-
-            this.collectedData.Add(new Tuple<string, List<Tuple<string, double>>>("distance", distance));
         }
 
         public Tuple<Vector3, Vector3?>[] getCheckpoints()
