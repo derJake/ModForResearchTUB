@@ -133,7 +133,10 @@
     <value>You will spend most of the time in a car.</value>
   </data>
   <data name="intro6" xml:space="preserve">
-    <value>You will be given a start point and an end point</value>
+    <value>Drive through these checkpoints.</value>
+  </data>
+  <data name="intro7" xml:space="preserve">
+    <value>The route is displayed on the minimap.</value>
   </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>

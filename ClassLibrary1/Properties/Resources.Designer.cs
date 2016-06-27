@@ -106,11 +106,20 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You will be given a start point and an end point ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Drive through these checkpoints. ähnelt.
         /// </summary>
         internal static string intro6 {
             get {
                 return ResourceManager.GetString("intro6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The route is displayed on the minimap. ähnelt.
+        /// </summary>
+        internal static string intro7 {
+            get {
+                return ResourceManager.GetString("intro7", resourceCulture);
             }
         }
         
