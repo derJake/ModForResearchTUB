@@ -150,6 +150,9 @@ namespace ModForResearchTUB
             }
 
             vehicle1Model.MarkAsNoLongerNeeded();
+
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(19, 15, 0);
         }
 
         public void startRace()
