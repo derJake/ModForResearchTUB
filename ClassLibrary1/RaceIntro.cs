@@ -306,7 +306,7 @@ namespace ModForResearchTUB
                 }
             }
 
-            Wait(regularIntroSceneLength);
+            //Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
             World.RenderingCamera = null;
