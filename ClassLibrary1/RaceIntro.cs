@@ -229,17 +229,6 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro2"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            World.CurrentDayTime = new TimeSpan(10, 35, 0);
-
-            player.Position = new Vector3(53.65551f, -177.0567f, 54.96252f);
-            showVector(
-                new Vector3(60.103f, -163.81f, 60.98f), // camPos
-                new Vector3(-15.33f, 0, 68.15559f) // camRot
-            );
-
-            bmsg.ShowOldMessage(rm.GetString("intro3"), regularIntroSceneLength);
-            Wait(regularIntroSceneLength);
-
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
             player.Position = new Vector3(-341.388f, 1147.779f, 325.7267f);
@@ -250,6 +239,17 @@ namespace ModForResearchTUB
                 new Vector3(-8.71f, 0, -179.58f)
             );
             World.RenderingCamera.FieldOfView = 70;
+            bmsg.ShowOldMessage(rm.GetString("intro3"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            World.CurrentDayTime = new TimeSpan(10, 35, 0);
+
+            player.Position = new Vector3(53.65551f, -177.0567f, 54.96252f);
+            showVector(
+                new Vector3(60.103f, -163.81f, 60.98f), // camPos
+                new Vector3(-15.33f, 0, 68.15559f) // camRot
+            );
+
             bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
@@ -320,6 +320,8 @@ namespace ModForResearchTUB
             World.CurrentDayTime = new TimeSpan(10, 30, 0);
 
             player.Position = new Vector3(1186, -3215, 5.79f);
+
+            bmsg.ShowOldMessage(rm.GetString("intro7"), regularIntroSceneLength);
 
             // point camera
             showVector(
