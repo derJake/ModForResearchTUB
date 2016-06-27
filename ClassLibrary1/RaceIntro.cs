@@ -110,8 +110,11 @@ namespace ModForResearchTUB
 
         public void handleOnTick()
         {
-            if (raceStartTime > 0)
+            if (raceStartTime > 0 && Game.GameTime < raceEndTime)
             {
+                TimeSpan timeLeft = TimeSpan.FromMilliseconds(raceEndTime - Game.GameTime);
+                textbar.Text = timeLeft.Minutes.ToString() + ':' + timeLeft.Seconds.ToString();
+                barPool.Draw();
             }
         }
 
@@ -172,7 +175,7 @@ namespace ModForResearchTUB
 
             raceStartTime = Game.GameTime;
 
-            raceEndTime = raceStartTime / 1000 + introPlayTime;
+            raceEndTime = raceStartTime + (introPlayTime * 1000);
 
             textbar = new TextTimerBar("TIME LEFT", "10:00");
             barPool.Add(textbar);
