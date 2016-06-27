@@ -268,7 +268,7 @@ namespace ModForResearchTUB
 
             Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
 
-            bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
+            bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
             player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
@@ -278,7 +278,7 @@ namespace ModForResearchTUB
             //    new Vector3(-12.5f, 0, 32)
             //);
 
-            bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
+            bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
 
             Vector3[] waypoints = {
                 new Vector3(-779.4083f, 5550.534f, 33.0866f),
