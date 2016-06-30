@@ -414,7 +414,7 @@ namespace ModForResearchTUB
 
             List<Ped> bystanders = new List<Ped>(3);
 
-            Vector3 poor_ped_position = new Vector3(-172.2675f, -1679.185f, 33.0725f);
+            Vector3 poor_ped_position = new Vector3(-174.8878f, -1669.339f, 32.88508f);
             Vector3 car_stop_position = new Vector3(-153.6f, -1659.196f, 32.47199f);
             //World.DrawMarker(MarkerType.VerticalCylinder, new Vector3(-172.2675f, -1679.185f, 33.0725f), new Vector3(), new Vector3(), new Vector3(2,0,1), Color.AliceBlue);
 
