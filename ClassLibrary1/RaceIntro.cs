@@ -388,14 +388,17 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 75;
 
+            List<Ped> bystanders = new List<Ped>(3);
+
             Vector3 poor_ped_position = new Vector3(-172.2675f, -1679.185f, 33.0725f);
+            Vector3 car_stop_position = new Vector3(-172.8149f, -1650.993f, 33.05474f);
 
             createPedAt(PedHash.Abigail, poor_ped_position);
-            createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f));
-            createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f));
-            createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f));
+            bystanders.Add(createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f)));
+            bystanders.Add(createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f)));
+            bystanders.Add(createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f)));
 
-            player.Task.DriveTo(car, new Vector3(-172.8149f, -1650.993f, 33.05474f), 5, 80);
+            player.Task.DriveTo(car, car_stop_position, 5, 80);
 
             // wait for player to drive through ped's area
             while (!player.IsInRangeOf(poor_ped_position, 3))
