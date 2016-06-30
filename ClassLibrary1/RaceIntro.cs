@@ -354,8 +354,8 @@ namespace ModForResearchTUB
             Function.Call(Hash._SET_RADAR_BIGMAP_ENABLED, 0, 0);
             Wait(1000);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
+            Wait(5000);
             blip.Remove();
-            Wait(1000);
 
             World.CurrentDayTime = new TimeSpan(7, 0, 0);
 
