@@ -374,7 +374,10 @@ namespace ModForResearchTUB
             // run over pedestrian
 
             player.Position = new Vector3(-171, -1699.85f, 32.084f);
-            createCarAt(VehicleHash.Buffalo, new Vector3(-169.1496f, -1698.676f, 31.59141f), 16.60919f);
+            Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-169.1496f, -1698.676f, 31.59141f), 16.60919f);
+
+            Game.Player.Character.Task.EnterVehicle(aggro_car, VehicleSeat.Driver, 10000, 2.0f, 16);
+            Game.Player.Character.SetIntoVehicle(aggro_car, VehicleSeat.Driver);
 
             // point camera
             showVector(
