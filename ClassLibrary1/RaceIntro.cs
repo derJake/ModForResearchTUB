@@ -411,8 +411,23 @@ namespace ModForResearchTUB
                 new Vector3(-178.6524f, -1668.159f, 33.37955f),
                 new Vector3(4.23f, 0, -99)
             );
+            World.RenderingCamera.FieldOfView = 75;
 
             bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
+
+            // wait for player to drive through ped's area
+            while (!player.IsInRangeOf(car_stop_position, 5))
+            {
+                Wait(50);
+            }
+
+            // point camera
+            showVector(
+                new Vector3(-176, -1647f, 34),
+                new Vector3(-2.22f, 0, -159)
+            );
+            World.RenderingCamera.FieldOfView = 75;
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
