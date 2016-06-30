@@ -450,10 +450,10 @@ namespace ModForResearchTUB
 
             // point camera
             showVector(
-                new Vector3(-176, -1647f, 34),
-                new Vector3(-2.22f, 0, -159)
+                new Vector3(-153, -1658, 34),
+                new Vector3(-8.7f, 2.13f, 116)
             );
-            World.RenderingCamera.FieldOfView = 75;
+            World.RenderingCamera.FieldOfView = 55;
 
             foreach (Ped bystander in bystanders) {
                 bystander.Task.FightAgainst(player);
