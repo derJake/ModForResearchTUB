@@ -466,10 +466,17 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro11"), regularIntroSceneLength);
 
             createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
+            List<Ped> police = new List<Ped>(2);
             Ped policeman_1 = createPedAt(PedHash.Cop01SFY, new Vector3(-145.7362f, -1646.869f, 32.61502f));
             Ped policeman_2 = createPedAt(PedHash.Cop01SMY, new Vector3(-148.2104f, -1644.999f, 32.72406f));
             policeman_1.Heading = 143.2996f;
             policeman_2.Heading = 136.2911f;
+            police.Add(policeman_1);
+            police.Add(policeman_2);
+
+            foreach (Ped cop in police) {
+                cop.Task.ShootAt(player);
+            }
 
             showVector(
                 new Vector3(-164, -1667, 34),
