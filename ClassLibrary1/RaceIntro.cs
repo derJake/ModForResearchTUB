@@ -415,40 +415,12 @@ namespace ModForResearchTUB
         private List<Ped> spawnCharacters() {
 
             List<Ped> characters = new List<Ped>(2);
-            
-            var franklin = new Model(PedHash.Franklin);
-            franklin.Request();
-
-            if (franklin.IsInCdImage &&
-                franklin.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!franklin.IsLoaded)
-                    Script.Wait(100);
-
-                // create the actual driver ped
-                var franklin_ped = World.CreatePed(franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
-                franklin_ped.Heading = 7.05f;
-                characters.Add(franklin_ped);
-            }
-
-            var trevor = new Model(PedHash.Trevor);
-            trevor.Request();
-
-            if (trevor.IsInCdImage &&
-                trevor.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!trevor.IsLoaded)
-                    Script.Wait(100);
-
-                // create the actual driver ped
-                var trevor_ped = World.CreatePed(trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
-                trevor_ped.Heading = 7.05f;
-                characters.Add(trevor_ped);
-            }
+            Ped franklin = createPedAt(PedHash.Franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
+            Ped trevor = createPedAt(PedHash.Trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
+            franklin.Heading = 7.05f;
+            trevor.Heading = 7.05f;
+            characters.Add(franklin);
+            characters.Add(trevor);
 
             return characters;
         }
