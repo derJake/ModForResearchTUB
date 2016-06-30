@@ -379,6 +379,8 @@ namespace ModForResearchTUB
             Game.Player.Character.Task.EnterVehicle(aggro_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(aggro_car, VehicleSeat.Driver);
 
+            bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
+
             // point camera
             showVector(
                 new Vector3(-174, -1686f, 33.289f),
