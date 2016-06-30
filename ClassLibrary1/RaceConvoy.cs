@@ -196,7 +196,7 @@ namespace ModForResearchTUB
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
-            // make player look at cars
+            // make player enter vehicle
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
