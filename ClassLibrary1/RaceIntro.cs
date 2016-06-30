@@ -389,7 +389,6 @@ namespace ModForResearchTUB
             Vector3 poor_ped_position = new Vector3(-172.2675f, -1679.185f, 33.0725f);
 
             createPedAt(PedHash.Abigail, poor_ped_position);
-
             createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f));
             createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f));
             createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f));
