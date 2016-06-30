@@ -374,6 +374,7 @@ namespace ModForResearchTUB
             // run over pedestrian
 
             player.Position = new Vector3(-171, -1699.85f, 32.084f);
+            createCarAt(VehicleHash.Buffalo, new Vector3(-169.1496f, -1698.676f, 31.59141f), 16.60919f);
 
             // point camera
             showVector(
