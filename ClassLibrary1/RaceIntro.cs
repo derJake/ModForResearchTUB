@@ -381,6 +381,7 @@ namespace ModForResearchTUB
                 new Vector3(15.46f, 4.52f, -27.52f)
             );
             World.RenderingCamera.FieldOfView = 75;
+            createPedAt(PedHash.Abigail, new Vector3(-172.2675f, -1679.185f, 33.0725f));
 
             // give control back and use regular camera
             World.RenderingCamera = null;
