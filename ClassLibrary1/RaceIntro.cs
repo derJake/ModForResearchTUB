@@ -385,13 +385,28 @@ namespace ModForResearchTUB
                 new Vector3(15.46f, 4.52f, -27.52f)
             );
             World.RenderingCamera.FieldOfView = 75;
-            createPedAt(PedHash.Abigail, new Vector3(-172.2675f, -1679.185f, 33.0725f));
+
+            Vector3 poor_ped_position = new Vector3(-172.2675f, -1679.185f, 33.0725f);
+
+            createPedAt(PedHash.Abigail, poor_ped_position);
 
             createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f));
             createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f));
             createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f));
 
             player.Task.DriveTo(car, new Vector3(-172.8149f, -1650.993f, 33.05474f), 5, 80);
+
+            // wait for player to drive through ped's area
+            while (!player.IsInRangeOf(poor_ped_position, 3))
+            {
+                Wait(50);
+            }
+
+            // point camera
+            showVector(
+                new Vector3(-178.6524f, -1668.159f, 33.37955f),
+                new Vector3(4.23f, 0, -109)
+            );
 
             bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
