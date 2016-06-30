@@ -482,6 +482,7 @@ namespace ModForResearchTUB
             police.Add(policeman_2);
 
             foreach (Ped cop in police) {
+                cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
                 cop.Task.ShootAt(player);
             }
 
