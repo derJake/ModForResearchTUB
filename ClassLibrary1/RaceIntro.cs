@@ -440,7 +440,7 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 75;
 
-            bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
+            bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
 
             // wait for player to drive through ped's area
             while (!player.IsInRangeOf(car_stop_position, 5))
