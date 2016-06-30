@@ -373,7 +373,7 @@ namespace ModForResearchTUB
 
             // run over pedestrian
 
-            player.Position = new Vector3(-172.36f, -1686.161f, 32.51109f);
+            player.Position = new Vector3(-171, -1699.85f, 32.084f);
 
             // point camera
             showVector(
