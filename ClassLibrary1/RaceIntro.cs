@@ -461,6 +461,14 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            // show police
+
+            showVector(
+                new Vector3(-164, -1667, 34),
+                new Vector3(-6.11f, -2.14f, -39.55f)
+            );
+            World.RenderingCamera.FieldOfView = 25;
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
