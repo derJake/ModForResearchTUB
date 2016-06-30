@@ -355,6 +355,8 @@ namespace ModForResearchTUB
             Wait(1000);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             blip.Remove();
+            Wait(1000);
+
 
             // give control back and use regular camera
             World.RenderingCamera = null;
