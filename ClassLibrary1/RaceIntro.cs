@@ -398,6 +398,11 @@ namespace ModForResearchTUB
             bystanders.Add(createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f)));
             bystanders.Add(createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f)));
 
+            // wait for player to have entered car, otherwise the task won't start
+            while (!player.CurrentVehicle.Equals(aggro_car)) {
+                Wait(100);
+            }
+
             player.Task.DriveTo(car, car_stop_position, 5, 80);
 
             // wait for player to drive through ped's area
