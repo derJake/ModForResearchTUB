@@ -391,6 +391,11 @@ namespace ModForResearchTUB
             // run over pedestrian
 
             player.Position = new Vector3(-193.707f, -1673.128f, 33.59856f);
+
+            foreach (Vehicle vehicle in World.GetNearbyVehicles(player, 50)) {
+                vehicle.Delete();
+            }
+
             Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-192.55f, -1674.355f, 33.092825f), 281.5312f);
 
             Game.Player.Character.Task.EnterVehicle(aggro_car, VehicleSeat.Driver, 10000, 2.0f, 16);
