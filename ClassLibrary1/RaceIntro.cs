@@ -453,6 +453,26 @@ namespace ModForResearchTUB
             return characters;
         }
 
+        private Ped createPedAt(PedHash hash, Vector3 pos) {
+            var pedmodel = new Model(hash);
+            pedmodel.Request();
+
+            if (pedmodel.IsInCdImage &&
+                pedmodel.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!pedmodel.IsLoaded)
+                    Script.Wait(100);
+
+                // create the actual driver ped
+                return World.CreatePed(pedmodel, pos);
+                
+            }
+
+            return null;
+        }
+
         private Vehicle createCarAt(VehicleHash carmodelhash, Vector3 coordinates, float heading) {
             Vehicle vehicle;
 
