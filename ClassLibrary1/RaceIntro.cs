@@ -416,6 +416,7 @@ namespace ModForResearchTUB
 
             Vector3 poor_ped_position = new Vector3(-172.2675f, -1679.185f, 33.0725f);
             Vector3 car_stop_position = new Vector3(-153.6f, -1659.196f, 32.47199f);
+            //World.DrawMarker(MarkerType.VerticalCylinder, new Vector3(-172.2675f, -1679.185f, 33.0725f), new Vector3(), new Vector3(), new Vector3(2,0,1), Color.AliceBlue);
 
             createPedAt(PedHash.Abigail, poor_ped_position);
             bystanders.Add(createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f)));
