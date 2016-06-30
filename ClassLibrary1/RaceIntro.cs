@@ -405,7 +405,7 @@ namespace ModForResearchTUB
             // point camera
             showVector(
                 new Vector3(-178.6524f, -1668.159f, 33.37955f),
-                new Vector3(4.23f, 0, -109)
+                new Vector3(4.23f, 0, -99)
             );
 
             bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
