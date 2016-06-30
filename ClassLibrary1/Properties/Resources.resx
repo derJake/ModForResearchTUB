@@ -138,6 +138,12 @@
   <data name="intro7" xml:space="preserve">
     <value>The route is displayed on the minimap.</value>
   </data>
+  <data name="intro8" xml:space="preserve">
+    <value>You can either adhere to the traffic rules or ignore them.</value>
+  </data>
+  <data name="intro9" xml:space="preserve">
+    <value />
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>

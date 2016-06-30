@@ -124,6 +124,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can either adhere to the traffic rules or ignore them. ähnelt.
+        /// </summary>
+        internal static string intro8 {
+            get {
+                return ResourceManager.GetString("intro8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string intro9 {
+            get {
+                return ResourceManager.GetString("intro9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {

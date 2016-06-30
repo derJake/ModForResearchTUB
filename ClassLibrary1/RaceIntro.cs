@@ -357,6 +357,16 @@ namespace ModForResearchTUB
             blip.Remove();
             Wait(1000);
 
+            World.CurrentDayTime = new TimeSpan(7, 0, 0);
+
+            player.Position = new Vector3(-130f, -1709.683f, 29.85f);
+
+            // point camera
+            showVector(
+                new Vector3(-120.2002f, -1728f, 32f),
+                new Vector3(-4.43f, 0, -45f)
+            );
+            World.RenderingCamera.FieldOfView = 75;
 
             // give control back and use regular camera
             World.RenderingCamera = null;
