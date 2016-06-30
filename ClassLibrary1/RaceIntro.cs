@@ -380,7 +380,7 @@ namespace ModForResearchTUB
                 {
                     if (ent.Model.Hash == 862871082)
                     {
-                        Function.Call(Hash.SET_ENTITY_TRAFFICLIGHT_OVERRIDE, ent, i%2);
+                        Function.Call(Hash.SET_ENTITY_TRAFFICLIGHT_OVERRIDE, ent, i%3);
                     }
                 }
                 Wait(1000);
