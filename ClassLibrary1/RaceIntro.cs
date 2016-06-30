@@ -372,6 +372,20 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 75;
 
             bmsg.ShowOldMessage(rm.GetString("intro8"), regularIntroSceneLength);
+
+            // circle through traffic light states
+            for (int i = 0; i < 6; i++)
+            {
+                foreach (Entity ent in World.GetNearbyEntities(new Vector3(-111, -1723, 29), 5))
+                {
+                    if (ent.Model.Hash == 862871082)
+                    {
+                        Function.Call(Hash.SET_ENTITY_TRAFFICLIGHT_OVERRIDE, ent, i%2);
+                    }
+                }
+                Wait(1000);
+            }
+            
             Wait(regularIntroSceneLength);
 
             // run over pedestrian
