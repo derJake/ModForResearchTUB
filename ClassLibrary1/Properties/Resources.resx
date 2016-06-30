@@ -120,6 +120,12 @@
   <data name="intro1" xml:space="preserve">
     <value>GTA V is an open world action game.</value>
   </data>
+  <data name="intro10" xml:space="preserve">
+    <value>This might result in hostile action from bystanders ...</value>
+  </data>
+  <data name="intro11" xml:space="preserve">
+    <value>or persecution by the police.</value>
+  </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>

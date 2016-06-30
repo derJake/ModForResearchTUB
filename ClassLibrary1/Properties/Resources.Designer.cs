@@ -70,6 +70,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This might result in hostile action from bystanders ... ähnelt.
+        /// </summary>
+        internal static string intro10 {
+            get {
+                return ResourceManager.GetString("intro10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die or persecution by the police. ähnelt.
+        /// </summary>
+        internal static string intro11 {
+            get {
+                return ResourceManager.GetString("intro11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {
