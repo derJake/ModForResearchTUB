@@ -391,6 +391,8 @@ namespace ModForResearchTUB
             createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f));
             createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f));
 
+            player.Task.DriveTo(car, new Vector3(-172.8149f, -1650.993f, 33.05474f), 5, 80);
+
             bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
