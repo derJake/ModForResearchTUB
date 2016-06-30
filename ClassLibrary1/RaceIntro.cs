@@ -232,6 +232,7 @@ namespace ModForResearchTUB
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
             player.Position = new Vector3(-341.388f, 1147.779f, 325.7267f);
+            player.Heading = 7.05f;
 
             List<Ped> characters = spawnCharacters();
             showVector(
