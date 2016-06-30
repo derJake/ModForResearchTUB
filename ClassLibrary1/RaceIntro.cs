@@ -465,6 +465,8 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro11"), regularIntroSceneLength);
 
+            createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
+
             showVector(
                 new Vector3(-164, -1667, 34),
                 new Vector3(-6.11f, -2.14f, -39.55f)
