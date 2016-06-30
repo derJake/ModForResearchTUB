@@ -344,14 +344,14 @@ namespace ModForResearchTUB
             World.DestroyAllCameras();
             bmsg.ShowOldMessage(rm.GetString("intro7"), regularIntroSceneLength);
             Blip blip = World.CreateBlip(player.Position + 25*player.ForwardVector);
-            Function.Call(Hash.SET_BLIP_ROUTE, blip, true);
-
             Function.Call(Hash._SET_RADAR_BIGMAP_ENABLED, 1, 0);
+            Function.Call(Hash.SET_BLIP_ROUTE, blip, true);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(1000);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(1000);
             Function.Call(Hash._SET_RADAR_BIGMAP_ENABLED, 0, 0);
+            Function.Call(Hash.SET_BLIP_ROUTE, blip, true);
             Wait(1000);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(5000);
