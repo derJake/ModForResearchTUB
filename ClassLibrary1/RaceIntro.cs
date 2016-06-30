@@ -403,7 +403,7 @@ namespace ModForResearchTUB
                 Wait(100);
             }
 
-            player.Task.DriveTo(car, car_stop_position, 5, 80);
+            player.Task.DriveTo(aggro_car, car_stop_position, 5, 80);
 
             // wait for player to drive through ped's area
             while (!player.IsInRangeOf(poor_ped_position, 3))
