@@ -371,6 +371,17 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro8"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            // run over pedestrian
+
+            player.Position = new Vector3(-172.36f, -1686.161f, 32.51109f);
+
+            // point camera
+            showVector(
+                new Vector3(-174, -1692.79f, 33.289f),
+                new Vector3(19.46f, 4.52f, -14.52f)
+            );
+            World.RenderingCamera.FieldOfView = 75;
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
