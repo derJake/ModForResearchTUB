@@ -428,7 +428,7 @@ namespace ModForResearchTUB
             player.Task.DriveTo(aggro_car, car_stop_position, 5, 80, (int)DrivingStyle.Rushed);
 
             // wait for player to drive through ped's area
-            while (!player.IsInRangeOf(poor_ped_position, 3))
+            while (!player.IsInRangeOf(poor_ped_position, 10))
             {
                 Wait(50);
             }
@@ -443,7 +443,7 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
 
             // wait for player to drive through ped's area
-            while (!player.IsInRangeOf(car_stop_position, 5))
+            while (!player.IsInRangeOf(car_stop_position, 10))
             {
                 Wait(50);
             }
