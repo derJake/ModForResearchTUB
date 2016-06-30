@@ -428,6 +428,10 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 75;
 
+            foreach (Ped bystander in bystanders) {
+                bystander.Task.FightAgainst(player);
+            }
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
