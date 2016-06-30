@@ -133,7 +133,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die It is possible to run over pedestrians. ähnelt.
         /// </summary>
         internal static string intro9 {
             get {
