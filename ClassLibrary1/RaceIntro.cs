@@ -383,6 +383,9 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 75;
             createPedAt(PedHash.Abigail, new Vector3(-172.2675f, -1679.185f, 33.0725f));
 
+            bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
