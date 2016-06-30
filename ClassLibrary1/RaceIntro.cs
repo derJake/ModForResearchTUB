@@ -358,6 +358,8 @@ namespace ModForResearchTUB
             Wait(5000);
             blip.Remove();
 
+            // show traffic light
+
             World.CurrentDayTime = new TimeSpan(7, 0, 0);
 
             player.Position = new Vector3(-130f, -1709.683f, 29.85f);
