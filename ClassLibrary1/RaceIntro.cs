@@ -439,8 +439,6 @@ namespace ModForResearchTUB
                 Wait(50);
             }
 
-            UI.Notify("player is within radius of ped");
-
             // point camera
             showVector(
                 new Vector3(-169.6368f, -1672.639f, 33.11409f),
