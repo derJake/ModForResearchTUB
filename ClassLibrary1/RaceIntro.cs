@@ -342,6 +342,7 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
+            dummyCar.Delete();
 
             //show regular camera
             World.DestroyAllCameras();
