@@ -294,7 +294,7 @@ namespace ModForResearchTUB
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
                 new Tuple<Vector3, Vector3>(new Vector3(-758, 5532, 34), new Vector3(-12.5f, 0, 32)),
                 new Tuple<Vector3, Vector3>(new Vector3(-800, 5545.46f, 35.21597f), new Vector3(-11.17726f, 2.175f, -129.5087f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-784.9023f, 5496.826f, 35.44334f), new Vector3(-8.351498f, 0, 135.9224f))
+                new Tuple<Vector3, Vector3>(new Vector3(-772f, 5495f, 38f), new Vector3(-14f, 0, 80f))
             };
 
             float radius = 5,
