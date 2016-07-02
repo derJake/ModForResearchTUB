@@ -313,7 +313,9 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(10, 30, 0);
 
-            player.Position = new Vector3(1186, -3215, 5.79f);
+            player.Position = new Vector3(1238.185f, -3218.374f, 5.8f);
+            var dummyCar = createCarAt(VehicleHash.Ninef, new Vector3(1237, -3217, 5.42f), 82.81f);
+            Game.Player.Character.Task.EnterVehicle(dummyCar, VehicleSeat.Driver, 10000, 1.0f, 1);
 
             // point camera
             showVector(
