@@ -473,6 +473,8 @@ namespace ModForResearchTUB
 
             Game.Player.WantedLevel = 2;
 
+            int playerRGroup = player.RelationshipGroup;
+
             // spawn cop car and cops
             createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
             List<Ped> police = new List<Ped>(2);
@@ -482,8 +484,10 @@ namespace ModForResearchTUB
             policeman_2.Heading = 136.2911f;
             police.Add(policeman_1);
             police.Add(policeman_2);
+            int copHash = Function.Call<int>(Hash.GET_HASH_KEY, "COP");
 
             foreach (Ped cop in police) {
+                cop.RelationshipGroup = copHash;
                 cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
                 cop.Task.ShootAt(player);
             }
