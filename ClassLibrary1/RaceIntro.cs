@@ -207,8 +207,8 @@ namespace ModForResearchTUB
 
             player.Position = new Vector3(76.05127f, -1012.558f, 79.81089f);
             showVector(
-                new Vector3(72.1081f, -1011.055f, 81.04148f), // camPos
-                new Vector3(-8.138871f, 0, -116.3f) // camRot
+                new Vector3(73.1081f, -1011.055f, 82.04148f), // camPos
+                new Vector3(-15.138871f, 0, -116.3f) // camRot
             );
 
             bmsg.ShowOldMessage(rm.GetString("intro1"), regularIntroSceneLength);
