@@ -379,7 +379,7 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro8"), regularIntroSceneLength);
 
             // circle through traffic light states
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 foreach (Entity ent in World.GetNearbyEntities(new Vector3(-111, -1723, 29), 5))
                 {
