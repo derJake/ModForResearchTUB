@@ -465,7 +465,7 @@ namespace ModForResearchTUB
                 bystander.Task.FightAgainst(player);
             }
 
-            Wait(3000);
+            Wait(5000);
 
             // show police
 
