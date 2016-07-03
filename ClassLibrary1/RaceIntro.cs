@@ -473,6 +473,7 @@ namespace ModForResearchTUB
 
             Game.Player.WantedLevel = 2;
 
+            // spawn cop car and cops
             createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
             List<Ped> police = new List<Ped>(2);
             Ped policeman_1 = createPedAt(PedHash.Cop01SFY, new Vector3(-145.7362f, -1646.869f, 32.61502f));
