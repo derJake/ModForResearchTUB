@@ -586,6 +586,9 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 65;
 
+            bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
