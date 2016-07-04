@@ -628,6 +628,11 @@ namespace ModForResearchTUB
             Vehicle desert_car = createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
+
+            // make player enter vehicle
+            Game.Player.Character.Task.EnterVehicle(desert_car, VehicleSeat.Driver, 10000, 2.0f, 16);
+            Game.Player.Character.SetIntoVehicle(desert_car, VehicleSeat.Driver);
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
