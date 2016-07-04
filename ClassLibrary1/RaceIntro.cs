@@ -142,6 +142,10 @@ namespace ModForResearchTUB
 
             raceVehicle = createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
+            // make player enter vehicle
+            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
+            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+
             // set time of day
             World.CurrentDayTime = new TimeSpan(19, 15, 0);
         }
