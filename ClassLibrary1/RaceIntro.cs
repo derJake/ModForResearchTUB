@@ -709,6 +709,14 @@ namespace ModForResearchTUB
                 }
             }
 
+            // show reversing
+            
+            bmsg.ShowOldMessage(rm.GetString("intro19"), regularIntroSceneLength);
+
+            Wait(3000);
+
+            Function.Call(Hash.TASK_VEHICLE_PARK, car, -1007, 368.8f, 71.8f, 311, 2, 5);
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
