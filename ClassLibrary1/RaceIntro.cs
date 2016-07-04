@@ -562,6 +562,12 @@ namespace ModForResearchTUB
 
             cleanUpIntro();
 
+            player.Position = new Vector3(-95.64503f, -1564.393f, 32.65067f);
+            Vehicle crash_car = createCarAt(VehicleHash.Premier, new Vector3(-95.85332f, -1565.627f, 32.03605f), 230);
+            // make player enter vehicle
+            Game.Player.Character.Task.EnterVehicle(crash_car, VehicleSeat.Driver, 10000, 2.0f, 16);
+            Game.Player.Character.SetIntoVehicle(crash_car, VehicleSeat.Driver);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
