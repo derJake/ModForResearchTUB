@@ -606,6 +606,10 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
 
+            Wait(3000);
+
+            player.CurrentVehicle.Explode();
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
