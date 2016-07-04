@@ -441,8 +441,8 @@ namespace ModForResearchTUB
 
             // point camera
             showVector(
-                new Vector3(-169.6368f, -1672.639f, 33.11409f),
-                new Vector3(5f, 2.14f, 22f)
+                new Vector3(-165f, -1670f, 35f),
+                new Vector3(-26f, 0, 70f)
             );
             World.RenderingCamera.FieldOfView = 75;
 
