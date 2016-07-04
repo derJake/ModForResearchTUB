@@ -639,7 +639,7 @@ namespace ModForResearchTUB
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_desert = {
-                new Tuple<Vector3, Vector3>(new Vector3(1796, 3309, 42), new Vector3(0, 0, -111))
+                new Tuple<Vector3, Vector3>(new Vector3(1796.121f, 3309.683f, 42.8127f), new Vector3(0, 0, -111.41f))
             };
 
             float desert_radius = 5,
