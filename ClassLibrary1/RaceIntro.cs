@@ -573,7 +573,9 @@ namespace ModForResearchTUB
                     Script.Wait(100);
 
                 // create the actual driver ped
-                return World.CreatePed(pedmodel, pos);
+                Ped ped = World.CreatePed(pedmodel, pos);
+                peds.Add(ped);
+                return ped;
                 
             }
 
@@ -597,7 +599,7 @@ namespace ModForResearchTUB
 
                 // create the vehicle
                 vehicle = World.CreateVehicle(carmodelhash, coordinates, heading);
-
+                cars.Add(vehicle);
                 return vehicle;
             }
 
