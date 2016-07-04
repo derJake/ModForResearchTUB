@@ -562,6 +562,11 @@ namespace ModForResearchTUB
 
             cleanUpIntro();
 
+            // remove vehicles in next area
+            foreach (Vehicle random_car in World.GetNearbyVehicles(new Vector3(-80, -1579, 30), 50)) {
+                random_car.Delete();
+            }
+
             player.Position = new Vector3(-95.64503f, -1564.393f, 32.65067f);
             Vehicle crash_car = createCarAt(VehicleHash.Premier, new Vector3(-95.85332f, -1565.627f, 32.03605f), 230);
             // make player enter vehicle
