@@ -723,6 +723,8 @@ namespace ModForResearchTUB
 
             // show flipped car
 
+            bmsg.ShowOldMessage(rm.GetString("intro20"), regularIntroSceneLength);
+
             World.RenderingCamera.Position = new Vector3(-998, 370, 73);
             World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 90f);
 
