@@ -115,6 +115,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die When the car&apos;s hitpoints drop to 0, it will explode. ähnelt.
+        /// </summary>
+        internal static string intro15 {
+            get {
+                return ResourceManager.GetString("intro15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {

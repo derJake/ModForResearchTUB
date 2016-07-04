@@ -135,6 +135,9 @@
   <data name="intro14" xml:space="preserve">
     <value>Collisions will damage your car.</value>
   </data>
+  <data name="intro15" xml:space="preserve">
+    <value>When the car's hitpoints drop to 0, it will explode.</value>
+  </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>
