@@ -587,6 +587,18 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 65;
 
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
+
+            // wait for player to crash into parked car
+            while (!crash_car.IsNearEntity(car_rearended, new Vector3(0,0,0.5f))) {
+                Wait(50);
+            }
+
+            showVector(
+                new Vector3(-67, -1586.5f, 31),
+                new Vector3(-15f, 0, 180)
+            );
+            World.RenderingCamera.FieldOfView = 45;
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
