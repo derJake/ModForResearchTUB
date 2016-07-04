@@ -515,6 +515,8 @@ namespace ModForResearchTUB
                 new Vector3(-36.11f, -2.14f, -90f)
             );
 
+            bmsg.ShowOldMessage(rm.GetString("intro12"), regularIntroSceneLength);
+
             Function.Call(Hash.FLASH_WANTED_DISPLAY, true);
 
             Wait(regularIntroSceneLength);
