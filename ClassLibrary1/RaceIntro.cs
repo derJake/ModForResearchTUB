@@ -605,5 +605,18 @@ namespace ModForResearchTUB
 
             throw new Exception("vehicle model could not be loaded");
         }
+
+        private void cleanUpIntro()
+        {
+            foreach (Ped ped in peds)
+            {
+                ped.Delete();
+            }
+
+            foreach (Vehicle car in cars)
+            {
+                car.Delete();
+            }
+        }
     }
 }
