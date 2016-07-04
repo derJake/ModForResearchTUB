@@ -519,6 +519,8 @@ namespace ModForResearchTUB
         }
 
         private void showVector(Vector3 cameraPosition, Vector3 cameraRotation) {
+            World.RenderingCamera = null;
+            World.DestroyAllCameras();
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 cameraPosition, // position
@@ -530,6 +532,8 @@ namespace ModForResearchTUB
         }
 
         private void showEntity(Vector3 cameraPosition, Entity entityOfInterest) {
+            World.RenderingCamera = null;
+            World.DestroyAllCameras();
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 cameraPosition, // position
