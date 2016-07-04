@@ -548,6 +548,8 @@ namespace ModForResearchTUB
                 cop.Task.ShootAt(player);
             }
 
+            Wait(regularIntroSceneLength);
+
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
 
             // remove wanted level and aggressive cop peds
