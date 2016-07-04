@@ -142,6 +142,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are no blinkers. Just turn. ähnelt.
+        /// </summary>
+        internal static string intro18 {
+            get {
+                return ResourceManager.GetString("intro18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {

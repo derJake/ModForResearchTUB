@@ -664,6 +664,8 @@ namespace ModForResearchTUB
 
             // show no blinker
 
+            bmsg.ShowOldMessage(rm.GetString("intro18"), regularIntroSceneLength);
+
             player.CurrentVehicle.Position = new Vector3();
             World.CurrentDayTime = new TimeSpan(7, 30, 0);
             World.RenderingCamera.Position = new Vector3(-1085f, 444f, 75.63884f);
