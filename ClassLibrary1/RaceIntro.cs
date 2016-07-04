@@ -541,6 +541,13 @@ namespace ModForResearchTUB
             additional_police.Add(policeman_7);
             additional_police.Add(policeman_8);
 
+            foreach (Ped cop in additional_police)
+            {
+                cop.RelationshipGroup = copHash;
+                cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
+                cop.Task.ShootAt(player);
+            }
+
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
 
             // remove wanted level and aggressive cop peds
