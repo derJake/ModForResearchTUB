@@ -686,13 +686,16 @@ namespace ModForResearchTUB
                 new Vector3(-1076.348f, 446.7233f, 74.5505f),
                 new Vector3(-1078.721f, 432.4045f, 72.68067f),
                 new Vector3(-1075.836f, 414.0519f, 69.21885f),
-                new Vector3(-1057.758f, 393.5327f, 68.75936f)
+                new Vector3(-1057.758f, 393.5327f, 68.75936f),
+                new Vector3(-1033.359f, 395.3765f, 69.95447f)
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_urban = {
                 new Tuple<Vector3, Vector3>(new Vector3(-1085f, 444f, 75.63884f), new Vector3(-2.2232f, 0, -85f)),
                 new Tuple<Vector3, Vector3>(new Vector3(-1078.817f, 437.9136f, 75.37682f), new Vector3(-18.2789f, 0, -178.5177f)),,
-                new Tuple<Vector3, Vector3>(new Vector3(-1076, 403, 68.75f), new Vector3(2f, 0, -18.6f))
+                new Tuple<Vector3, Vector3>(new Vector3(-1076, 403, 68.75f), new Vector3(2f, 0, -18.6f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-1062.851f, 394.5331f, 69.79096f), new Vector3(-1.448f, 0, -99.76324f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-1027, 393, 71), new Vector3(-2f, 0, 75))
             };
 
             float urban_radius = 5,
