@@ -534,6 +534,12 @@ namespace ModForResearchTUB
             Ped policeman_6 = createPedAt(PedHash.Cop01SMY, new Vector3(-161.4851f, -1667.609f, 33.08136f));
             Ped policeman_7 = createPedAt(PedHash.Cop01SMY, new Vector3(-145.5382f, -1643.036f, 32.66076f));
             Ped policeman_8 = createPedAt(PedHash.Cop01SMY, new Vector3(-147.2389f, -1640.95f, 32.9472f));
+            additional_police.Add(policeman_3);
+            additional_police.Add(policeman_4);
+            additional_police.Add(policeman_5);
+            additional_police.Add(policeman_6);
+            additional_police.Add(policeman_7);
+            additional_police.Add(policeman_8);
 
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
 
