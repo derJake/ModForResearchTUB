@@ -674,6 +674,41 @@ namespace ModForResearchTUB
                 }
             }
 
+            // show no blinker
+
+            player.CurrentVehicle.Position = new Vector3();
+            World.CurrentDayTime = new TimeSpan(7, 30, 0);
+            World.RenderingCamera.Position = new Vector3(-1085f, 444f, 75.63884f);
+            World.RenderingCamera.Rotation = new Vector3(-2.2232f, 0, -85f);
+
+            // show driving a bit
+            Vector3[] waypoints_urban = {
+                new Vector3(-1076.348f, 446.7233f, 74.5505f),
+            };
+
+            Tuple<Vector3, Vector3>[] camera_perspectives_urban = {
+                new Tuple<Vector3, Vector3>(new Vector3(-1085f, 444f, 75.63884f), new Vector3(-2.2232f, 0, -85f)),
+            };
+
+            float urban_radius = 5,
+                urban_speed = 15;
+
+            World.RenderingCamera.FieldOfView = 50;
+
+            // have player drive through waypoints
+            for (int i = 0; i < waypoints_urban.Length; i++)
+            {
+                player.Task.DriveTo(car, waypoints_urban[i], urban_radius, urban_speed);
+                World.RenderingCamera.Position = camera_perspectives_urban[i].Item1;
+                World.RenderingCamera.Rotation = camera_perspectives_urban[i].Item2;
+
+                // wait for player to drive to waypoint
+                while (!player.IsInRangeOf(waypoints_urban[i], urban_radius))
+                {
+                    Wait(50);
+                }
+            }
+
             Wait(regularIntroSceneLength);
 
             // give control back and use regular camera
