@@ -169,6 +169,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hold the steering wheel turned to flip the car back over. ähnelt.
+        /// </summary>
+        internal static string intro20 {
+            get {
+                return ResourceManager.GetString("intro20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You control one of these three player characters. ähnelt.
         /// </summary>
         internal static string intro3 {

@@ -153,6 +153,9 @@
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>
+  <data name="intro20" xml:space="preserve">
+    <value>Hold the steering wheel turned to flip the car back over.</value>
+  </data>
   <data name="intro3" xml:space="preserve">
     <value>You control one of these three player characters.</value>
   </data>
