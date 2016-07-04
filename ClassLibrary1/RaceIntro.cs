@@ -580,6 +580,12 @@ namespace ModForResearchTUB
             player.Task.DriveTo(crash_car, target_pos, 5, 80);
             player.DrivingStyle = DrivingStyle.Rushed;
 
+            showVector(
+                new Vector3(-63, -1585.5f, 31),
+                new Vector3(1f, 0, 140)
+            );
+            World.RenderingCamera.FieldOfView = 65;
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
