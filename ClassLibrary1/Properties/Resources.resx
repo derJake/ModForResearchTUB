@@ -129,6 +129,9 @@
   <data name="intro12" xml:space="preserve">
     <value>Your wanted level is shown on the top right of the screen.</value>
   </data>
+  <data name="intro13" xml:space="preserve">
+    <value>Higher wanted level = more police</value>
+  </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>
