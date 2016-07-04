@@ -133,6 +133,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The car is controlled with the steering wheel and gas/brake pedal. ähnelt.
+        /// </summary>
+        internal static string intro17 {
+            get {
+                return ResourceManager.GetString("intro17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {
