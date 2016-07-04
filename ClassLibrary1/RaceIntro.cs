@@ -719,6 +719,8 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            car.Rotation = new Vector3(0,180,311);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
