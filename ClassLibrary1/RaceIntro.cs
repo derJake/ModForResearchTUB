@@ -35,6 +35,8 @@ namespace ModForResearchTUB
         private int introPlayTime = 600;
         private int raceEndTime;
 
+        private List<Vehicle> cars;
+        private List<Ped> peds;
         public CultureInfo CultureInfo { get; private set; }
 
         ResourceManager rm;
