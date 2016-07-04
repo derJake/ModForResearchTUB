@@ -60,6 +60,9 @@ namespace ModForResearchTUB
 
             this.checkpoints = checkpointlist;
 
+            peds = new List<Ped>();
+            cars = new List<Vehicle>();
+
             CultureInfo = CultureInfo.CurrentCulture;
             rm = new ResourceManager(typeof(Resources));
         }
