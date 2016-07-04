@@ -612,6 +612,11 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            // player health scene
+            player.Position = new Vector3(-68, -1692, 29);
+            World.RenderingCamera.Position = new Vector3(-69.5f, -1695, 29);
+            World.RenderingCamera.Rotation = new Vector3(-1, 0, -18);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
