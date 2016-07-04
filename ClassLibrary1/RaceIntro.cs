@@ -326,11 +326,13 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 75;
 
+            Vector3 checkpoint_position = new Vector3(1166.71f, -3218.176f, 5.799773f);
+
             Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
-                1166.71f,
-                -3218.176f,
-                5.799773f,
+                checkpoint_position.X,
+                checkpoint_position.Y,
+                checkpoint_position.Z,
                 0, // facing next checkpoint?
                 0,
                 0,
@@ -349,7 +351,7 @@ namespace ModForResearchTUB
             //show regular camera
             World.DestroyAllCameras();
             bmsg.ShowOldMessage(rm.GetString("intro7"), regularIntroSceneLength);
-            Blip blip = World.CreateBlip(player.Position + 25*player.ForwardVector);
+            Blip blip = World.CreateBlip(checkpoint_position);
             Function.Call(Hash._SET_RADAR_BIGMAP_ENABLED, 1, 0);
             Function.Call(Hash.SET_BLIP_ROUTE, blip, true);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
