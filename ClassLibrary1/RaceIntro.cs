@@ -514,6 +514,8 @@ namespace ModForResearchTUB
             World.SetRelationshipBetweenGroups(Relationship.Neutral, playerRGroup, copHash);
             Game.Player.WantedLevel = 0;
 
+            cleanUpIntro();
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
