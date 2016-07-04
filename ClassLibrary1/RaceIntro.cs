@@ -656,7 +656,8 @@ namespace ModForResearchTUB
             for (int i = 0; i < waypoints_desert.Length; i++)
             {
                 player.Task.DriveTo(car, waypoints_desert[i], desert_radius, desert_speed);
-                showVector(camera_perspectives_desert[i].Item1, camera_perspectives_desert[i].Item2);
+                World.RenderingCamera.Position = camera_perspectives_desert[i].Item1;
+                World.RenderingCamera.Rotation = camera_perspectives_desert[i].Item2;
 
                 // wait for player to drive to waypoint
                 while (!player.IsInRangeOf(waypoints[i], desert_radius))
