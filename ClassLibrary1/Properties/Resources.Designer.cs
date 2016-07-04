@@ -88,6 +88,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your wanted level is shown on the top right of the screen. ähnelt.
+        /// </summary>
+        internal static string intro12 {
+            get {
+                return ResourceManager.GetString("intro12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {
