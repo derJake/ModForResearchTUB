@@ -627,6 +627,9 @@ namespace ModForResearchTUB
             World.CurrentDayTime = new TimeSpan(16, 35, 0);
             Vehicle desert_car = createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
+            bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
