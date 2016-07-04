@@ -550,6 +550,8 @@ namespace ModForResearchTUB
                 cop.Task.ShootAt(player);
             }
 
+            bmsg.ShowOldMessage(rm.GetString("intro13"), regularIntroSceneLength);
+
             Wait(regularIntroSceneLength);
 
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
