@@ -510,6 +510,7 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            // remove wanted level and aggressive cop peds
             World.SetRelationshipBetweenGroups(Relationship.Neutral, playerRGroup, copHash);
             Game.Player.WantedLevel = 0;
 
