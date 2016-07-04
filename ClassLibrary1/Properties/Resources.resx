@@ -132,6 +132,9 @@
   <data name="intro13" xml:space="preserve">
     <value>Higher wanted level = more police</value>
   </data>
+  <data name="intro14" xml:space="preserve">
+    <value>Collisions will damage your car.</value>
+  </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>
