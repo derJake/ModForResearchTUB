@@ -147,6 +147,9 @@
   <data name="intro18" xml:space="preserve">
     <value>There are no blinkers. Just turn.</value>
   </data>
+  <data name="intro19" xml:space="preserve">
+    <value>To reverse, stand on the brake pedal after the car has stopped</value>
+  </data>
   <data name="intro2" xml:space="preserve">
     <value>This study focusses on the singleplayer mode of the game.</value>
   </data>

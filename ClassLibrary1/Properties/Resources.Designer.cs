@@ -151,6 +151,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To reverse, stand on the brake pedal after the car has stopped ähnelt.
+        /// </summary>
+        internal static string intro19 {
+            get {
+                return ResourceManager.GetString("intro19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This study focusses on the singleplayer mode of the game. ähnelt.
         /// </summary>
         internal static string intro2 {
