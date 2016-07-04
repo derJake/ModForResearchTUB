@@ -624,7 +624,7 @@ namespace ModForResearchTUB
 
             // driving sequence 2
             player.Position = new Vector3(1792, 3325, 41.5f);
-            World.CurrentDayTime = new TimeSpan(16, 35, 0);
+            World.CurrentDayTime = new TimeSpan(8, 5, 0);
             Vehicle desert_car = createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
@@ -632,6 +632,31 @@ namespace ModForResearchTUB
             // make player enter vehicle
             Game.Player.Character.Task.EnterVehicle(desert_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(desert_car, VehicleSeat.Driver);
+
+            // show driving a bit
+            Vector3[] waypoints_desert = {
+                new Vector3(-779.4083f, 5550.534f, 33.0866f),
+            };
+
+            Tuple<Vector3, Vector3>[] camera_perspectives_desert = {
+                new Tuple<Vector3, Vector3>(new Vector3(1796, 3309, 42), new Vector3(0, 0, -111))
+            };
+
+            float desert_radius = 5,
+                desert_speed = 15;
+
+            // have player drive through waypoints
+            for (int i = 0; i < waypoints_desert.Length; i++)
+            {
+                player.Task.DriveTo(car, waypoints_desert[i], desert_radius, desert_speed);
+                showVector(camera_perspectives_desert[i].Item1, camera_perspectives_desert[i].Item2);
+
+                // wait for player to drive to waypoint
+                while (!player.IsInRangeOf(waypoints[i], desert_radius))
+                {
+                    Wait(50);
+                }
+            }
 
             Wait(regularIntroSceneLength);
 
