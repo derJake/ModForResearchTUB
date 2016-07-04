@@ -645,6 +645,8 @@ namespace ModForResearchTUB
             float desert_radius = 5,
                 desert_speed = 15;
 
+            World.RenderingCamera.FieldOfView = 50;
+
             // have player drive through waypoints
             for (int i = 0; i < waypoints_desert.Length; i++)
             {
