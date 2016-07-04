@@ -527,6 +527,14 @@ namespace ModForResearchTUB
             createCarAt(VehicleHash.Police, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
             createCarAt(VehicleHash.Police, new Vector3(-143.4058f, -1645.468f, 32.21568f), 158.9681f);
 
+            List<Ped> additional_police = new List<Ped>(6);
+            Ped policeman_3 = createPedAt(PedHash.Cop01SMY, new Vector3(-142.0587f, -1645.612f, 32.63714f));
+            Ped policeman_4 = createPedAt(PedHash.Cop01SMY, new Vector3(-144.813f, -1645.273f, 32.58187f));
+            Ped policeman_5 = createPedAt(PedHash.Cop01SMY, new Vector3(-163.5185f, -1665.744f, 33.08033f));
+            Ped policeman_6 = createPedAt(PedHash.Cop01SMY, new Vector3(-161.4851f, -1667.609f, 33.08136f));
+            Ped policeman_7 = createPedAt(PedHash.Cop01SMY, new Vector3(-145.5382f, -1643.036f, 32.66076f));
+            Ped policeman_8 = createPedAt(PedHash.Cop01SMY, new Vector3(-147.2389f, -1640.95f, 32.9472f));
+
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
 
             // remove wanted level and aggressive cop peds
