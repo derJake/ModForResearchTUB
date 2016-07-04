@@ -685,7 +685,8 @@ namespace ModForResearchTUB
             Vector3[] waypoints_urban = {
                 new Vector3(-1076.348f, 446.7233f, 74.5505f),
                 new Vector3(-1078.721f, 432.4045f, 72.68067f),
-                new Vector3(-1075.836f, 414.0519f, 69.21885f)
+                new Vector3(-1075.836f, 414.0519f, 69.21885f),
+                new Vector3(-1057.758f, 393.5327f, 68.75936f)
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_urban = {
