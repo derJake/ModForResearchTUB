@@ -684,10 +684,14 @@ namespace ModForResearchTUB
             // show driving a bit
             Vector3[] waypoints_urban = {
                 new Vector3(-1076.348f, 446.7233f, 74.5505f),
+                new Vector3(-1078.721f, 432.4045f, 72.68067f),
+                new Vector3(-1075.836f, 414.0519f, 69.21885f)
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_urban = {
                 new Tuple<Vector3, Vector3>(new Vector3(-1085f, 444f, 75.63884f), new Vector3(-2.2232f, 0, -85f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-1078.817f, 437.9136f, 75.37682f), new Vector3(-18.2789f, 0, -178.5177f)),,
+                new Tuple<Vector3, Vector3>(new Vector3(-1076, 403, 68.75f), new Vector3(2f, 0, -18.6f))
             };
 
             float urban_radius = 5,
