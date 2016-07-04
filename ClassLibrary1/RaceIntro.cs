@@ -635,11 +635,16 @@ namespace ModForResearchTUB
 
             // show driving a bit
             Vector3[] waypoints_desert = {
-                new Vector3(-779.4083f, 5550.534f, 33.0866f),
+                new Vector3(1844.38f, 3299.551f, 43.05259f),
+                new Vector3(1930.464f, 3313.151f, 44.89776f),
+                new Vector3(1986.8f, 3291.7f, 45.24f)
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_desert = {
-                new Tuple<Vector3, Vector3>(new Vector3(1796.121f, 3309.683f, 42.8127f), new Vector3(0, 0, -111.41f))
+                new Tuple<Vector3, Vector3>(new Vector3(1796.121f, 3309.683f, 42.8127f), new Vector3(0, 0, -111.41f)),
+                new Tuple<Vector3, Vector3>(new Vector3(1838.032f, 3299.171f, 43.84303f), new Vector3(0.6644f, 0, -89.36685f)),
+                new Tuple<Vector3, Vector3>(new Vector3(1925.446f, 3316.135f, 46.16137f), new Vector3(-3.91f, 0, -120.3298f)),
+                new Tuple<Vector3, Vector3>(new Vector3(1990f, 3292f, 45.821f), new Vector3(2.29f, 0, 95))
             };
 
             float desert_radius = 5,
