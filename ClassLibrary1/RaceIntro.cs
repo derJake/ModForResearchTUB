@@ -140,23 +140,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
-            // load the vehicle model
-            var vehicle1Model = new Model(vehicleHash);
-            vehicle1Model.Request(500);
-
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded)
-                    Script.Wait(100);
-
-                // create the vehicle
-                raceVehicle = World.CreateVehicle(vehicleHash, car1_spawnpoint, car_spawn_heading);
-            }
-
-            vehicle1Model.MarkAsNoLongerNeeded();
+            raceVehicle = createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
             // set time of day
             World.CurrentDayTime = new TimeSpan(19, 15, 0);
