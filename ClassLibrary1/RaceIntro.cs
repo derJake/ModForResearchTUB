@@ -11,6 +11,8 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
 
 namespace ModForResearchTUB
 {
@@ -719,10 +721,17 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            // show flipped car
+
             World.RenderingCamera.Position = new Vector3(-998, 370, 73);
             World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 90f);
 
             car.Rotation = new Vector3(0,180,311);
+
+            while (Math.Abs(car.Rotation.Y) > 30) {
+                SendKeys.Send("{Left}");
+                Wait(50);
+            }
 
             // give control back and use regular camera
             World.RenderingCamera = null;
