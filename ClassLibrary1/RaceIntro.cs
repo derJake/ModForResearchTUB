@@ -586,6 +586,13 @@ namespace ModForResearchTUB
             // wait for player to crash into parked car
             while (!crash_car.IsNearEntity(car_rearended, new Vector3(0,0,0.5f))) {
                 Wait(50);
+                foreach (Vehicle random_car in World.GetNearbyVehicles(new Vector3(-80, -1579, 30), 50))
+                {
+                    if (random_car != car_rearended && random_car != crash_car)
+                    {
+                        random_car.Delete();
+                    }
+                }
             }
 
             showVector(
