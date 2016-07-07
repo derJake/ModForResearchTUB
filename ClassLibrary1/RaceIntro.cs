@@ -591,7 +591,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 65;
 
             Wait(4000);
-            crash_car.ApplyForce(crash_car.ForwardVector * 25, crash_car.Rotation);
+            crash_car.ApplyForce(crash_car.ForwardVector * 250);
 
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
 
