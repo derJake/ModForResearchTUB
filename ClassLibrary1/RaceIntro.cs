@@ -500,10 +500,8 @@ namespace ModForResearchTUB
 
             World.SetRelationshipBetweenGroups(Relationship.Hate, playerRGroup, copHash);
 
-            showVector(
-                new Vector3(-164, -1667, 34),
-                new Vector3(-6.11f, -2.14f, -39.55f)
-            );
+            World.RenderingCamera.Position = new Vector3(-164, -1667, 34);
+            World.RenderingCamera.Rotation = new Vector3(-6.11f, -2.14f, -39.55f);
             World.RenderingCamera.FieldOfView = 25;
 
             Wait(regularIntroSceneLength);
