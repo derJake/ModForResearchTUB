@@ -168,6 +168,7 @@ namespace ModForResearchTUB
             *   SET_PED_CAN_BE_SHOT_IN_VEHICLE
             *   make it so that AI can not be shot
             */
+            Function.Call(Hash.CLEAR_ALL_HELP_MESSAGES);
 
             if (race_started) {
                 // player has died -> abort race
