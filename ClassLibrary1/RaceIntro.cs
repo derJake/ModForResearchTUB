@@ -457,6 +457,9 @@ namespace ModForResearchTUB
                 Wait(50);
             }
 
+            player.IsInvincible = true;
+            Game.Player.CanControlCharacter = false;
+
             // point camera
             showVector(
                 new Vector3(-153, -1658, 34),
