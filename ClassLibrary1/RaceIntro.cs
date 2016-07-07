@@ -575,6 +575,8 @@ namespace ModForResearchTUB
             while (player.CurrentVehicle != crash_car) {
                 Wait(100);
             }
+            crash_car.ApplyForce(crash_car.ForwardVector *5, crash_car.Rotation);
+
             showVector(
                 new Vector3(-63, -1585.5f, 31),
                 new Vector3(1f, 0, 140)
