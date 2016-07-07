@@ -572,9 +572,9 @@ namespace ModForResearchTUB
 
             Vector3 target_pos = new Vector3(-52.3836f, -1603.602f, 28.6389f);
 
-            player.Task.DriveTo(crash_car, target_pos, 5, 80);
-            player.DrivingStyle = DrivingStyle.Rushed;
-
+            while (player.CurrentVehicle != crash_car) {
+                Wait(100);
+            }
             showVector(
                 new Vector3(-63, -1585.5f, 31),
                 new Vector3(1f, 0, 140)
