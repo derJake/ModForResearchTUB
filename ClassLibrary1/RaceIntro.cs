@@ -240,6 +240,8 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro3"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            // hopefully show cars
+
             World.CurrentDayTime = new TimeSpan(10, 35, 0);
 
             player.Position = new Vector3(-378.4301f, 1226.474f, 325.7583f);
