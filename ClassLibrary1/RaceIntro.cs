@@ -240,11 +240,12 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(10, 35, 0);
 
-            player.Position = new Vector3(53.65551f, -177.0567f, 54.96252f);
+            player.Position = new Vector3(-378.4301f, 1226.474f, 325.7583f);
             showVector(
-                new Vector3(60.103f, -163.81f, 60.98f), // camPos
-                new Vector3(-15.33f, 0, 68.15559f) // camRot
+                new Vector3(-381, 1218, 326),
+                new Vector3(0, 0, 140) // camRot
             );
+            World.RenderingCamera.FieldOfView = 75;
 
             bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
