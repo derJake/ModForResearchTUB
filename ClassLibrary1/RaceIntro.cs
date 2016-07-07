@@ -615,8 +615,9 @@ namespace ModForResearchTUB
 
             Wait(2000);
 
-            World.RenderingCamera.Position = player.Position + new Vector3(0, 0, 3) - (player.RightVector * 10);
-            World.RenderingCamera.Rotation = new Vector3(-15, 0, 135);
+            //World.RenderingCamera.Position = player.Position + new Vector3(0, 0, 3) - (player.RightVector * 10);
+            //World.RenderingCamera.Rotation = new Vector3(-15, 0, 135);
+            World.RenderingCamera.PointAt(player.CurrentVehicle);
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
 
