@@ -459,6 +459,7 @@ namespace ModForResearchTUB
 
             player.IsInvincible = true;
             Game.Player.CanControlCharacter = false;
+            Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, aggro_car, 2);
 
             // point camera
             showVector(
