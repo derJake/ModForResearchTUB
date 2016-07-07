@@ -224,6 +224,8 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro2"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            // show player peds
+
             World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
             player.Position = new Vector3(-341.388f, 1147.779f, 325.7267f);
