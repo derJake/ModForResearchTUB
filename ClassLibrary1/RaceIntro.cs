@@ -584,14 +584,14 @@ namespace ModForResearchTUB
                 Wait(100);
             }
 
-            Wait(2000);
-            crash_car.ApplyForce(crash_car.ForwardVector * 15, crash_car.Rotation);
-
             showVector(
                 new Vector3(-63, -1585.5f, 31),
                 new Vector3(1f, 0, 140)
             );
             World.RenderingCamera.FieldOfView = 65;
+
+            Wait(4000);
+            crash_car.ApplyForce(crash_car.ForwardVector * 25, crash_car.Rotation);
 
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
 
