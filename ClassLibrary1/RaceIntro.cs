@@ -642,7 +642,7 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
 
             // make player enter vehicle
-            Game.Player.Character.Task.EnterVehicle(desert_car, VehicleSeat.Driver, 10000, 2.0f, 16);
+            //Game.Player.Character.Task.EnterVehicle(desert_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(desert_car, VehicleSeat.Driver);
 
             // show driving a bit
