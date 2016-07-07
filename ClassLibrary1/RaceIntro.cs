@@ -563,7 +563,7 @@ namespace ModForResearchTUB
             }
 
             player.Position = new Vector3(-95.64503f, -1564.393f, 32.65067f);
-            Vehicle crash_car = createCarAt(VehicleHash.Premier, new Vector3(-73.7f, -1585.2f, 29.82f), 228.87f);
+            Vehicle crash_car = createCarAt(VehicleHash.Premier, new Vector3(-73.7f, -1585.2f, 29.82f), 232f);
             // make player enter vehicle
             Game.Player.Character.Task.EnterVehicle(crash_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(crash_car, VehicleSeat.Driver);
