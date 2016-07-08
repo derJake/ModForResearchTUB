@@ -548,6 +548,8 @@ namespace ModForResearchTUB
             additional_police.Add(policeman_7);
             additional_police.Add(policeman_8);
 
+            player.IsInvincible = true;
+
             foreach (Ped cop in additional_police)
             {
                 cop.RelationshipGroup = copHash;
