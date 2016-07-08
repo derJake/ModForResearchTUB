@@ -284,9 +284,9 @@ namespace ModForResearchTUB
             // show driving a bit
 
             Vector3[] waypoints = {
-                new Vector3(-779.4083f, 5550.534f, 33.0866f),
-                new Vector3(-783.6174f, 5506.958f, 34.1205f),
-                new Vector3(-862.26f, 5447.984f, 34.16988f)
+                new Vector3(-396.2109f, 1189.884f, 325.224f),
+                new Vector3(-414.7796f, 1186.359f, 325.1265f),
+                new Vector3(-404.3124f, 1228.108f, 325.2242f)
             };
 
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
