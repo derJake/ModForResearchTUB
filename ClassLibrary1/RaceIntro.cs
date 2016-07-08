@@ -261,10 +261,10 @@ namespace ModForResearchTUB
 
             // show getting into car
             showVector(
-                new Vector3(-754.44f, 5536.25f, 33.46589f),
-                new Vector3(6.91f, -2.15f, 100.23f)
+                new Vector3(-386, 1231, 326),
+                new Vector3(2.28f, 0, 147.3373f)
             );
-            World.RenderingCamera.FieldOfView = 45;
+            World.RenderingCamera.FieldOfView = 55;
             player.Heading = 155.9079f;
 
             Vehicle car = createCarAt(
