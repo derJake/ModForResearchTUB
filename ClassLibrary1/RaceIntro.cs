@@ -276,6 +276,8 @@ namespace ModForResearchTUB
                 new Vector3(-761.6691f, 5533.743f, 33.50467f),
                 267.3927f
             );
+            car.CustomPrimaryColor = Color.Red;
+            car.CustomSecondaryColor = Color.Orange;
 
             Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
 
@@ -472,7 +474,7 @@ namespace ModForResearchTUB
                 new Vector3(-153, -1658, 34),
                 new Vector3(-8.7f, 2.13f, 116)
             );
-            World.RenderingCamera.FieldOfView = 55;
+            World.RenderingCamera.FieldOfView = 45;
 
             foreach (Ped bystander in bystanders) {
                 bystander.Task.FightAgainst(player);
