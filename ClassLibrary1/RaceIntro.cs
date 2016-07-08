@@ -558,6 +558,10 @@ namespace ModForResearchTUB
             }
 
             bmsg.ShowOldMessage(rm.GetString("intro13"), regularIntroSceneLength);
+            Wait(3000);
+
+            World.RenderingCamera.Position = new Vector3(-149.37f, -1655.196f, 33.9734f);
+            World.RenderingCamera.Rotation = new Vector3(-9.968f, 0, 120.2608f);
 
             Wait(regularIntroSceneLength);
 
