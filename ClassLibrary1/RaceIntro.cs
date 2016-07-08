@@ -261,8 +261,6 @@ namespace ModForResearchTUB
 
             World.CurrentDayTime = new TimeSpan(16, 45, 0);
 
-            player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
-
             // show getting into car
             showVector(
                 new Vector3(-754.44f, 5536.25f, 33.46589f),
