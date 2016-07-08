@@ -272,8 +272,8 @@ namespace ModForResearchTUB
                 new Vector3(-390, 1226, 325.22f),
                 193
             );
-            car.CustomPrimaryColor = Color.Red;
-            car.CustomSecondaryColor = Color.Orange;
+            car.CustomPrimaryColor = Color.White;
+            car.CustomSecondaryColor = Color.Black;
 
             Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
 
