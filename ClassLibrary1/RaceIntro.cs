@@ -677,6 +677,11 @@ namespace ModForResearchTUB
 
             World.RenderingCamera.FieldOfView = 50;
 
+            while (player.CurrentVehicle != desert_car)
+            {
+                Wait(100);
+            }
+
             // have player drive through waypoints
             for (int i = 0; i < waypoints_desert.Length; i++)
             {
