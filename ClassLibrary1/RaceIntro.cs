@@ -273,8 +273,8 @@ namespace ModForResearchTUB
 
             Vehicle car = createCarAt(
                 VehicleHash.Adder,
-                new Vector3(-761.6691f, 5533.743f, 33.50467f),
-                267.3927f
+                new Vector3(-390, 1226, 325.22f),
+                193
             );
             car.CustomPrimaryColor = Color.Red;
             car.CustomSecondaryColor = Color.Orange;
