@@ -275,7 +275,8 @@ namespace ModForResearchTUB
             car.CustomPrimaryColor = Color.White;
             car.CustomSecondaryColor = Color.Black;
 
-            Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
+            //Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
+            Game.Player.Character.SetIntoVehicle(car, VehicleSeat.Driver);
 
             bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
