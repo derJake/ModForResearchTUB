@@ -611,17 +611,12 @@ namespace ModForResearchTUB
                 }
             }
 
-            showVector(
-                new Vector3(-67, -1586.5f, 31),
-                new Vector3(-15f, 0, 180)
-            );
+            Vector3 campos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
+            World.RenderingCamera.Position = campos;
+            World.RenderingCamera.PointAt(player.CurrentVehicle);
             World.RenderingCamera.FieldOfView = 45;
 
             Wait(2000);
-
-            //World.RenderingCamera.Position = player.Position + new Vector3(0, 0, 3) - (player.RightVector * 10);
-            //World.RenderingCamera.Rotation = new Vector3(-15, 0, 135);
-            World.RenderingCamera.PointAt(player.CurrentVehicle);
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
 
