@@ -259,8 +259,6 @@ namespace ModForResearchTUB
                 charped.Delete();
             }
 
-            World.CurrentDayTime = new TimeSpan(16, 45, 0);
-
             // show getting into car
             showVector(
                 new Vector3(-754.44f, 5536.25f, 33.46589f),
