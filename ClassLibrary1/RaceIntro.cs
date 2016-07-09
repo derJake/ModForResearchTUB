@@ -261,16 +261,16 @@ namespace ModForResearchTUB
 
             // show getting into car
             showVector(
-                new Vector3(-386, 1231, 326),
-                new Vector3(2.28f, 0, 147.3373f)
+                new Vector3(-408.2427f, 1175.584f, 326.1006f),
+                new Vector3(-1.56f, 0, -105.8116f)
             );
             World.RenderingCamera.FieldOfView = 55;
             player.Heading = 155.9079f;
 
             Vehicle car = createCarAt(
                 VehicleHash.Adder,
-                new Vector3(-390, 1226, 325.22f),
-                193
+                new Vector3(-403, 1174.109f, 325.23f),
+                274
             );
             car.CustomPrimaryColor = Color.White;
             car.CustomSecondaryColor = Color.Black;
@@ -285,15 +285,15 @@ namespace ModForResearchTUB
             // show driving a bit
 
             Vector3[] waypoints = {
-                new Vector3(-396.2109f, 1189.884f, 325.224f),
-                new Vector3(-480.33f, 1194.159f, 324.5924f),
-                new Vector3(-502.73f, 1220.144f, 321.7778f)
+                new Vector3(-348.0623f, 1168.467f, 324.8051f),
+                new Vector3(-273.8922f, 1220.785f, 316.6845f),
+                new Vector3(-196.1113f, 1304.639f, 303.8253f)
             };
 
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
-                new Tuple<Vector3, Vector3>(new Vector3(-408.1921f, 1181.978f, 326.2798f), new Vector3(-2.58f, 0, -56.2218f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-485.2991f, 1196.321f, 325.4819f), new Vector3(-1.76f, 0, -113.535f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-503.3556f, 1225.522f, 322.3263f), new Vector3(1.84f, 0, -173.3651f))
+                new Tuple<Vector3, Vector3>(new Vector3(-353.1945f, 1167.151f, 326.6551f), new Vector3(-12, 0, -75.62788f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-191.8669f, 1308.004f, 304.5578f), new Vector3(0, 0, 128.4084f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-199.1635f, 1309.076f, 305.0473f), new Vector3(-6.111776f, 0, -145.4782f))
             };
 
             float radius = 5,
