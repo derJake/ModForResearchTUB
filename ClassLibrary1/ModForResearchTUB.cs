@@ -111,6 +111,8 @@ namespace ModForResearchTUB
 
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
 
+        protected String[] scenarioGroups { get; private set; }
+
         public CultureInfo CultureInfo { get; private set; }
 
         ResourceManager rm;
@@ -1123,6 +1125,56 @@ namespace ModForResearchTUB
         private void toggleScenarios(bool b) {
             Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "LOST_BIKERS", b);
             Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "Rampage1", b);
+        }
+
+        private void setScenarioGroupList() {
+            scenarioGroups = new String[] {
+                "ALAMO_PLANES",
+                 "ARMENIAN_CATS",
+                 "ARMY_GUARD",
+                 "ARMY_HELI",
+                 "ATTRACT_PAP",
+                 "BLIMP",
+                 "CHINESE2_HILLBILLIES",
+                 "Chinese2_Lunch",
+                 "Cinema_Downtown",
+                 "Cinema_Morningwood",
+                 "Cinema_Textile",
+                 "City_Banks",
+                 "Countryside_Banks",
+                 "DEALERSHIP",
+                 "FIB_GROUP_1",
+                 "FIB_GROUP_2",
+                 "GRAPESEED_PLANES",
+                 "Grapeseed_Planes",
+                 "KORTZ_SECURITY",
+                 "LOST_BIKERS",
+                 "LOST_BIKERS",
+                "LOST_BIKERS",
+                "LSA_Planes",
+                 "MOVIE_STUDIO_SECURITY",
+                 "MOVIE_STUDIO_SECURITY",
+                "MP_POLICE",
+                 "Observatory_Bikers",
+                 "POLICE_POUND1",
+                 "POLICE_POUND2",
+                 "POLICE_POUND3",
+                 "POLICE_POUND4",
+                 "POLICE_POUND5",
+                 "PRISON_TOWERS",
+                 "QUARRY",
+                 "Rampage1",
+                 "SANDY_PLANES",
+                 "SCRAP_SECURITY",
+                 "SEW_MACHINE",
+                 "SOLOMON_GATE",
+                 "Triathlon_1",
+                 "Triathlon_1_Start",
+                 "Triathlon_2",
+                 "Triathlon_2_Start",
+                 "Triathlon_3",
+                 "Triathlon_3_Start",
+            };
         }
 
         private void processCollectedData() {
