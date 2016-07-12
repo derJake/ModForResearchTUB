@@ -132,6 +132,8 @@ namespace ModForResearchTUB
             setUpRaces();
 
             // try to disable scenarios like angry bikers
+            setScenarioList();
+            setScenarioGroupList();
             toggleScenarios(false);
 
             // World.CreateProp(new Model(-1359996601), Game.Player.Character.Position, new Vector3(0f, 5f, 0f), false, false);
@@ -1124,8 +1126,12 @@ namespace ModForResearchTUB
         }
 
         private void toggleScenarios(bool b) {
-            Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "LOST_BIKERS", b);
-            Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, "Rampage1", b);
+            foreach (String scenarioName in scenarios) {
+                Function.Call(Hash.SET_SCENARIO_TYPE_ENABLED, scenarioName, b);
+            }
+            foreach (String scenarioGroup in scenarioGroups) {
+                Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, scenarioGroup, b);
+            }
         }
 
         private void setScenarioGroupList() {
