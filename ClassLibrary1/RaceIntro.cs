@@ -608,6 +608,7 @@ namespace ModForResearchTUB
             player.CanFlyThroughWindscreen = false;
 
             Wait(4000);
+            crash_car.HandbrakeOn = false;
             crash_car.ApplyForce(crash_car.ForwardVector * 125);
 
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
