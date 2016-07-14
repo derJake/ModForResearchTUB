@@ -690,7 +690,7 @@ namespace ModForResearchTUB
             };
 
             float desert_radius = 5,
-                desert_speed = 15;
+                desert_speed = 30;
 
             World.RenderingCamera.FieldOfView = 50;
             World.RenderingCamera.PointAt(desert_car);
