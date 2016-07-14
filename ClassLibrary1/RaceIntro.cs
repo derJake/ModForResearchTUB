@@ -570,7 +570,9 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 25;
             World.RenderingCamera.PointAt(player.CurrentVehicle);
 
-            Wait(regularIntroSceneLength);
+            Wait(regularIntroSceneLength / 2);
+
+            Wait(regularIntroSceneLength / 2);
 
             Function.Call(Hash.FLASH_WANTED_DISPLAY, false);
 
