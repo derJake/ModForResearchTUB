@@ -304,7 +304,8 @@ namespace ModForResearchTUB
             for (int i = 0; i < waypoints.Length; i++) {
                 player.Task.DriveTo(car, waypoints[i], radius, speed);
                 Function.Call(Hash.SET_DRIVE_TASK_DRIVING_STYLE, player, 1 << 9);
-                showVector(cameraPerspectives[i].Item1, cameraPerspectives[i].Item2);
+                World.RenderingCamera.Position = cameraPerspectives[i].Item1;
+                World.RenderingCamera.Rotation = cameraPerspectives[i].Item2;
 
                 // wait for player to drive to waypoint
                 while (!player.IsInRangeOf(waypoints[i], radius + radiustolerance)) {
