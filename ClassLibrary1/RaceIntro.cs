@@ -630,7 +630,7 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
 
-            cam_pos = car.Position + car.ForwardVector * 5 + new Vector3(0, 0, 2);
+            cam_pos = crash_car.Position + crash_car.ForwardVector * 5 + new Vector3(0, 0, 2);
             World.RenderingCamera.Position = cam_pos;
             World.RenderingCamera.PointAt(player.CurrentVehicle);
 
