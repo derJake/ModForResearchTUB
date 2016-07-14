@@ -649,6 +649,9 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro16"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            Game.Player.CanControlCharacter = false;
+            player.IsInvincible = true;
+
             // driving sequence 2
             player.Position = new Vector3(1792, 3325, 41.5f);
             World.CurrentDayTime = new TimeSpan(8, 5, 0);
