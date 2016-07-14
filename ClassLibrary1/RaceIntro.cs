@@ -619,7 +619,7 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
 
             // wait for player to crash into parked car
-            while (car_rearended.HasBeenDamagedBy(crash_car)) {
+            while (!car_rearended.HasBeenDamagedBy(crash_car)) {
                 Wait(50);
                 foreach (Vehicle random_car in World.GetNearbyVehicles(new Vector3(-80, -1579, 30), 50))
                 {
