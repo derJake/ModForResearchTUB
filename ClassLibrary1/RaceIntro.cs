@@ -718,7 +718,7 @@ namespace ModForResearchTUB
 
             bmsg.ShowOldMessage(rm.GetString("intro18"), regularIntroSceneLength);
 
-            player.CurrentVehicle.Position = new Vector3();
+            player.CurrentVehicle.Position = new Vector3(-1075, 444, 74);
             World.CurrentDayTime = new TimeSpan(7, 30, 0);
             World.RenderingCamera.Position = new Vector3(-1085f, 444f, 75.63884f);
             World.RenderingCamera.Rotation = new Vector3(-2.2232f, 0, -85f);
