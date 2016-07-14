@@ -475,6 +475,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 45;
 
             player.CanBeDraggedOutOfVehicle = false;
+            player.CanFlyThroughWindscreen = false;
 
             foreach (Ped bystander in bystanders) {
                 bystander.Task.FightAgainst(player);
@@ -600,6 +601,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 65;
 
             player.CanBeDraggedOutOfVehicle = false;
+            player.CanFlyThroughWindscreen = false;
 
             Wait(4000);
             crash_car.ApplyForce(crash_car.ForwardVector * 125);
