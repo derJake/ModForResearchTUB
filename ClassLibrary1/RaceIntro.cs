@@ -707,7 +707,7 @@ namespace ModForResearchTUB
                 World.RenderingCamera.Rotation = camera_perspectives_desert[i].Item2;
 
                 // wait for player to drive to waypoint
-                while (!player.IsInRangeOf(waypoints_desert[i], desert_radius))
+                while (!player.IsInRangeOf(waypoints_desert[i], desert_radius + radiustolerance))
                 {
                     Wait(50);
                 }
