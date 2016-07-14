@@ -407,7 +407,6 @@ namespace ModForResearchTUB
 
             Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-192.55f, -1674.355f, 33.092825f), 281.5312f);
 
-            Game.Player.Character.Task.EnterVehicle(aggro_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(aggro_car, VehicleSeat.Driver);
 
             bmsg.ShowOldMessage(rm.GetString("intro9"), regularIntroSceneLength);
