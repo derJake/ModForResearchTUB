@@ -645,7 +645,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.Position = new Vector3(-69.5f, -1695, 29);
             World.RenderingCamera.Rotation = new Vector3(-1, 0, -18);
             Wait(2000);
-            Function.Call(Hash.SET_PED_TO_RAGDOLL, player, regularIntroSceneLength);
+            Function.Call(Hash.SET_PED_TO_RAGDOLL, player, regularIntroSceneLength - 2000);
             bmsg.ShowOldMessage(rm.GetString("intro16"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
