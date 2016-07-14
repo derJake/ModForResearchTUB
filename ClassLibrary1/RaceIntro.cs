@@ -609,7 +609,7 @@ namespace ModForResearchTUB
 
             Wait(4000);
             crash_car.HandbrakeOn = false;
-            crash_car.ApplyForce(crash_car.ForwardVector * 125);
+            crash_car.ApplyForce(crash_car.ForwardVector * 250);
 
             bmsg.ShowOldMessage(rm.GetString("intro14"), regularIntroSceneLength);
 
