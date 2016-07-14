@@ -120,6 +120,9 @@ namespace ModForResearchTUB
                 textbar.Text = timeLeft.Minutes.ToString() + ':' + timeLeft.Seconds.ToString();
                 barPool.Draw();
             }
+            else if (raceEndTime > 0 && Game.GameTime >= raceEndTime) {
+                Game.Player.Character.CurrentVehicle.Position = checkpoints[checkpoints.Length - 1].Item1;
+            }
         }
 
         public void initRace()
