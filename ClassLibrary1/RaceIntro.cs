@@ -548,14 +548,15 @@ namespace ModForResearchTUB
             additional_police.Add(policeman_7);
             additional_police.Add(policeman_8);
 
-            player.IsInvincible = true;
-
             foreach (Ped cop in additional_police)
             {
                 cop.RelationshipGroup = copHash;
                 cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
                 cop.Task.ShootAt(player);
             }
+
+            player.IsInvincible = true;
+            Game.Player.CanControlCharacter = false;
 
             bmsg.ShowOldMessage(rm.GetString("intro13"), regularIntroSceneLength);
             Wait(3000);
