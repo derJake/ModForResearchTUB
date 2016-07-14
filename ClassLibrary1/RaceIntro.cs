@@ -297,7 +297,8 @@ namespace ModForResearchTUB
             };
 
             float radius = 5,
-                speed = 15;
+                radiustolerance = 2,
+                speed = 30;
 
             // have player drive through waypoints
             for (int i = 0; i < waypoints.Length; i++) {
@@ -306,7 +307,7 @@ namespace ModForResearchTUB
                 showVector(cameraPerspectives[i].Item1, cameraPerspectives[i].Item2);
 
                 // wait for player to drive to waypoint
-                while (!player.IsInRangeOf(waypoints[i], radius)) {
+                while (!player.IsInRangeOf(waypoints[i], radius + radiustolerance)) {
                     Wait(50);
                 }
             }
