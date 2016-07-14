@@ -565,6 +565,7 @@ namespace ModForResearchTUB
 
             World.RenderingCamera.Position = new Vector3(-149.37f, -1655.196f, 33.9734f);
             World.RenderingCamera.Rotation = new Vector3(-9.968f, 0, 120.2608f);
+            World.RenderingCamera.FieldOfView = 25;
 
             Wait(regularIntroSceneLength);
 
