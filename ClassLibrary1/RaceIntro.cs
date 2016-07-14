@@ -300,6 +300,8 @@ namespace ModForResearchTUB
                 radiustolerance = 2,
                 speed = 30;
 
+            World.RenderingCamera.PointAt(car);
+
             // have player drive through waypoints
             for (int i = 0; i < waypoints.Length; i++) {
                 player.Task.DriveTo(car, waypoints[i], radius, speed);
