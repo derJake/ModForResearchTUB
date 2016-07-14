@@ -689,6 +689,7 @@ namespace ModForResearchTUB
                 desert_speed = 15;
 
             World.RenderingCamera.FieldOfView = 50;
+            World.RenderingCamera.PointAt(desert_car);
 
             while (player.CurrentVehicle != desert_car)
             {
