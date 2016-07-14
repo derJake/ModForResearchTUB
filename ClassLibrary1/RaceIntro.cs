@@ -702,7 +702,7 @@ namespace ModForResearchTUB
             // have player drive through waypoints
             for (int i = 0; i < waypoints_desert.Length; i++)
             {
-                player.Task.DriveTo(car, waypoints_desert[i], desert_radius, desert_speed);
+                player.Task.DriveTo(desert_car, waypoints_desert[i], desert_radius, desert_speed);
                 World.RenderingCamera.Position = camera_perspectives_desert[i].Item1;
                 World.RenderingCamera.Rotation = camera_perspectives_desert[i].Item2;
 
