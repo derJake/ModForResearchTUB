@@ -535,7 +535,7 @@ namespace ModForResearchTUB
             VehicleHash police_car_model = VehicleHash.Police2;
 
             createCarAt(police_car_model, new Vector3(-162.3957f, -1666.599f, 32.63364f), 310);
-            createCarAt(police_car_model, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
+            Vehicle middle_police_car = createCarAt(police_car_model, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
             createCarAt(police_car_model, new Vector3(-143.4058f, -1645.468f, 32.21568f), 158.9681f);
 
             List<Ped> additional_police = new List<Ped>(6);
@@ -571,6 +571,8 @@ namespace ModForResearchTUB
             World.RenderingCamera.PointAt(player.CurrentVehicle);
 
             Wait(regularIntroSceneLength / 2);
+
+            World.RenderingCamera.PointAt(middle_police_car);
 
             Wait(regularIntroSceneLength / 2);
 
