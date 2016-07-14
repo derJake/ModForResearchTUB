@@ -613,14 +613,18 @@ namespace ModForResearchTUB
                 }
             }
 
-            Vector3 campos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
-            World.RenderingCamera.Position = campos;
+            Vector3 cam_pos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
+            World.RenderingCamera.Position = cam_pos;
             World.RenderingCamera.PointAt(player.CurrentVehicle);
             World.RenderingCamera.FieldOfView = 45;
 
             Wait(2000);
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
+
+            cam_pos = car.Position + car.ForwardVector * 5 + new Vector3(0, 0, 2);
+            World.RenderingCamera.Position = cam_pos;
+            World.RenderingCamera.PointAt(player.CurrentVehicle);
 
             Wait(3000);
 
