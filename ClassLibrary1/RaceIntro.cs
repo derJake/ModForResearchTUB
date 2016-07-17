@@ -754,7 +754,7 @@ namespace ModForResearchTUB
             };
 
             float urban_radius = 5,
-                urban_speed = 10;
+                urban_speed = 5;
 
             World.RenderingCamera.FieldOfView = 50;
 
