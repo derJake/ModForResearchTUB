@@ -264,7 +264,7 @@ namespace ModForResearchTUB
 
             // show getting into car
             showVector(
-                new Vector3(-408.2427f, 1175.584f, 326.1006f),
+                new Vector3(-392f, 1185.584f, 326.1006f),
                 new Vector3(-1.56f, 0, -105.8116f)
             );
             World.RenderingCamera.FieldOfView = 55;
@@ -275,6 +275,7 @@ namespace ModForResearchTUB
                 new Vector3(-403, 1174.109f, 325.23f),
                 274
             );
+            World.RenderingCamera.PointAt(car);
             car.CustomPrimaryColor = Color.White;
             car.CustomSecondaryColor = Color.Black;
 
@@ -294,9 +295,9 @@ namespace ModForResearchTUB
             };
 
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
-                new Tuple<Vector3, Vector3>(new Vector3(-353.1945f, 1167.151f, 326.6551f), new Vector3(-12, 0, -75.62788f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-191.8669f, 1308.004f, 304.5578f), new Vector3(0, 0, 128.4084f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-199.1635f, 1309.076f, 305.0473f), new Vector3(-6.111776f, 0, -145.4782f))
+                new Tuple<Vector3, Vector3>(new Vector3(-352, 1179, 326), new Vector3(-12, 0, -75.62788f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-324, 1200, 327), new Vector3(0, 0, 128.4084f)),
+                new Tuple<Vector3, Vector3>(new Vector3(-263, 1276, 314), new Vector3(-6.111776f, 0, -145.4782f))
             };
 
             float radius = 5,
