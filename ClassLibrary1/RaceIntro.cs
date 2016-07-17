@@ -722,6 +722,8 @@ namespace ModForResearchTUB
                 }
             }
 
+            player.Task.ClearAllImmediately();
+
             // show no blinker
 
             bmsg.ShowOldMessage(rm.GetString("intro18"), regularIntroSceneLength);
@@ -752,7 +754,7 @@ namespace ModForResearchTUB
             };
 
             float urban_radius = 5,
-                urban_speed = 15;
+                urban_speed = 10;
 
             World.RenderingCamera.FieldOfView = 50;
 
@@ -760,6 +762,7 @@ namespace ModForResearchTUB
             for (int i = 0; i < waypoints_urban.Length; i++)
             {
                 player.Task.DriveTo(car, waypoints_urban[i], urban_radius, urban_speed);
+                player.DrivingStyle = DrivingStyle.Normal;
                 World.RenderingCamera.Position = camera_perspectives_urban[i].Item1;
                 World.RenderingCamera.Rotation = camera_perspectives_urban[i].Item2;
 
@@ -770,8 +773,10 @@ namespace ModForResearchTUB
                 }
             }
 
+            player.Task.ClearAllImmediately();
+
             // show reversing
-            
+
             bmsg.ShowOldMessage(rm.GetString("intro19"), regularIntroSceneLength);
 
             Wait(3000);
