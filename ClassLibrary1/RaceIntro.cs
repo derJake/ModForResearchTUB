@@ -87,7 +87,12 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle())
                 Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
             World.DestroyAllCameras();
-            World.RenderingCamera = World.CreateCamera(new Vector3(-771.7985f, 5550.436f, 33.47573f), new Vector3(12.26449f, 0, 109.785f), 90f);
+
+            var player = Game.Player.Character;
+            Vector3 cam_pos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
+            World.RenderingCamera = World.CreateCamera(cam_pos, new Vector3(12.26449f, 0, 109.785f), 90f);
+            
+            World.RenderingCamera.PointAt(player.CurrentVehicle);
             //World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
 
             // play sounds
