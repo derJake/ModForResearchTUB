@@ -722,8 +722,6 @@ namespace ModForResearchTUB
                 }
             }
 
-            player.Task.ClearAllImmediately();
-
             // show no blinker
 
             bmsg.ShowOldMessage(rm.GetString("intro18"), regularIntroSceneLength);
@@ -780,8 +778,8 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro19"), regularIntroSceneLength);
 
             Wait(3000);
-
-            Function.Call(Hash.TASK_VEHICLE_PARK, car, -1007, 368.8f, 71.8f, 311, 2, 5);
+            UI.ShowSubtitle("reverse parking");
+            Function.Call(Hash.TASK_VEHICLE_PARK, car, -1007, 368.8f, 71.8f, 311, 2, 5, true);
 
             Wait(regularIntroSceneLength);
 
