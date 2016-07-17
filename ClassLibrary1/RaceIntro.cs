@@ -761,7 +761,7 @@ namespace ModForResearchTUB
             // have player drive through waypoints
             for (int i = 0; i < waypoints_urban.Length; i++)
             {
-                player.Task.DriveTo(car, waypoints_urban[i], urban_radius, urban_speed);
+                player.Task.DriveTo(desert_car, waypoints_urban[i], urban_radius, urban_speed);
                 player.DrivingStyle = DrivingStyle.Normal;
                 World.RenderingCamera.Position = camera_perspectives_urban[i].Item1;
                 World.RenderingCamera.Rotation = camera_perspectives_urban[i].Item2;
