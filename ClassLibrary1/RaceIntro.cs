@@ -638,7 +638,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.PointAt(player.CurrentVehicle);
             World.RenderingCamera.FieldOfView = 45;
 
-            Wait(2000);
+            Wait(5000);
 
             bmsg.ShowOldMessage(rm.GetString("intro15"), regularIntroSceneLength);
 
