@@ -508,6 +508,7 @@ namespace ModForResearchTUB
             police.Add(policeman_2);
             int copHash = Function.Call<int>(Hash.GET_HASH_KEY, "COP");
 
+            // make police aggressive and shoot at player
             foreach (Ped cop in police) {
                 cop.RelationshipGroup = copHash;
                 cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
@@ -555,6 +556,7 @@ namespace ModForResearchTUB
             additional_police.Add(policeman_7);
             additional_police.Add(policeman_8);
 
+            // make additional police aggressive and shoot at player
             foreach (Ped cop in additional_police)
             {
                 cop.RelationshipGroup = copHash;
