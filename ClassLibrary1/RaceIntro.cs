@@ -319,21 +319,13 @@ namespace ModForResearchTUB
                 }
             }
 
-            World.CurrentDayTime = new TimeSpan(10, 30, 0);
-
-            player.Position = new Vector3(1238.185f, -3218.374f, 5.8f);
-            var dummyCar = createCarAt(VehicleHash.Ninef, new Vector3(1237, -3217, 5.42f), 82.81f);
-            Game.Player.Character.Task.EnterVehicle(dummyCar, VehicleSeat.Driver, 10000, 1.0f, 1);
-            Game.Player.Character.SetIntoVehicle(dummyCar, VehicleSeat.Driver);
-
             // point camera
             showVector(
-                new Vector3(1175, -3221, 5.284f),
+                new Vector3(-199, 1308, 306),
                 new Vector3(14.55f, 2.2f, 77.322f)
             );
-            World.RenderingCamera.FieldOfView = 75;
 
-            Vector3 checkpoint_position = new Vector3(1166.71f, -3218.176f, 5.799773f);
+            Vector3 checkpoint_position = new Vector3(-170.332f, 1277.671f, 301.3396f);
 
             Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
@@ -351,9 +343,10 @@ namespace ModForResearchTUB
                 0 // number displayed in marker, if type is 42-44
                 );
 
+            World.RenderingCamera.PointAt(checkpoint_position);
+
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
-            dummyCar.Delete();
 
             //show regular camera
             World.DestroyAllCameras();
