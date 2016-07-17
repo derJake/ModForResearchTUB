@@ -654,6 +654,7 @@ namespace ModForResearchTUB
             Wait(regularIntroSceneLength);
 
             // player health scene
+            World.RenderingCamera.StopPointing();
             player.Position = new Vector3(-68.60161f, -1690.505f, 29.20564f);
             player.Heading = 195.2348f;
             World.RenderingCamera.Position = new Vector3(-69.5f, -1695, 29);
