@@ -56,6 +56,7 @@ namespace ModForResearchTUB
             Tuple<Vector3, Vector3?>[] checkpointlist =
             {
                 new Tuple<Vector3, Vector3?>(new Vector3(-754.8044f, -71.13426f, 41.37538f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-778.4377f, -84.18153f, 37.79903f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-811.071f, -74.18734f, 37.47362f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-862.2216f, -101.1226f, 37.57107f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-1094.416f, -221.9508f, 37.49302f), null),
