@@ -834,8 +834,8 @@ namespace ModForResearchTUB
             desert_car.Rotation = new Vector3(0,180,311);
 
             while (Math.Abs(desert_car.Rotation.Y) > 30) {
-                SendKeys.Send("{A}");
-                Wait(50);
+                SendKeys.SendWait("{A}");
+                Wait(300);
             }
 
             Wait(regularIntroSceneLength);
