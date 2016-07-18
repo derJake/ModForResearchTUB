@@ -801,8 +801,20 @@ namespace ModForResearchTUB
 
             Wait(3000);
             UI.ShowSubtitle("reverse parking");
+            Vector3 destination = new Vector3(-1007, 368.8f, 71.8f);
             //player.Task.ParkVehicle(car, new Vector3(-1007, 368.8f, 71.8f), 311);
-            Function.Call(Hash.TASK_VEHICLE_PARK, desert_car, -1007, 368.8f, 71.8f, 311, 2, 0, true);
+            //Function.Call(Hash.TASK_VEHICLE_PARK, desert_car, -1007, 368.8f, 71.8f, 311, 2, 0, true);
+
+            Function.Call(Hash.TASK_VEHICLE_GOTO_NAVMESH,
+                player,
+                desert_car,
+                destination.X,
+                destination.Y,
+                destination.Z,
+                10,
+                1 << 10, // <==== use the bar to separate flags. This is a bitwise OR
+                3
+            );
 
             //var endTime = Game.GameTime + 3000;
             //while (Game.GameTime < endTime) {
