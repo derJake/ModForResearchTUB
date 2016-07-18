@@ -313,7 +313,6 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            //player.Position = new Vector3(-759.9341f, 5537.745f, 33.48476f);
             // show driving a bit
 
             Vector3[] waypoints = {
