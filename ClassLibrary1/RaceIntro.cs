@@ -276,6 +276,8 @@ namespace ModForResearchTUB
                 charped.Delete();
             }
 
+            World.RenderingCamera.StopPointing();
+
             // show getting into car
             showVector(
                 new Vector3(-392f, 1185.584f, 326.1006f),
@@ -294,7 +296,7 @@ namespace ModForResearchTUB
 
             //Game.Player.Character.Task.EnterVehicle(car, VehicleSeat.Driver, 10000, 1.0f, 1);
             Game.Player.Character.SetIntoVehicle(car, VehicleSeat.Driver);
-            World.RenderingCamera.PointAt(car);
+            //World.RenderingCamera.PointAt(car);
             bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
@@ -355,7 +357,7 @@ namespace ModForResearchTUB
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
-
+            World.RenderingCamera.StopPointing();
             World.RenderingCamera.PointAt(checkpoint_position);
 
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
