@@ -345,7 +345,7 @@ namespace ModForResearchTUB
                     Wait(50);
                 }
             }
-
+            World.RenderingCamera.StopPointing();
             // point camera
             showVector(
                 new Vector3(-199, 1308, 306),
@@ -369,7 +369,6 @@ namespace ModForResearchTUB
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
-            World.RenderingCamera.StopPointing();
             World.RenderingCamera.PointAt(checkpoint_position);
 
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
