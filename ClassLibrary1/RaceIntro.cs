@@ -808,9 +808,9 @@ namespace ModForResearchTUB
             World.RenderingCamera.Position = new Vector3(-998, 370, 73);
             World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 90f);
 
-            car.Rotation = new Vector3(0,180,311);
+            desert_car.Rotation = new Vector3(0,180,311);
 
-            while (Math.Abs(car.Rotation.Y) > 30) {
+            while (Math.Abs(desert_car.Rotation.Y) > 30) {
                 SendKeys.Send("{Left}");
                 Wait(50);
             }
