@@ -110,6 +110,8 @@ namespace ModForResearchTUB
 
             raceVehicle.MarkAsNoLongerNeeded();
             raceVehicle.Delete();
+
+            barPool.Remove(textbar);
         }
 
         public Tuple<Vector3, Vector3?>[] getCheckpoints()
