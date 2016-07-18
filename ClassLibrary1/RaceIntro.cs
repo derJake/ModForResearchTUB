@@ -818,12 +818,6 @@ namespace ModForResearchTUB
                 3
             );
 
-            //var endTime = Game.GameTime + 3000;
-            //while (Game.GameTime < endTime) {
-            //    SendKeys.Send("{S}");
-            //    Wait(50);
-            //}
-
             Wait(regularIntroSceneLength);
 
             // show flipped car
