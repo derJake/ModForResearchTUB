@@ -261,6 +261,13 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera.FieldOfView = 75;
 
+            Vector3 potential_car = new Vector3(-383.5511f, 1215.216f, 325.2293f);
+
+            // check if there is a parked car
+            if (World.GetNearbyVehicles(potential_car, 3).Length == 0) {
+                createCarAt(VehicleHash.Adder, potential_car, 270.2285f);
+            }
+
             bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
