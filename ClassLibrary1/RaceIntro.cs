@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using WindowsInput;
 
 namespace ModForResearchTUB
 {
@@ -813,7 +814,7 @@ namespace ModForResearchTUB
                 destination.Y,
                 destination.Z,
                 10,
-                1 << 10, // <==== use the bar to separate flags. This is a bitwise OR
+                1 << 10 | 1 << 8 | 1 << 16 | 1 << 32, // <==== use the bar to separate flags. This is a bitwise OR
                 3
             );
 
@@ -835,7 +836,6 @@ namespace ModForResearchTUB
             desert_car.Rotation = new Vector3(0,180,311);
 
             while (Math.Abs(desert_car.Rotation.Y) > 30) {
-                SendKeys.SendWait("{A}");
                 Wait(300);
             }
 
