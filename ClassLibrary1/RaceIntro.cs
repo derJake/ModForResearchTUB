@@ -329,7 +329,7 @@ namespace ModForResearchTUB
                 new Vector3(14.55f, 2.2f, 77.322f)
             );
 
-            Vector3 checkpoint_position = new Vector3(-170.332f, 1277.671f, 301.3396f);
+            Vector3 checkpoint_position = new Vector3(-172.7784f, 1362.75f, 296.5129f);
 
             Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
