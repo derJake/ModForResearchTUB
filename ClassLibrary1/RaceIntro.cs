@@ -349,7 +349,7 @@ namespace ModForResearchTUB
             // point camera
             showVector(
                 new Vector3(-199, 1308, 306),
-                new Vector3(-7.977294f, 0, 104.6267f)
+                new Vector3(-7.977294f, 0, -35)
             );
 
             Vector3 checkpoint_position = new Vector3(-172.7784f, 1362.75f, 296.5129f);
