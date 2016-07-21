@@ -294,7 +294,7 @@ namespace ModForResearchTUB
             // show getting into car
             showVector(
                 new Vector3(-392f, 1185.584f, 326.1006f),
-                new Vector3(-1.56f, 0, -105.8116f)
+                new Vector3(-1.56f, 0, -205.8116f)
             );
             World.RenderingCamera.FieldOfView = 55;
             player.Heading = 155.9079f;
