@@ -670,9 +670,9 @@ namespace ModForResearchTUB
 
             Wait(3000);
 
-            player.CurrentVehicle.Explode();
+            //player.CurrentVehicle.Explode();
 
-            Wait(regularIntroSceneLength);
+            //Wait(regularIntroSceneLength);
 
             // player health scene
             World.RenderingCamera.StopPointing();
