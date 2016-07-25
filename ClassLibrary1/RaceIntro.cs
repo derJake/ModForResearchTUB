@@ -103,7 +103,7 @@ namespace ModForResearchTUB
 
             var player = Game.Player.Character;
             Vector3 cam_pos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
-            World.RenderingCamera = World.CreateCamera(cam_pos, new Vector3(12.26449f, 0, 109.785f), 90f);
+            World.RenderingCamera = World.CreateCamera(cam_pos, new Vector3(), 90f);
             
             World.RenderingCamera.PointAt(player.CurrentVehicle);
             //World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
@@ -454,6 +454,9 @@ namespace ModForResearchTUB
             bystanders.Add(createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f)));
             bystanders.Add(createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f)));
             bystanders.Add(createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f)));
+
+            Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
+            player.Task.ClearAll();
 
             Random rnd = new Random();
 
