@@ -451,8 +451,6 @@ namespace ModForResearchTUB
             var poor_ped = createPedAt(PedHash.Abigail, poor_ped_position);
             poor_ped.Heading = poor_ped_heading;
 
-            World.DrawMarker(MarkerType.VerticalCylinder, new Vector3(), new Vector3(), new Vector3(), new Vector3(1, 1, 3), Color.Aqua);
-
             //Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
             //player.Task.ClearAll();
 
