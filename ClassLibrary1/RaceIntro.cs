@@ -137,7 +137,7 @@ namespace ModForResearchTUB
             if (raceStartTime > 0 && Game.GameTime < raceEndTime)
             {
                 TimeSpan timeLeft = TimeSpan.FromMilliseconds(raceEndTime - Game.GameTime);
-                textbar.Text = timeLeft.Minutes.ToString() + ':' + timeLeft.Seconds.ToString();
+                textbar.Text = timeLeft.ToString(@"\:mm\:ss");
                 barPool.Draw();
             }
             else if (raceEndTime > 0 && Game.GameTime >= raceEndTime) {
