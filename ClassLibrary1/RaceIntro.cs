@@ -706,22 +706,13 @@ namespace ModForResearchTUB
             Vector3[] waypoints_desert = {
                 new Vector3(1844.38f, 3299.551f, 43.05259f),
                 new Vector3(1930.464f, 3313.151f, 44.89776f),
-                new Vector3(1986.8f, 3291.7f, 45.24f),
-                //new Vector3(1983.673f, 3286.297f, 45.25464f),
-                //new Vector3(2036.384f, 3313.048f, 45.57026f),
-                //new Vector3(2060.816f, 3394.411f, 44.94481f),
-                //new Vector3(2060.663f, 3431.443f, 43.85197f)
+                new Vector3(1986.8f, 3291.7f, 45.24f)
             };
 
             Tuple<Vector3, Vector3>[] camera_perspectives_desert = {
                 new Tuple<Vector3, Vector3>(new Vector3(1796.121f, 3309.683f, 42.8127f), new Vector3(0, 0, -111.41f)),
                 new Tuple<Vector3, Vector3>(new Vector3(1838.032f, 3299.171f, 43.84303f), new Vector3(0.6644f, 0, -89.36685f)),
-                new Tuple<Vector3, Vector3>(new Vector3(1925.446f, 3316.135f, 46.16137f), new Vector3(-3.91f, 0, -120.3298f)),
-                //new Tuple<Vector3, Vector3>(new Vector3(1990f, 3290f, 45.821f), new Vector3(2.29f, 0, 95)),
-                //new Tuple<Vector3, Vector3>(new Vector3(1978.3f, 3284.077f, 46.73193f), new Vector3(-6, 0, -67.33727f)),
-                //new Tuple<Vector3, Vector3>(new Vector3(2036.246f, 3307.218f, 46.85886f), new Vector3(-4.2114f, 0, -1.58f)),
-                //new Tuple<Vector3, Vector3>(new Vector3(2075, 3395, 45.5f), new Vector3(-2.55f, 0, 55)),
-                //new Tuple<Vector3, Vector3>(new Vector3(2063, 3438, 44.5f), new Vector3(0.9f, 0, 159))
+                new Tuple<Vector3, Vector3>(new Vector3(1925.446f, 3316.135f, 46.16137f), new Vector3(-3.91f, 0, -120.3298f))
             };
 
             float desert_radius = 5,
