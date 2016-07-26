@@ -425,13 +425,13 @@ namespace ModForResearchTUB
 
             // run over pedestrian
 
-            player.Position = new Vector3(-193.707f, -1673.128f, 33.59856f);
+            //player.Position = new Vector3(-193.707f, -1673.128f, 33.59856f);
 
             foreach (Vehicle vehicle in World.GetNearbyVehicles(player, 50)) {
                 vehicle.Delete();
             }
 
-            Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-192.55f, -1674.355f, 33.092825f), 281.5312f);
+            Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-65.35116f, -1671.119f, 28.92488f), 318.4243f);
 
             Game.Player.Character.SetIntoVehicle(aggro_car, VehicleSeat.Driver);
 
@@ -439,30 +439,22 @@ namespace ModForResearchTUB
 
             // point camera
             showVector(
-                new Vector3(-174, -1686f, 33.289f),
-                new Vector3(15.46f, 4.52f, -27.52f)
+                new Vector3(-56, -1675, 29f),
+                new Vector3(6, 0, -10)
             );
-            World.RenderingCamera.FieldOfView = 75;
+            World.RenderingCamera.FieldOfView = 55;
 
-            List<Ped> bystanders = new List<Ped>(3);
+            Vector3 poor_ped_position = new Vector3(-53.90526f, -1670.566f, 29.28915f);
+            float poor_ped_heading = 72.20514f;
+            Vector3 car_stop_position = new Vector3(-54f, -1669f, 28.84788f);
 
-            Vector3 poor_ped_position = new Vector3(-174.8878f, -1669.339f, 32.88508f);
-            Vector3 car_stop_position = new Vector3(-153.6f, -1659.196f, 32.47199f);
-            //World.DrawMarker(MarkerType.VerticalCylinder, new Vector3(-172.2675f, -1679.185f, 33.0725f), new Vector3(), new Vector3(), new Vector3(2,0,1), Color.AliceBlue);
+            var poor_ped = createPedAt(PedHash.Abigail, poor_ped_position);
+            poor_ped.Heading = poor_ped_heading;
 
-            createPedAt(PedHash.Abigail, poor_ped_position);
-            bystanders.Add(createPedAt(PedHash.Genstreet01AFO, new Vector3(-169.7445f, -1671.922f, 33.26389f)));
-            bystanders.Add(createPedAt(PedHash.Genstreet01AMY, new Vector3(-170.4802f, -1667.074f, 33.23298f)));
-            bystanders.Add(createPedAt(PedHash.Latino01AMY, new Vector3(-175.6795f, -1671.036f, 33.23465f)));
+            World.DrawMarker(MarkerType.VerticalCylinder, new Vector3(), new Vector3(), new Vector3(), new Vector3(1, 1, 3), Color.Aqua);
 
-            Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
-            player.Task.ClearAll();
-
-            Random rnd = new Random();
-
-            foreach (Ped ped in bystanders) {
-                ped.Heading = rnd.Next(0, 360);
-            }
+            //Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
+            //player.Task.ClearAll();
 
             // wait for player to have entered car, otherwise the task won't start
             while (!player.CurrentVehicle.Equals(aggro_car)) {
@@ -472,43 +464,23 @@ namespace ModForResearchTUB
             player.Task.DriveTo(aggro_car, car_stop_position, 5, 80, (int)DrivingStyle.Rushed);
 
             // wait for player to drive through ped's area
-            while (!aggro_car.IsInRangeOf(poor_ped_position, 10))
+            while (!aggro_car.IsInRangeOf(car_stop_position, 5))
             {
                 Wait(50);
             }
 
-            // point camera
-            showVector(
-                new Vector3(-165f, -1670f, 35f),
-                new Vector3(-26f, 0, 70f)
-            );
-            World.RenderingCamera.FieldOfView = 75;
+            var dict = "avoids";
+            Function.Call(Hash.REQUEST_ANIM_DICT, dict);
+            poor_ped.Task.PlayAnimation(dict, "frfront_toback", 2, 500000, false, 0);
 
             bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
-
-            // wait for player to drive through ped's area
-            while (!aggro_car.IsInRangeOf(car_stop_position, 10))
-            {
-                Wait(50);
-            }
 
             player.IsInvincible = true;
             Game.Player.CanControlCharacter = false;
             //Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, aggro_car, 2);
 
-            // point camera
-            showVector(
-                new Vector3(-153, -1658, 34),
-                new Vector3(-8.7f, 2.13f, 116)
-            );
-            World.RenderingCamera.FieldOfView = 45;
-
             player.CanBeDraggedOutOfVehicle = false;
             player.CanFlyThroughWindscreen = false;
-
-            foreach (Ped bystander in bystanders) {
-                bystander.Task.FightAgainst(player);
-            }
 
             Wait(5000);
 
@@ -820,6 +792,10 @@ namespace ModForResearchTUB
             World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 90f);
 
             desert_car.Rotation = new Vector3(0,180,311);
+
+            player.Task.DriveTo(desert_car, new Vector3(), 21, 25);
+
+            
 
             while (Math.Abs(desert_car.Rotation.Y) > 30) {
                 Wait(300);
