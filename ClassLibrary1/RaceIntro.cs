@@ -759,11 +759,9 @@ namespace ModForResearchTUB
 
             player.Task.DriveTo(desert_car, new Vector3(), 21, 25);
 
-            
-
-            while (Math.Abs(desert_car.Rotation.Y) > 30) {
-                Wait(300);
-            }
+            //while (Math.Abs(desert_car.Rotation.Y) > 30) {
+            //    Wait(300);
+            //}
 
             Wait(regularIntroSceneLength);
 
