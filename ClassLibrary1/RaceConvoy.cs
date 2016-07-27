@@ -159,8 +159,8 @@ namespace ModForResearchTUB
             player.Task.ClearAllImmediately(); // give back control to player
 
             // teleport player and turn him towards cars
-            Game.Player.Character.Position = car_selection;
-            Game.Player.Character.Heading = car_spawn_player_heading;
+            player.Position = car_selection;
+            player.Heading = car_spawn_player_heading;
 
             // load the vehicle model
             var vehicle1Model = new Model(vehicleHash);
@@ -194,10 +194,10 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, leader, 2);
 
             // while we're showing what's to come, we don't want the player hurt
-            Game.Player.Character.IsInvincible = true;
+            player.IsInvincible = true;
 
             // make player enter vehicle
-            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            player.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
@@ -220,7 +220,7 @@ namespace ModForResearchTUB
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
-            Game.Player.Character.IsInvincible = false;
+            player.IsInvincible = false;
 
         }
 
