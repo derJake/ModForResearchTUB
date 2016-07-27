@@ -120,6 +120,8 @@ namespace ModForResearchTUB
 
         ResourceManager rm;
 
+        BigMessageHandler bmsg;
+
         // Main Script
         public Main()
         {
@@ -150,6 +152,8 @@ namespace ModForResearchTUB
 
             //UI.ShowSubtitle("Press [F10] to start first race", 1250);
             UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
+
+            bmsg = BigMessageThread.MessageInstance;
         }
 
         private void setUpRaces() {
@@ -303,6 +307,10 @@ namespace ModForResearchTUB
                     currentRace < races.Length &&
                     races[currentRace] != null &&
                     races[currentRace].checkRaceStartCondition()) {
+                   
+                    // show countdown
+                    
+
                     UI.Notify(String.Format("Started race {0}/{1}", currentRace + 1, races.Length));
                     // start the race and set first marker + blip
                     race_started = true;
