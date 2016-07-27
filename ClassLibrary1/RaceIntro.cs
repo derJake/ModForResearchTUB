@@ -527,52 +527,13 @@ namespace ModForResearchTUB
 
             Function.Call(Hash.FLASH_WANTED_DISPLAY, true);
 
-            Wait(regularIntroSceneLength);
-
-            Game.Player.WantedLevel = 4;
-
-            VehicleHash police_car_model = VehicleHash.Police2;
-
-            ut.createCarAt(police_car_model, new Vector3(-162.3957f, -1666.599f, 32.63364f), 310);
-            Vehicle middle_police_car = ut.createCarAt(police_car_model, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
-            ut.createCarAt(police_car_model, new Vector3(-143.4058f, -1645.468f, 32.21568f), 158.9681f);
-
-            List<Ped> additional_police = new List<Ped>(6);
-            Ped policeman_3 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-142.0587f, -1645.612f, 32.63714f));
-            Ped policeman_4 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-144.813f, -1645.273f, 32.58187f));
-            Ped policeman_5 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-163.5185f, -1665.744f, 33.08033f));
-            Ped policeman_6 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-161.4851f, -1667.609f, 33.08136f));
-            Ped policeman_7 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-145.5382f, -1643.036f, 32.66076f));
-            Ped policeman_8 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-147.2389f, -1640.95f, 32.9472f));
-            additional_police.Add(policeman_3);
-            additional_police.Add(policeman_4);
-            additional_police.Add(policeman_5);
-            additional_police.Add(policeman_6);
-            additional_police.Add(policeman_7);
-            additional_police.Add(policeman_8);
-
-            // make additional police aggressive and shoot at player
-            foreach (Ped cop in additional_police)
-            {
-                cop.RelationshipGroup = copHash;
-                cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
-                cop.Task.ShootAt(player);
-            }
+            Wait(regularIntroSceneLength / 2);
 
             player.IsInvincible = true;
             Game.Player.CanControlCharacter = false;
 
             bmsg.ShowOldMessage(rm.GetString("intro13"), regularIntroSceneLength);
             Wait(3000);
-
-            World.RenderingCamera.Position = new Vector3(-149.37f, -1655.196f, 33.9734f);
-            World.RenderingCamera.Rotation = new Vector3(-9.968f, 0, 120.2608f);
-            World.RenderingCamera.FieldOfView = 25;
-            World.RenderingCamera.PointAt(player.CurrentVehicle);
-
-            Wait(regularIntroSceneLength / 2);
-
-            World.RenderingCamera.PointAt(middle_police_car);
 
             Wait(regularIntroSceneLength / 2);
 
