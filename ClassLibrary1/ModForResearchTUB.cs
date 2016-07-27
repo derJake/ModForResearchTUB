@@ -116,6 +116,8 @@ namespace ModForResearchTUB
 
         public CultureInfo CultureInfo { get; private set; }
 
+        private Utilities ut = new Utilities();
+
         ResourceManager rm;
 
         // Main Script
