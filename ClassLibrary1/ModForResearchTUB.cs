@@ -121,6 +121,7 @@ namespace ModForResearchTUB
         ResourceManager rm;
 
         BigMessageHandler bmsg;
+        int countdown_interval = 2000;
 
         // Main Script
         public Main()
@@ -309,7 +310,7 @@ namespace ModForResearchTUB
                     races[currentRace].checkRaceStartCondition()) {
                    
                     // show countdown
-                    
+                    countDown();
 
                     UI.Notify(String.Format("Started race {0}/{1}", currentRace + 1, races.Length));
                     // start the race and set first marker + blip
@@ -1389,6 +1390,15 @@ namespace ModForResearchTUB
                 }
             }
             catch (NotImplementedException) { }
+        }
+
+        protected void countDown()
+        {
+            for (int i = 3; i > 0; i--)
+            {
+                bmsg.ShowMpMessageLarge(i.ToString(), countdown_interval);
+                Wait(countdown_interval);
+            }
         }
         #endregion
     }
