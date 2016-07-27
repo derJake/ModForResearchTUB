@@ -642,6 +642,7 @@ namespace ModForResearchTUB
             {
                 //remove any ped,vehucle,Blip,prop,.... that you create
                 clearStuffUp();
+                ut.cleanUp();
             }
         }
 
