@@ -328,7 +328,6 @@ namespace ModForResearchTUB
             Game.Player.Character.SetIntoVehicle(car, VehicleSeat.Driver);
             //World.RenderingCamera.PointAt(car);
             bmsg.ShowOldMessage(rm.GetString("intro5"), regularIntroSceneLength);
-            Wait(regularIntroSceneLength);
 
             // show driving a bit
 
