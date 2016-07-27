@@ -42,6 +42,8 @@ namespace ModForResearchTUB
         private List<Ped> peds;
         public CultureInfo CultureInfo { get; private set; }
 
+        private bool intro_sequence_active = false;
+
         ResourceManager rm;
         Utilities ut;
 
