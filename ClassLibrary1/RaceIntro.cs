@@ -153,6 +153,9 @@ namespace ModForResearchTUB
                 Game.Player.Character.IsInvincible = true;
                 Game.Player.Character.Health = 100;
                 Game.Player.Character.Armor = 100;
+                Game.Player.CanControlCharacter = false;
+                Game.Player.Character.CanBeDraggedOutOfVehicle = false;
+                Game.Player.Character.CanFlyThroughWindscreen = false;
             }
         }
 
@@ -486,13 +489,6 @@ namespace ModForResearchTUB
             poor_ped.Task.PlayAnimation(dict, "frfront_toback", 2, 500000, false, 0);
 
             bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
-
-            player.IsInvincible = true;
-            Game.Player.CanControlCharacter = false;
-            //Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, aggro_car, 2);
-
-            player.CanBeDraggedOutOfVehicle = false;
-            player.CanFlyThroughWindscreen = false;
 
             Wait(5000);
 
