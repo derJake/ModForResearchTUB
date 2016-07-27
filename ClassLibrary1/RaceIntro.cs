@@ -170,7 +170,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
-            raceVehicle = createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
+            raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
             // make player enter vehicle
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver, 10000, 2.0f, 16);
@@ -280,7 +280,7 @@ namespace ModForResearchTUB
 
             // check if there is a parked car
             if (World.GetNearbyVehicles(potential_car, 3).Length == 0) {
-                createCarAt(VehicleHash.Adder, potential_car, 270.2285f);
+                ut.createCarAt(VehicleHash.Adder, potential_car, 270.2285f);
             }
 
             bmsg.ShowOldMessage(rm.GetString("intro4"), regularIntroSceneLength);
@@ -301,7 +301,7 @@ namespace ModForResearchTUB
             World.RenderingCamera.FieldOfView = 55;
             player.Heading = 155.9079f;
 
-            Vehicle car = createCarAt(
+            Vehicle car = ut.createCarAt(
                 VehicleHash.Adder,
                 new Vector3(-403, 1174.109f, 325.23f),
                 274
@@ -433,7 +433,7 @@ namespace ModForResearchTUB
                 vehicle.Delete();
             }
 
-            Vehicle aggro_car = createCarAt(VehicleHash.Buffalo, new Vector3(-65.35116f, -1671.119f, 28.92488f), 318.4243f);
+            Vehicle aggro_car = ut.createCarAt(VehicleHash.Buffalo, new Vector3(-65.35116f, -1671.119f, 28.92488f), 318.4243f);
 
             Game.Player.Character.SetIntoVehicle(aggro_car, VehicleSeat.Driver);
 
@@ -450,7 +450,7 @@ namespace ModForResearchTUB
             float poor_ped_heading = 72.20514f;
             Vector3 car_stop_position = new Vector3(-54f, -1669f, 28.84788f);
 
-            var poor_ped = createPedAt(PedHash.Abigail, poor_ped_position);
+            var poor_ped = ut.createPedAt(PedHash.Abigail, poor_ped_position);
             poor_ped.Heading = poor_ped_heading;
 
             //Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
@@ -493,10 +493,10 @@ namespace ModForResearchTUB
             int playerRGroup = player.RelationshipGroup;
 
             // spawn cop car and cops
-            createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
+            ut.createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
             List<Ped> police = new List<Ped>(2);
-            Ped policeman_1 = createPedAt(PedHash.Cop01SFY, new Vector3(-145.7362f, -1646.869f, 32.61502f));
-            Ped policeman_2 = createPedAt(PedHash.Cop01SMY, new Vector3(-148.2104f, -1644.999f, 32.72406f));
+            Ped policeman_1 = ut.createPedAt(PedHash.Cop01SFY, new Vector3(-145.7362f, -1646.869f, 32.61502f));
+            Ped policeman_2 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-148.2104f, -1644.999f, 32.72406f));
             policeman_1.Heading = 143.2996f;
             policeman_2.Heading = 136.2911f;
             police.Add(policeman_1);
@@ -533,17 +533,17 @@ namespace ModForResearchTUB
 
             VehicleHash police_car_model = VehicleHash.Police2;
 
-            createCarAt(police_car_model, new Vector3(-162.3957f, -1666.599f, 32.63364f), 310);
-            Vehicle middle_police_car = createCarAt(police_car_model, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
-            createCarAt(police_car_model, new Vector3(-143.4058f, -1645.468f, 32.21568f), 158.9681f);
+            ut.createCarAt(police_car_model, new Vector3(-162.3957f, -1666.599f, 32.63364f), 310);
+            Vehicle middle_police_car = ut.createCarAt(police_car_model, new Vector3(-146.7052f, -1641.89f, 32.41359f), 120);
+            ut.createCarAt(police_car_model, new Vector3(-143.4058f, -1645.468f, 32.21568f), 158.9681f);
 
             List<Ped> additional_police = new List<Ped>(6);
-            Ped policeman_3 = createPedAt(PedHash.Cop01SMY, new Vector3(-142.0587f, -1645.612f, 32.63714f));
-            Ped policeman_4 = createPedAt(PedHash.Cop01SMY, new Vector3(-144.813f, -1645.273f, 32.58187f));
-            Ped policeman_5 = createPedAt(PedHash.Cop01SMY, new Vector3(-163.5185f, -1665.744f, 33.08033f));
-            Ped policeman_6 = createPedAt(PedHash.Cop01SMY, new Vector3(-161.4851f, -1667.609f, 33.08136f));
-            Ped policeman_7 = createPedAt(PedHash.Cop01SMY, new Vector3(-145.5382f, -1643.036f, 32.66076f));
-            Ped policeman_8 = createPedAt(PedHash.Cop01SMY, new Vector3(-147.2389f, -1640.95f, 32.9472f));
+            Ped policeman_3 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-142.0587f, -1645.612f, 32.63714f));
+            Ped policeman_4 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-144.813f, -1645.273f, 32.58187f));
+            Ped policeman_5 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-163.5185f, -1665.744f, 33.08033f));
+            Ped policeman_6 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-161.4851f, -1667.609f, 33.08136f));
+            Ped policeman_7 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-145.5382f, -1643.036f, 32.66076f));
+            Ped policeman_8 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-147.2389f, -1640.95f, 32.9472f));
             additional_police.Add(policeman_3);
             additional_police.Add(policeman_4);
             additional_police.Add(policeman_5);
@@ -590,12 +590,12 @@ namespace ModForResearchTUB
             }
 
             player.Position = new Vector3(-95.64503f, -1564.393f, 32.65067f);
-            Vehicle crash_car = createCarAt(VehicleHash.Premier, new Vector3(-73.7f, -1585.2f, 29.82f), 232f);
+            Vehicle crash_car = ut.createCarAt(VehicleHash.Premier, new Vector3(-73.7f, -1585.2f, 29.82f), 232f);
             // make player enter vehicle
             Game.Player.Character.Task.EnterVehicle(crash_car, VehicleSeat.Driver, 10000, 2.0f, 16);
             Game.Player.Character.SetIntoVehicle(crash_car, VehicleSeat.Driver);
 
-            Vehicle car_rearended = createCarAt(VehicleHash.Tailgater, new Vector3(-65.16207f, -1592.397f, 29.12429f), 234.1621f);
+            Vehicle car_rearended = ut.createCarAt(VehicleHash.Tailgater, new Vector3(-65.16207f, -1592.397f, 29.12429f), 234.1621f);
 
             Vector3 target_pos = new Vector3(-52.3836f, -1603.602f, 28.6389f);
 
@@ -666,7 +666,7 @@ namespace ModForResearchTUB
             // driving sequence 2
             player.Position = new Vector3(1792, 3325, 41.5f);
             World.CurrentDayTime = new TimeSpan(8, 5, 0);
-            Vehicle desert_car = createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
+            Vehicle desert_car = ut.createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
 
@@ -840,8 +840,8 @@ namespace ModForResearchTUB
         private List<Ped> spawnCharacters() {
 
             List<Ped> characters = new List<Ped>(2);
-            Ped franklin = createPedAt(PedHash.Franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
-            Ped trevor = createPedAt(PedHash.Trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
+            Ped franklin = ut.createPedAt(PedHash.Franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
+            Ped trevor = ut.createPedAt(PedHash.Trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
             franklin.Heading = 7.05f;
             trevor.Heading = 7.05f;
             characters.Add(franklin);
