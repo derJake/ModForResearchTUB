@@ -14,6 +14,11 @@ namespace ModForResearchTUB
         private List<Vehicle> cars;
         private List<Ped> peds;
 
+        public Utilities() {
+            cars = new List<Vehicle>();
+            peds = new List<Ped>();
+        }
+
         public Ped createPedAt(PedHash hash, Vector3 pos)
         {
             var pedmodel = new Model(hash);
