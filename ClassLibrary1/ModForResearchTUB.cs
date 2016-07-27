@@ -154,7 +154,7 @@ namespace ModForResearchTUB
 
         private void setUpRaces() {
             races = new RaceInterface[6];
-            races[0] = new RaceIntro();
+            races[0] = new RaceIntro(rm, ut);
             races[1] = new RaceConvoy();
             races[2] = new RaceSuburban();
             races[3] = new RaceDesert();
