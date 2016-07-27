@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ModForResearchTUB
 {
-    static class Intro
+    static class Utilities
     {
         public static void showScene(Vector3 position, Vector3? rotation) {
         }
