@@ -850,54 +850,6 @@ namespace ModForResearchTUB
             return characters;
         }
 
-        private Ped createPedAt(PedHash hash, Vector3 pos) {
-            var pedmodel = new Model(hash);
-            pedmodel.Request();
-
-            if (pedmodel.IsInCdImage &&
-                pedmodel.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!pedmodel.IsLoaded)
-                    Script.Wait(100);
-
-                // create the actual driver ped
-                Ped ped = World.CreatePed(pedmodel, pos);
-                peds.Add(ped);
-                return ped;
-                
-            }
-
-            return null;
-        }
-
-        private Vehicle createCarAt(VehicleHash carmodelhash, Vector3 coordinates, float heading) {
-            Vehicle vehicle;
-
-            // load the vehicle model
-            var vehicle1Model = new Model(carmodelhash);
-            vehicle1Model.Request(500);
-
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded)
-                    Script.Wait(100);
-
-                // create the vehicle
-                vehicle = World.CreateVehicle(carmodelhash, coordinates, heading);
-                cars.Add(vehicle);
-                return vehicle;
-            }
-
-            vehicle1Model.MarkAsNoLongerNeeded();
-
-            throw new Exception("vehicle model could not be loaded");
-        }
-
         private void cleanUpIntro()
         {
             foreach (Ped ped in peds)
