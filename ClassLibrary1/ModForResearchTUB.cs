@@ -1009,6 +1009,7 @@ namespace ModForResearchTUB
         }
 
         protected void clearStuffUp() {
+            ut.cleanUp();
             Ped player = Game.Player.Character;
             Vector3 pos = player.Position;
             player.Task.ClearAllImmediately(); // give back control to player
