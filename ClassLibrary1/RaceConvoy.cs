@@ -201,12 +201,12 @@ namespace ModForResearchTUB
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
-                Game.Player.Character.Position + new Vector3(0,5,0), // position
-                new Vector3(9f, 0f, -82.57458f), // rotation
-                90f
+                new Vector3(1386, 6509, 20f),
+                new Vector3(2, 0, 90f), // rotation
+                25f// field of view
             );
 
-            cam.PointAt(raceVehicle);
+            //cam.PointAt(raceVehicle);
 
             // TO DO: move camera around
 
