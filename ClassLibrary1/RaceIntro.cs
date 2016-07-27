@@ -629,9 +629,6 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_PED_TO_RAGDOLL, player, regularIntroSceneLength - 2000);
             Wait(regularIntroSceneLength);
 
-            Game.Player.CanControlCharacter = false;
-            player.IsInvincible = true;
-
             // driving sequence 2
             player.Position = new Vector3(1792, 3325, 41.5f);
             World.CurrentDayTime = new TimeSpan(8, 5, 0);
