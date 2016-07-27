@@ -33,6 +33,8 @@ namespace ModForResearchTUB
         private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
         private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
+        private int regularIntroSceneLength = 10000;
+
         private TimerBarPool barPool = new TimerBarPool();
         private BarTimerBar distanceBar;
 
@@ -220,6 +222,24 @@ namespace ModForResearchTUB
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
+
+            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, true);
+            raceVehicle.IsInvincible = true;
+            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
+            //player.Task.DriveTo(raceVehicle, checkpoints[checkpoints.Length - 1].Item1, 5, 20, Convert.ToInt32("110111111", 2));
+            player.Task.VehicleChase(leader_driver);
+
+            Wait(regularIntroSceneLength);
+
+            // put vehicles back to start
+            player.Task.ClearAll();
+            leader_driver.Task.ClearAll();
+            raceVehicle.Position = car1_spawnpoint;
+            raceVehicle.Heading = car_spawn_heading;
+            raceVehicle.IsInvincible = false;
+            leader.Position = leader_spawnpoint;
+            leader.Heading = leader_heading;
+
             player.IsInvincible = false;
 
         }
