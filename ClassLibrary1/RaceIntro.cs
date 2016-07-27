@@ -43,8 +43,9 @@ namespace ModForResearchTUB
         public CultureInfo CultureInfo { get; private set; }
 
         ResourceManager rm;
+        Utilities ut;
 
-        public RaceIntro() {
+        public RaceIntro(ResourceManager resman, Utilities utils) {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
                 car1_spawnpoint.X,
@@ -77,7 +78,8 @@ namespace ModForResearchTUB
             cars = new List<Vehicle>();
 
             CultureInfo = CultureInfo.CurrentCulture;
-            rm = new ResourceManager(typeof(Resources));
+            rm = resman;
+            ut = utils;
         }
 
         public void finishRace()
@@ -459,10 +461,10 @@ namespace ModForResearchTUB
                 Wait(100);
             }
 
-            player.Task.DriveTo(aggro_car, car_stop_position, 5, 80, (int)DrivingStyle.Rushed);
+            player.Task.DriveTo(aggro_car, poor_ped_position, 1, 80, (int)DrivingStyle.Rushed);
 
             // wait for player to drive through ped's area
-            while (!aggro_car.IsInRangeOf(car_stop_position, 5))
+            while (!aggro_car.IsInRangeOf(poor_ped_position, 3))
             {
                 Wait(50);
             }
