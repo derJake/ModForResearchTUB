@@ -147,6 +147,13 @@ namespace ModForResearchTUB
             else if (raceEndTime > 0 && Game.GameTime >= raceEndTime) {
                 Game.Player.Character.CurrentVehicle.Position = checkpoints[checkpoints.Length - 1].Item1;
             }
+
+            // setting this once doesn't seem to alway do the trick
+            if (intro_sequence_active) {
+                Game.Player.Character.IsInvincible = true;
+                Game.Player.Character.Health = 100;
+                Game.Player.Character.Armor = 100;
+            }
         }
 
         public void initRace()
