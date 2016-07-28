@@ -466,6 +466,7 @@ namespace ModForResearchTUB
 
             var poor_ped = ut.createPedAt(PedHash.Abigail, poor_ped_position);
             poor_ped.Heading = poor_ped_heading;
+            poor_ped.CanRagdoll = false;
 
             //Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
             //player.Task.ClearAll();
