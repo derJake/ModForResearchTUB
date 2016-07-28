@@ -501,12 +501,12 @@ namespace ModForResearchTUB
             int playerRGroup = player.RelationshipGroup;
 
             // spawn cop car and cops
-            ut.createCarAt(VehicleHash.Police, new Vector3(-147.3967f, -1646.757f, 32.05892f), 143.9459f);
+            ut.createCarAt(VehicleHash.Police, new Vector3(-48.13033f, -1672.859f, 28.9749f), 61.59479f);
             List<Ped> police = new List<Ped>(2);
-            Ped policeman_1 = ut.createPedAt(PedHash.Cop01SFY, new Vector3(-145.7362f, -1646.869f, 32.61502f));
-            Ped policeman_2 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-148.2104f, -1644.999f, 32.72406f));
-            policeman_1.Heading = 143.2996f;
-            policeman_2.Heading = 136.2911f;
+            Ped policeman_1 = ut.createPedAt(PedHash.Cop01SFY, new Vector3(-49.15336f, -1674.606f, 29.335f));
+            Ped policeman_2 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-47.04166f, -1671.634f, 29.33792f));
+            policeman_1.Heading = 44.67088f;
+            policeman_2.Heading = 50.33441f;
             police.Add(policeman_1);
             police.Add(policeman_2);
             int copHash = Function.Call<int>(Hash.GET_HASH_KEY, "COP");
