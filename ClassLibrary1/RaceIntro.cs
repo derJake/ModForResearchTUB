@@ -697,9 +697,7 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3>(new Vector3(-1085f, 444f, 75.63884f), new Vector3(-2.2232f, 0, -85f)),
                 new Tuple<Vector3, Vector3>(new Vector3(-1078.817f, 437.9136f, 75.37682f), new Vector3(-18.2789f, 0, -178.5177f)),
                 new Tuple<Vector3, Vector3>(new Vector3(-1076, 403, 68.75f), new Vector3(2f, 0, -18.6f)),
-                new Tuple<Vector3, Vector3>(new Vector3(-1062.851f, 394.5331f, 69.79096f), new Vector3(-1.448f, 0, -99.76324f)),
-                //new Tuple<Vector3, Vector3>(new Vector3(-1027, 393, 71), new Vector3(-2f, 0, 75)),
-                //new Tuple<Vector3, Vector3>(new Vector3(-985, 366, 73), new Vector3(-6.3f, 0, 76.7f))
+                new Tuple<Vector3, Vector3>(new Vector3(-1062.851f, 394.5331f, 69.79096f), new Vector3(-1.448f, 0, -99.76324f))
             };
 
             float urban_radius = 5,
