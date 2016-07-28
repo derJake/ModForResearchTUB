@@ -797,6 +797,8 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
+            ut.cleanUp();
+
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
