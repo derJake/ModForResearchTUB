@@ -527,8 +527,8 @@ namespace ModForResearchTUB
             Wait(regularIntroSceneLength);
 
             showVector(
-                new Vector3(-163, -1660, 37),
-                new Vector3(-36.11f, -2.14f, -90f)
+                new Vector3(-63, -1653, 30),
+                new Vector3(-0.8f, 0, -149)
             );
 
             bmsg.ShowOldMessage(rm.GetString("intro12"), regularIntroSceneLength);
