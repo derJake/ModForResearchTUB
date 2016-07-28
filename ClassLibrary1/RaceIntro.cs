@@ -747,23 +747,6 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength);
 
-            // show flipped car
-
-            bmsg.ShowOldMessage(rm.GetString("intro20"), regularIntroSceneLength);
-
-            World.RenderingCamera.Position = new Vector3(-998, 370, 73);
-            World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 90f);
-
-            desert_car.Rotation = new Vector3(0,180,311);
-
-            player.Task.DriveTo(desert_car, new Vector3(), 21, 25);
-
-            //while (Math.Abs(desert_car.Rotation.Y) > 30) {
-            //    Wait(300);
-            //}
-
-            Wait(regularIntroSceneLength);
-
             // give control back and use regular camera
             World.RenderingCamera = null;
             World.DestroyAllCameras();
