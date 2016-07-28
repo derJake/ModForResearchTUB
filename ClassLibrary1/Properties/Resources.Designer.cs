@@ -178,6 +178,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You now have 10min. to get familiar with the game. ähnelt.
+        /// </summary>
+        internal static string intro21 {
+            get {
+                return ResourceManager.GetString("intro21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can drive wherever you want. ähnelt.
+        /// </summary>
+        internal static string intro22 {
+            get {
+                return ResourceManager.GetString("intro22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To start immediately, drive through the checkpoints. ähnelt.
+        /// </summary>
+        internal static string intro23 {
+            get {
+                return ResourceManager.GetString("intro23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You control one of these three player characters. ähnelt.
         /// </summary>
         internal static string intro3 {

@@ -156,6 +156,15 @@
   <data name="intro20" xml:space="preserve">
     <value>Hold the steering wheel turned to flip the car back over.</value>
   </data>
+  <data name="intro21" xml:space="preserve">
+    <value>You now have 10min. to get familiar with the game.</value>
+  </data>
+  <data name="intro22" xml:space="preserve">
+    <value>You can drive wherever you want.</value>
+  </data>
+  <data name="intro23" xml:space="preserve">
+    <value>To start immediately, drive through the checkpoints.</value>
+  </data>
   <data name="intro3" xml:space="preserve">
     <value>You control one of these three player characters.</value>
   </data>
