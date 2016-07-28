@@ -175,6 +175,9 @@ namespace ModForResearchTUB
             // set weather
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "EXTRASUNNY");
 
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(19, 5, 0);
+
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
@@ -208,9 +211,6 @@ namespace ModForResearchTUB
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
-
-            // set time of day
-            World.CurrentDayTime = new TimeSpan(19, 15, 0);
         }
 
         public void startRace()
