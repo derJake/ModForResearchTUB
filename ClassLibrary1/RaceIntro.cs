@@ -140,6 +140,8 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
+            new UIResText(String.Format("handleOnTick"), new Point(700, 75), 0.3f, Color.DarkBlue).Draw();
+
             if (raceStartTime > 0 && Game.GameTime < raceEndTime)
             {
                 TimeSpan timeLeft = TimeSpan.FromMilliseconds(raceEndTime - Game.GameTime);
@@ -499,20 +501,16 @@ namespace ModForResearchTUB
             //Function.Call(Hash._0xE8A25867FBA3B05E, 0, 9, 1);
             //player.Task.ClearAll();
 
-            // wait for player to have entered car, otherwise the task won't start
-            while (!player.CurrentVehicle.Equals(aggro_car)) {
-                Wait(100);
-            }
-
-            player.Task.DriveTo(aggro_car, poor_ped_position, 3, 80, (int)DrivingStyle.Rushed);
+            player.Task.DriveTo(aggro_car, poor_ped_position, 2, 15, (int)DrivingStyle.Rushed);
 
             // wait for player to drive through ped's area
-            while (!aggro_car.IsInRangeOf(poor_ped_position, 3))
-            {
-                Wait(50);
-            }
+            //while (!aggro_car.IsInRangeOf(poor_ped_position, 3.5f))
+            //{
+            //    Wait(50);
+            //}
+            Wait(3000);
 
-            player.Task.ClearAll();
+            aggro_car.HandbrakeOn = true;
 
             // have ped do an avoiding animation towards car
             var dict = "avoids";
@@ -548,10 +546,12 @@ namespace ModForResearchTUB
             foreach (Ped cop in police) {
                 cop.RelationshipGroup = copHash;
                 cop.Weapons.Give(WeaponHash.CombatPistol, 2000, true, true);
-                cop.Task.ShootAt(player);
+                cop.Task.AimAt(player.Position, regularIntroSceneLength);
             }
 
             World.SetRelationshipBetweenGroups(Relationship.Hate, playerRGroup, copHash);
+
+            player.IsInvincible = true;
 
             World.RenderingCamera.Position = new Vector3(-42, -1679, 30);
             World.RenderingCamera.Rotation = new Vector3(-0.8f, 0, 47);
