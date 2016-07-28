@@ -196,9 +196,13 @@ namespace ModForResearchTUB
             Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
             var bmsg = BigMessageThread.MessageInstance;
 
+            showVector(
+                new Vector3(-750, -83, 42.5f),
+                new Vector3(-5f, 0, -19)
+            );
             World.RenderingCamera.FieldOfView = 75;
-            World.RenderingCamera.Position = new Vector3(-750, -83, 42.5f);
-            World.RenderingCamera.Rotation = new Vector3(-5f, 0, -19);
+            //World.RenderingCamera.Position = new Vector3(-750, -83, 42.5f);
+            //World.RenderingCamera.Rotation = new Vector3(-5f, 0, -19);
 
             bmsg.ShowOldMessage(rm.GetString("intro21"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
@@ -655,6 +659,9 @@ namespace ModForResearchTUB
             World.RenderingCamera.Rotation = new Vector3(-1, 0, -18);
             bmsg.ShowOldMessage(rm.GetString("intro16"), regularIntroSceneLength);
             Wait(2000);
+
+            player.IsInvincible = true;
+
             Function.Call(Hash.SET_PED_TO_RAGDOLL, player, regularIntroSceneLength - 2000);
             Wait(regularIntroSceneLength);
 
