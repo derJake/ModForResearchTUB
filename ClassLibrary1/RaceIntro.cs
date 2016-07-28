@@ -265,6 +265,8 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
 
             Ped player = Game.Player.Character;
+            player.Health += 100;
+            player.Armor += 100;
             player.Task.ClearAllImmediately(); // give back control to player
 
             // while we're showing what's to come, we don't want the player hurt
