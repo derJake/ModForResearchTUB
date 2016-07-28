@@ -748,7 +748,7 @@ namespace ModForResearchTUB
                 destination.Y,
                 destination.Z,
                 10,
-                1 << 10 | 1 << 8 | 1 << 16 | 1 << 32, // <==== use the bar to separate flags. This is a bitwise OR
+                1 << 11 | 1 << 10 | 1 << 8 | 1 << 16 | 1 << 32, // <==== use the bar to separate flags. This is a bitwise OR
                 3
             );
 
