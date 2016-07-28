@@ -105,7 +105,7 @@ namespace ModForResearchTUB
             return checkpoints;
         }
 
-        public void handleOnTick()
+        public void handleOnTick(object sender, EventArgs e)
         {
             if (World.GetDistance(raceVehicle.Position, leader.Position) > 150f) {
                 UI.ShowSubtitle("~r~Don't lose the other truck!", 1250);

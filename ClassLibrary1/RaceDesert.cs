@@ -105,7 +105,7 @@ namespace ModForResearchTUB
             return checkpoints;
         }
 
-        public void handleOnTick()
+        public void handleOnTick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -119,7 +119,7 @@ namespace ModForResearchTUB
             return checkpoints;
         }
 
-        public void handleOnTick()
+        public void handleOnTick(object sender, EventArgs e)
         {
             if (!flashWantedStopped && Game.GameTime > raceStartTime + 10000) {
                 Function.Call(Hash.FLASH_WANTED_DISPLAY, false);

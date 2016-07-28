@@ -106,7 +106,7 @@ namespace ModForResearchTUB
             return checkpoints;
         }
 
-        public void handleOnTick()
+        public void handleOnTick(object sender, EventArgs e)
         {
             if (!obstacle_started &&
                 Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f)) {

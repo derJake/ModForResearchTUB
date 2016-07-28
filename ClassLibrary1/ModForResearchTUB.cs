@@ -213,7 +213,7 @@ namespace ModForResearchTUB
                     {
                         try
                         {
-                            races[currentRace].handleOnTick();
+                            races[currentRace].handleOnTick(sender, e);
                         }
                         catch (NotImplementedException)
                         {
