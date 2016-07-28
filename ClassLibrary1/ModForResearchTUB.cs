@@ -12,6 +12,7 @@ using System.Linq;
 using System.Globalization;
 using ModForResearchTUB.Properties;
 using System.Resources;
+using System.Diagnostics;
 #endregion
 
 namespace ModForResearchTUB
@@ -1394,9 +1395,12 @@ namespace ModForResearchTUB
 
         protected void countDown()
         {
+            Debug.Assert(bmsg != null);
+            Debug.Assert(countdown_interval > 0);
             for (int i = 3; i > 0; i--)
             {
-                bmsg.ShowMpMessageLarge(i.ToString(), countdown_interval);
+                Debug.Assert(i > 0);
+                bmsg.ShowMpMessageLarge(String.Format("{0}", i), countdown_interval);
                 Wait(countdown_interval);
             }
         }
