@@ -79,6 +79,8 @@ namespace ModForResearchTUB
             peds = new List<Ped>();
             cars = new List<Vehicle>();
 
+            Tick += handleOnTick;
+
             CultureInfo = CultureInfo.CurrentCulture;
             rm = resman;
             ut = utils;
@@ -136,7 +138,7 @@ namespace ModForResearchTUB
             return checkpoints;
         }
 
-        public void handleOnTick()
+        public void handleOnTick(object sender, EventArgs e)
         {
             if (raceStartTime > 0 && Game.GameTime < raceEndTime)
             {
@@ -150,6 +152,7 @@ namespace ModForResearchTUB
 
             // setting this once doesn't seem to alway do the trick
             if (intro_sequence_active) {
+                new UIResText(String.Format("intro_sequence_active"), new Point(1700, 75), 0.3f, Color.White).Draw();
                 Game.Player.Character.IsInvincible = true;
                 Game.Player.Character.Health = 100;
                 Game.Player.Character.Armor = 100;
@@ -211,6 +214,8 @@ namespace ModForResearchTUB
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
+
+            Tick -= handleOnTick;
         }
 
         public void startRace()
@@ -505,10 +510,14 @@ namespace ModForResearchTUB
                 Wait(50);
             }
 
+            player.Task.ClearAll();
+
             // have ped do an avoiding animation towards car
             var dict = "avoids";
             Function.Call(Hash.REQUEST_ANIM_DICT, dict);
             poor_ped.Task.PlayAnimation(dict, "frfront_toback", 2, 500000, false, 0);
+            Wait(3000);
+            poor_ped.Task.ClearAllImmediately();
 
             bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
 
