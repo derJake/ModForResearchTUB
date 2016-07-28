@@ -1394,11 +1394,9 @@ namespace ModForResearchTUB
 
         protected void countDown()
         {
-            Debug.Assert(bmsg != null);
-            Debug.Assert(countdown_interval > 0);
+            bmsg = BigMessageThread.MessageInstance;
             for (int i = 3; i > 0; i--)
             {
-                Debug.Assert(i > 0);
                 bmsg.ShowMpMessageLarge(String.Format("{0}", i), countdown_interval);
                 Wait(countdown_interval);
             }
