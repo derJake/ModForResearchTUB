@@ -228,6 +228,7 @@ namespace ModForResearchTUB
             leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
             //player.Task.DriveTo(raceVehicle, checkpoints[checkpoints.Length - 1].Item1, 5, 20, Convert.ToInt32("110111111", 2));
             player.Task.VehicleChase(leader_driver);
+            player.DrivingStyle = DrivingStyle.AvoidTraffic;
 
             Wait(regularIntroSceneLength);
 
