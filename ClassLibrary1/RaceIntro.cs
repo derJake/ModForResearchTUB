@@ -484,6 +484,7 @@ namespace ModForResearchTUB
                 Wait(50);
             }
 
+            // have ped do an avoiding animation towards car
             var dict = "avoids";
             Function.Call(Hash.REQUEST_ANIM_DICT, dict);
             poor_ped.Task.PlayAnimation(dict, "frfront_toback", 2, 500000, false, 0);
