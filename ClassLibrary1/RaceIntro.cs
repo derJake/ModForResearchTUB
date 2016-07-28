@@ -569,6 +569,7 @@ namespace ModForResearchTUB
                 new Vector3(-63, -1653, 30),
                 new Vector3(-0.8f, 0, -149)
             );
+            World.RenderingCamera.FieldOfView = 25;
 
             bmsg.ShowOldMessage(rm.GetString("intro12"), regularIntroSceneLength);
 
