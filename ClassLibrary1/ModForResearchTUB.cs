@@ -133,6 +133,7 @@ namespace ModForResearchTUB
 
             CultureInfo = CultureInfo.CurrentCulture;
             rm = new ResourceManager(typeof(Resources));
+            bmsg = BigMessageThread.MessageInstance;
 
             // registers the races / courses / whatever you want to call it
             setUpRaces();
@@ -154,8 +155,6 @@ namespace ModForResearchTUB
 
             //UI.ShowSubtitle("Press [F10] to start first race", 1250);
             UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
-
-            bmsg = BigMessageThread.MessageInstance;
         }
 
         private void setUpRaces() {
