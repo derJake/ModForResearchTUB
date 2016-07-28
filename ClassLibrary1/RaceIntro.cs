@@ -537,9 +537,6 @@ namespace ModForResearchTUB
 
             Wait(regularIntroSceneLength / 2);
 
-            player.IsInvincible = true;
-            Game.Player.CanControlCharacter = false;
-
             bmsg.ShowOldMessage(rm.GetString("intro13"), regularIntroSceneLength);
             Wait(3000);
 
