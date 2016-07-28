@@ -615,6 +615,7 @@ namespace ModForResearchTUB
 
             player.CanBeDraggedOutOfVehicle = false;
             player.CanFlyThroughWindscreen = false;
+            player.IsInvincible = true;
 
             Wait(4000);
             crash_car.HandbrakeOn = false;
