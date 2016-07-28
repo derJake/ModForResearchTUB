@@ -240,6 +240,8 @@ namespace ModForResearchTUB
             leader.Position = leader_spawnpoint;
             leader.Heading = leader_heading;
 
+            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, false);
+
             player.IsInvincible = false;
 
         }
