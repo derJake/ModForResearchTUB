@@ -432,7 +432,9 @@ namespace ModForResearchTUB
             Function.Call(Hash.PULSE_BLIP, blip);
             Wait(1000);
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
-            Wait(5000);
+            Wait(1000);
+            Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
+            Wait(4000);
             blip.Remove();
 
             // show traffic light
