@@ -805,7 +805,7 @@ namespace ModForResearchTUB
             intro_sequence_active = false;
         }
 
-        private void showVector(Vector3 cameraPosition, Vector3 cameraRotation) {
+        private Camera showVector(Vector3 cameraPosition, Vector3 cameraRotation) {
             World.RenderingCamera = null;
             World.DestroyAllCameras();
             // create a camera to look through
@@ -816,6 +816,7 @@ namespace ModForResearchTUB
             );
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+            return cam;
         }
 
         private void showEntity(Vector3 cameraPosition, Entity entityOfInterest) {
