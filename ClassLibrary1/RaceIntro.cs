@@ -725,6 +725,10 @@ namespace ModForResearchTUB
             // show reversing
 
             // put player's car into another driveway
+
+            World.RenderingCamera.Position = new Vector3(-985, 366, 73);
+            World.RenderingCamera.Rotation = new Vector3(-6.3f, 0, 76.7f);
+
             desert_car.Heading = 199.2738f;
             desert_car.Position = new Vector3(-1043.221f, 385.1127f, 69.23925f);
 
