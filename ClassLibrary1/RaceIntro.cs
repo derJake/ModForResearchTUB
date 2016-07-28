@@ -186,6 +186,28 @@ namespace ModForResearchTUB
 
             // make player enter vehicle
             Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            var bmsg = BigMessageThread.MessageInstance;
+
+            World.RenderingCamera.FieldOfView = 75;
+            World.RenderingCamera.Position = new Vector3(-750, -83, 42.5f);
+            World.RenderingCamera.Rotation = new Vector3(-5f, 0, -19);
+
+            bmsg.ShowOldMessage(rm.GetString("intro21"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            World.RenderingCamera.Position = new Vector3(-743, -76, 43f);
+            World.RenderingCamera.Rotation = new Vector3(-10f, 0, 126);
+
+            bmsg.ShowOldMessage(rm.GetString("intro22"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            World.RenderingCamera.Position = new Vector3(-992.3677f, 371.183f, 73.24342f);
+            World.RenderingCamera.Rotation = new Vector3(-2.54f, 0, 72.20512f);
+            bmsg.ShowOldMessage(rm.GetString("intro23"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            World.RenderingCamera = null;
+            World.DestroyAllCameras();
 
             // set time of day
             World.CurrentDayTime = new TimeSpan(19, 15, 0);
