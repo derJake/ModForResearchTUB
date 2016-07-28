@@ -12,7 +12,7 @@ namespace ModForResearchTUB
         void initRace();
         bool checkRaceStartCondition();
         void startRace();
-        void handleOnTick();
+        void handleOnTick(object sender, EventArgs e);
         void finishRace();
 
         List<Tuple<String, List<Tuple<String, double>>>> getCollectedData();
