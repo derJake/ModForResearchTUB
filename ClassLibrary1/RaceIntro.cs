@@ -774,7 +774,7 @@ namespace ModForResearchTUB
             desert_car.Position = new Vector3(-1043.221f, 385.1127f, 69.23925f);
 
             Ped reverse_driver = ut.createPedAt(PedHash.AfriAmer01AMM, new Vector3(-998.9263f, 373.3408f, 71.93969f));
-            Vehicle reverse_car = ut.createCarAt(VehicleHash.Surge, new Vector3(-998.9263f, 373.3408f, 71.93969f), 237.6931f);
+            Vehicle reverse_car = ut.createCarAt(VehicleHash.Surge, new Vector3(-990.1054f, 366.7356f, 72.04808f), 237.6931f);
             reverse_driver.SetIntoVehicle(reverse_car, VehicleSeat.Driver);
 
             bmsg.ShowOldMessage(rm.GetString("intro19"), regularIntroSceneLength);
@@ -782,18 +782,18 @@ namespace ModForResearchTUB
             Wait(3000);
             Vector3 destination = new Vector3(-1007, 368.8f, 71.8f);
             //player.Task.ParkVehicle(car, new Vector3(-1007, 368.8f, 71.8f), 311);
-            //Function.Call(Hash.TASK_VEHICLE_PARK, desert_car, -1007, 368.8f, 71.8f, 311, 2, 0, true);
+            Function.Call(Hash.TASK_VEHICLE_PARK, reverse_driver, reverse_car, -1007, 368.8f, 71.8f, 311, 2, 0, true);
 
-            Function.Call(Hash.TASK_VEHICLE_GOTO_NAVMESH,
-                reverse_driver,
-                reverse_car,
-                destination.X,
-                destination.Y,
-                destination.Z,
-                10,
-                1 << 11 | 1 << 10 | 1 << 8 | 1 << 16 | 1 << 32, // <==== use the bar to separate flags. This is a bitwise OR
-                3
-            );
+            //Function.Call(Hash.TASK_VEHICLE_GOTO_NAVMESH,
+            //    reverse_driver,
+            //    reverse_car,
+            //    destination.X,
+            //    destination.Y,
+            //    destination.Z,
+            //    10,
+            //    1 << 11 | 1 << 10 | 1 << 8 | 1 << 16 | 1 << 32, // <==== use the bar to separate flags. This is a bitwise OR
+            //    3
+            //);
 
             Wait(regularIntroSceneLength);
 
