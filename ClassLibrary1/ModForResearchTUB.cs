@@ -1452,12 +1452,17 @@ namespace ModForResearchTUB
 
         protected void countDown()
         {
+            Game.Player.CanControlCharacter = false;
+            Game.Player.Character.IsInvincible = true;
             bmsg = BigMessageThread.MessageInstance;
             for (int i = 3; i > 0; i--)
             {
                 bmsg.ShowMpMessageLarge(String.Format("{0}", i), countdown_interval);
                 Wait(countdown_interval);
             }
+
+            Game.Player.CanControlCharacter = true;
+            Game.Player.Character.IsInvincible = false;
         }
         #endregion
     }
