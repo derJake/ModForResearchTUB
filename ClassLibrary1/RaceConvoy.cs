@@ -170,34 +170,17 @@ namespace ModForResearchTUB
             player.Position = car_selection;
             player.Heading = car_spawn_player_heading;
 
-            // load the vehicle model
-            var vehicle1Model = new Model(vehicleHash);
-            vehicle1Model.Request(500);
+            // create the vehicles
+            raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
+            leader = ut.createCarAt(vehicleHash, leader_spawnpoint, leader_heading);
+            leader.IsInvincible = true;
 
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded)
-                    Script.Wait(100);
-
-                // create the vehicle
-                raceVehicle = World.CreateVehicle(vehicleHash, car1_spawnpoint, car_spawn_heading);
-
-                // create the vehicle that is to be followed
-                leader = World.CreateVehicle(vehicleHash, leader_spawnpoint, leader_heading);
-                leader.IsInvincible = true;
-            }
-
-            vehicle1Model.MarkAsNoLongerNeeded();
-
-            if (createDriver())
-            {
-                leader_driver.Task.EnterVehicle(leader, VehicleSeat.Driver, 10000, 2.0f, 16);
-                leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
-                leader_driver.IsInvincible = true;
-            }
+            // create the ped driving the leading vehicle
+            leader_driver = ut.createPedAt(PedHash.RampMex, leader_driver_spawnpoint);
+            // set it into the vehicle
+            leader_driver.SetIntoVehicle(leader, VehicleSeat.Driver);
+            // make the ped invincible
+            leader_driver.IsInvincible = true;
 
             Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, leader, 2);
 
