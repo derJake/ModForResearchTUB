@@ -210,6 +210,7 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("convoy_intro_1"));
             Wait(5000);
 
+            // show different perspective and instruction
             cam.Position = new Vector3(1330, 6505, 20f);
             cam.Rotation = new Vector3(2, 0, -95f);
 
