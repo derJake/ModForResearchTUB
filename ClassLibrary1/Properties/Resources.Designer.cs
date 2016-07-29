@@ -61,6 +61,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die In this task you will follow the other transporter. ähnelt.
+        /// </summary>
+        internal static string convoy_intro_1 {
+            get {
+                return ResourceManager.GetString("convoy_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Try to stay close to it! ähnelt.
+        /// </summary>
+        internal static string convoy_intro_2 {
+            get {
+                return ResourceManager.GetString("convoy_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world action game. ähnelt.
         /// </summary>
         internal static string intro1 {
