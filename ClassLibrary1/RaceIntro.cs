@@ -77,8 +77,6 @@ namespace ModForResearchTUB
             peds = new List<Ped>();
             cars = new List<Vehicle>();
 
-            Tick += handleOnTick;
-
             CultureInfo = CultureInfo.CurrentCulture;
             rm = resman;
             ut = utils;
@@ -134,8 +132,6 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
-            new UIResText(String.Format("handleOnTick"), new Point(700, 75), 0.3f, Color.DarkBlue).Draw();
-
             if (raceStartTime > 0 && Game.GameTime < raceEndTime)
             {
                 TimeSpan timeLeft = TimeSpan.FromMilliseconds(raceEndTime - Game.GameTime);
@@ -203,8 +199,6 @@ namespace ModForResearchTUB
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
-
-            Tick -= handleOnTick;
         }
 
         public void startRace()
