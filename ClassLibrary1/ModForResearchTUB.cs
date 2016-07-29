@@ -1043,6 +1043,13 @@ namespace ModForResearchTUB
                 currentBlip = null;
             }
 
+            // clear map blip
+            if (currentAltBlip != null)
+            {
+                currentAltBlip.Remove();
+                currentAltBlip = null;
+            }
+
             // delete 3D marker
             if (currentMarker > 0) {
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
