@@ -175,6 +175,10 @@ namespace ModForResearchTUB
             Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
             var bmsg = BigMessageThread.MessageInstance;
 
+            Game.Player.CanControlCharacter = false;
+            player.IsInvincible = true;
+            raceVehicle.IsInvincible = true;
+
             showVector(
                 new Vector3(-750, -83, 42.5f),
                 new Vector3(-5f, 0, -19)
@@ -199,6 +203,10 @@ namespace ModForResearchTUB
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
+
+            Game.Player.CanControlCharacter = true;
+            player.IsInvincible = false;
+            raceVehicle.IsInvincible = false;
         }
 
         public void startRace()
