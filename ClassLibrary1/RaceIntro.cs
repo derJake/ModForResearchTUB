@@ -106,12 +106,8 @@ namespace ModForResearchTUB
             World.DestroyAllCameras();
 
             var player = Game.Player.Character;
-            Vector3 cam_pos = player.Position + player.ForwardVector * 5 - player.RightVector * 2 + new Vector3(0, 0, 1);
-            World.RenderingCamera = World.CreateCamera(cam_pos, new Vector3(), 90f);
+            World.RenderingCamera = World.CreateCamera(new Vector3(-1512, -718, 29), new Vector3(8, 0, 16), 90f);
             
-            World.RenderingCamera.PointAt(player.CurrentVehicle);
-            //World.RenderingCamera.PointAt(new Vector3(-550.3082f, 5291.048f, 90.11024f));
-
             // play sounds
             Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
             Wait(750);
