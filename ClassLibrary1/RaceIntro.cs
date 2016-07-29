@@ -347,7 +347,7 @@ namespace ModForResearchTUB
 
             Vector3[] waypoints = {
                 new Vector3(-348.0623f, 1168.467f, 324.8051f),
-                new Vector3(-273.8922f, 1220.785f, 316.6845f),
+                new Vector3(-273.8922f, 1225.785f, 316.6845f),
                 new Vector3(-196.1113f, 1304.639f, 303.8253f)
             };
 
