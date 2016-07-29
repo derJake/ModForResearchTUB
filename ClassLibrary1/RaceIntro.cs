@@ -42,8 +42,6 @@ namespace ModForResearchTUB
         private List<Ped> peds;
         public CultureInfo CultureInfo { get; private set; }
 
-        private bool intro_sequence_active = false;
-
         ResourceManager rm;
         Utilities ut;
 
@@ -243,9 +241,6 @@ namespace ModForResearchTUB
         }
 
         private void doIntroSequence() {
-            // set state for onTick operations
-            intro_sequence_active = true;
-
             var bmsg = BigMessageThread.MessageInstance;
             // set time of day
             World.CurrentDayTime = new TimeSpan(6, 35, 0);
@@ -793,7 +788,6 @@ namespace ModForResearchTUB
             World.DestroyAllCameras();
             Game.Player.Character.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
-            intro_sequence_active = false;
         }
 
         private Camera showVector(Vector3 cameraPosition, Vector3 cameraRotation) {
