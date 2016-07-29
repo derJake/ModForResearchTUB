@@ -458,6 +458,11 @@ namespace ModForResearchTUB
             currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
+
+            if (nextCoords.HasValue) {
+                nextBlip = World.CreateBlip(nextCoords.Value);
+                Function.Call(Hash.SHOW_NUMBER_ON_BLIP, nextBlip, currentCheckpoint + 2);
+            }
         }
 
         protected void setCurrentAltBlip(Vector3 coords, Vector3? nextCoords) {
@@ -475,6 +480,13 @@ namespace ModForResearchTUB
             currentAltBlip.Color = BlipColor.Red;
             Function.Call(Hash.SET_NEW_WAYPOINT, coords.X, coords.Y);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentAltBlip, currentCheckpoint + 1);
+
+            if (nextCoords.HasValue)
+            {
+                nextAltBlip = World.CreateBlip(nextCoords.Value);
+                nextAltBlip.Color = BlipColor.Red;
+                Function.Call(Hash.SHOW_NUMBER_ON_BLIP, nextAltBlip, currentCheckpoint + 2);
+            }
         }
 
         protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
