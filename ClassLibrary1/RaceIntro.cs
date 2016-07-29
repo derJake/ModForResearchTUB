@@ -106,7 +106,7 @@ namespace ModForResearchTUB
             World.DestroyAllCameras();
 
             var player = Game.Player.Character;
-            World.RenderingCamera = World.CreateCamera(new Vector3(-1512, -718, 29), new Vector3(8, 0, 16), 90f);
+            World.RenderingCamera = World.CreateCamera(new Vector3(-1512, -718, 28), new Vector3(8, 0, 16), 90f);
             
             // play sounds
             Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
