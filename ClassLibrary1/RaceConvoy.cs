@@ -138,6 +138,7 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            var bmsg = BigMessageThread.MessageInstance;
             Logger.Log("Convoy Track Initialization");
             UI.Notify("Convoy Track Initialization");
             UI.ShowSubtitle("Convoy Track Initialization", 1250);
@@ -206,8 +207,14 @@ namespace ModForResearchTUB
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~b~ Follow the other truck!", 5000);
-            Wait(2500);
+            bmsg.ShowOldMessage(rm.GetString("convoy_intro_1"));
+            Wait(5000);
+
+            cam.Position = new Vector3(1330, 6505, 20f);
+            cam.Rotation = new Vector3(2, 0, -95f);
+
+            bmsg.ShowOldMessage(rm.GetString("convoy_intro_2"));
+            Wait(5000);
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
