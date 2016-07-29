@@ -461,6 +461,7 @@ namespace ModForResearchTUB
                 currentAltBlip.Remove();
             }
             currentAltBlip = World.CreateBlip(coords);
+            currentAltBlip.Color = BlipColor.Red;
             Function.Call(Hash.SET_NEW_WAYPOINT, coords.X, coords.Y);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentAltBlip, currentCheckpoint + 1);
         }
