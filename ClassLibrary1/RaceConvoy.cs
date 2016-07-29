@@ -245,6 +245,8 @@ namespace ModForResearchTUB
 
             player.IsInvincible = false;
 
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(18, 35, 0);
         }
 
         public void startRace()
