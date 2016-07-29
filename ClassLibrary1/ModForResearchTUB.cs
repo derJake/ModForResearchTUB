@@ -383,9 +383,6 @@ namespace ModForResearchTUB
         }
 
         protected void setupNextCheckpoint() {
-            // set the map blip
-            setCurrentBlip(checkpoints[currentCheckpoint].Item1);
-
             if (currentMarker > 0)
             {
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
@@ -412,14 +409,15 @@ namespace ModForResearchTUB
                 type
             );
 
+            // set the map blip
+            setCurrentBlip(checkpoints[currentCheckpoint].Item1, nextCoords);
+
             // alternative (dangerous) checkpoint
             if (checkpoints[currentCheckpoint].Item2.HasValue)
             {
 
                 // debug stuff
                 altCheckpointAvailable = true;
-
-                setCurrentAltBlip(checkpoints[currentCheckpoint].Item2.Value);
 
                 // if the alternative route isn't finished, point to the next alternative checkpoint
                 if (currentCheckpoint < (checkpoints.Length - 1) &&
@@ -437,13 +435,15 @@ namespace ModForResearchTUB
                     0,
                     type
                 );
+
+                setCurrentAltBlip(checkpoints[currentCheckpoint].Item2.Value, nextCoords);
             }
             else {
                 altCheckpointAvailable = false;
             }
         }
 
-        protected void setCurrentBlip(Vector3 coords) {
+        protected void setCurrentBlip(Vector3 coords, Vector3? nextCoords) {
             // create /replace a blip on the map
             if (currentBlip != null)
             {
@@ -454,7 +454,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
         }
 
-        protected void setCurrentAltBlip(Vector3 coords) {
+        protected void setCurrentAltBlip(Vector3 coords, Vector3? nextCoords) {
             // create /replace a blip on the map
             if (currentAltBlip != null)
             {
