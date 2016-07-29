@@ -207,6 +207,10 @@ namespace ModForResearchTUB
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
+            Game.Player.CanControlCharacter = false;
+            player.IsInvincible = true;
+            raceVehicle.IsInvincible = true;
+
             bmsg.ShowOldMessage(rm.GetString("convoy_intro_1"), 10000);
             Wait(10000);
 
@@ -228,7 +232,6 @@ namespace ModForResearchTUB
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
 
             Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, true);
-            raceVehicle.IsInvincible = true;
             leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
             //player.Task.DriveTo(raceVehicle, checkpoints[checkpoints.Length - 1].Item1, 5, 20, Convert.ToInt32("110111111", 2));
             player.Task.VehicleChase(leader_driver);
@@ -248,6 +251,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, false);
 
             player.IsInvincible = false;
+            Game.Player.CanControlCharacter = true;
 
             // set time of day
             World.CurrentDayTime = new TimeSpan(18, 35, 0);
