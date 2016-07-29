@@ -472,7 +472,8 @@ namespace ModForResearchTUB
 
             Vector3 poor_ped_position = new Vector3(-53.90526f, -1670.566f, 29.28915f);
             float poor_ped_heading = 72.20514f;
-            Vector3 car_stop_position = new Vector3(-54f, -1669f, 28.84788f);
+            Vector3 car_stop_position = new Vector3(-54f, -1669f, 28.84788f),
+                poor_ped_flee_position = new Vector3(-18.6755f, -1637.57f, 29.3045f);
 
             var poor_ped = ut.createPedAt(PedHash.Abigail, poor_ped_position);
             poor_ped.Heading = poor_ped_heading;
@@ -500,7 +501,7 @@ namespace ModForResearchTUB
             poor_ped.Task.ClearAllImmediately();
 
             bmsg.ShowOldMessage(rm.GetString("intro10"), regularIntroSceneLength);
-
+            poor_ped.Task.GoTo(poor_ped_flee_position);
             Wait(5000);
 
             // show police
