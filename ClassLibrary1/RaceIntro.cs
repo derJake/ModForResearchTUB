@@ -521,7 +521,7 @@ namespace ModForResearchTUB
             int playerRGroup = player.RelationshipGroup;
 
             // spawn cop car and cops
-            ut.createCarAt(VehicleHash.Police, new Vector3(-48.13033f, -1672.859f, 28.9749f), 61.59479f);
+            Vehicle cop_car = ut.createCarAt(VehicleHash.Police, new Vector3(-48.13033f, -1672.859f, 28.9749f), 61.59479f);
             List<Ped> police = new List<Ped>(2);
             Ped policeman_1 = ut.createPedAt(PedHash.Cop01SFY, new Vector3(-49.15336f, -1674.606f, 29.335f));
             Ped policeman_2 = ut.createPedAt(PedHash.Cop01SMY, new Vector3(-47.04166f, -1671.634f, 29.33792f));
@@ -570,6 +570,14 @@ namespace ModForResearchTUB
             // remove wanted level and aggressive cop peds
             World.SetRelationshipBetweenGroups(Relationship.Neutral, playerRGroup, copHash);
             Game.Player.WantedLevel = 0;
+
+            // remove cops
+            foreach (Ped cop in police) {
+                cop.Delete();
+            }
+
+            // remove cop car
+            cop_car.Delete();
 
             cleanUpIntro();
 
