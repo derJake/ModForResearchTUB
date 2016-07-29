@@ -21,7 +21,7 @@ namespace ModForResearchTUB
     {
         // Variables
         List<int> trafficSignalHashes = new List<int>(3);
-        Blip currentBlip = null, currentAltBlip = null;
+        Blip currentBlip = null, currentAltBlip = null, nextBlip = null, nextAltBlip = null;
         Tuple<Vector3, Vector3?>[] checkpoints;
         float checkpoint_radius = 5;
         int currentMarker;
@@ -1045,10 +1045,24 @@ namespace ModForResearchTUB
             }
 
             // clear map blip
+            if (nextBlip != null)
+            {
+                nextBlip.Remove();
+                nextBlip = null;
+            }
+
+            // clear map blip
             if (currentAltBlip != null)
             {
                 currentAltBlip.Remove();
                 currentAltBlip = null;
+            }
+
+            // clear map blip
+            if (nextAltBlip != null)
+            {
+                nextAltBlip.Remove();
+                nextAltBlip = null;
             }
 
             // delete 3D marker
