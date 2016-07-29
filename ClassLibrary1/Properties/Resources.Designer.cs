@@ -79,6 +79,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A blue dot on the map shows it&apos;s position. ähnelt.
+        /// </summary>
+        internal static string convoy_intro_3 {
+            get {
+                return ResourceManager.GetString("convoy_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world action game. ähnelt.
         /// </summary>
         internal static string intro1 {
