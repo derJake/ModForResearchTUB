@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,7 +39,10 @@ namespace ModForResearchTUB
         private TimerBarPool barPool = new TimerBarPool();
         private BarTimerBar distanceBar;
 
-        public RaceConvoy() {
+        ResourceManager rm;
+        Utilities ut;
+
+        public RaceConvoy(ResourceManager resman, Utilities utils) {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
                 car1_spawnpoint.X,
@@ -56,6 +60,8 @@ namespace ModForResearchTUB
             };
 
             this.checkpoints = checkpointlist;
+            rm = resman;
+            ut = utils;
         }
 
         public void finishRace()
