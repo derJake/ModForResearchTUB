@@ -21,7 +21,7 @@ namespace ModForResearchTUB
     {
         // Variables
         List<int> trafficSignalHashes = new List<int>(3);
-        Blip currentBlip = null;
+        Blip currentBlip = null, currentAltBlip = null;
         Tuple<Vector3, Vector3?>[] checkpoints;
         float checkpoint_radius = 5;
         int currentMarker;
@@ -419,6 +419,8 @@ namespace ModForResearchTUB
                 // debug stuff
                 altCheckpointAvailable = true;
 
+                setCurrentAltBlip(checkpoints[currentCheckpoint].Item2.Value);
+
                 // if the alternative route isn't finished, point to the next alternative checkpoint
                 if (currentCheckpoint < (checkpoints.Length - 1) &&
                     checkpoints[currentCheckpoint + 1].Item2.HasValue)
@@ -450,6 +452,17 @@ namespace ModForResearchTUB
             currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
+        }
+
+        protected void setCurrentAltBlip(Vector3 coords) {
+            // create /replace a blip on the map
+            if (currentAltBlip != null)
+            {
+                currentAltBlip.Remove();
+            }
+            currentAltBlip = World.CreateBlip(coords);
+            Function.Call(Hash.SET_NEW_WAYPOINT, coords.X, coords.Y);
+            Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentAltBlip, currentCheckpoint + 1);
         }
 
         protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
