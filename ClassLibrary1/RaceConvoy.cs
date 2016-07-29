@@ -271,27 +271,6 @@ namespace ModForResearchTUB
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
 
-        private bool createDriver() {
-            // load the driver model
-            var driver = new Model(PedHash.RampMex);
-            driver.Request();
-
-            if (driver.IsInCdImage &&
-                driver.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!driver.IsLoaded)
-                    Script.Wait(100);
-
-                // create the actual driver ped
-                leader_driver = World.CreatePed(driver, leader_driver_spawnpoint);
-                return true;
-            }
-
-            return false;
-        }
-
         public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
         {
             return this.collectedData;
