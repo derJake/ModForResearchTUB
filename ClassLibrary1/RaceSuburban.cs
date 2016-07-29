@@ -54,6 +54,11 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3?>(new Vector3(-871.2201f, 709.1328f, 149.1696f), null),
                 //new Tuple<Vector3, Vector3?>(new Vector3(-920.3366f, 701.915f, 151.5278f), null),
                 //new Tuple<Vector3, Vector3?>(new Vector3(-976.8248f, 699.5857f, 156.134f), null),
+                //new Tuple<Vector3, Vector3?>(new Vector3(-1016.307f, 707.3165f, 162.142f), null),
+                //new Tuple<Vector3, Vector3?>(new Vector3(-1038.259f, 740.6125f, 166.4818f), null),
+                //new Tuple<Vector3, Vector3?>(new Vector3(-1041.269f, 780.5007f, 167.2972f), null),
+                //new Tuple<Vector3, Vector3?>(new Vector3(-1022.013f, 789.4909f, 169.56f), null),
+                //new Tuple<Vector3, Vector3?>(new Vector3(-1018.94f, 806.6804f, 171.3554f), null),
             };
 
             this.checkpoints = checkpointlist;
