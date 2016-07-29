@@ -217,6 +217,13 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("convoy_intro_2"), 10000);
             Wait(10000);
 
+            bmsg.ShowOldMessage(rm.GetString("convoy_intro_3"), 10000);
+            Wait(1000);
+            Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
+            Wait(1000);
+            Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
+            Wait(8000);
+
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
 
