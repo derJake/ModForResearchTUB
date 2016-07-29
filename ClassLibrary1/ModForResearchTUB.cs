@@ -449,6 +449,12 @@ namespace ModForResearchTUB
             {
                 currentBlip.Remove();
             }
+
+            if (nextBlip != null)
+            {
+                nextBlip.Remove();
+            }
+
             currentBlip = World.CreateBlip(coords);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
@@ -459,6 +465,11 @@ namespace ModForResearchTUB
             if (currentAltBlip != null)
             {
                 currentAltBlip.Remove();
+            }
+
+            if (nextAltBlip != null)
+            {
+                nextAltBlip.Remove();
             }
             currentAltBlip = World.CreateBlip(coords);
             currentAltBlip.Color = BlipColor.Red;
