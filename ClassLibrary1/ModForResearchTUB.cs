@@ -276,6 +276,7 @@ namespace ModForResearchTUB
                             // have current race do it's finish stuff
                             races[currentRace].finishRace();
                             Function.Call(Hash.CLEAR_GPS_PLAYER_WAYPOINT);
+                            Function.Call(Hash.SET_WAYPOINT_OFF);
 
                             processCollectedData();
 
