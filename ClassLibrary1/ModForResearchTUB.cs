@@ -1512,6 +1512,27 @@ namespace ModForResearchTUB
                 }
             };
 
+            // checkbox for debug mode
+            var debug_checkbox = new UIMenuCheckboxItem("Route Designer", debug, "Activate the route designer?");
+            myMenu.AddItem(debug_checkbox);
+            myMenu.RefreshIndex();
+            myMenu.OnItemSelect += ItemSelectHandler;
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == debug_checkbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify("This can't be done during the tasks.");
+                        return;
+                    }
+
+                    debug = checked_;
+                    UI.Notify("~r~debug mode: ~b~" + debug);
+                }
+            };
+
             // button for starting the mod
             var newitem = new UIMenuItem("Start", "Start the intro and tasks.");
             myMenu.OnItemSelect += (sender, item, index) =>
