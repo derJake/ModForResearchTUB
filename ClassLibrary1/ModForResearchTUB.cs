@@ -1482,6 +1482,16 @@ namespace ModForResearchTUB
                 }
             };
 
+            // button for starting the mod
+            var newitem = new UIMenuItem("Start", "Start the intro and tasks.");
+            myMenu.OnItemSelect += (sender, item, index) =>
+            {
+                if (item == newitem)
+                {
+                    startMod();
+                }
+            };
+
             _myMenuPool.Add(myMenu);
         }
 
