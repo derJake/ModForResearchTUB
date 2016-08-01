@@ -126,6 +126,7 @@ namespace ModForResearchTUB
 
         private UIMenu myMenu;
         private MenuPool _myMenuPool = new MenuPool();
+        private bool route_designer_active = false;
 
         // Main Script
         public Main()
@@ -1465,9 +1466,19 @@ namespace ModForResearchTUB
 
         protected void buildMenu() {
             myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
-            myMenu.AddItem(new UIMenuCheckboxItem("Route Designer", false));
+            var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, "Start the route designer?");
+            myMenu.AddItem(route_designer_checkbox);
             myMenu.RefreshIndex();
             myMenu.OnItemSelect += ItemSelectHandler;
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == route_designer_checkbox)
+                {
+                    route_designer_active = checked_;
+                    UI.Notify("~r~route designer active: ~b~" + route_designer_active);
+                }
+            };
 
             _myMenuPool.Add(myMenu);
         }
@@ -1476,6 +1487,7 @@ namespace ModForResearchTUB
         {
             UI.Notify("You have selected: ~b~" + selectedItem.Text);
             UI.ShowSubtitle("You have selected: ~b~" + selectedItem.Text, 2000);
+            Logger.Log("menu event " + selectedItem.Text);
         }
 
         private void startMod() {
