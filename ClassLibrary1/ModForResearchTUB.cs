@@ -124,6 +124,7 @@ namespace ModForResearchTUB
         BigMessageHandler bmsg;
         int countdown_interval = 2000;
 
+        private UIMenu myMenu;
         private MenuPool _myMenuPool = new MenuPool();
 
         // Main Script
@@ -638,18 +639,19 @@ namespace ModForResearchTUB
                     //UI.ShowSubtitle("[E] KeyUp", 1250);
                     break;
                 case Keys.F10:
-                    if (!race_initialized && 
-                        !race_started &&
-                        currentRace >= 0 &&
-                        currentRace < races.Length) {
-                        UI.ShowSubtitle("trying to call race", 1250);
+                    myMenu.Visible = !myMenu.Visible;
+                    //if (!race_initialized && 
+                    //    !race_started &&
+                    //    currentRace >= 0 &&
+                    //    currentRace < races.Length) {
+                    //    UI.ShowSubtitle("trying to call race", 1250);
 
-                        //makePlayerInputName();
+                    //    //makePlayerInputName();
 
-                        race_initialized = true;
-                        checkpoints = races[currentRace].getCheckpoints();
-                        races[currentRace].initRace();
-                    }
+                    //    race_initialized = true;
+                    //    checkpoints = races[currentRace].getCheckpoints();
+                    //    races[currentRace].initRace();
+                    //}
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
@@ -1474,7 +1476,7 @@ namespace ModForResearchTUB
         }
 
         protected void buildMenu() {
-            var myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
+            myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
             myMenu.AddItem(new UIMenuCheckboxItem("Route Designer", false));
             myMenu.RefreshIndex();
             myMenu.OnItemSelect += ItemSelectHandler;
@@ -1485,6 +1487,7 @@ namespace ModForResearchTUB
         public void ItemSelectHandler(UIMenu sender, UIMenuItem selectedItem, int index)
         {
             UI.Notify("You have selected: ~b~" + selectedItem.Text);
+            UI.ShowSubtitle("You have selected: ~b~" + selectedItem.Text, 2000);
         }
         #endregion
     }
