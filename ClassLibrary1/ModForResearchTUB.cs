@@ -1514,6 +1514,7 @@ namespace ModForResearchTUB
                 currentRace >= 0 &&
                 currentRace < races.Length)
             {
+                myMenu.Visible = false;
                 UI.ShowSubtitle("trying to call race", 1250);
 
                 makePlayerInputName();
