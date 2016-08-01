@@ -173,7 +173,9 @@ namespace ModForResearchTUB
             races[4] = new RaceCarvsCar();
             races[5] = new RaceToWoodmill();
             currentRace = 0;
-            UI.Notify(rm.GetString("racessetup"));
+            if (debug) {
+                UI.Notify(rm.GetString("racessetup"));
+            }
         }
 
         #region Events
@@ -250,11 +252,15 @@ namespace ModForResearchTUB
                     }
 
                     // debug stuff
-                    new UIResText(String.Format("altCheckpointAvailable: {0}", altCheckpointAvailable), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 100), 0.3f, Color.White).Draw();
-                    if (altCheckpointAvailable) {
-                        var coords = checkpoints[currentCheckpoint].Item2.Value;
-                        new UIResText(String.Format("coords: {0}, {1}, {2}", coords.X, coords.Y, coords.Z), new Point((Convert.ToInt32(res.Width) - safe.X - 350), 125), 0.3f, Color.White).Draw();
-                        new UIResText(String.Format("distance: {0}", World.GetDistance(coords, Game.Player.Character.Position)), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 145), 0.3f, Color.AntiqueWhite).Draw();
+                    if (debug)
+                    {
+                        new UIResText(String.Format("altCheckpointAvailable: {0}", altCheckpointAvailable), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 100), 0.3f, Color.White).Draw();
+                        if (altCheckpointAvailable)
+                        {
+                            var coords = checkpoints[currentCheckpoint].Item2.Value;
+                            new UIResText(String.Format("coords: {0}, {1}, {2}", coords.X, coords.Y, coords.Z), new Point((Convert.ToInt32(res.Width) - safe.X - 350), 125), 0.3f, Color.White).Draw();
+                            new UIResText(String.Format("distance: {0}", World.GetDistance(coords, Game.Player.Character.Position)), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 145), 0.3f, Color.AntiqueWhite).Draw();
+                        }
                     }
 
                     // check if player is near (alternative) checkpoint
@@ -725,7 +731,10 @@ namespace ModForResearchTUB
                     }
                     //new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
                     if (Function.Call<bool>(Hash.HAS_ENTITY_BEEN_DAMAGED_BY_ENTITY, ent, car, true)) {
-                        UI.Notify(String.Format("dmg: {0}", ent.GetType()));
+                        if (debug)
+                        {
+                            UI.Notify(String.Format("dmg: {0}", ent.GetType()));
+                        }
                         if (ent.GetType().ToString().Equals("GTA.Prop")) {
                             numOfDamagedProps++;
                         }
@@ -734,11 +743,11 @@ namespace ModForResearchTUB
             }
 
             // display collisions
-            if (numOfCollisions > 0) {
+            if (numOfCollisions > 0 && debug) {
                 new UIResText(String.Format("collisions: {0}", numOfCollisions), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 500), 0.3f, Color.Orange).Draw();
             }
 
-            if (numOfDamagedProps > 0)
+            if (numOfDamagedProps > 0 && debug)
             {
                 new UIResText(String.Format("damaged props: {0}", numOfDamagedProps), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 550), 0.3f, Color.Orange).Draw();
             }
@@ -750,9 +759,12 @@ namespace ModForResearchTUB
                 maxSpeed = currentSpeed;
             }
 
-            new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
-            new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
-            new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * mTokm, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
+            if (debug)
+            {
+                new UIResText(String.Format("average speed: {0}", Math.Round((float)speeds / (float)numOfSpeeds, 3)), new Point(Convert.ToInt32(res.Width) - safe.X - 300, Convert.ToInt32(res.Height) - safe.Y - 475), 0.3f, Color.White).Draw();
+                new UIResText(String.Format("speed: {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 400), 0.3f, Color.White).Draw();
+                new UIResText(String.Format("speed (km/h?): {0}", Math.Round(Game.Player.Character.CurrentVehicle.Speed * mTokm, 2)), new Point(Convert.ToInt32(res.Width) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 425), 0.3f, Color.White).Draw();
+            }
 
             // if the timer was reset, there was a collision
             if (currentTimeSinceHitVehicle < lastMaxTimeSinceHitVehicle)
@@ -778,16 +790,19 @@ namespace ModForResearchTUB
                 {
                     startedDrivingOnPavement = Game.GameTime;
                 }
-                // show status
-                new UIResText(
-                    String.Format(
-                        "on pavement for {0}s",
-                        Math.Round(((float)(Game.GameTime - startedDrivingOnPavement) / 1000), 1)),
-                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
-                    Convert.ToInt32(res.Height) - safe.Y - 350),
-                    0.3f,
-                    Color.OrangeRed
-                    ).Draw();
+                if (debug)
+                {
+                    // show status
+                    new UIResText(
+                        String.Format(
+                            "on pavement for {0}s",
+                            Math.Round(((float)(Game.GameTime - startedDrivingOnPavement) / 1000), 1)),
+                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                        Convert.ToInt32(res.Height) - safe.Y - 350),
+                        0.3f,
+                        Color.OrangeRed
+                        ).Draw();
+                }
             }
             else if (currentTimeSinceDrivingOnPavement > 0)
             { // player drove on pavement, but isn't any longer
@@ -816,16 +831,19 @@ namespace ModForResearchTUB
                 {
                     startedDrivingAgainstTraffic = Game.GameTime;
                 }
-                // show status
-                new UIResText(
-                    String.Format(
-                        "against traffic {0}s",
-                        Math.Round(((float)(Game.GameTime - startedDrivingAgainstTraffic) / 1000), 1)),
-                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
-                    Convert.ToInt32(res.Height) - safe.Y - 375),
-                    0.3f,
-                    Color.OrangeRed
-                    ).Draw();
+                if (debug)
+                {
+                    // show status
+                    new UIResText(
+                        String.Format(
+                            "against traffic {0}s",
+                            Math.Round(((float)(Game.GameTime - startedDrivingAgainstTraffic) / 1000), 1)),
+                        new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                        Convert.ToInt32(res.Height) - safe.Y - 375),
+                        0.3f,
+                        Color.OrangeRed
+                        ).Draw();
+                }
             }
             else if (currentTimeSinceDrivingAgainstTraffic > 0)
             { // player drove on pavement, but isn't any longer
@@ -855,17 +873,19 @@ namespace ModForResearchTUB
             brakingInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) - 127)));
             steeringInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9))));
 
-            // show current timer
-            new UIResText(
-                String.Format(
-                    "timer {0}s",
-                    Math.Round(Convert.ToDecimal(raceTimeElapsed)/1000, 2)),
-                new Point(Convert.ToInt32(res.Width) - safe.X - 180,
-                Convert.ToInt32(res.Height) - safe.Y - 525),
-                0.3f,
-                Color.White
-                ).Draw();
-
+            if (debug)
+            {
+                // show current timer
+                new UIResText(
+                    String.Format(
+                        "timer {0}s",
+                        Math.Round(Convert.ToDecimal(raceTimeElapsed) / 1000, 2)),
+                    new Point(Convert.ToInt32(res.Width) - safe.X - 180,
+                    Convert.ToInt32(res.Height) - safe.Y - 525),
+                    0.3f,
+                    Color.White
+                    ).Draw();
+            }
             try
             {
                 checkForRedlights(res, safe);
@@ -876,7 +896,7 @@ namespace ModForResearchTUB
                 Logger.Log(nr.Message);
             }
 
-            if (numOfRedlights > 0) {
+            if (numOfRedlights > 0 && debug) {
                 new UIResText(String.Format("red lights: {0}", numOfRedlights),
                     new Point(Convert.ToInt32(res.Width) - safe.X - 180,
                     Convert.ToInt32(res.Height) - safe.Y - 375),
@@ -929,7 +949,8 @@ namespace ModForResearchTUB
                     // get traffic lights in front of player, that look roughly in the same direction
                     if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                         Math.Abs(ent.Heading - heading) < 30f &&
-                        ent.IsInArea(nearLimit, farLimit, 0))
+                        ent.IsInArea(nearLimit, farLimit, 0)
+                        && debug)
                     {
                         var dist = World.GetDistance(pos, ent.Position);
                         new UIResText(
@@ -1117,7 +1138,10 @@ namespace ModForResearchTUB
 
             resetLoggingVariables();
             //Wait(3000);
-            UI.ShowSubtitle("Everything reset", 3000);
+            if (debug)
+            {
+                UI.ShowSubtitle("Everything reset", 3000);
+            }
         }
 
         protected void writeRaceDataToLog() {
