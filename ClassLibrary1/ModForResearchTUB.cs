@@ -640,18 +640,6 @@ namespace ModForResearchTUB
                     break;
                 case Keys.F10:
                     myMenu.Visible = !myMenu.Visible;
-                    //if (!race_initialized && 
-                    //    !race_started &&
-                    //    currentRace >= 0 &&
-                    //    currentRace < races.Length) {
-                    //    UI.ShowSubtitle("trying to call race", 1250);
-
-                    //    //makePlayerInputName();
-
-                    //    race_initialized = true;
-                    //    checkpoints = races[currentRace].getCheckpoints();
-                    //    races[currentRace].initRace();
-                    //}
                     break;
                 case Keys.F11:
                     UI.ShowSubtitle("Teleport Player to customization", 1250);
@@ -1488,6 +1476,22 @@ namespace ModForResearchTUB
         {
             UI.Notify("You have selected: ~b~" + selectedItem.Text);
             UI.ShowSubtitle("You have selected: ~b~" + selectedItem.Text, 2000);
+        }
+
+        private void startMod() {
+            if (!race_initialized &&
+                        !race_started &&
+                        currentRace >= 0 &&
+                        currentRace < races.Length)
+            {
+                UI.ShowSubtitle("trying to call race", 1250);
+
+                makePlayerInputName();
+
+                race_initialized = true;
+                checkpoints = races[currentRace].getCheckpoints();
+                races[currentRace].initRace();
+            }
         }
         #endregion
     }
