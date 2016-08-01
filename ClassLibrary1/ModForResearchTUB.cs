@@ -124,6 +124,8 @@ namespace ModForResearchTUB
         BigMessageHandler bmsg;
         int countdown_interval = 2000;
 
+        private MenuPool _myMenuPool = new MenuPool();
+
         // Main Script
         public Main()
         {
@@ -147,6 +149,8 @@ namespace ModForResearchTUB
 
             // Tick Interval
             //Interval = 10;
+
+            buildMenu();
 
             // Initialize Events
             Tick += this.OnTickEvent;
@@ -181,6 +185,8 @@ namespace ModForResearchTUB
             *   make it so that AI can not be shot
             */
             Function.Call(Hash.CLEAR_ALL_HELP_MESSAGES);
+
+            _myMenuPool.ProcessMenus();
 
             if (race_started) {
                 // player has died -> abort race
@@ -1465,6 +1471,20 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = true;
             Game.Player.Character.IsInvincible = false;
+        }
+
+        protected void buildMenu() {
+            var myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
+            myMenu.AddItem(new UIMenuCheckboxItem("Route Designer", false));
+            myMenu.RefreshIndex();
+            myMenu.OnItemSelect += ItemSelectHandler;
+
+            _myMenuPool.Add(myMenu);
+        }
+
+        public void ItemSelectHandler(UIMenu sender, UIMenuItem selectedItem, int index)
+        {
+            UI.Notify("You have selected: ~b~" + selectedItem.Text);
         }
         #endregion
     }
