@@ -1491,6 +1491,7 @@ namespace ModForResearchTUB
                     startMod();
                 }
             };
+            myMenu.AddItem(newitem);
 
             _myMenuPool.Add(myMenu);
         }
