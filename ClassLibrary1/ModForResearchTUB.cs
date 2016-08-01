@@ -1510,9 +1510,9 @@ namespace ModForResearchTUB
 
         private void startMod() {
             if (!race_initialized &&
-                        !race_started &&
-                        currentRace >= 0 &&
-                        currentRace < races.Length)
+                !race_started &&
+                currentRace >= 0 &&
+                currentRace < races.Length)
             {
                 UI.ShowSubtitle("trying to call race", 1250);
 
