@@ -1492,7 +1492,7 @@ namespace ModForResearchTUB
         protected void buildMenu() {
             myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
 
-            // checkbox for schema designer
+            // checkbox for route designer
             var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, "Activate the route designer?");
             myMenu.AddItem(route_designer_checkbox);
             myMenu.RefreshIndex();
