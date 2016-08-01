@@ -607,7 +607,7 @@ namespace ModForResearchTUB
                 case Keys.A:
                     if (race_started && lastKeydownA > 0) {
                         var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/ roundTo) * roundToMultiplier).ToString();
-                        UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
+                        //UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
                             var index = keypressLengths.FindIndex(x => x.Item1 == length);
@@ -622,7 +622,7 @@ namespace ModForResearchTUB
                     if (race_started && lastKeydownA > 0)
                     {
                         var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / roundTo) * roundToMultiplier).ToString();
-                        UI.ShowSubtitle(String.Format("keyup [D], length {0}", length));
+                        //UI.ShowSubtitle(String.Format("keyup [D], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
                             var index = keypressLengths.FindIndex(x => x.Item1 == length);
