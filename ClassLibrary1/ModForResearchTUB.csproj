@@ -86,7 +86,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="strings_en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings_en.Designer.cs</LastGenOutput>
