@@ -241,7 +241,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All of the tests revolve around a driving task. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die All of the tasks revolve around a driving task. ähnelt.
         /// </summary>
         internal static string intro4 {
             get {
