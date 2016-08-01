@@ -635,7 +635,7 @@ namespace ModForResearchTUB
                     }
                     break;
                 case Keys.E:
-                    UI.ShowSubtitle("[E] KeyUp", 1250);
+                    //UI.ShowSubtitle("[E] KeyUp", 1250);
                     break;
                 case Keys.F10:
                     if (!race_initialized && 
