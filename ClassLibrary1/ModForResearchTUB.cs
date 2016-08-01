@@ -126,7 +126,8 @@ namespace ModForResearchTUB
 
         private UIMenu myMenu;
         private MenuPool _myMenuPool = new MenuPool();
-        private bool route_designer_active = false;
+        private bool route_designer_active = false,
+            debug = true;
 
         // Main Script
         public Main()
