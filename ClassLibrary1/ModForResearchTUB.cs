@@ -1502,7 +1502,7 @@ namespace ModForResearchTUB
             {
                 if (item == route_designer_checkbox)
                 {
-                    if (race_initialized ||race_started) {
+                    if (race_initialized || race_started) {
                         UI.Notify("This can't be done during the tasks.");
                         return;
                     }
