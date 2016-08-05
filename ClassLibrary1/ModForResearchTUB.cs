@@ -339,7 +339,6 @@ namespace ModForResearchTUB
                     raceStartTime = Game.GameTime;
 
                     // separator to show start of new log
-                    // TO DO: Should this be on a day-by-day basis?
                     Logger.Log("----------------------------------------------------------");
 
                     setupNextCheckpoint();
