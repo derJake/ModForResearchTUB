@@ -1594,6 +1594,7 @@ namespace ModForResearchTUB
             if (route_designer_active)
             {
                 route_checkpoints = new List<Vector3>();
+                route_blips = new List<Blip>();
             }
             else {
                 File.AppendAllText("route.log", "Vector3[] route = {");
@@ -1601,6 +1602,12 @@ namespace ModForResearchTUB
                     File.AppendAllText("route.log", String.Format("new Vector3({0}, {1}, {2}),", cp.X, cp.Y, cp.Z));
                 }
                 File.AppendAllText("route.log", "};");
+                route_checkpoints = null;
+
+                foreach (Blip b in route_blips) {
+                    b.Remove();
+                }
+                route_blips = null;
             }
         }
 
