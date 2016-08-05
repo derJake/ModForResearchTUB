@@ -1531,7 +1531,6 @@ namespace ModForResearchTUB
             var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, "Activate the route designer?");
             myMenu.AddItem(route_designer_checkbox);
             myMenu.RefreshIndex();
-            myMenu.OnItemSelect += ItemSelectHandler;
 
             myMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
@@ -1552,7 +1551,6 @@ namespace ModForResearchTUB
             var debug_checkbox = new UIMenuCheckboxItem("Route Designer", debug, "Activate the route designer?");
             myMenu.AddItem(debug_checkbox);
             myMenu.RefreshIndex();
-            myMenu.OnItemSelect += ItemSelectHandler;
 
             myMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
