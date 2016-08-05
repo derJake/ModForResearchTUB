@@ -1556,7 +1556,7 @@ namespace ModForResearchTUB
             };
 
             // checkbox for debug mode
-            var debug_checkbox = new UIMenuCheckboxItem("Route Designer", debug, "Activate the route designer?");
+            var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, "Activate the debug mode?");
             myMenu.AddItem(debug_checkbox);
             myMenu.RefreshIndex();
 
