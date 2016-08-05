@@ -128,6 +128,7 @@ namespace ModForResearchTUB
         private MenuPool _myMenuPool = new MenuPool();
         private bool route_designer_active = false,
             debug = true;
+        private List<Vector3> route_checkpoints;
 
         // Main Script
         public Main()
@@ -602,6 +603,9 @@ namespace ModForResearchTUB
                 case Keys.Space:
                     lastTimeHandbrake = Game.GameTime;
                     break;
+                case Keys.X:
+                    handleRouteInput();
+                    break;
                 default:
                     break;
             }
@@ -695,6 +699,27 @@ namespace ModForResearchTUB
                 //remove any ped,vehucle,Blip,prop,.... that you create
                 clearStuffUp();
                 ut.cleanUp();
+            }
+        }
+
+        private void handleRouteInput() {
+            if (route_designer_active)
+            {
+                var pos = Game.Player.Character.Position;
+                if (route_checkpoints.Count == 0)
+                {
+                    route_checkpoints.Add(new Vector3(pos.X, pos.Y, pos.Z));
+                }
+                else {
+                    foreach (Vector3 cp in route_checkpoints) {
+                        if (World.GetDistance(cp, pos) <= checkpoint_radius) {
+                            route_checkpoints.Remove(cp);
+                            return;
+                        }
+                    }
+
+                    route_checkpoints.Add(pos);
+                }
             }
         }
 
