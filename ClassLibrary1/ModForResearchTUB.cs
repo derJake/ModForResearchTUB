@@ -699,7 +699,7 @@ namespace ModForResearchTUB
         {
             if (A_0)
             {
-                //remove any ped,vehucle,Blip,prop,.... that you create
+                //remove any ped,vehicle,Blip,prop,.... that you create
                 clearStuffUp();
                 ut.cleanUp();
             }
