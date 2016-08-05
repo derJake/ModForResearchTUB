@@ -663,6 +663,9 @@ namespace ModForResearchTUB
             // driving sequence 2
             player.Position = new Vector3(1792, 3325, 41.5f);
             World.CurrentDayTime = new TimeSpan(8, 5, 0);
+
+            Function.Call(Hash.CLEAR_AREA_OF_VEHICLES, 0, 0, 0, 1000, false, false, false, false, false);
+
             Vehicle desert_car = ut.createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
