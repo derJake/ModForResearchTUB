@@ -719,8 +719,8 @@ namespace ModForResearchTUB
                         if (World.GetDistance(cp, pos) <= checkpoint_radius)
                         {
                             var index = route_checkpoints.IndexOf(cp);
-                            //route_blips.ElementAt(index).Remove();
-                            //route_blips.RemoveAt(index);
+                            route_blips.ElementAt(index).Remove();
+                            route_blips.RemoveAt(index);
                             route_checkpoints.Remove(cp);
                             return;
                         }
