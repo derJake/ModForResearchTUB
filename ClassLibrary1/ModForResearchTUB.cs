@@ -729,7 +729,7 @@ namespace ModForResearchTUB
 
                 // if there are no checkpoints near, create one
                 route_checkpoints.Add(pos);
-                Blip new_blip = World.CreateBlip(pos, checkpoint_radius);
+                Blip new_blip = World.CreateBlip(pos);
                 Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
                 new_blip.Color = BlipColor.Yellow;
                 route_blips.Add(new_blip);
