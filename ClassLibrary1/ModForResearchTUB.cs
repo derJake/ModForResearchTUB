@@ -1581,13 +1581,6 @@ namespace ModForResearchTUB
             _myMenuPool.Add(myMenu);
         }
 
-        public void ItemSelectHandler(UIMenu sender, UIMenuItem selectedItem, int index)
-        {
-            UI.Notify("You have selected: ~b~" + selectedItem.Text);
-            UI.ShowSubtitle("You have selected: ~b~" + selectedItem.Text, 2000);
-            Logger.Log("menu event " + selectedItem.Text);
-        }
-
         private void startMod() {
             if (!race_initialized &&
                 !race_started &&
