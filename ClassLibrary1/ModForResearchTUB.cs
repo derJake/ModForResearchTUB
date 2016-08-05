@@ -130,6 +130,7 @@ namespace ModForResearchTUB
         private bool route_designer_active = false,
             debug = true;
         private List<Vector3> route_checkpoints;
+        private List<Blip> route_blips;
 
         // Main Script
         public Main()
@@ -710,20 +711,27 @@ namespace ModForResearchTUB
             if (route_designer_active)
             {
                 var pos = Game.Player.Character.Position;
-                if (route_checkpoints.Count == 0)
+                if (route_checkpoints.Count > 0)
                 {
-                    route_checkpoints.Add(new Vector3(pos.X, pos.Y, pos.Z));
-                }
-                else {
-                    foreach (Vector3 cp in route_checkpoints) {
-                        if (World.GetDistance(cp, pos) <= checkpoint_radius) {
+                    // see if checkpoint is near and if so, remove it and it's blip
+                    foreach (Vector3 cp in route_checkpoints)
+                    {
+                        if (World.GetDistance(cp, pos) <= checkpoint_radius)
+                        {
+                            var index = route_checkpoints.IndexOf(cp);
+                            route_blips.ElementAt(index).Remove();
+                            route_blips.RemoveAt(index);
                             route_checkpoints.Remove(cp);
                             return;
                         }
                     }
-
-                    route_checkpoints.Add(pos);
                 }
+
+                // if there are no checkpoints near, create one
+                route_checkpoints.Add(pos);
+                Blip new_blip = World.CreateBlip(pos, checkpoint_radius);
+                new_blip.ShowNumber(route_checkpoints.Count);
+                route_blips.Add(new_blip);
             }
         }
 
