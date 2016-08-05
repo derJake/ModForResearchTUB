@@ -719,8 +719,8 @@ namespace ModForResearchTUB
                         if (World.GetDistance(cp, pos) <= checkpoint_radius)
                         {
                             var index = route_checkpoints.IndexOf(cp);
-                            route_blips.ElementAt(index).Remove();
-                            route_blips.RemoveAt(index);
+                            //route_blips.ElementAt(index).Remove();
+                            //route_blips.RemoveAt(index);
                             route_checkpoints.Remove(cp);
                             return;
                         }
@@ -731,6 +731,7 @@ namespace ModForResearchTUB
                 route_checkpoints.Add(pos);
                 Blip new_blip = World.CreateBlip(pos, checkpoint_radius);
                 new_blip.ShowNumber(route_checkpoints.Count);
+                new_blip.Color = BlipColor.Yellow;
                 route_blips.Add(new_blip);
             }
         }
