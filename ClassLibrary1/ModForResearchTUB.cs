@@ -13,6 +13,7 @@ using System.Globalization;
 using ModForResearchTUB.Properties;
 using System.Resources;
 using System.Diagnostics;
+using System.IO;
 #endregion
 
 namespace ModForResearchTUB
@@ -1542,6 +1543,7 @@ namespace ModForResearchTUB
                     }
 
                     route_designer_active = checked_;
+                    toggleRouteDesigner();
                     UI.Notify("~r~route designer active: ~b~" + route_designer_active);
                 }
             };
@@ -1579,6 +1581,20 @@ namespace ModForResearchTUB
             myMenu.AddItem(newitem);
 
             _myMenuPool.Add(myMenu);
+        }
+
+        private void toggleRouteDesigner() {
+            if (route_designer_active)
+            {
+                route_checkpoints = new List<Vector3>();
+            }
+            else {
+                File.AppendAllText("route.log", "Vector3[] route = {");
+                foreach (Vector3 cp in route_checkpoints) {
+                    File.AppendAllText("route.log", String.Format("new Vector3({0}, {1}, {2}),", cp.X, cp.Y, cp.Z));
+                }
+                File.AppendAllText("route.log", "};");
+            }
         }
 
         private void startMod() {
