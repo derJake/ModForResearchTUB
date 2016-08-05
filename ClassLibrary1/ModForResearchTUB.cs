@@ -346,6 +346,10 @@ namespace ModForResearchTUB
                     races[currentRace].startRace();
                 }
             }
+
+            if (route_designer_active) {
+                renderRouteCheckpoints();
+            }
         }
 
         protected void renderDiagrams() {
@@ -720,6 +724,12 @@ namespace ModForResearchTUB
 
                     route_checkpoints.Add(pos);
                 }
+            }
+        }
+
+        private void renderRouteCheckpoints() {
+            foreach (Vector3 cp in route_checkpoints) {
+                World.DrawMarker(MarkerType.VerticalCylinder, cp, new Vector3(), new Vector3(), new Vector3(checkpoint_radius, checkpoint_radius, 15), Color.Yellow);
             }
         }
 
