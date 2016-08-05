@@ -713,7 +713,7 @@ namespace ModForResearchTUB
                 var pos = Game.Player.Character.Position;
                 if (route_checkpoints.Count > 0)
                 {
-                    // see if checkpoint is near and if so, remove it and it's blip
+                    // see if checkpoint is near and if so, remove it and its blip
                     foreach (Vector3 cp in route_checkpoints)
                     {
                         if (World.GetDistance(cp, pos) <= checkpoint_radius)
