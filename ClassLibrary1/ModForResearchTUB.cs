@@ -174,7 +174,7 @@ namespace ModForResearchTUB
             races[2] = new RaceSuburban();
             races[3] = new RaceDesert();
             races[4] = new RaceCarvsCar();
-            races[5] = new RaceToWoodmill();
+            //races[5] = new RaceToWoodmill();
             currentRace = 0;
             if (debug) {
                 UI.Notify(rm.GetString("racessetup"));
