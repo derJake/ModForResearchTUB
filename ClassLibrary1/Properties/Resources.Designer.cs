@@ -79,7 +79,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die A blue dot on the map shows it&apos;s position. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die A blue dot on the map shows its position. ähnelt.
         /// </summary>
         internal static string convoy_intro_3 {
             get {
