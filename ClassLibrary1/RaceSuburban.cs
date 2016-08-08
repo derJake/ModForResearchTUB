@@ -28,10 +28,14 @@ namespace ModForResearchTUB
         private Ped obstacle_driver;
         private Vector3 obstacle_driver_spawnpoint = new Vector3(-817.1896f, 709.8116f, 147.2454f);
         private Vector3 obstacle_target = new Vector3(-1042.243f, 775.3391f, 167.1406f);
+        private Vector3 standstill_area_corner_1 = new Vector3(-800.9453f, 716.5583f, 145.9721f);
+        private Vector3 standstill_area_corner_2 = new Vector3(-775.9354f, 703.6378f, 144.5459f);
         private float obstacle_spawn_heading = 19.92268f;
         private bool obstacle_started = false;
         private int obstacle_visible;
         private bool player_passed_obstacle = false;
+        private int standstill_brake_start;
+        private int standstill_brake_end;
 
         public RaceSuburban() {
             // try and load this area already
@@ -160,6 +164,19 @@ namespace ModForResearchTUB
 
             if (obstacle_visible > 0) {
                 new UIResText(String.Format("obstacle visible: {0}", obstacle_visible), new Point(950, 75), 0.3f, Color.White).Draw();
+
+                // brakeing?
+                if (Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 8) >= 254 &&
+                    obstacle_visible + 2000 < Game.GameTime &&
+                    raceVehicle.IsInArea(standstill_area_corner_1, standstill_area_corner_2)) {
+                    standstill_brake_start = Game.GameTime;
+                }
+                if (standstill_brake_start > 0 && Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 8) < 254) {
+                    standstill_brake_end = Game.GameTime;
+                }
+                if (standstill_brake_end > 0) {
+                    new UIResText(String.Format("brake in front of obstacle: {0}", (standstill_brake_end - standstill_brake_start / 1000)), new Point(950, 125), 0.3f, Color.White).Draw();
+                }
             }
         }
 
