@@ -171,9 +171,6 @@ namespace ModForResearchTUB
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
-            // make player look at cars
-            Game.Player.Character.Task.StandStill(5000);
-
             // create a camera to look through
             Camera cam = World.CreateCamera(
                 Game.Player.Character.Position, // position
@@ -184,6 +181,8 @@ namespace ModForResearchTUB
             cam.PointAt(raceVehicle);
 
             // TO DO: move camera around
+
+            Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver);
 
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
