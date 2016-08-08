@@ -84,6 +84,10 @@ namespace ModForResearchTUB
                 Logger.Log("player was behind garbage truck");
             }
 
+            if (standstill_brake_end > 0) {
+                Logger.Log(String.Format("player braked in front of obstacle for {0}s", (standstill_brake_end - standstill_brake_end / 1000)));
+            }
+
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
