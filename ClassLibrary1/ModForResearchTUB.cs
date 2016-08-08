@@ -289,7 +289,7 @@ namespace ModForResearchTUB
                         lastCheckointTime = Game.GameTime;
 
                         // FINISHED, if last checkpoint is reached
-                        if ((currentCheckpoint + 1) == checkpoints.Length)
+                        if ((currentCheckpoint + 1) == checkpoints.Length || races[currentRace].checkAlternativeBreakCondition())
                         {
                             // save race car's health
                             car_health = Game.Player.Character.CurrentVehicle.Health;
