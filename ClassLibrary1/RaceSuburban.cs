@@ -118,7 +118,7 @@ namespace ModForResearchTUB
             if (!obstacle_started &&
                 Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f)) {
                 foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 50)) {
-                    if (!car.Equals(obstacle)) {
+                    if (!car.Equals(obstacle) && !car.Equals(raceVehicle)) {
                         car.Delete();
                     }
                 }
