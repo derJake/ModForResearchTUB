@@ -863,5 +863,10 @@ namespace ModForResearchTUB
                 car.Delete();
             }
         }
+
+        public bool checkAlternativeBreakCondition()
+        {
+            return raceEndTime > 0 && Game.GameTime > raceEndTime;
+        }
     }
 }
