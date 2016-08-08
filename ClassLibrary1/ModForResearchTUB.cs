@@ -237,7 +237,7 @@ namespace ModForResearchTUB
                     }
 
                     // display how many checkpoints there are
-                    if (checkpoints != null)
+                    if (debug && checkpoints != null)
                     {
                         new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
                     }
