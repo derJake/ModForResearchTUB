@@ -721,6 +721,11 @@ namespace ModForResearchTUB
                             var index = route_checkpoints.IndexOf(cp);
                             route_blips.ElementAt(index).Remove();
                             route_blips.RemoveAt(index);
+
+                            // decrease blip numbers for following blips
+                            for (int i = index; i < route_blips.Count;i++) {
+                                route_blips.ElementAt(i).ShowNumber(i);
+                            }
                             route_checkpoints.Remove(cp);
                             return;
                         }
