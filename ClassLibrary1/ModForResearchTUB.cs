@@ -223,6 +223,7 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    // call race specific onTick instructions
                     if (race_has_on_tick)
                     {
                         try
@@ -235,11 +236,13 @@ namespace ModForResearchTUB
                         }
                     }
 
+                    // display how many checkpoints there are
                     if (checkpoints != null)
                     {
                         new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
                     }
 
+                    // display what the current race is and how many there are
                     new UIResText(String.Format("race {0}/{1}", currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
 
                     // log speed, collisions, brakes, etc.
