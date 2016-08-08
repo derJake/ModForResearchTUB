@@ -171,7 +171,7 @@ namespace ModForResearchTUB
                     raceVehicle.IsInArea(standstill_area_corner_1, standstill_area_corner_2)) {
                     standstill_brake_start = Game.GameTime;
                 }
-                if (standstill_brake_start > 0 && Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 8) < 254) {
+                if (standstill_brake_start > 0 && standstill_brake_end == 0 && Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 8) < 254) {
                     standstill_brake_end = Game.GameTime;
                 }
                 if (standstill_brake_end > 0) {
