@@ -13,6 +13,7 @@ namespace ModForResearchTUB
         bool checkRaceStartCondition();
         void startRace();
         void handleOnTick(object sender, EventArgs e);
+        bool checkAlternativeBreakCondition();
         void finishRace();
 
         List<Tuple<String, List<Tuple<String, double>>>> getCollectedData();
