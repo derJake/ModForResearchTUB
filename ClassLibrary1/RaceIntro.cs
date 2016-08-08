@@ -786,6 +786,7 @@ namespace ModForResearchTUB
             Vector3 destination = new Vector3(-1007, 368.8f, 71.8f);
             //player.Task.ParkVehicle(car, new Vector3(-1007, 368.8f, 71.8f), 311);
             Function.Call(Hash.TASK_VEHICLE_PARK, reverse_driver, reverse_car, -1007, 368.8f, 71.8f, 311, 2, 0, true);
+            World.RenderingCamera.PointAt(reverse_car);
 
             //Function.Call(Hash.TASK_VEHICLE_GOTO_NAVMESH,
             //    reverse_driver,
