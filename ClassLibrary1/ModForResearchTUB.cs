@@ -1605,9 +1605,9 @@ namespace ModForResearchTUB
                 route_blips = new List<Blip>();
             }
             else {
-                File.AppendAllText("route.log", "Vector3[] route = {" + Environment.NewLine);
+                File.AppendAllText("route.log", " Tuple<Vector3, Vector3?>[] checkpointlist = {" + Environment.NewLine);
                 foreach (Vector3 cp in route_checkpoints) {
-                    File.AppendAllText("route.log", String.Format("new Vector3({0}, {1}, {2}),", cp.X, cp.Y, cp.Z) + Environment.NewLine);
+                    File.AppendAllText("route.log", String.Format("new Tuple<Vector3, Vector3?>(new Vector3({0}, {1}, {2}), null),", cp.X, cp.Y, cp.Z) + Environment.NewLine);
                 }
                 File.AppendAllText("route.log", "};" + Environment.NewLine);
                 route_checkpoints = null;
