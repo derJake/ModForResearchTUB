@@ -224,5 +224,10 @@ namespace ModForResearchTUB
             // check which car player is using
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
+
+        public bool checkAlternativeBreakCondition()
+        {
+            return false;
+        }
     }
 }
