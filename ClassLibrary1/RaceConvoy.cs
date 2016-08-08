@@ -287,5 +287,10 @@ namespace ModForResearchTUB
         {
             return this.collectedData;
         }
+
+        public bool checkAlternativeBreakCondition()
+        {
+            return false;
+        }
     }
 }

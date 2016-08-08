@@ -309,5 +309,10 @@ namespace ModForResearchTUB
             }
             return playerInRaceCar;
         }
+
+        public bool checkAlternativeBreakCondition()
+        {
+            return false;
+        }
     }
 }

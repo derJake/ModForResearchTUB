@@ -282,5 +282,10 @@ namespace ModForResearchTUB
         {
             throw new NotImplementedException();
         }
+
+        public bool checkAlternativeBreakCondition()
+        {
+            return false;
+        }
     }
 }
