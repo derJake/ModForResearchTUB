@@ -30,6 +30,8 @@ namespace ModForResearchTUB
         private Vector3 obstacle_target = new Vector3(-1042.243f, 775.3391f, 167.1406f);
         private float obstacle_spawn_heading = 19.92268f;
         private bool obstacle_started = false;
+        private int obstacle_visible;
+        private bool player_passed_obstacle = false;
 
         public RaceSuburban() {
             // try and load this area already
@@ -68,6 +70,15 @@ namespace ModForResearchTUB
         {
             UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
             UI.Notify(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000));
+
+            Logger.Log(String.Format("obstacle visible: {0}", obstacle_visible));
+            if (player_passed_obstacle)
+            {
+                Logger.Log("player passed garbage truck");
+            }
+            else {
+                Logger.Log("player was behind garbage truck");
+            }
 
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
@@ -115,16 +126,40 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
-            if (!obstacle_started &&
-                Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f)) {
-                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 50)) {
-                    if (!car.Equals(obstacle) && !car.Equals(raceVehicle)) {
+            if (!obstacle_started)
+            {
+                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 50))
+                {
+                    if (!car.Equals(obstacle) && !car.Equals(raceVehicle))
+                    {
                         car.Delete();
                     }
                 }
-                obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
-                obstacle_started = true;
-                Logger.Log(String.Format("garbage truck started driving at {0}", Game.GameTime));
+
+                if (Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f))
+                {
+                    obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
+                    obstacle_started = true;
+                    Logger.Log(String.Format("garbage truck started driving at {0}", Game.GameTime));
+                }
+            }
+            else {
+                if (obstacle.IsVisible && obstacle_visible == 0) {
+                    obstacle_visible = Game.GameTime;
+                }
+                // compare distance of garbage truck to finish with player's car to finish
+                if (World.GetDistance(obstacle.Position, checkpoints[checkpoints.Length - 1].Item1) >
+                    World.GetDistance(raceVehicle.Position, checkpoints[checkpoints.Length - 1].Item1))
+                {
+                    player_passed_obstacle = true;
+                }
+                else {
+                    player_passed_obstacle = false;
+                }
+            }
+
+            if (obstacle_visible > 0) {
+                new UIResText(String.Format("obstacle visible: {0}", obstacle_visible), new Point(950, 75), 0.3f, Color.White).Draw();
             }
         }
 
