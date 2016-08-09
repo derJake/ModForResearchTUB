@@ -412,7 +412,16 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Started race {0}/{1} ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Task finished! - Time: {0}s ähnelt.
+        /// </summary>
+        internal static string race_finished {
+            get {
+                return ResourceManager.GetString("race_finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Started task {0}/{1} ähnelt.
         /// </summary>
         internal static string race_started {
             get {

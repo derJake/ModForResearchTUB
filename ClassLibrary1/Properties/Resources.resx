@@ -237,8 +237,11 @@
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>
+  <data name="race_finished" xml:space="preserve">
+    <value>Task finished! - Time: {0}s</value>
+  </data>
   <data name="race_started" xml:space="preserve">
-    <value>Started race {0}/{1}</value>
+    <value>Started task {0}/{1}</value>
   </data>
   <data name="startracepromp" xml:space="preserve">
     <value>Press [F10] to start first race</value>
