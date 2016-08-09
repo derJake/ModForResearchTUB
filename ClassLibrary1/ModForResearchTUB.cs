@@ -328,6 +328,8 @@ namespace ModForResearchTUB
                         currentCheckpoint++;
                         setupNextCheckpoint();
                     }
+
+                    keepPlayerOnTrack();
                 }
                 else if (currentRace >= 0 && 
                     currentRace < races.Length &&
