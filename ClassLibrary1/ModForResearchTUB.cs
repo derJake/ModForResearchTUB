@@ -14,6 +14,7 @@ using ModForResearchTUB.Properties;
 using System.Resources;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 #endregion
 
 namespace ModForResearchTUB
@@ -1623,7 +1624,7 @@ namespace ModForResearchTUB
             // list of languages available
             var language_list = new UIMenuListItem(
                     rm.GetString("menu_languages"),
-                    new List<dynamic> { rm.GetString("menu_english"), rm.GetString("menu_german") },
+                    new List<dynamic> {rm.GetString("menu_german"), rm.GetString("menu_english") },
                     0
                     );
 
@@ -1633,13 +1634,16 @@ namespace ModForResearchTUB
             {
                 if (item == language_list)
                 {
+                    CultureInfo culture = CultureInfo;
                     if (index == 0)
                     {
-                        CultureInfo = new CultureInfo("en-EN");
+                        culture = CultureInfo.CreateSpecificCulture("de-DE");
                     }
                     else if (index == 1) {
-                        CultureInfo = new CultureInfo("de-DE");
+                        culture = CultureInfo.CreateSpecificCulture("en-US");
                     }
+                    Thread.CurrentThread.CurrentCulture = culture;
+                    Thread.CurrentThread.CurrentUICulture = culture;
                     UI.Notify(rm.GetString("language_selected") + index.ToString() + " " + item.IndexToItem(index).ToString());
                 }
 
