@@ -1615,13 +1615,30 @@ namespace ModForResearchTUB
                 }
             };
 
-            myMenu.AddItem(
-                new UIMenuListItem(
+            // list of languages available
+            var language_list = new UIMenuListItem(
                     rm.GetString("menu_languages"),
                     new List<dynamic> { rm.GetString("menu_english"), rm.GetString("menu_german") },
                     0
-                    )
-                );
+                    );
+
+            myMenu.AddItem(language_list);
+
+            myMenu.OnListChange += (sender, item, index) =>
+            {
+                if (item == language_list)
+                {
+                    if (index == 0)
+                    {
+                        CultureInfo = new CultureInfo("en-EN");
+                    }
+                    else if (index == 1) {
+                        CultureInfo = new CultureInfo("de-DE");
+                    }
+                    UI.Notify(rm.GetString("language_selected") + index.ToString() + " " + item.IndexToItem(index).ToString());
+                }
+
+            };
 
             // button for starting the mod
             var newitem = new UIMenuItem("Start", "Start the intro and tasks.");

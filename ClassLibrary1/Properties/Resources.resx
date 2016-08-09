@@ -210,6 +210,9 @@
   <data name="intro9" xml:space="preserve">
     <value>It is possible to run over pedestrians.</value>
   </data>
+  <data name="language_selected" xml:space="preserve">
+    <value>Language selected: </value>
+  </data>
   <data name="menu_english" xml:space="preserve">
     <value>English</value>
   </data>

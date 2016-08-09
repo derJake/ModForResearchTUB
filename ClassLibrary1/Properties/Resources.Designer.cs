@@ -340,6 +340,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Language selected:  ähnelt.
+        /// </summary>
+        internal static string language_selected {
+            get {
+                return ResourceManager.GetString("language_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die English ähnelt.
         /// </summary>
         internal static string menu_english {
