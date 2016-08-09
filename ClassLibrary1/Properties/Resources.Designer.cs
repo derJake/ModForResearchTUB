@@ -88,6 +88,51 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die In this task you drive a motorcycle. ähnelt.
+        /// </summary>
+        internal static string desert_intro_1 {
+            get {
+                return ResourceManager.GetString("desert_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are 2 routes. ähnelt.
+        /// </summary>
+        internal static string desert_intro_2 {
+            get {
+                return ResourceManager.GetString("desert_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The normal route leads over roads and the highway ähnelt.
+        /// </summary>
+        internal static string desert_intro_3 {
+            get {
+                return ResourceManager.GetString("desert_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The alternative route leads through the desert. ähnelt.
+        /// </summary>
+        internal static string desert_intro_4 {
+            get {
+                return ResourceManager.GetString("desert_intro_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The letter is marked by red checkpoints. ähnelt.
+        /// </summary>
+        internal static string desert_intro_5 {
+            get {
+                return ResourceManager.GetString("desert_intro_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world action game. ähnelt.
         /// </summary>
         internal static string intro1 {
