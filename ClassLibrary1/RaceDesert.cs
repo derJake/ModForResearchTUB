@@ -119,6 +119,7 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            var bmsg = BigMessageThread.MessageInstance;
             Logger.Log("Desert Track Initialization");
             UI.Notify("Desert Track Initialization");
             UI.ShowSubtitle("Desert Track Initialization", 1250);
