@@ -157,6 +157,7 @@ namespace ModForResearchTUB
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
+            Game.Player.CanControlCharacter = false;
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
@@ -178,13 +179,27 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~bla~ Drive to the overlook!", 2500);
+            // TODO: add camera angles and if possible at some time in the future, show alternative checkpoint
+            bmsg.ShowOldMessage(rm.GetString("desert_intro_1"), 10000);
+            Wait(10000);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
-            Wait(2500);
+
+            bmsg.ShowOldMessage(rm.GetString("desert_intro_2"), 10000);
+            Wait(10000);
+
+            bmsg.ShowOldMessage(rm.GetString("desert_intro_3"), 10000);
+            Wait(10000);
+
+            bmsg.ShowOldMessage(rm.GetString("desert_intro_4"), 10000);
+            Wait(10000);
+
+            bmsg.ShowOldMessage(rm.GetString("desert_intro_5"), 10000);
+            Wait(10000);
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
             Game.Player.Character.IsInvincible = false;
+            Game.Player.CanControlCharacter = true;
 
         }
         public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
