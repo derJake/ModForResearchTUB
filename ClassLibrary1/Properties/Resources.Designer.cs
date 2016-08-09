@@ -124,7 +124,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The letter is marked by red checkpoints. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The latter is marked by red checkpoints. ähnelt.
         /// </summary>
         internal static string desert_intro_5 {
             get {
