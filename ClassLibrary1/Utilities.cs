@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ModForResearchTUB
 {
-    class Utilities
+    public class Utilities
     {
         private List<Vehicle> cars;
         private List<Ped> peds;
