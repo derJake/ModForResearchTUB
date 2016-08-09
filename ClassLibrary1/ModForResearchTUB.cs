@@ -131,7 +131,8 @@ namespace ModForResearchTUB
             debug = true;
         private List<Vector3> route_checkpoints;
         private List<Blip> route_blips;
-        private float off_track_distance = 200;
+        private float off_track_distance = 50;
+        private int time_player_got_lost;
 
         // Main Script
         public Main()
@@ -1110,9 +1111,26 @@ namespace ModForResearchTUB
 
         public bool isPlayerLost() {
             var pos = Game.Player.Character.Position;
-            return (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance &&
-                    World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance &&
-                    (!checkpoints[currentCheckpoint].Item2.HasValue || World.GetDistance(pos, checkpoints[currentCheckpoint].Item2.Value) > off_track_distance));
+            return (getClosestVehicleNode() == null
+                || (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance
+                && World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance
+                && (!checkpoints[currentCheckpoint].Item2.HasValue || World.GetDistance(pos, checkpoints[currentCheckpoint].Item2.Value) > off_track_distance)
+                ));
+        }
+
+        public void keepPlayerOnTrack() {
+            if (isPlayerLost())
+            {
+                if (time_player_got_lost == 0)
+                {
+                    time_player_got_lost = Game.GameTime;
+                }
+                else {
+                    if (debug) {
+                        new UIResText("player is lost!", new Point((850), 75), 0.4f, Color.Orange).Draw();
+                    }
+                }
+            }
         }
 
         public float ConvertToRadians(float angle)
