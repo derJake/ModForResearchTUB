@@ -1113,11 +1113,12 @@ namespace ModForResearchTUB
 
         public bool isPlayerLost() {
             var pos = Game.Player.Character.Position;
-            return (getClosestVehicleNode() == null
+            return (Game.Player.Character.CurrentVehicle.IsInWater
+                || (getClosestVehicleNode() == null
                 || (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance
                 && World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance
                 && (!checkpoints[currentCheckpoint].Item2.HasValue || World.GetDistance(pos, checkpoints[currentCheckpoint].Item2.Value) > off_track_distance)
-                ));
+                )));
         }
 
         public void keepPlayerOnTrack() {
