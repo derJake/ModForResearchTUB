@@ -1120,6 +1120,9 @@ namespace ModForResearchTUB
         public bool isPlayerLost() {
             var pos = Game.Player.Character.Position;
             return (Game.Player.Character.CurrentVehicle.IsInWater
+                || Game.Player.Character.IsInWater
+                || Function.Call<float>(Hash.GET_ENTITY_SUBMERGED_LEVEL, Game.Player.Character) > 0.1f
+                || Function.Call<float>(Hash.GET_ENTITY_SUBMERGED_LEVEL, Game.Player.Character.CurrentVehicle) > 0.1f
                 || (getClosestVehicleNode() == null
                 || (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance
                 && World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance
