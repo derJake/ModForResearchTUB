@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,10 @@ namespace ModForResearchTUB
         private int initCalled = 0;
         private bool flashWantedStopped = false;
 
-        public RaceCarvsCar() {
+        ResourceManager rm;
+        Utilities ut;
+
+        public RaceCarvsCar(ResourceManager resman, Utilities utils) {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
                 car1_spawnpoint.X,
@@ -66,6 +70,9 @@ namespace ModForResearchTUB
             };
 
             this.checkpoints = checkpointlist;
+
+            rm = resman;
+            ut = utils;
         }
 
         public void finishRace()
@@ -73,8 +80,8 @@ namespace ModForResearchTUB
             // log which car was taken
             Logger.Log(car_taken);
 
-            UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
-            UI.Notify(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000));
+            UI.ShowSubtitle(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000), 3000);
+            UI.Notify(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000));
 
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);

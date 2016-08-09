@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,7 +38,10 @@ namespace ModForResearchTUB
         private int standstill_brake_start;
         private int standstill_brake_end;
 
-        public RaceSuburban() {
+        ResourceManager rm;
+        Utilities ut;
+
+        public RaceSuburban(ResourceManager resman, Utilities utils) {
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
                 car1_spawnpoint.X,
@@ -68,12 +72,15 @@ namespace ModForResearchTUB
             };
 
             this.checkpoints = checkpointlist;
+
+            rm = resman;
+            ut = utils;
         }
 
         public void finishRace()
         {
-            UI.ShowSubtitle(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000), 3000);
-            UI.Notify(String.Format("Race finished! - Time: {0}s", (Game.GameTime - raceStartTime) / 1000));
+            UI.ShowSubtitle(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000), 3000);
+            UI.Notify(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000));
 
             Logger.Log(String.Format("obstacle visible: {0}", obstacle_visible));
             if (player_passed_obstacle)
