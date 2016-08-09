@@ -1088,7 +1088,7 @@ namespace ModForResearchTUB
 
             return false;
         }
-        public Vector3 displayClosestVehicleNode() {
+        public Vector3 getClosestVehicleNode() {
             var pos = Game.Player.Character.Position;
 
             OutputArgument outArgA = new OutputArgument();
@@ -1097,7 +1097,9 @@ namespace ModForResearchTUB
             {
                 var res = outArgA.GetResult<Vector3>();
 
-                World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(3f, 3f, 3f), Color.White);
+                if (debug) {
+                    World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(3f, 3f, 3f), Color.White);
+                }
 
                 return res; //getting heading if the native returns true
             }
