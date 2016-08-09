@@ -1582,7 +1582,7 @@ namespace ModForResearchTUB
                 if (item == route_designer_checkbox)
                 {
                     if (race_initialized || race_started) {
-                        UI.Notify("This can't be done during the tasks.");
+                        UI.Notify(rm.GetString("menu_not_during_task"));
                         return;
                     }
 
@@ -1603,7 +1603,7 @@ namespace ModForResearchTUB
                 {
                     if (race_initialized || race_started)
                     {
-                        UI.Notify("This can't be done during the tasks.");
+                        UI.Notify(rm.GetString("menu_not_during_task"));
                         return;
                     }
 

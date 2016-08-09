@@ -219,6 +219,9 @@
   <data name="menu_languages" xml:space="preserve">
     <value>Verfügbare Sprachen</value>
   </data>
+  <data name="menu_not_during_task" xml:space="preserve">
+    <value>Das ist während der Aufgaben nicht möglich.</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>Alle Rennen wurden geladen.</value>
   </data>

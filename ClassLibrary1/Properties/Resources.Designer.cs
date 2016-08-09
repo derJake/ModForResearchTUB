@@ -367,6 +367,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This can&apos;t be done during tasks. ähnelt.
+        /// </summary>
+        internal static string menu_not_during_task {
+            get {
+                return ResourceManager.GetString("menu_not_during_task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {
