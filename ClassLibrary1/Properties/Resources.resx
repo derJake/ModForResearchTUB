@@ -222,6 +222,12 @@
   <data name="menu_not_during_task" xml:space="preserve">
     <value>This can't be done during tasks.</value>
   </data>
+  <data name="menu_toggle_debug" xml:space="preserve">
+    <value>Toggle debug mode?</value>
+  </data>
+  <data name="menu_toggle_route_designer" xml:space="preserve">
+    <value>Toggle route designer?</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>

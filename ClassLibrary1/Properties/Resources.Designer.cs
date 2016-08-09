@@ -376,6 +376,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle debug mode? ähnelt.
+        /// </summary>
+        internal static string menu_toggle_debug {
+            get {
+                return ResourceManager.GetString("menu_toggle_debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle route designer? ähnelt.
+        /// </summary>
+        internal static string menu_toggle_route_designer {
+            get {
+                return ResourceManager.GetString("menu_toggle_route_designer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {

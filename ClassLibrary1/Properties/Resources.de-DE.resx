@@ -222,6 +222,12 @@
   <data name="menu_not_during_task" xml:space="preserve">
     <value>Das ist während der Aufgaben nicht möglich.</value>
   </data>
+  <data name="menu_toggle_debug" xml:space="preserve">
+    <value>Debugmodus umschalten?</value>
+  </data>
+  <data name="menu_toggle_route_designer" xml:space="preserve">
+    <value>Routendesigner umschalten?</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>Alle Rennen wurden geladen.</value>
   </data>

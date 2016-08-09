@@ -1573,7 +1573,7 @@ namespace ModForResearchTUB
             myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
 
             // checkbox for route designer
-            var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, "Activate the route designer?");
+            var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, rm.GetString("menu_toggle_route_designer"));
             myMenu.AddItem(route_designer_checkbox);
             myMenu.RefreshIndex();
 
@@ -1593,7 +1593,7 @@ namespace ModForResearchTUB
             };
 
             // checkbox for debug mode
-            var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, "Activate the debug mode?");
+            var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, rm.GetString("menu_toggle_debug"));
             myMenu.AddItem(debug_checkbox);
             myMenu.RefreshIndex();
 
