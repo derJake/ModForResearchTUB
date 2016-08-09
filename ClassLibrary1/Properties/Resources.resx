@@ -130,7 +130,7 @@
     <value>In this task you drive a motorcycle.</value>
   </data>
   <data name="desert_intro_2" xml:space="preserve">
-    <value>There are 2 routes.</value>
+    <value>There are 2 possible routes.</value>
   </data>
   <data name="desert_intro_3" xml:space="preserve">
     <value>The normal route leads over roads and the highway</value>
@@ -215,5 +215,8 @@
   </data>
   <data name="startracepromp" xml:space="preserve">
     <value>Press [F10] to start first race</value>
+  </data>
+  <data name="task_started" xml:space="preserve">
+    <value>The task has started!</value>
   </data>
 </root>

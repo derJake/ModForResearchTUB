@@ -97,7 +97,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die There are 2 routes. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are 2 possible routes. ähnelt.
         /// </summary>
         internal static string desert_intro_2 {
             get {
@@ -354,6 +354,15 @@ namespace ModForResearchTUB.Properties {
         internal static string startracepromp {
             get {
                 return ResourceManager.GetString("startracepromp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The task has started! ähnelt.
+        /// </summary>
+        internal static string task_started {
+            get {
+                return ResourceManager.GetString("task_started", resourceCulture);
             }
         }
     }

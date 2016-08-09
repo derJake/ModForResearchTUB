@@ -117,19 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="convoy_intro_1" xml:space="preserve">
+    <value>Folgen Sie in dieser Aufgabe dem anderen Transporter!</value>
+  </data>
+  <data name="convoy_intro_2" xml:space="preserve">
+    <value>Versuchen Sie in seiner Nähe zu bleiben!</value>
+  </data>
+  <data name="convoy_intro_3" xml:space="preserve">
+    <value>Ein blauer Kreis auf der Karte markiert seine Position.</value>
+  </data>
+  <data name="desert_intro_1" xml:space="preserve">
+    <value>In dieser Aufgabe fahren Sie ein Motorrad.</value>
+  </data>
+  <data name="desert_intro_2" xml:space="preserve">
+    <value>Es gibt zwei mögliche Routen.</value>
+  </data>
+  <data name="desert_intro_3" xml:space="preserve">
+    <value>Die normale Route führt über Straßen und die Autobahn.</value>
+  </data>
+  <data name="desert_intro_4" xml:space="preserve">
+    <value>Die Alternative Route führt durch die Wüste.</value>
+  </data>
+  <data name="desert_intro_5" xml:space="preserve">
+    <value>Letztere wird durch rote Kontrollpunkte markiert.</value>
+  </data>
   <data name="intro1" xml:space="preserve">
     <value>GTA V ist ein open-world Actionspiel.</value>
+  </data>
+  <data name="intro10" xml:space="preserve">
+    <value>Das kann zu Anfeindungen durch Passanten führen...</value>
+  </data>
+  <data name="intro11" xml:space="preserve">
+    <value>oder Verfolgung durch die Polizei.</value>
+  </data>
+  <data name="intro12" xml:space="preserve">
+    <value>Ihr Fahndungslevel wird rechts oben angezeigt.</value>
+  </data>
+  <data name="intro13" xml:space="preserve">
+    <value>Je höher der Fahndungslevel, desto mehr Polizei</value>
+  </data>
+  <data name="intro14" xml:space="preserve">
+    <value>Kollisionen beschädigen ihr Fahrzeug.</value>
+  </data>
+  <data name="intro15" xml:space="preserve">
+    <value>Hat das Fahrzeug 0 Hitpoints, wird es explodieren.</value>
+  </data>
+  <data name="intro16" xml:space="preserve">
+    <value>Hat der Charakter 0 Hitpoints, wird er ohnmächtig.</value>
+  </data>
+  <data name="intro17" xml:space="preserve">
+    <value>Das Fahrzeug wird mit Lenkrad, Gas- und Bremspedal gesteuert.</value>
+  </data>
+  <data name="intro18" xml:space="preserve">
+    <value>Die Blinker können nicht gesteuert werden. Biegen Sie einfach ab.</value>
+  </data>
+  <data name="intro19" xml:space="preserve">
+    <value>Um rückwärts zu fahren, bleiben Sie auf dem Bremspedal stehen nach Stillstand des Fahrzeugs.</value>
   </data>
   <data name="intro2" xml:space="preserve">
     <value>Diese Studie bezieht sich auf den Einzelspielermodus des Spiels.</value>
   </data>
+  <data name="intro20" xml:space="preserve">
+    <value>Halten Sie das Lenkrad gedreht, um das Fahrzeug wieder aufzustellen.</value>
+  </data>
+  <data name="intro21" xml:space="preserve">
+    <value>Sie haben jetzt 10min. Zeit sich mit dem Spiel vertraut zu machen.</value>
+  </data>
+  <data name="intro22" xml:space="preserve">
+    <value>Sie können überall hin fahren.</value>
+  </data>
+  <data name="intro23" xml:space="preserve">
+    <value>Um sofort zu beginnen, fahren Sie entlang der Kontrollpunkte.</value>
+  </data>
   <data name="intro3" xml:space="preserve">
     <value>Sie kontrollieren einen dieser drei Spielercharaktere</value>
+  </data>
+  <data name="intro4" xml:space="preserve">
+    <value>Alle Aufgaben sind Fahraufgaben.</value>
+  </data>
+  <data name="intro5" xml:space="preserve">
+    <value>Sie werden die meiste Zeit in einem Auto verbringen.</value>
+  </data>
+  <data name="intro6" xml:space="preserve">
+    <value>Fahren Sie durch diese Kontrollpunkte!</value>
+  </data>
+  <data name="intro7" xml:space="preserve">
+    <value>Die Strecke wird auf der Karte angezeigt.</value>
+  </data>
+  <data name="intro8" xml:space="preserve">
+    <value>Sie können sich an die StVO halten, müssen aber nicht.</value>
+  </data>
+  <data name="intro9" xml:space="preserve">
+    <value>Es ist möglich Fußgänger zu überfahren.</value>
   </data>
   <data name="racessetup" xml:space="preserve">
     <value>Alle Rennen wurden geladen.</value>
   </data>
   <data name="startracepromp" xml:space="preserve">
     <value>Drücken Sie [F10], um das erste Rennen zu starten</value>
+  </data>
+  <data name="task_started" xml:space="preserve">
+    <value>Die Aufgabe hat begonnen!</value>
   </data>
 </root>
