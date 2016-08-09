@@ -152,28 +152,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // load the vehicle model
-            var vehicle1Model = new Model(VehicleHash.Ruffian);
-            vehicle1Model.Request(500);
-
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded)
-                    Script.Wait(100);
-
-                // create the vehicle
-                raceVehicle = World.CreateVehicle(VehicleHash.Ruffian, car1_spawnpoint, car_spawn_heading);
-
-                // make the fast one colorful, the other one white
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 255, 255, 255);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, raceVehicle, 255, 255, 255);
-
-                Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, raceVehicle, true);
-            }
-
-            vehicle1Model.MarkAsNoLongerNeeded();
+            var vehicle1Model = ut.createCarAt(VehicleHash.Ruffian, car1_spawnpoint, car_spawn_heading);
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
