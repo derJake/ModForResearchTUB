@@ -757,7 +757,7 @@ namespace ModForResearchTUB
                 {
                     Wait(50);
                     // remove vehicles to avoid waiting times at crossings
-                    foreach (Vehicle vehicle in World.GetNearbyVehicles(player, 1000))
+                    foreach (Vehicle vehicle in World.GetNearbyVehicles(desert_car.Position, 1000))
                     {
                         if (vehicle != desert_car)
                         {
