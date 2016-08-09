@@ -210,6 +210,15 @@
   <data name="intro9" xml:space="preserve">
     <value>Es ist möglich Fußgänger zu überfahren.</value>
   </data>
+  <data name="menu_english" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="menu_german" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_languages" xml:space="preserve">
+    <value>Verfügbare Sprachen</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>Alle Rennen wurden geladen.</value>
   </data>

@@ -1612,6 +1612,14 @@ namespace ModForResearchTUB
                 }
             };
 
+            myMenu.AddItem(
+                new UIMenuListItem(
+                    rm.GetString("menu_languages"),
+                    new List<dynamic> { rm.GetString("menu_english"), rm.GetString("menu_german") },
+                    0
+                    )
+                );
+
             // button for starting the mod
             var newitem = new UIMenuItem("Start", "Start the intro and tasks.");
             myMenu.OnItemSelect += (sender, item, index) =>

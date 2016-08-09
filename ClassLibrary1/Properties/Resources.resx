@@ -210,6 +210,15 @@
   <data name="intro9" xml:space="preserve">
     <value>It is possible to run over pedestrians.</value>
   </data>
+  <data name="menu_english" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="menu_german" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="menu_languages" xml:space="preserve">
+    <value>Available languages</value>
+  </data>
   <data name="racessetup" xml:space="preserve">
     <value>All races are set up.</value>
   </data>

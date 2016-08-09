@@ -340,6 +340,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die English ähnelt.
+        /// </summary>
+        internal static string menu_english {
+            get {
+                return ResourceManager.GetString("menu_english", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die German ähnelt.
+        /// </summary>
+        internal static string menu_german {
+            get {
+                return ResourceManager.GetString("menu_german", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Available languages ähnelt.
+        /// </summary>
+        internal static string menu_languages {
+            get {
+                return ResourceManager.GetString("menu_languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {
