@@ -698,14 +698,7 @@ namespace ModForResearchTUB
                 Wait(100);
             }
 
-            // remove vehicles to avoid waiting times at crossings
-            foreach (Vehicle vehicle in World.GetNearbyVehicles(player, 1000))
-            {
-                if (vehicle != desert_car)
-                {
-                    vehicle.Delete();
-                }
-            }
+            
 
             // have player drive through waypoints
             for (int i = 0; i < waypoints_desert.Length; i++)
@@ -763,6 +756,14 @@ namespace ModForResearchTUB
                 while (!player.IsInRangeOf(waypoints_urban[i], urban_radius + radiustolerance))
                 {
                     Wait(50);
+                    // remove vehicles to avoid waiting times at crossings
+                    foreach (Vehicle vehicle in World.GetNearbyVehicles(player, 1000))
+                    {
+                        if (vehicle != desert_car)
+                        {
+                            vehicle.Delete();
+                        }
+                    }
                 }
             }
 
