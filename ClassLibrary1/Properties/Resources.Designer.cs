@@ -403,6 +403,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Started race {0}/{1} ähnelt.
+        /// </summary>
+        internal static string race_started {
+            get {
+                return ResourceManager.GetString("race_started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die All races are set up. ähnelt.
         /// </summary>
         internal static string racessetup {

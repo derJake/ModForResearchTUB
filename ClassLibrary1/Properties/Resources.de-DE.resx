@@ -234,6 +234,9 @@
   <data name="racessetup" xml:space="preserve">
     <value>Alle Rennen wurden geladen.</value>
   </data>
+  <data name="race_started" xml:space="preserve">
+    <value>Rennen {0}/{1} gestartet</value>
+  </data>
   <data name="startracepromp" xml:space="preserve">
     <value>Drücken Sie [F10], um das erste Rennen zu starten</value>
   </data>
