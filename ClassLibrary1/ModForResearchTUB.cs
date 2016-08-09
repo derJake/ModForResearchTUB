@@ -322,7 +322,7 @@ namespace ModForResearchTUB
                                 races[currentRace].initRace();
                             } else {
                                 toggleScenarios(true);
-                                UI.Notify("This was the last race!");
+                                UI.Notify(rm.GetString("last_race"));
                             }
                             return;
                         }
@@ -341,7 +341,7 @@ namespace ModForResearchTUB
                     // show countdown
                     countDown();
 
-                    UI.Notify(String.Format("Started race {0}/{1}", currentRace + 1, races.Length));
+                    UI.Notify(String.Format(rm.GetString("race_started"), currentRace + 1, races.Length));
                     // start the race and set first marker + blip
                     race_started = true;
 

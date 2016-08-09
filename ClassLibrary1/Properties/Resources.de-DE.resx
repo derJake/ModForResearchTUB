@@ -213,6 +213,9 @@
   <data name="language_selected" xml:space="preserve">
     <value>Ausgewählte Sprache: </value>
   </data>
+  <data name="last_race" xml:space="preserve">
+    <value>Das war die letzte Aufgabe!</value>
+  </data>
   <data name="menu_english" xml:space="preserve">
     <value>Englisch</value>
   </data>

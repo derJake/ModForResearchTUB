@@ -349,6 +349,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This was the last task! ähnelt.
+        /// </summary>
+        internal static string last_race {
+            get {
+                return ResourceManager.GetString("last_race", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die English ähnelt.
         /// </summary>
         internal static string menu_english {
