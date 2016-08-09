@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="checkpoint_reached" xml:space="preserve">
+    <value>checkpoint {0}/{1} reached</value>
+  </data>
   <data name="convoy_intro_1" xml:space="preserve">
     <value>In this task you will follow the other transporter.</value>
   </data>

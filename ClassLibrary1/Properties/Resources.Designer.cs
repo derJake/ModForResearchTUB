@@ -61,6 +61,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die checkpoint {0}/{1} reached ähnelt.
+        /// </summary>
+        internal static string checkpoint_reached {
+            get {
+                return ResourceManager.GetString("checkpoint_reached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die In this task you will follow the other transporter. ähnelt.
         /// </summary>
         internal static string convoy_intro_1 {
