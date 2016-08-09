@@ -131,6 +131,7 @@ namespace ModForResearchTUB
             debug = true;
         private List<Vector3> route_checkpoints;
         private List<Blip> route_blips;
+        private float off_track_distance = 200;
 
         // Main Script
         public Main()
@@ -1105,6 +1106,13 @@ namespace ModForResearchTUB
             }
 
             return new Vector3();
+        }
+
+        public bool isPlayerLost() {
+            var pos = Game.Player.Character.Position;
+            return (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance &&
+                    World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance &&
+                    (!checkpoints[currentCheckpoint].Item2.HasValue || World.GetDistance(pos, checkpoints[currentCheckpoint].Item2.Value) > off_track_distance));
         }
 
         public float ConvertToRadians(float angle)
