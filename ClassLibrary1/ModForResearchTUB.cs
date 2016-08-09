@@ -174,9 +174,9 @@ namespace ModForResearchTUB
             races = new RaceInterface[5];
             races[0] = new RaceIntro(rm, ut);
             races[1] = new RaceConvoy(rm, ut);
-            races[2] = new RaceSuburban();
+            races[2] = new RaceSuburban(rm, ut);
             races[3] = new RaceDesert(rm, ut);
-            races[4] = new RaceCarvsCar();
+            races[4] = new RaceCarvsCar(rm, ut);
             //races[5] = new RaceToWoodmill();
             currentRace = 0;
             if (debug) {
