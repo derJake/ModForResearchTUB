@@ -1613,12 +1613,6 @@ namespace ModForResearchTUB
             {
                 if (item == debug_checkbox)
                 {
-                    if (race_initialized || race_started)
-                    {
-                        UI.Notify(rm.GetString("menu_not_during_task"));
-                        return;
-                    }
-
                     debug = checked_;
                     UI.Notify("~r~debug mode: ~b~" + debug);
                 }
