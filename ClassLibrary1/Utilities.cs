@@ -140,6 +140,11 @@ namespace ModForResearchTUB
             }
         }
 
+        public void deleteScriptCams() {
+            World.DestroyAllCameras();
+            World.RenderingCamera = null;
+        }
+
         public Vector3 getCamForwardVector(Camera camera) {
             return new Vector3(
                 Convert.ToSingle(Math.Cos(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
