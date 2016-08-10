@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace ModForResearchTUB
 {
+    public enum Direction { Left = 0, Right = 1, Forward = 2, Backward = 3, Up = 4, Down = 5 };
+
     public class Utilities
     {
         private List<Vehicle> cars;
         private List<Ped> peds;
+        private Camera cam;
 
         public Utilities() {
             cars = new List<Vehicle>();
@@ -80,6 +83,19 @@ namespace ModForResearchTUB
             {
                 car.Delete();
             }
+        }
+
+        public void cloneCamera() {
+            cam = World.CreateCamera(
+                World.RenderingCamera.Position,
+                World.RenderingCamera.Rotation,
+                World.RenderingCamera.FieldOfView
+                );
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+        }
+
+        public void moveCamera(Direction dir, float amount) {
+
         }
     }
 }
