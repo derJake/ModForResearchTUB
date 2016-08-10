@@ -9,7 +9,18 @@ using System.Threading.Tasks;
 
 namespace ModForResearchTUB
 {
-    public enum Direction { Left = 0, Right = 1, Forward = 2, Backward = 3, Up = 4, Down = 5, TurnLeft = 6, TurnRight = 7 };
+    public enum Direction {
+        Left = 0,
+        Right = 1,
+        Forward = 2,
+        Backward = 3,
+        Up = 4,
+        Down = 5,
+        TurnLeft = 6,
+        TurnRight = 7,
+        TurnDown = 8,
+        TurnUp = 9
+    };
 
     public class Utilities
     {
