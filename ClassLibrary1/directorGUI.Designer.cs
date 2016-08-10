@@ -136,6 +136,7 @@
             this.button_turn_left.TabIndex = 8;
             this.button_turn_left.Text = "⟲";
             this.button_turn_left.UseVisualStyleBackColor = true;
+            this.button_turn_left.Click += new System.EventHandler(this.button_turn_left_Click);
             // 
             // button_turn_right
             // 
@@ -146,6 +147,7 @@
             this.button_turn_right.TabIndex = 9;
             this.button_turn_right.Text = "⟳";
             this.button_turn_right.UseVisualStyleBackColor = true;
+            this.button_turn_right.Click += new System.EventHandler(this.button_turn_right_Click);
             // 
             // button_upward
             // 

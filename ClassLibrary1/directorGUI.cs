@@ -59,5 +59,15 @@ namespace ModForResearchTUB
         {
             ut.deleteScriptCams();
         }
+
+        private void button_turn_left_Click(object sender, EventArgs e)
+        {
+            ut.moveCamera(Direction.TurnLeft, amount);
+        }
+
+        private void button_turn_right_Click(object sender, EventArgs e)
+        {
+            ut.moveCamera(Direction.TurnRight, amount);
+        }
     }
 }
