@@ -91,6 +91,7 @@
             this.button_right.TabIndex = 4;
             this.button_right.Text = "→";
             this.button_right.UseVisualStyleBackColor = true;
+            this.button_right.Click += new System.EventHandler(this.button_right_Click);
             // 
             // button_forward
             // 
@@ -112,6 +113,7 @@
             this.button_backward.TabIndex = 6;
             this.button_backward.Text = "↓";
             this.button_backward.UseVisualStyleBackColor = true;
+            this.button_backward.Click += new System.EventHandler(this.button_backward_Click);
             // 
             // label_cam_rot
             // 
@@ -151,6 +153,7 @@
             this.button_upward.TabIndex = 10;
             this.button_upward.Text = "↟";
             this.button_upward.UseVisualStyleBackColor = true;
+            this.button_upward.Click += new System.EventHandler(this.button_upward_Click);
             // 
             // button_downward
             // 
@@ -161,6 +164,7 @@
             this.button_downward.TabIndex = 11;
             this.button_downward.Text = "↡";
             this.button_downward.UseVisualStyleBackColor = true;
+            this.button_downward.Click += new System.EventHandler(this.button_downward_Click);
             // 
             // button_fov_plus
             // 
