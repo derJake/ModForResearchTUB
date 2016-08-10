@@ -139,6 +139,12 @@ namespace ModForResearchTUB
                 case Direction.TurnRight:
                     cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z + amount);
                     break;
+                case Direction.TurnUp:
+                    cam.Rotation = new Vector3(rot.X + amount, rot.Y, rot.Z);
+                    break;
+                case Direction.TurnDown:
+                    cam.Rotation = new Vector3(rot.X - amount, rot.Y, rot.Z);
+                    break;
             }
         }
 
