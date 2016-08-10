@@ -54,5 +54,10 @@ namespace ModForResearchTUB
         {
             ut.cloneCamera();
         }
+
+        private void delete_camera_Click(object sender, EventArgs e)
+        {
+            ut.deleteScriptCams();
+        }
     }
 }
