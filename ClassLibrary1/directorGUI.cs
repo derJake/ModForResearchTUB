@@ -69,5 +69,15 @@ namespace ModForResearchTUB
         {
             ut.moveCamera(Direction.TurnRight, amount);
         }
+
+        private void button_pitch_plus_Click(object sender, EventArgs e)
+        {
+            ut.moveCamera(Direction.TurnUp, amount);
+        }
+
+        private void button_pitch_minus_Click(object sender, EventArgs e)
+        {
+            ut.moveCamera(Direction.TurnDown, amount);
+        }
     }
 }

@@ -47,6 +47,8 @@
             this.button_clone_cam = new System.Windows.Forms.Button();
             this.code_output = new System.Windows.Forms.RichTextBox();
             this.delete_camera = new System.Windows.Forms.Button();
+            this.button_pitch_plus = new System.Windows.Forms.Button();
+            this.button_pitch_minus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // camera_pos
@@ -76,7 +78,7 @@
             // button_left
             // 
             this.button_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_left.Location = new System.Drawing.Point(31, 179);
+            this.button_left.Location = new System.Drawing.Point(31, 166);
             this.button_left.Name = "button_left";
             this.button_left.Size = new System.Drawing.Size(60, 52);
             this.button_left.TabIndex = 3;
@@ -87,7 +89,7 @@
             // button_right
             // 
             this.button_right.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_right.Location = new System.Drawing.Point(165, 179);
+            this.button_right.Location = new System.Drawing.Point(165, 166);
             this.button_right.Name = "button_right";
             this.button_right.Size = new System.Drawing.Size(59, 52);
             this.button_right.TabIndex = 4;
@@ -98,7 +100,7 @@
             // button_forward
             // 
             this.button_forward.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_forward.Location = new System.Drawing.Point(100, 121);
+            this.button_forward.Location = new System.Drawing.Point(100, 108);
             this.button_forward.Name = "button_forward";
             this.button_forward.Size = new System.Drawing.Size(59, 52);
             this.button_forward.TabIndex = 5;
@@ -109,7 +111,7 @@
             // button_backward
             // 
             this.button_backward.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_backward.Location = new System.Drawing.Point(100, 179);
+            this.button_backward.Location = new System.Drawing.Point(100, 166);
             this.button_backward.Name = "button_backward";
             this.button_backward.Size = new System.Drawing.Size(59, 52);
             this.button_backward.TabIndex = 6;
@@ -130,7 +132,7 @@
             // button_turn_left
             // 
             this.button_turn_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_turn_left.Location = new System.Drawing.Point(31, 121);
+            this.button_turn_left.Location = new System.Drawing.Point(31, 108);
             this.button_turn_left.Name = "button_turn_left";
             this.button_turn_left.Size = new System.Drawing.Size(60, 52);
             this.button_turn_left.TabIndex = 8;
@@ -141,7 +143,7 @@
             // button_turn_right
             // 
             this.button_turn_right.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_turn_right.Location = new System.Drawing.Point(165, 121);
+            this.button_turn_right.Location = new System.Drawing.Point(165, 108);
             this.button_turn_right.Name = "button_turn_right";
             this.button_turn_right.Size = new System.Drawing.Size(59, 52);
             this.button_turn_right.TabIndex = 9;
@@ -152,7 +154,7 @@
             // button_upward
             // 
             this.button_upward.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_upward.Location = new System.Drawing.Point(99, 237);
+            this.button_upward.Location = new System.Drawing.Point(99, 224);
             this.button_upward.Name = "button_upward";
             this.button_upward.Size = new System.Drawing.Size(60, 52);
             this.button_upward.TabIndex = 10;
@@ -163,7 +165,7 @@
             // button_downward
             // 
             this.button_downward.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_downward.Location = new System.Drawing.Point(100, 295);
+            this.button_downward.Location = new System.Drawing.Point(100, 282);
             this.button_downward.Name = "button_downward";
             this.button_downward.Size = new System.Drawing.Size(59, 52);
             this.button_downward.TabIndex = 11;
@@ -226,7 +228,7 @@
             // 
             // code_output
             // 
-            this.code_output.Location = new System.Drawing.Point(12, 373);
+            this.code_output.Location = new System.Drawing.Point(12, 487);
             this.code_output.Name = "code_output";
             this.code_output.Size = new System.Drawing.Size(502, 214);
             this.code_output.TabIndex = 18;
@@ -243,12 +245,36 @@
             this.delete_camera.UseVisualStyleBackColor = true;
             this.delete_camera.Click += new System.EventHandler(this.delete_camera_Click);
             // 
+            // button_pitch_plus
+            // 
+            this.button_pitch_plus.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_pitch_plus.Location = new System.Drawing.Point(32, 224);
+            this.button_pitch_plus.Name = "button_pitch_plus";
+            this.button_pitch_plus.Size = new System.Drawing.Size(59, 55);
+            this.button_pitch_plus.TabIndex = 20;
+            this.button_pitch_plus.Text = "⤽";
+            this.button_pitch_plus.UseVisualStyleBackColor = true;
+            this.button_pitch_plus.Click += new System.EventHandler(this.button_pitch_plus_Click);
+            // 
+            // button_pitch_minus
+            // 
+            this.button_pitch_minus.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_pitch_minus.Location = new System.Drawing.Point(165, 224);
+            this.button_pitch_minus.Name = "button_pitch_minus";
+            this.button_pitch_minus.Size = new System.Drawing.Size(59, 52);
+            this.button_pitch_minus.TabIndex = 21;
+            this.button_pitch_minus.Text = "⤼";
+            this.button_pitch_minus.UseVisualStyleBackColor = true;
+            this.button_pitch_minus.Click += new System.EventHandler(this.button_pitch_minus_Click);
+            // 
             // directorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(526, 599);
+            this.ClientSize = new System.Drawing.Size(526, 713);
+            this.Controls.Add(this.button_pitch_minus);
+            this.Controls.Add(this.button_pitch_plus);
             this.Controls.Add(this.delete_camera);
             this.Controls.Add(this.code_output);
             this.Controls.Add(this.button_clone_cam);
@@ -296,5 +322,7 @@
         private System.Windows.Forms.Button button_clone_cam;
         private System.Windows.Forms.RichTextBox code_output;
         private System.Windows.Forms.Button delete_camera;
+        private System.Windows.Forms.Button button_pitch_plus;
+        private System.Windows.Forms.Button button_pitch_minus;
     }
 }
