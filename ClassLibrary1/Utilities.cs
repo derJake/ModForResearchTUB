@@ -99,6 +99,7 @@ namespace ModForResearchTUB
                 cloneCamera();
             }
             var pos = cam.Position;
+            var rot = cam.Rotation;
             var fv = getCamForwardVector(cam);
             var lv = new Vector3(-fv.Y, fv.X, 0);
             
@@ -120,6 +121,12 @@ namespace ModForResearchTUB
                     break;
                 case Direction.Down:
                     pos.Z += amount;
+                    break;
+                case Direction.TurnLeft:
+                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z - amount);
+                    break;
+                case Direction.TurnRight:
+                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z + amount);
                     break;
             }
         }
