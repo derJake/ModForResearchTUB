@@ -49,5 +49,10 @@ namespace ModForResearchTUB
         {
             ut.moveCamera(Direction.Down, amount);
         }
+
+        private void button_clone_cam_Click(object sender, EventArgs e)
+        {
+            ut.cloneCamera();
+        }
     }
 }

@@ -215,6 +215,7 @@
             this.button_clone_cam.TabIndex = 16;
             this.button_clone_cam.Text = "❐";
             this.button_clone_cam.UseVisualStyleBackColor = true;
+            this.button_clone_cam.Click += new System.EventHandler(this.button_clone_cam_Click);
             // 
             // code_output
             // 
