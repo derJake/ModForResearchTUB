@@ -124,6 +124,22 @@ namespace ModForResearchTUB
             }
         }
 
+        public void changeCamFieldOfView(Direction dir, float amount) {
+            if (cam == null)
+            {
+                cloneCamera();
+            }
+
+            switch (dir) {
+                case Direction.Up:
+                    cam.FieldOfView += amount;
+                    break;
+                case Direction.Down:
+                    cam.FieldOfView -= amount;
+                    break;
+            }
+        }
+
         public Vector3 getCamForwardVector(Camera camera) {
             return new Vector3(
                 Convert.ToSingle(Math.Cos(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
