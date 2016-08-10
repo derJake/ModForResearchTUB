@@ -95,7 +95,41 @@ namespace ModForResearchTUB
         }
 
         public void moveCamera(Direction dir, float amount) {
+            if (cam == null) {
+                cloneCamera();
+            }
+            var pos = cam.Position;
+            var fv = getCamForwardVector(cam);
+            var lv = new Vector3(-fv.Y, fv.X, 0);
+            
+            switch (dir) {
+                case Direction.Left:
+                    pos += amount*lv;
+                    break;
+                case Direction.Right:
+                    pos -= amount*lv;
+                    break;
+                case Direction.Forward:
+                    pos += amount*fv;
+                    break;
+                case Direction.Backward:
+                    pos -= amount*fv;
+                    break;
+                case Direction.Up:
+                    pos.Z += amount;
+                    break;
+                case Direction.Down:
+                    pos.Z += amount;
+                    break;
+            }
+        }
 
+        public Vector3 getCamForwardVector(Camera camera) {
+            return new Vector3(
+                Convert.ToSingle(Math.Cos(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
+                Convert.ToSingle(Math.Sin(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
+                Convert.ToSingle(Math.Sin(camera.Rotation.X))
+            );
         }
     }
 }
