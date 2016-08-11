@@ -1656,7 +1656,7 @@ namespace ModForResearchTUB
 
                     cam_designer_active = checked_;
                     toggleCamDesigner();
-                    UI.Notify(rm.GetString("cam_designer_active") + cam_designer_active);
+                    UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
                 }
             };
 
