@@ -115,6 +115,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ~r~Don&apos;t lose the other truck! ähnelt.
+        /// </summary>
+        internal static string convoy_warning {
+            get {
+                return ResourceManager.GetString("convoy_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ~r~debug mode: ~b~{0} ähnelt.
         /// </summary>
         internal static string debug_mode_active {

@@ -258,8 +258,8 @@
   <data name="task_started" xml:space="preserve">
     <value>Die Aufgabe hat begonnen!</value>
   </data>
-  <data name="bleh" xml:space="preserve">
-    <value />
+  <data name="convoy_warning" xml:space="preserve">
+    <value>~r~Bleiben Sie nahe dem anderen Transporter!</value>
   </data>
   <data name="debug_mode_active" xml:space="preserve">
     <value>~r~Debugmodus: ~b~{0}</value>

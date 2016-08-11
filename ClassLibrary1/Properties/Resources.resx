@@ -261,6 +261,9 @@
   <data name="convoy_initialization" xml:space="preserve">
     <value>Convoy Task Initialization</value>
   </data>
+  <data name="convoy_warning" xml:space="preserve">
+    <value>~r~Don't lose the other truck!</value>
+  </data>
   <data name="debug_mode_active" xml:space="preserve">
     <value>~r~debug mode: ~b~{0}</value>
   </data>
