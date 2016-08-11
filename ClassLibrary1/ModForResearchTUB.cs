@@ -1635,7 +1635,7 @@ namespace ModForResearchTUB
 
                     route_designer_active = checked_;
                     toggleRouteDesigner();
-                    UI.Notify("~r~route designer active: ~b~" + route_designer_active);
+                    UI.Notify(String.Format(rm.GetString("route_designer_active"), route_designer_active));
                 }
             };
 
@@ -1670,7 +1670,7 @@ namespace ModForResearchTUB
                 if (item == debug_checkbox)
                 {
                     debug = checked_;
-                    UI.Notify("~r~debug mode: ~b~" + debug);
+                    UI.Notify(String.Format(rm.GetString("debug_mode_active"), debug));
                 }
             };
 
