@@ -1772,16 +1772,16 @@ namespace ModForResearchTUB
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    ut.moveCamera(Direction.Forward, cam_movement_amount);
+                    ut.moveCamera(Direction.Forward, cam_movement_amount/4);
                     break;
                 case Keys.S:
-                    ut.moveCamera(Direction.Backward, cam_movement_amount);
+                    ut.moveCamera(Direction.Backward, cam_movement_amount/4);
                     break;
                 case Keys.A:
-                    ut.moveCamera(Direction.Left, cam_movement_amount);
+                    ut.moveCamera(Direction.Left, cam_movement_amount/4);
                     break;
                 case Keys.D:
-                    ut.moveCamera(Direction.Right, cam_movement_amount);
+                    ut.moveCamera(Direction.Right, cam_movement_amount/4);
                     break;
                 case Keys.NumPad7:
                     ut.moveCamera(Direction.TurnLeft, cam_movement_amount);
@@ -1796,10 +1796,10 @@ namespace ModForResearchTUB
                     ut.moveCamera(Direction.TurnUp, cam_movement_amount);
                     break;
                 case Keys.Up:
-                    ut.moveCamera(Direction.Up, cam_movement_amount);
+                    ut.moveCamera(Direction.Up, cam_movement_amount/4);
                     break;
                 case Keys.Down:
-                    ut.moveCamera(Direction.Down, cam_movement_amount);
+                    ut.moveCamera(Direction.Down, cam_movement_amount/4);
                     break;
                 case Keys.Add:
                     ut.changeCamFieldOfView(Direction.Up, cam_movement_amount);
