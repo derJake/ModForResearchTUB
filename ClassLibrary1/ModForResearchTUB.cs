@@ -134,6 +134,9 @@ namespace ModForResearchTUB
             debug = true;
         private List<Vector3> route_checkpoints;
         private List<Blip> route_blips;
+
+        float cam_movement_amount = 0.8f;
+
         private float off_track_distance = 50;
         private int time_player_got_lost;
 
@@ -644,6 +647,10 @@ namespace ModForResearchTUB
                     break;
                 default:
                     break;
+            }
+
+            if (cam_designer_active) {
+                handleCamMovement(sender, e);
             }
         }
 
@@ -1721,6 +1728,47 @@ namespace ModForResearchTUB
                     b.Remove();
                 }
                 route_blips = null;
+            }
+        }
+
+        private void toggleCamDesigner() {
+            cam_designer_active = !cam_designer_active;
+            Game.Player.Character.IsInvincible = !Game.Player.Character.IsInvincible;
+        }
+
+        private void handleCamMovement(object sender, KeyEventArgs e) {
+            switch (e.KeyCode)
+            {
+                case Keys.NumPad8:
+                    ut.moveCamera(Direction.Forward, cam_movement_amount);
+                    break;
+                case Keys.NumPad2:
+                    ut.moveCamera(Direction.Backward, cam_movement_amount);
+                    break;
+                case Keys.NumPad4:
+                    ut.moveCamera(Direction.Left, cam_movement_amount);
+                    break;
+                case Keys.NumPad6:
+                    ut.moveCamera(Direction.Right, cam_movement_amount);
+                    break;
+                case Keys.NumPad7:
+                    ut.moveCamera(Direction.TurnLeft, cam_movement_amount);
+                    break;
+                case Keys.NumPad9:
+                    ut.moveCamera(Direction.TurnRight, cam_movement_amount);
+                    break;
+                case Keys.Up:
+                    ut.moveCamera(Direction.Up, cam_movement_amount);
+                    break;
+                case Keys.Down:
+                    ut.moveCamera(Direction.Down, cam_movement_amount);
+                    break;
+                case Keys.Add:
+                    ut.changeCamFieldOfView(Direction.Up, cam_movement_amount);
+                    break;
+                case Keys.Subtract:
+                    ut.changeCamFieldOfView(Direction.Up, -cam_movement_amount);
+                    break;
             }
         }
 
