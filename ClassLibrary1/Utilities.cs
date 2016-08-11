@@ -134,10 +134,10 @@ namespace ModForResearchTUB
                     pos.Z += amount;
                     break;
                 case Direction.TurnLeft:
-                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z - amount);
+                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z + amount);
                     break;
                 case Direction.TurnRight:
-                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z + amount);
+                    cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z - amount);
                     break;
                 case Direction.TurnUp:
                     cam.Rotation = new Vector3(rot.X + amount, rot.Y, rot.Z);
