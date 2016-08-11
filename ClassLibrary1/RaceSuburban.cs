@@ -326,7 +326,7 @@ namespace ModForResearchTUB
             Function.Call(Hash.CLEAR_HD_AREA);
             Function.Call(Hash.CLEAR_FOCUS);
 
-            UI.ShowSubtitle("Race started!", 1250);
+            UI.ShowSubtitle(rm.GetString("task_started"), 3000);
 
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 3";
 
