@@ -98,11 +98,11 @@ namespace ModForResearchTUB
 
         public void cloneCamera() {
             cam = World.CreateCamera(
-                World.RenderingCamera.Position,
-                World.RenderingCamera.Rotation,
-                World.RenderingCamera.FieldOfView
+                GameplayCamera.Position,
+                GameplayCamera.Rotation,
+                GameplayCamera.FieldOfView
                 );
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, true, false, cam, 0, 0);
         }
 
         public void moveCamera(Direction dir, float amount) {
