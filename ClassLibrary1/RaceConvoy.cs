@@ -139,9 +139,9 @@ namespace ModForResearchTUB
         public void initRace()
         {
             var bmsg = BigMessageThread.MessageInstance;
-            Logger.Log("Convoy Track Initialization");
-            UI.Notify("Convoy Track Initialization");
-            UI.ShowSubtitle("Convoy Track Initialization", 1250);
+            Logger.Log(rm.GetString("convoy_initialization"));
+            UI.Notify(rm.GetString("convoy_initialization"));
+            UI.ShowSubtitle(rm.GetString("convoy_initialization"), 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
