@@ -1739,6 +1739,13 @@ namespace ModForResearchTUB
 
         private void toggleCamDesigner() {
             Game.Player.Character.IsInvincible = cam_designer_active;
+            if (cam_designer_active)
+            {
+                ut.cloneCamera();
+            }
+            else {
+                ut.deleteScriptCams();
+            }
         }
 
         private void handleCamMovement(object sender, KeyEventArgs e) {
