@@ -130,6 +130,7 @@ namespace ModForResearchTUB
         private UIMenu myMenu;
         private MenuPool _myMenuPool = new MenuPool();
         private bool route_designer_active = false,
+            cam_designer_active = false,
             debug = true;
         private List<Vector3> route_checkpoints;
         private List<Blip> route_blips;
@@ -1622,6 +1623,27 @@ namespace ModForResearchTUB
                     route_designer_active = checked_;
                     toggleRouteDesigner();
                     UI.Notify("~r~route designer active: ~b~" + route_designer_active);
+                }
+            };
+
+            // checkbox for cam designer
+            var cam_designer_checkbox = new UIMenuCheckboxItem("Cam Designer", cam_designer_active, rm.GetString("menu_toggle_cam_designer"));
+            myMenu.AddItem(cam_designer_checkbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == cam_designer_checkbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify(rm.GetString("menu_not_during_task"));
+                        return;
+                    }
+
+                    cam_designer_active = checked_;
+                    toggleCamDesigner();
+                    UI.Notify(rm.GetString("cam_designer_active") + route_designer_active);
                 }
             };
 
