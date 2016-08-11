@@ -61,6 +61,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string bleh {
+            get {
+                return ResourceManager.GetString("bleh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active: {0} ähnelt.
         /// </summary>
         internal static string cam_designer_active {
@@ -102,6 +111,15 @@ namespace ModForResearchTUB.Properties {
         internal static string convoy_intro_3 {
             get {
                 return ResourceManager.GetString("convoy_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ~r~debug mode: ~b~{0} ähnelt.
+        /// </summary>
+        internal static string debug_mode_active {
+            get {
+                return ResourceManager.GetString("debug_mode_active", resourceCulture);
             }
         }
         
@@ -462,6 +480,15 @@ namespace ModForResearchTUB.Properties {
         internal static string racessetup {
             get {
                 return ResourceManager.GetString("racessetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ~r~route designer active: ~b~{0} ähnelt.
+        /// </summary>
+        internal static string route_designer_active {
+            get {
+                return ResourceManager.GetString("route_designer_active", resourceCulture);
             }
         }
         

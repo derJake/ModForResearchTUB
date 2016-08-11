@@ -258,4 +258,13 @@
   <data name="task_started" xml:space="preserve">
     <value>Die Aufgabe hat begonnen!</value>
   </data>
+  <data name="bleh" xml:space="preserve">
+    <value />
+  </data>
+  <data name="debug_mode_active" xml:space="preserve">
+    <value>~r~Debugmodus: ~b~{0}</value>
+  </data>
+  <data name="route_designer_active" xml:space="preserve">
+    <value>~r~Routendesigner aktiv: ~b~{0}</value>
+  </data>
 </root>
