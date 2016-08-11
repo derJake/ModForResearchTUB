@@ -193,9 +193,9 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
-            Logger.Log("Suburban Race Initialization");
-            UI.Notify("Suburban Race Initialization");
-            UI.ShowSubtitle("Suburban Race Initialization", 1250);
+            Logger.Log(rm.GetString("suburban_initialization"));
+            UI.Notify(rm.GetString("suburban_initialization"));
+            UI.ShowSubtitle(rm.GetString("suburban_initialization"), 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
