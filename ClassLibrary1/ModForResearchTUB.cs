@@ -1789,6 +1789,12 @@ namespace ModForResearchTUB
                 case Keys.NumPad9:
                     ut.moveCamera(Direction.TurnRight, cam_movement_amount);
                     break;
+                case Keys.NumPad8:
+                    ut.moveCamera(Direction.TurnDown, cam_movement_amount);
+                    break;
+                case Keys.NumPad5:
+                    ut.moveCamera(Direction.TurnUp, cam_movement_amount);
+                    break;
                 case Keys.Up:
                     ut.moveCamera(Direction.Up, cam_movement_amount);
                     break;
