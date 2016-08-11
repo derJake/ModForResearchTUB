@@ -657,7 +657,7 @@ namespace ModForResearchTUB
                     break;
             }
 
-            if (cam_designer_active) {
+            if (cam_designer_active && !myMenu.Visible) {
                 handleCamMovement(sender, e);
             }
         }
