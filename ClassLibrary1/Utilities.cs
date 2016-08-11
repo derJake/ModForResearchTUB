@@ -22,7 +22,7 @@ namespace ModForResearchTUB
         TurnUp = 9
     };
 
-    public class Utilities
+    public class Utilities : Script
     {
         private List<Vehicle> cars;
         private List<Ped> peds;
