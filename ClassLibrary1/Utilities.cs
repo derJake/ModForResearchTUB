@@ -96,22 +96,51 @@ namespace ModForResearchTUB
             }
         }
 
-        public void cloneCamera() {
+        public void cloneCamera()
+        {
+            Vector3 pos, rot;
+            float fov;
+            try
+            {
+                pos = GameplayCamera.Position;
+            }
+            catch (Exception e)
+            {
+                pos = Game.Player.Character.Position;
+            }
+            try
+            {
+                rot = GameplayCamera.Rotation;
+            }
+            catch (Exception e)
+            {
+                rot = new Vector3(0, 0, 0);
+            }
+            try
+            {
+                fov = GameplayCamera.FieldOfView;
+            }
+            catch (Exception e)
+            {
+                fov = 50;
+            }
+
             cam = World.CreateCamera(
-                GameplayCamera.Position,
-                GameplayCamera.Rotation,
-                GameplayCamera.FieldOfView
+                pos,
+                rot,
+                fov
                 );
             Function.Call(Hash.RENDER_SCRIPT_CAMS, true, false, cam, 0, 0);
         }
 
         public void moveCamera(Direction dir, float amount) {
             if (cam == null) {
-                cloneCamera();
+                return;
             }
             var pos = cam.Position;
             var rot = cam.Rotation;
             var fv = getCamForwardVector(cam);
+            UI.ShowSubtitle(String.Format("cam fv: {0}, {1}, {2}", fv.X, fv.Y, fv.Z));
             var lv = new Vector3(-fv.Y, fv.X, 0);
             
             switch (dir) {
@@ -151,7 +180,7 @@ namespace ModForResearchTUB
         public void changeCamFieldOfView(Direction dir, float amount) {
             if (cam == null)
             {
-                cloneCamera();
+                return;
             }
 
             switch (dir) {
@@ -164,11 +193,26 @@ namespace ModForResearchTUB
             }
         }
 
+        public void setScriptCam(Camera camera) {
+            cam = camera;
+        }
+
+        public void activateScriptCam() {
+            if (cam == null) {
+                return;
+            }
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, true, false, cam, 0, 0);
+        }
+
+        public void deactivateScriptCam() {
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, false, false, cam, 0, 0);
+        }
+
         public void deleteScriptCams() {
             if (cam == null) {
                 return;
             }
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, false, false, cam, 0, 0);
+            deactivateScriptCam();
             Function.Call(Hash.SET_CAM_ACTIVE, cam, false);
             Function.Call(Hash.DESTROY_CAM, cam, true);
             cam = null;
