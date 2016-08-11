@@ -1741,9 +1741,15 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = cam_designer_active;
             if (cam_designer_active)
             {
-                ut.cloneCamera();
+                ut.setScriptCam(World.CreateCamera(
+                    GameplayCamera.Position,
+                    GameplayCamera.Rotation,
+                    GameplayCamera.FieldOfView));
+                ut.activateScriptCam();
+                Game.Player.CanControlCharacter = false;
             }
             else {
+                Game.Player.CanControlCharacter = false;
                 ut.deleteScriptCams();
             }
         }
@@ -1751,16 +1757,16 @@ namespace ModForResearchTUB
         private void handleCamMovement(object sender, KeyEventArgs e) {
             switch (e.KeyCode)
             {
-                case Keys.NumPad8:
+                case Keys.W:
                     ut.moveCamera(Direction.Forward, cam_movement_amount);
                     break;
-                case Keys.NumPad2:
+                case Keys.S:
                     ut.moveCamera(Direction.Backward, cam_movement_amount);
                     break;
-                case Keys.NumPad4:
+                case Keys.A:
                     ut.moveCamera(Direction.Left, cam_movement_amount);
                     break;
-                case Keys.NumPad6:
+                case Keys.D:
                     ut.moveCamera(Direction.Right, cam_movement_amount);
                     break;
                 case Keys.NumPad7:
