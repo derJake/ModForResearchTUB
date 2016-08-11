@@ -70,6 +70,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Car vs. Car Initialization ähnelt.
+        /// </summary>
+        internal static string carvscar_initialization {
+            get {
+                return ResourceManager.GetString("carvscar_initialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die checkpoint {0}/{1} reached ähnelt.
         /// </summary>
         internal static string checkpoint_reached {
@@ -129,6 +138,15 @@ namespace ModForResearchTUB.Properties {
         internal static string debug_mode_active {
             get {
                 return ResourceManager.GetString("debug_mode_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Desert Initialization ähnelt.
+        /// </summary>
+        internal static string desert_initialization {
+            get {
+                return ResourceManager.GetString("desert_initialization", resourceCulture);
             }
         }
         
@@ -507,6 +525,15 @@ namespace ModForResearchTUB.Properties {
         internal static string startracepromp {
             get {
                 return ResourceManager.GetString("startracepromp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suburban Initialization ähnelt.
+        /// </summary>
+        internal static string suburban_initialization {
+            get {
+                return ResourceManager.GetString("suburban_initialization", resourceCulture);
             }
         }
         
