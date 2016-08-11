@@ -258,8 +258,8 @@
   <data name="task_started" xml:space="preserve">
     <value>The task has started!</value>
   </data>
-  <data name="bleh" xml:space="preserve">
-    <value />
+  <data name="convoy_initialization" xml:space="preserve">
+    <value>Convoy Task Initialization</value>
   </data>
   <data name="debug_mode_active" xml:space="preserve">
     <value>~r~debug mode: ~b~{0}</value>

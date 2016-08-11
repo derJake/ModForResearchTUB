@@ -61,15 +61,6 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
-        /// </summary>
-        internal static string bleh {
-            get {
-                return ResourceManager.GetString("bleh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active: {0} ähnelt.
         /// </summary>
         internal static string cam_designer_active {
@@ -84,6 +75,15 @@ namespace ModForResearchTUB.Properties {
         internal static string checkpoint_reached {
             get {
                 return ResourceManager.GetString("checkpoint_reached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Convoy Task Initialization ähnelt.
+        /// </summary>
+        internal static string convoy_initialization {
+            get {
+                return ResourceManager.GetString("convoy_initialization", resourceCulture);
             }
         }
         
