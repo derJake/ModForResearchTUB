@@ -120,9 +120,9 @@ namespace ModForResearchTUB
         public void initRace()
         {
             var bmsg = BigMessageThread.MessageInstance;
-            Logger.Log("Desert Track Initialization");
-            UI.Notify("Desert Track Initialization");
-            UI.ShowSubtitle("Desert Track Initialization", 1250);
+            Logger.Log(rm.GetString("desert_initialization"));
+            UI.Notify(rm.GetString("desert_initialization"));
+            UI.ShowSubtitle(rm.GetString("desert_initialization"), 1250);
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
