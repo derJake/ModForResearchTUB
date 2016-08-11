@@ -382,6 +382,7 @@ namespace ModForResearchTUB
                 }
             }
 
+            // display markers for checkpoints when designing a route
             if (route_designer_active) {
                 renderRouteCheckpoints();
             }
