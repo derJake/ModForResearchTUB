@@ -219,11 +219,18 @@ namespace ModForResearchTUB
         }
 
         public Vector3 getCamForwardVector(Camera camera) {
+            double theta = degreeToRadians(camera.Rotation.X + 90),
+                phi = degreeToRadians(camera.Rotation.Z + 90);
+
             return new Vector3(
-                Convert.ToSingle(Math.Cos(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
-                Convert.ToSingle(Math.Sin(camera.Rotation.Z) * Math.Cos(camera.Rotation.X)),
-                Convert.ToSingle(Math.Sin(camera.Rotation.X))
+                Convert.ToSingle(Math.Sin(theta) * Math.Cos(phi)),
+                Convert.ToSingle(Math.Sin(theta) * Math.Sin(phi)),
+                Convert.ToSingle(Math.Cos(theta))
             );
+        }
+
+        public double degreeToRadians(double degrees) {
+            return degrees * Math.PI / 180;
         }
     }
 }
