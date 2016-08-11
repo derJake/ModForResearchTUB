@@ -1650,7 +1650,7 @@ namespace ModForResearchTUB
 
                     cam_designer_active = checked_;
                     toggleCamDesigner();
-                    UI.Notify(rm.GetString("cam_designer_active") + route_designer_active);
+                    UI.Notify(rm.GetString("cam_designer_active") + cam_designer_active);
                 }
             };
 
@@ -1732,8 +1732,7 @@ namespace ModForResearchTUB
         }
 
         private void toggleCamDesigner() {
-            cam_designer_active = !cam_designer_active;
-            Game.Player.Character.IsInvincible = !Game.Player.Character.IsInvincible;
+            Game.Player.Character.IsInvincible = cam_designer_active;
         }
 
         private void handleCamMovement(object sender, KeyEventArgs e) {
