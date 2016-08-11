@@ -225,7 +225,7 @@ namespace ModForResearchTUB
             return new Vector3(
                 Convert.ToSingle(Math.Sin(theta) * Math.Cos(phi)),
                 Convert.ToSingle(Math.Sin(theta) * Math.Sin(phi)),
-                Convert.ToSingle(Math.Cos(theta))
+                -Convert.ToSingle(Math.Cos(theta))
             );
         }
 
