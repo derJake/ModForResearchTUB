@@ -135,6 +135,7 @@ namespace ModForResearchTUB
         private List<Vector3> route_checkpoints;
         private List<Blip> route_blips;
 
+        Camera designer_cam;
         float cam_movement_amount = 0.8f;
 
         private float off_track_distance = 50;
@@ -390,6 +391,7 @@ namespace ModForResearchTUB
             // stop bringing up phone on arrow keys
             if (cam_designer_active) {
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
+                debugCamDesigner();
             }
         }
 
@@ -1741,16 +1743,28 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = cam_designer_active;
             if (cam_designer_active)
             {
-                ut.setScriptCam(World.CreateCamera(
+                designer_cam = World.CreateCamera(
                     GameplayCamera.Position,
                     GameplayCamera.Rotation,
-                    GameplayCamera.FieldOfView));
+                    GameplayCamera.FieldOfView);
+                ut.setScriptCam(designer_cam);
                 ut.activateScriptCam();
                 Game.Player.CanControlCharacter = false;
             }
             else {
-                Game.Player.CanControlCharacter = false;
+                Game.Player.CanControlCharacter = true;
                 ut.deleteScriptCams();
+                World.DestroyAllCameras();
+            }
+        }
+
+        private void debugCamDesigner() {
+            if (debug && designer_cam != null) {
+                Vector3 pos = designer_cam.Position,
+                    fv = ut.getCamForwardVector(designer_cam),
+                    rot = designer_cam.Rotation;
+
+                World.DrawMarker(MarkerType.DebugSphere, pos + fv*5, fv, rot, new Vector3(1,1,1), Color.White);
             }
         }
 
