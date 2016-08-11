@@ -145,22 +145,22 @@ namespace ModForResearchTUB
             
             switch (dir) {
                 case Direction.Left:
-                    pos += amount*lv;
+                    cam.Position = pos + amount*lv;
                     break;
                 case Direction.Right:
-                    pos -= amount*lv;
+                    cam.Position = pos - amount*lv;
                     break;
                 case Direction.Forward:
-                    pos += amount*fv;
+                    cam.Position = pos + amount*fv;
                     break;
                 case Direction.Backward:
-                    pos -= amount*fv;
+                    cam.Position = pos - amount*fv;
                     break;
                 case Direction.Up:
-                    pos.Z += amount;
+                    cam.Position = new Vector3(pos.X, pos.Y, pos.Z + amount);
                     break;
                 case Direction.Down:
-                    pos.Z += amount;
+                    cam.Position = new Vector3(pos.X, pos.Y, pos.Z - amount);
                     break;
                 case Direction.TurnLeft:
                     cam.Rotation = new Vector3(rot.X, rot.Y, rot.Z + amount);
