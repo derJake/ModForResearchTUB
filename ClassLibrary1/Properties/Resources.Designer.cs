@@ -61,6 +61,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active:  ähnelt.
+        /// </summary>
+        internal static string cam_designer_active {
+            get {
+                return ResourceManager.GetString("cam_designer_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die checkpoint {0}/{1} reached ähnelt.
         /// </summary>
         internal static string checkpoint_reached {
@@ -399,6 +408,15 @@ namespace ModForResearchTUB.Properties {
         internal static string menu_not_during_task {
             get {
                 return ResourceManager.GetString("menu_not_during_task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Activate Cam Designer? ähnelt.
+        /// </summary>
+        internal static string menu_toggle_cam_designer {
+            get {
+                return ResourceManager.GetString("menu_toggle_cam_designer", resourceCulture);
             }
         }
         

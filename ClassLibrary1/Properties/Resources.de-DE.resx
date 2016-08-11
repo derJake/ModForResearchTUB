@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cam_designer_active" xml:space="preserve">
+    <value>Cam Designer aktiv: </value>
+  </data>
   <data name="checkpoint_reached" xml:space="preserve">
     <value>Checkpoint {0}/{1} erreicht</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="menu_not_during_task" xml:space="preserve">
     <value>Das ist während der Aufgaben nicht möglich.</value>
+  </data>
+  <data name="menu_toggle_cam_designer" xml:space="preserve">
+    <value>Cam Designer aktivieren?</value>
   </data>
   <data name="menu_toggle_debug" xml:space="preserve">
     <value>Debugmodus umschalten?</value>
