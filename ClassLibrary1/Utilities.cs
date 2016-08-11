@@ -165,8 +165,10 @@ namespace ModForResearchTUB
         }
 
         public void deleteScriptCams() {
-            World.DestroyAllCameras();
-            World.RenderingCamera = null;
+            Function.Call(Hash.RENDER_SCRIPT_CAMS, false, false, cam, 0, 0);
+            Function.Call(Hash.SET_CAM_ACTIVE, cam, false);
+            Function.Call(Hash.DESTROY_CAM, cam, true);
+            cam = null;
         }
 
         public Vector3 getCamForwardVector(Camera camera) {
