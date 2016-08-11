@@ -61,7 +61,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active:  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active: {0} ähnelt.
         /// </summary>
         internal static string cam_designer_active {
             get {

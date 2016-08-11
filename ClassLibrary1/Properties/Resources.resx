@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cam_designer_active" xml:space="preserve">
-    <value>Cam Designer active: </value>
+    <value>Cam Designer active: {0}</value>
   </data>
   <data name="checkpoint_reached" xml:space="preserve">
     <value>checkpoint {0}/{1} reached</value>
