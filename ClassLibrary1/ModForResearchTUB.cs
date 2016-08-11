@@ -385,6 +385,11 @@ namespace ModForResearchTUB
             if (route_designer_active) {
                 renderRouteCheckpoints();
             }
+
+            // stop bringing up phone on arrow keys
+            if (cam_designer_active) {
+                Function.Call(Hash.DESTROY_MOBILE_PHONE);
+            }
         }
 
         protected void renderDiagrams() {
