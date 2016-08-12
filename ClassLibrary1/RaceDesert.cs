@@ -214,6 +214,11 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("desert_intro_4"), 10000);
             Wait(10000);
 
+            // TODO: alternative checkpoint in desert
+            cam.Position = new Vector3(2399.078f, 3552.71f, 77.98219f);
+            cam.Rotation = new Vector3(-14.10008f, 0f, 151.3984f);
+            cam.FieldOfView = 47.6f;
+
             bmsg.ShowOldMessage(rm.GetString("desert_intro_5"), 10000);
             Wait(10000);
 
