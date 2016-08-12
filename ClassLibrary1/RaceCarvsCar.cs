@@ -23,11 +23,11 @@ namespace ModForResearchTUB
 
         private Vehicle[] vehicles = new Vehicle[2];
 
-        private Vector3 car_selection = new Vector3(-786.5052f, -2429.885f, 14.57072f);
-        private Vector3 car1_spawnpoint = new Vector3(-789.7347f, -2428.485f, 14.57072f);
-        private Vector3 car2_spawnpoint = new Vector3(-795.5708f, -2425.815f, 14.57072f);
-        private float car_spawn_heading = 147.0f;
-        private float car_spawn_player_heading = 48.0f;
+        private Vector3 car_selection = new Vector3(-793.8867f, -2441.894f, 14.57072f);
+        private Vector3 car1_spawnpoint = new Vector3(-793.4608f, -2435.887f, 14.27493f);
+        private Vector3 car2_spawnpoint = new Vector3(-790.8688f, -2438.188f, 14.27507f);
+        private float car_spawn_heading = 148.0f;
+        private float car_spawn_player_heading = 327.0612f;
         private Vector3 race1Start = new Vector3(-1015.348f, -2715.956f, 12.58948f);
         private Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
