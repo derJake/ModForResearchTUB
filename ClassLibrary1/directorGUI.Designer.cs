@@ -233,6 +233,7 @@
             this.code_output.Size = new System.Drawing.Size(502, 214);
             this.code_output.TabIndex = 18;
             this.code_output.Text = "";
+            this.code_output.TextChanged += new System.EventHandler(this.code_output_TextChanged);
             // 
             // delete_camera
             // 

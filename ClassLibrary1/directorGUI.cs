@@ -13,6 +13,8 @@ namespace ModForResearchTUB
     public partial class directorGUI : Form
     {
         public Utilities ut { get; set; }
+        public String code_output_text { get; set;  }
+        delegate void SetTextCallback(string text);
         private float amount = 0.9f;
 
         public directorGUI()
@@ -52,7 +54,8 @@ namespace ModForResearchTUB
 
         private void button_clone_cam_Click(object sender, EventArgs e)
         {
-            ut.cloneCamera();
+            //ut.cloneCamera();
+            ut.activateScriptCam();
         }
 
         private void delete_camera_Click(object sender, EventArgs e)
@@ -78,6 +81,27 @@ namespace ModForResearchTUB
         private void button_pitch_minus_Click(object sender, EventArgs e)
         {
             ut.moveCamera(Direction.TurnDown, amount);
+        }
+
+        private void code_output_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void SetText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.code_output.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.code_output.Text = text;
+            }
         }
     }
 }
