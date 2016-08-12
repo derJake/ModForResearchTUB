@@ -1810,11 +1810,11 @@ namespace ModForResearchTUB
             }
 
             String cam_code = "World.CreateCamera(" + Environment.NewLine +
-                "new Vector3(" +
+                "\tnew Vector3(" +
                 String.Format("{0}f, {1}f, {2}f),", designer_cam.Position.X, designer_cam.Position.Y, designer_cam.Position.Z) +
                 Environment.NewLine + 
-                String.Format("new Vector3({0}f, {1}f, {2}f),", designer_cam.Rotation.X, designer_cam.Rotation.Y, designer_cam.Rotation.Z) + Environment.NewLine + 
-                designer_cam.FieldOfView.ToString() + "f);";
+                String.Format("\tnew Vector3({0}f, {1}f, {2}f),", designer_cam.Rotation.X, designer_cam.Rotation.Y, designer_cam.Rotation.Z) + Environment.NewLine +
+                "\t" + designer_cam.FieldOfView.ToString() + "f" + Environment.NewLine + ");";
             director_gui.SetText(cam_code);
         }
 
