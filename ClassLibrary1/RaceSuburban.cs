@@ -267,10 +267,6 @@ namespace ModForResearchTUB
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            UI.ShowSubtitle("~bla~ Drive around the neighbourhood!", 2500);
-            Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
-            Wait(5000);
-
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
             Game.Player.Character.IsInvincible = false;
