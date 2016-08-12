@@ -181,6 +181,7 @@ namespace ModForResearchTUB
 
             // TODO: add camera angles and if possible at some time in the future, show alternative checkpoint
             cam.StopPointing();
+            // show player getting onto bike
             cam.Position = new Vector3(2768.997f, 3452.713f, 55.69416f);
             cam.Rotation = new Vector3(0.6459216f, 0, 2.159997f);
             cam.FieldOfView = 48.4f;
@@ -189,8 +190,18 @@ namespace ModForResearchTUB
             Wait(10000);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
 
+            // show wide view of You Tool market and highway
+            cam.Position = new Vector3(2779.671f, 3403.094f, 67.52917f);
+            cam.Rotation = new Vector3(-27.8562f, 8.537737E-07f, 28.48598f);
+	        cam.FieldOfView = 102.0001f;
+
             bmsg.ShowOldMessage(rm.GetString("desert_intro_2"), 10000);
             Wait(10000);
+
+            // show highway and exit
+            cam.Position = new Vector3(2558.172f, 3054.789f, 49.60252f);
+	        cam.Rotation = new Vector3(-14.16963f, 0f, 114.9396f);
+	        cam.FieldOfView = 51.6f;
 
             bmsg.ShowOldMessage(rm.GetString("desert_intro_3"), 10000);
             Wait(10000);
