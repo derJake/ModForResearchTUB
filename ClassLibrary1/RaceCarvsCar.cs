@@ -208,49 +208,81 @@ namespace ModForResearchTUB
 
             Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
 
-            // make player look at cars
-            Game.Player.Character.Task.StandStill(5000);
+            // intro time
+            Game.Player.CanControlCharacter = false;
+            Game.Player.Character.IsInvincible = true;
 
             // create a camera to look through
             Camera cam = World.CreateCamera(
-                new Vector3(-799.5338f, -2427f, 14.52622f), // position
-                new Vector3(9f, 0f, -82.57458f), // rotation
-                90f
-            );
-
-            // TO DO: move camera around
-
-            // switch to this camera
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
-            // play sound
-
-
-            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
-
-            UI.ShowSubtitle("Racecar (locked with alarm)", 2500);
-            Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
-            Wait(2500);
-
-            // create a camera to look through
-            cam = World.CreateCamera(
-                new Vector3(-793.5338f, -2430f, 14.52622f), // position
-                new Vector3(10f, 0f, -92.57458f), // rotation
-                90f
+                new Vector3(-800.2387f, -2441.272f, 14.24846f),
+                new Vector3(7.068823f, -2.134434E-07f, -71.44397f),
+                44.40001f
             );
 
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_1"), 10000);
+            Wait(10000);
 
-            UI.ShowSubtitle("Normal car with good traction", 2500);
-            Game.Player.Character.Task.LookAt(car2_spawnpoint, 2500);
-            Wait(2500);
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-793.6436f, -2441.077f, 14.8099f);
+            cam.Rotation = new Vector3(-7.331206f, -2.027712E-06f, 4.556251f);
+            cam.FieldOfView = 37.20001f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_2"), 10000);
+            Wait(10000);
+
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-794.2858f, -2433.135f, 14.49894f);
+            cam.Rotation = new Vector3(2.26882f, 2.192797E-06f, -179.4448f);
+            cam.FieldOfView = 14.80003f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_3"), 10000);
+            Wait(10000);
+
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-797.787f, -2436.968f, 14.07312f);
+            cam.Rotation = new Vector3(2.26882f, 9.604953E-07f, -94.64352f);
+            cam.FieldOfView = 37.20001f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_4"), 10000);
+            Wait(10000);
+
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-796.3414f, -2440.611f, 14.31693f);
+            cam.Rotation = new Vector3(1.468822f, 8.80454E-07f, -73.04324f);
+            cam.FieldOfView = 37.20001f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_5"), 10000);
+            Wait(10000);
+
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-795.6731f, -2442.41f, 13.71518f);
+            cam.Rotation = new Vector3(9.468822f, 4.268868E-07f, -61.84291f);
+            cam.FieldOfView = 34.00002f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("carvscar_intro_6"), 10000);
+            Wait(10000);
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
 
-            UI.ShowSubtitle("Choose one to start the race!", 2500);
+            Game.Player.CanControlCharacter = true;
+            Game.Player.Character.IsInvincible = false;
         }
 
         public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
