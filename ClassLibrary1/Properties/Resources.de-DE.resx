@@ -267,4 +267,31 @@
   <data name="route_designer_active" xml:space="preserve">
     <value>~r~Routendesigner aktiv: ~b~{0}</value>
   </data>
+  <data name="carvscar_intro_1" xml:space="preserve">
+    <value>Für diese Aufgabe wählen Sie zwischen diesen zwei Autos.</value>
+  </data>
+  <data name="carvscar_intro_2" xml:space="preserve">
+    <value>Das eine ist ein Rennauto, das abgeschlossen ist.</value>
+  </data>
+  <data name="carvscar_intro_3" xml:space="preserve">
+    <value>Sein Alarm wird die Polizei herbeirufen.</value>
+  </data>
+  <data name="carvscar_intro_4" xml:space="preserve">
+    <value>Es ist schneller, aber schwieriger zu fahren.</value>
+  </data>
+  <data name="carvscar_intro_5" xml:space="preserve">
+    <value>Dieses normale Auto ist nicht abgeschlossen.</value>
+  </data>
+  <data name="carvscar_intro_6" xml:space="preserve">
+    <value>Sie werden keinen Fahndungslevel bekommen, wenn Sie es wählen.</value>
+  </data>
+  <data name="suburban_intro_1" xml:space="preserve">
+    <value>Diese Aufgabe wird eine kurze Fahrt durch die Nachbarschaft.</value>
+  </data>
+  <data name="suburban_intro_2" xml:space="preserve">
+    <value>Die Straßen können voller Autos sein.</value>
+  </data>
+  <data name="suburban_intro_3" xml:space="preserve">
+    <value>Das Auto ist schneller, als es aussieht.</value>
+  </data>
 </root>
