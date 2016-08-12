@@ -79,6 +79,60 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die For this task you choose between these two cars. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_1 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die One is a race car, that is locked. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_2 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Its alarm will alert the police. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_3 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die It is faster, but more difficult to drive. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_4 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This regular car is unlocked. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_5 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You won&apos;t get a wanted level, if you choose it. ähnelt.
+        /// </summary>
+        internal static string carvscar_intro_6 {
+            get {
+                return ResourceManager.GetString("carvscar_intro_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die checkpoint {0}/{1} reached ähnelt.
         /// </summary>
         internal static string checkpoint_reached {

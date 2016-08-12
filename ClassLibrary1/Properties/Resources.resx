@@ -279,4 +279,22 @@
   <data name="suburban_initialization" xml:space="preserve">
     <value>Suburban Initialization</value>
   </data>
+  <data name="carvscar_intro_1" xml:space="preserve">
+    <value>For this task you choose between these two cars.</value>
+  </data>
+  <data name="carvscar_intro_2" xml:space="preserve">
+    <value>One is a race car, that is locked.</value>
+  </data>
+  <data name="carvscar_intro_3" xml:space="preserve">
+    <value>Its alarm will alert the police.</value>
+  </data>
+  <data name="carvscar_intro_4" xml:space="preserve">
+    <value>It is faster, but more difficult to drive.</value>
+  </data>
+  <data name="carvscar_intro_5" xml:space="preserve">
+    <value>This regular car is unlocked.</value>
+  </data>
+  <data name="carvscar_intro_6" xml:space="preserve">
+    <value>You won't get a wanted level, if you choose it.</value>
+  </data>
 </root>
