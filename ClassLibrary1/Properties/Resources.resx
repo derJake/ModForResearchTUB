@@ -297,4 +297,13 @@
   <data name="carvscar_intro_6" xml:space="preserve">
     <value>You won't get a wanted level, if you choose it.</value>
   </data>
+  <data name="suburban_intro_1" xml:space="preserve">
+    <value>This task will be a short drive through the neighbourhood.</value>
+  </data>
+  <data name="suburban_intro_2" xml:space="preserve">
+    <value>The streets might be busy with cars.</value>
+  </data>
+  <data name="suburban_intro_3" xml:space="preserve">
+    <value>Your car is rather fast, despite looks.</value>
+  </data>
 </root>

@@ -592,6 +592,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This task will be a short drive through the neighbourhood. ähnelt.
+        /// </summary>
+        internal static string suburban_intro_1 {
+            get {
+                return ResourceManager.GetString("suburban_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The streets might be busy with cars. ähnelt.
+        /// </summary>
+        internal static string suburban_intro_2 {
+            get {
+                return ResourceManager.GetString("suburban_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your car is rather fast, despite looks. ähnelt.
+        /// </summary>
+        internal static string suburban_intro_3 {
+            get {
+                return ResourceManager.GetString("suburban_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The task has started! ähnelt.
         /// </summary>
         internal static string task_started {
