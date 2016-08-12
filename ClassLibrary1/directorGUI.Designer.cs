@@ -228,6 +228,7 @@
             // 
             // code_output
             // 
+            this.code_output.AcceptsTab = true;
             this.code_output.Location = new System.Drawing.Point(12, 487);
             this.code_output.Name = "code_output";
             this.code_output.Size = new System.Drawing.Size(502, 214);
