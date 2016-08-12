@@ -180,6 +180,10 @@ namespace ModForResearchTUB
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
             // TODO: add camera angles and if possible at some time in the future, show alternative checkpoint
+            cam.Position = new Vector3(2768.997f, 3452.713f, 55.69416f);
+            cam.Rotation = new Vector3(0.6459216f, 0, 2.159997f);
+            cam.FieldOfView = 48.4f;
+
             bmsg.ShowOldMessage(rm.GetString("desert_intro_1"), 10000);
             Wait(10000);
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
