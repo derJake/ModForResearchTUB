@@ -1824,7 +1824,7 @@ namespace ModForResearchTUB
                     designer_cam.Rotation.Y.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Rotation.Z.ToString(CultureInfo.InvariantCulture)
                     ) + Environment.NewLine +
-                "\t" + designer_cam.FieldOfView.ToString() + "f" + Environment.NewLine + ");";
+                "\t" + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f" + Environment.NewLine + ");";
             director_gui.SetText(cam_code);
         }
 
