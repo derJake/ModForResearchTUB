@@ -141,7 +141,7 @@ namespace ModForResearchTUB
         private float off_track_distance = 50;
         private int time_player_got_lost;
 
-        //private directorGUI director_gui;
+        private directorGUI director_gui;
 
         // Main Script
         public Main()
@@ -177,23 +177,23 @@ namespace ModForResearchTUB
             //UI.ShowSubtitle("Press [F10] to start first race", 1250);
             UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
 
-            //director_gui = new directorGUI();
-            //director_gui.ut = ut;
+            director_gui = new directorGUI();
+            director_gui.ut = ut;
 
-            //BackgroundWorker myWorker = new BackgroundWorker();
-            //myWorker.DoWork += (sender, e) =>
-            //{
-            //    try
-            //    {
-            //        Application.EnableVisualStyles();
-            //        Application.Run(director_gui);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Logger.Log(ex.ToString());
-            //    }
-            //};
-            //myWorker.RunWorkerAsync();
+            BackgroundWorker myWorker = new BackgroundWorker();
+            myWorker.DoWork += (sender, e) =>
+            {
+                try
+                {
+                    Application.EnableVisualStyles();
+                    Application.Run(director_gui);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+            };
+            myWorker.RunWorkerAsync();
         }
 
         private void setUpRaces() {
@@ -1808,6 +1808,9 @@ namespace ModForResearchTUB
                     ut.changeCamFieldOfView(Direction.Up, -cam_movement_amount);
                     break;
             }
+
+            String cam_code = String.Format("{0}, {1}, {2}", designer_cam.Position.X, designer_cam.Position.Y, designer_cam.Position.Z);
+            director_gui.SetText(cam_code);
         }
 
         private void startMod() {
