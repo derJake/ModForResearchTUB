@@ -143,7 +143,6 @@ namespace ModForResearchTUB
 
             // try to clear parking lot where cars are spawned
             // TO DO: check, if the boolean parameters have been documented
-            // TO DO: spawn cars on the other side of the curb, to avoid false positives
             Function.Call(Hash.CLEAR_ANGLED_AREA_OF_VEHICLES,
                 car1_spawnpoint.X,
                 car1_spawnpoint.Y,
