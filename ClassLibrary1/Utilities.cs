@@ -140,7 +140,6 @@ namespace ModForResearchTUB
             var pos = cam.Position;
             var rot = cam.Rotation;
             var fv = getCamForwardVector(cam);
-            UI.ShowSubtitle(String.Format("cam fv: {0}, {1}, {2}", fv.X, fv.Y, fv.Z));
             var lv = new Vector3(-fv.Y, fv.X, 0);
             
             switch (dir) {
