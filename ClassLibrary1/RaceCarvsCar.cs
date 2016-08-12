@@ -184,51 +184,29 @@ namespace ModForResearchTUB
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
 
-            // load the two models
-            var vehicle1Model = new Model(VehicleHash.Buffalo);
-            var vehicle2Model = new Model(VehicleHash.RapidGT);
-            vehicle1Model.Request(500);
-            vehicle2Model.Request(500);
+            // create the two cars
+            Vehicle vehicle1 = ut.createCarAt(VehicleHash.Buffalo, car1_spawnpoint, car_spawn_heading),
+                vehicle2 = ut.createCarAt(VehicleHash.RapidGT, car2_spawnpoint, car_spawn_heading);
+            vehicles[0] = vehicle1;
+            vehicles[1] = vehicle2;
 
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid &&
-                vehicle2Model.IsInCdImage &&
-                vehicle2Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded ||
-                        !vehicle2Model.IsLoaded)
-                    Script.Wait(100);
+            // open driver side door for player
+            Function.Call(Hash.SET_VEHICLE_DOOR_OPEN, vehicle1, 0, true, false);
+            Function.Call(Hash.SET_VEHICLE_ENGINE_ON, vehicle1, true, false, false);
 
-                // create the slower, reliable car
-                var vehicle1 = World.CreateVehicle(VehicleHash.Buffalo, car1_spawnpoint, car_spawn_heading);
-                // create the racecar
-                var vehicle2 = World.CreateVehicle(VehicleHash.RapidGT, car2_spawnpoint, car_spawn_heading);
-                vehicles[0] = vehicle1;
-                vehicles[1] = vehicle2;
+            // make fast vehicle locked, but able to break and enter
+            Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
+            Function.Call(Hash.SET_VEHICLE_NEEDS_TO_BE_HOTWIRED, vehicle2, true);
+            vehicle2.HasAlarm = true;
 
-                // open driver side door for player
-                Function.Call(Hash.SET_VEHICLE_DOOR_OPEN, vehicle1, 0, true, false);
-                Function.Call(Hash.SET_VEHICLE_ENGINE_ON, vehicle1, true, false, false);
+            // make the fast one colorful, the other one white
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle1, 255, 255, 255);
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle1, 255, 255, 255);
 
-                // make fast vehicle locked, but able to break and enter
-                Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, vehicle2, 4);
-                Function.Call(Hash.SET_VEHICLE_NEEDS_TO_BE_HOTWIRED, vehicle2, true);
-                vehicle2.HasAlarm = true;
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255, 0, 0);
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 50, 0);
 
-                // make the fast one colorful, the other one white
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle1, 255, 255, 255);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle1, 255, 255, 255);
-
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, vehicle2, 255, 0, 0);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, vehicle2, 255, 50, 0);
-
-                Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
-            }
-
-            vehicle1Model.MarkAsNoLongerNeeded();
-            vehicle2Model.MarkAsNoLongerNeeded();
+            Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, vehicle1, true);
 
             // make player look at cars
             Game.Player.Character.Task.StandStill(5000);
