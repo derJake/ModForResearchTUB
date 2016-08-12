@@ -259,8 +259,6 @@ namespace ModForResearchTUB
 
             cam.PointAt(raceVehicle);
 
-            // TO DO: move camera around
-
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
 
