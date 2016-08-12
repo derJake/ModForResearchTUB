@@ -1811,9 +1811,19 @@ namespace ModForResearchTUB
 
             String cam_code = "World.CreateCamera(" + Environment.NewLine +
                 "\tnew Vector3(" +
-                String.Format("{0}f, {1}f, {2}f),", designer_cam.Position.X, designer_cam.Position.Y, designer_cam.Position.Z) +
+                String.Format(
+                    "{0}f, {1}f, {2}f),",
+                    designer_cam.Position.X.ToString(CultureInfo.InvariantCulture),
+                    designer_cam.Position.Y.ToString(CultureInfo.InvariantCulture),
+                    designer_cam.Position.Z.ToString(CultureInfo.InvariantCulture)
+                    ) +
                 Environment.NewLine + 
-                String.Format("\tnew Vector3({0}f, {1}f, {2}f),", designer_cam.Rotation.X, designer_cam.Rotation.Y, designer_cam.Rotation.Z) + Environment.NewLine +
+                String.Format(
+                    "\tnew Vector3({0}f, {1}f, {2}f),",
+                    designer_cam.Rotation.X.ToString(CultureInfo.InvariantCulture),
+                    designer_cam.Rotation.Y.ToString(CultureInfo.InvariantCulture),
+                    designer_cam.Rotation.Z.ToString(CultureInfo.InvariantCulture)
+                    ) + Environment.NewLine +
                 "\t" + designer_cam.FieldOfView.ToString() + "f" + Environment.NewLine + ");";
             director_gui.SetText(cam_code);
         }
