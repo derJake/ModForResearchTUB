@@ -168,7 +168,7 @@ namespace ModForResearchTUB
 
             cam.PointAt(raceVehicle);
 
-            // TO DO: move camera around
+            // TODO: move camera around
 
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver);
 
