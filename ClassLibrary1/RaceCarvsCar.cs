@@ -136,6 +136,7 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            var bmsg = BigMessageThread.MessageInstance;
             initCalled++;
             UI.ShowSubtitle(rm.GetString("carvscar_initialization"), 1250);
             UI.Notify(rm.GetString("carvscar_initialization"));
