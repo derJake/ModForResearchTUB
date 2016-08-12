@@ -142,7 +142,7 @@ namespace ModForResearchTUB
             Logger.Log(rm.GetString("carvscar_initialization"));
 
             // try to clear parking lot where cars are spawned
-            // TO DO: check, if the boolean parameters have been documented
+            // TODO: check, if the boolean parameters have been documented
             Function.Call(Hash.CLEAR_ANGLED_AREA_OF_VEHICLES,
                 car1_spawnpoint.X,
                 car1_spawnpoint.Y,
