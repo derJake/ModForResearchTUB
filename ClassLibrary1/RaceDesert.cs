@@ -206,6 +206,11 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("desert_intro_3"), 10000);
             Wait(10000);
 
+            // show desert route
+            cam.Position = new Vector3(2585.001f, 3338.31f, 68.397f);
+            cam.Rotation = new Vector3(-14.9001f, 0f, 53.79928f);
+            cam.FieldOfView = 67.6f;
+
             bmsg.ShowOldMessage(rm.GetString("desert_intro_4"), 10000);
             Wait(10000);
 
