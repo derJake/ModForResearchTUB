@@ -226,65 +226,21 @@ namespace ModForResearchTUB
             player.Heading = 309;
 
             // load the car model
-            var vehicle1Model = new Model(VehicleHash.Surge);
-            vehicle1Model.Request(500);
+            raceVehicle = ut.createCarAt(VehicleHash.Surge, car1_spawnpoint, car_spawn_heading);
+            // set colors for vehicle
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 100, 0, 0);
+            Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, raceVehicle, 100, 0, 0);
 
-            if (vehicle1Model.IsInCdImage &&
-                vehicle1Model.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!vehicle1Model.IsLoaded)
-                    Script.Wait(100);
+            raceVehicle.PearlescentColor = VehicleColor.Chrome;
 
-                // create the slower, reliable car
-                raceVehicle = World.CreateVehicle(VehicleHash.Surge, car1_spawnpoint, car_spawn_heading);
-                // create the racecar
-
-                // make the fast one colorful, the other one white
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR, raceVehicle, 100, 0, 0);
-                Function.Call(Hash.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR, raceVehicle, 100, 0, 0);
-
-                raceVehicle.PearlescentColor = VehicleColor.Chrome;
-
-                Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, raceVehicle, true);
-            }
+            Function.Call(Hash.SET_VEHICLE_INTERIORLIGHT, raceVehicle, true);
 
             // load the car model
-            var obstacleModel = new Model(VehicleHash.Trash);
-            obstacleModel.Request(500);
-
-            if (obstacleModel.IsInCdImage &&
-                obstacleModel.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!obstacleModel.IsLoaded)
-                    Script.Wait(100);
-
-                // create the slower, reliable car
-                obstacle = World.CreateVehicle(VehicleHash.Trash, obstacle_spawnpoint, obstacle_spawn_heading);
-            }
+            obstacle = ut.createCarAt(VehicleHash.Trash, obstacle_spawnpoint, obstacle_spawn_heading);
 
             // load the driver model
-            var driver = new Model(PedHash.GarbageSMY);
-            driver.Request(500);
-
-            driver.MarkAsNoLongerNeeded();
-
-            if (driver.IsInCdImage &&
-                driver.IsValid
-                )
-            {
-                // If the model isn't loaded, wait until it is
-                while (!driver.IsLoaded)
-                    Script.Wait(100);
-
-                // create the slower, reliable car
-                obstacle_driver = World.CreatePed(driver, obstacle_driver_spawnpoint);
-                obstacle_driver.Task.EnterVehicle(obstacle, VehicleSeat.Driver);
-                obstacle_driver.SetIntoVehicle(obstacle, VehicleSeat.Driver);
-            }
+            obstacle_driver = ut.createPedAt(PedHash.GarbageSMY, obstacle_driver_spawnpoint);
+            obstacle_driver.SetIntoVehicle(obstacle, VehicleSeat.Driver);
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
