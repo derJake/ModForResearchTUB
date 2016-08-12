@@ -193,6 +193,7 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            var bmsg = BigMessageThread.MessageInstance;
             Logger.Log(rm.GetString("suburban_initialization"));
             UI.Notify(rm.GetString("suburban_initialization"));
             UI.ShowSubtitle(rm.GetString("suburban_initialization"), 1250);
@@ -261,13 +262,35 @@ namespace ModForResearchTUB
 
             // switch to this camera
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 1, 0, cam, 0, 0);
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            bmsg.ShowOldMessage(rm.GetString("suburban_intro_1"), 10000);
+            Wait(10000);
 
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-539.8182f, 665.8551f, 145.2555f);
+            cam.Rotation = new Vector3(-10.15267f, 0f, -69.7598f);
+            cam.FieldOfView = 104.4001f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("suburban_intro_2"), 10000);
+            Wait(10000);
+
+            // play sound
+            Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
+            // change perspective
+            cam.Position = new Vector3(-478.3805f, 654.7722f, 144.4642f);
+            cam.Rotation = new Vector3(-17.35267f, -1.280661E-06f, 83.03968f);
+            cam.FieldOfView = 61.19999f;
+            // show instruction
+            bmsg.ShowOldMessage(rm.GetString("suburban_intro_3"), 10000);
+            Wait(10000);
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
             Game.Player.Character.IsInvincible = false;
+            Game.Player.CanControlCharacter = true;
         }
 
         public void startRace()
