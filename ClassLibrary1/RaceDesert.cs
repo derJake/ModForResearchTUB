@@ -153,7 +153,7 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // load the vehicle model
-            raceVehicle = ut.createCarAt(VehicleHash.Ruffian, car1_spawnpoint, car_spawn_heading);
+            raceVehicle = ut.createCarAt(VehicleHash.Sanchez, car1_spawnpoint, car_spawn_heading);
 
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
