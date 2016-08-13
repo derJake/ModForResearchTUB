@@ -40,7 +40,8 @@ namespace ModForResearchTUB
         private BarTimerBar distanceBar;
 
         private int last_take_over,
-            num_take_overs;
+            num_take_overs = 0,
+            time_player_leads = 0;
 
         ResourceManager rm;
         Utilities ut;
@@ -149,6 +150,7 @@ namespace ModForResearchTUB
                     }
                 }
                 else if (last_take_over > 0) { // player fell back behind leader
+                    time_player_leads += Game.GameTime - last_take_over;
                     last_take_over = 0;
                     num_take_overs++;
                 }
