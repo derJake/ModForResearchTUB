@@ -72,6 +72,8 @@ namespace ModForResearchTUB
             UI.ShowSubtitle(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000), 3000);
             UI.Notify(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000));
 
+            Logger.Log(String.Format("leading vehicle distance to target: {0}", World.GetDistance(leader.Position, leader_target)));
+
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
