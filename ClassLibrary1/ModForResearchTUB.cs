@@ -1813,23 +1813,26 @@ namespace ModForResearchTUB
 
             director_cam_position = "new Vector3(" +
                 String.Format(
-                    "{0}f, {1}f, {2}f),",
+                    "{0}f, {1}f, {2}f)",
                     designer_cam.Position.X.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Position.Y.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Position.Z.ToString(CultureInfo.InvariantCulture)
                     );
             director_cam_rotation = String.Format(
-                    "new Vector3({0}f, {1}f, {2}f),",
+                    "new Vector3({0}f, {1}f, {2}f)",
                     designer_cam.Rotation.X.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Rotation.Y.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Rotation.Z.ToString(CultureInfo.InvariantCulture)
                     );
 
-            String cam_code = "World.CreateCamera(" + Environment.NewLine +
-                "\t" + director_cam_position +
-                Environment.NewLine + 
-                "\t" + director_cam_rotation + Environment.NewLine +
-                "\t" + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f" + Environment.NewLine + ");";
+            String cam_code = "Camera cam = World.CreateCamera(" + Environment.NewLine +
+                "\t" + director_cam_position + "," + Environment.NewLine + 
+                "\t" + director_cam_rotation + "," + Environment.NewLine +
+                "\t" + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f" + Environment.NewLine + ");" +
+                Environment.NewLine + Environment.NewLine +
+                "cam.Position = " + director_cam_position + ";" + Environment.NewLine +
+                "cam.Rotation = " + director_cam_rotation + ";" + Environment.NewLine +
+                "cam.FieldOfView = " + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f;";
             director_gui.SetText(cam_code);
         }
 
