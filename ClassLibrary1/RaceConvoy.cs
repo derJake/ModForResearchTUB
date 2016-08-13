@@ -39,6 +39,9 @@ namespace ModForResearchTUB
         private TimerBarPool barPool = new TimerBarPool();
         private BarTimerBar distanceBar;
 
+        private int last_take_over,
+            num_take_overs;
+
         ResourceManager rm;
         Utilities ut;
 
@@ -133,6 +136,20 @@ namespace ModForResearchTUB
                     Game.GameTime.ToString(),
                     currentDistance
                 ));
+
+                float leader_to_target = World.GetDistance(leader.Position, checkpoints[checkpoints.Length - 1].Item1),
+                    player_to_target = World.GetDistance(Game.Player.Character.CurrentVehicle.Position, checkpoints[checkpoints.Length - 1].Item1);
+                if (leader_to_target > player_to_target) // player took over leader driver
+                {
+                    if (last_take_over == 0) // log time
+                    {
+                        last_take_over = Game.GameTime;
+                    }
+                }
+                else if (last_take_over > 0) { // player fell back behind leader
+                    last_take_over = 0;
+                    num_take_overs++;
+                }
             }
         }
 
