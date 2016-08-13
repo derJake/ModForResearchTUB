@@ -168,8 +168,6 @@ namespace ModForResearchTUB
 
             cam.PointAt(raceVehicle);
 
-            // TODO: move camera around
-
             Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver);
 
             // switch to this camera
@@ -179,7 +177,6 @@ namespace ModForResearchTUB
 
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
-            // TODO: add camera angles and if possible at some time in the future, show alternative checkpoint
             cam.StopPointing();
             // show player getting onto bike
             cam.Position = new Vector3(2768.997f, 3452.713f, 55.69416f);
