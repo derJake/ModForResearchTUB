@@ -142,6 +142,8 @@ namespace ModForResearchTUB
         private int time_player_got_lost;
 
         private directorGUI director_gui;
+        public String director_cam_position = "",
+            director_cam_rotation = "";
 
         // Main Script
         public Main()
@@ -1809,21 +1811,24 @@ namespace ModForResearchTUB
                     break;
             }
 
-            String cam_code = "World.CreateCamera(" + Environment.NewLine +
-                "\tnew Vector3(" +
+            director_cam_position = "new Vector3(" +
                 String.Format(
                     "{0}f, {1}f, {2}f),",
                     designer_cam.Position.X.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Position.Y.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Position.Z.ToString(CultureInfo.InvariantCulture)
-                    ) +
-                Environment.NewLine + 
-                String.Format(
-                    "\tnew Vector3({0}f, {1}f, {2}f),",
+                    );
+            director_cam_rotation = String.Format(
+                    "new Vector3({0}f, {1}f, {2}f),",
                     designer_cam.Rotation.X.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Rotation.Y.ToString(CultureInfo.InvariantCulture),
                     designer_cam.Rotation.Z.ToString(CultureInfo.InvariantCulture)
-                    ) + Environment.NewLine +
+                    );
+
+            String cam_code = "World.CreateCamera(" + Environment.NewLine +
+                "\t" + director_cam_position +
+                Environment.NewLine + 
+                "\t" + director_cam_rotation + Environment.NewLine +
                 "\t" + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f" + Environment.NewLine + ");";
             director_gui.SetText(cam_code);
         }
