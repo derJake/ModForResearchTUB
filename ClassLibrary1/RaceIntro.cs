@@ -383,7 +383,7 @@ namespace ModForResearchTUB
 
             Vector3 checkpoint_position = new Vector3(-172.7784f, 1362.75f, 296.5129f);
 
-            Function.Call<int>(Hash.CREATE_CHECKPOINT,
+            int mock_checkpoint = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
                 checkpoint_position.X,
                 checkpoint_position.Y,
@@ -423,6 +423,9 @@ namespace ModForResearchTUB
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(4000);
             blip.Remove();
+
+            // remove checkpoint graphic
+            Function.Call(Hash.DELETE_CHECKPOINT, mock_checkpoint);
 
             // show traffic light
 
