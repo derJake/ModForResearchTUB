@@ -391,7 +391,7 @@ namespace ModForResearchTUB
                 0, // facing next checkpoint?
                 0,
                 0,
-                5,    // radius
+                5.0f,    // radius
                 255,    // R
                 155,     // G
                 0,        // B
