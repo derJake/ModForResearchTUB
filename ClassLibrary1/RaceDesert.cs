@@ -211,16 +211,42 @@ namespace ModForResearchTUB
             cam.Rotation = new Vector3(-14.9001f, 0f, 53.79928f);
             cam.FieldOfView = 67.6f;
 
+            // create red alt checkpoint markers
+            int[] alt_checkpoint_markers = new int[checkpoints.Length - 1];
+            for (int i = 0; i < checkpoints.Length - 1; i++) {
+                if (checkpoints[i].Item2.HasValue) {
+                    alt_checkpoint_markers[i] = Function.Call<int>(Hash.CREATE_CHECKPOINT,
+                        2, // type
+                        checkpoints[i].Item2.Value.X,
+                        checkpoints[i].Item2.Value.Y,
+                        checkpoints[i].Item2.Value.Z,
+                        0, // facing next checkpoint?
+                        0,
+                        0,
+                        5.0f,    // radius
+                        255,    // R
+                        0,     // G
+                        0,        // B
+                        100,    // Alpha
+                        0 // number displayed in marker, if type is 42-44
+                        );
+                }
+            }
+
             bmsg.ShowOldMessage(rm.GetString("desert_intro_4"), 10000);
             Wait(10000);
 
-            // TODO: alternative checkpoint in desert
             cam.Position = new Vector3(2399.078f, 3552.71f, 77.98219f);
             cam.Rotation = new Vector3(-14.10008f, 0f, 151.3984f);
             cam.FieldOfView = 47.6f;
 
             bmsg.ShowOldMessage(rm.GetString("desert_intro_5"), 10000);
             Wait(10000);
+
+            // delete checkpoint markers again
+            foreach (int handle in alt_checkpoint_markers) {
+                Function.Call(Hash.DELETE_CHECKPOINT, handle);
+            }
 
             // switch back to main cam
             Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
