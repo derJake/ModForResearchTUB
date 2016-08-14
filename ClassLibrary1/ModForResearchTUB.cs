@@ -786,12 +786,30 @@ namespace ModForResearchTUB
                 Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
                 new_blip.Color = BlipColor.Yellow;
                 route_blips.Add(new_blip);
+
+                updateRouteCodeOutput();
             }
         }
 
         private void renderRouteCheckpoints() {
             foreach (Vector3 cp in route_checkpoints) {
                 World.DrawMarker(MarkerType.VerticalCylinder, cp, new Vector3(), new Vector3(), new Vector3(checkpoint_radius, checkpoint_radius, 15), Color.Yellow);
+            }
+        }
+
+        private void updateRouteCodeOutput() {
+            if (route_checkpoints.Count > 0) {
+                String route_code = "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
+                foreach (Vector3 cp in route_checkpoints) {
+                    route_code += String.Format(
+                        "\tnew Tuple<Vector3, Vector3?>(new Vector3({0}f, {1}f, {2}f), null),", 
+                        cp.X.ToString(CultureInfo.InvariantCulture),
+                        cp.Y.ToString(CultureInfo.InvariantCulture),
+                        cp.Z.ToString(CultureInfo.InvariantCulture)
+                        ) + Environment.NewLine;
+                }
+                route_code += "};";
+                director_gui.SetRouteCodeText(route_code);
             }
         }
 
