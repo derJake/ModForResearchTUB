@@ -49,6 +49,7 @@
             this.delete_camera = new System.Windows.Forms.Button();
             this.button_pitch_plus = new System.Windows.Forms.Button();
             this.button_pitch_minus = new System.Windows.Forms.Button();
+            this.route_code_output = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // camera_pos
@@ -229,9 +230,9 @@
             // code_output
             // 
             this.code_output.AcceptsTab = true;
-            this.code_output.Location = new System.Drawing.Point(12, 487);
+            this.code_output.Location = new System.Drawing.Point(12, 353);
             this.code_output.Name = "code_output";
-            this.code_output.Size = new System.Drawing.Size(502, 214);
+            this.code_output.Size = new System.Drawing.Size(502, 182);
             this.code_output.TabIndex = 18;
             this.code_output.Text = "";
             this.code_output.TextChanged += new System.EventHandler(this.code_output_TextChanged);
@@ -269,12 +270,22 @@
             this.button_pitch_minus.UseVisualStyleBackColor = true;
             this.button_pitch_minus.Click += new System.EventHandler(this.button_pitch_minus_Click);
             // 
+            // route_code_output
+            // 
+            this.route_code_output.AcceptsTab = true;
+            this.route_code_output.Location = new System.Drawing.Point(12, 541);
+            this.route_code_output.Name = "route_code_output";
+            this.route_code_output.Size = new System.Drawing.Size(502, 392);
+            this.route_code_output.TabIndex = 22;
+            this.route_code_output.Text = "";
+            // 
             // directorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(526, 713);
+            this.ClientSize = new System.Drawing.Size(526, 945);
+            this.Controls.Add(this.route_code_output);
             this.Controls.Add(this.button_pitch_minus);
             this.Controls.Add(this.button_pitch_plus);
             this.Controls.Add(this.delete_camera);
@@ -326,5 +337,6 @@
         private System.Windows.Forms.Button delete_camera;
         private System.Windows.Forms.Button button_pitch_plus;
         private System.Windows.Forms.Button button_pitch_minus;
+        private System.Windows.Forms.RichTextBox route_code_output;
     }
 }

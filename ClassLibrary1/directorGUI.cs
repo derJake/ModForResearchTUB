@@ -103,5 +103,21 @@ namespace ModForResearchTUB
                 this.code_output.Text = text;
             }
         }
+
+        public void SetRouteCodeText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.route_code_output.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.route_code_output.Text = text;
+            }
+        }
     }
 }
