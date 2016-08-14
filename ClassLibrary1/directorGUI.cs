@@ -111,7 +111,7 @@ namespace ModForResearchTUB
             // If these threads are different, it returns true.
             if (this.route_code_output.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(SetText);
+                SetTextCallback d = new SetTextCallback(SetRouteCodeText);
                 this.Invoke(d, new object[] { text });
             }
             else
