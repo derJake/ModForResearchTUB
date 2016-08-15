@@ -1227,6 +1227,9 @@ namespace ModForResearchTUB
                 || Game.Player.Character.IsInWater
                 || Function.Call<float>(Hash.GET_ENTITY_SUBMERGED_LEVEL, Game.Player.Character) > 0.1f
                 || Function.Call<float>(Hash.GET_ENTITY_SUBMERGED_LEVEL, Game.Player.Character.CurrentVehicle) > 0.1f
+                || !Game.Player.Character.CurrentVehicle.IsOnAllWheels
+                || Game.Player.Character.CurrentVehicle.IsUpsideDown
+                || Game.Player.Character.CurrentVehicle.Rotation.Y > 100
                 || (getClosestVehicleNode() == null
                 || (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance
                 && World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance
