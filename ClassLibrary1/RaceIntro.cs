@@ -391,7 +391,7 @@ namespace ModForResearchTUB
                 19.60003f
             );
 
-            Vector3 checkpoint_position = new Vector3(-195.0358f, 1311.87f, 303.8914f);
+            Vector3 checkpoint_position = new Vector3(-162.1843f, 1501.855f, 288.5133f);
 
             int mock_checkpoint = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
