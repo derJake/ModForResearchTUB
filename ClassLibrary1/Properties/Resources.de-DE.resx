@@ -178,7 +178,7 @@
     <value>Die Blinker können nicht gesteuert werden. Biegen Sie einfach ab.</value>
   </data>
   <data name="intro19" xml:space="preserve">
-    <value>Um rückwärts zu fahren, bleiben Sie auf dem Bremspedal stehen nach Stillstand des Fahrzeugs.</value>
+    <value>Zum Rückwärtsfahren bleiben Sie auf dem Bremspedal stehen.</value>
   </data>
   <data name="intro2" xml:space="preserve">
     <value>Diese Studie bezieht sich auf den Einzelspielermodus des Spiels.</value>
