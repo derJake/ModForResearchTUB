@@ -350,7 +350,7 @@ namespace ModForResearchTUB
                 new Vector3(-199.8456f, 1307.512f, 304.0928f),
                 new Vector3(-179.732f, 1385.757f, 293.7937f),
                 new Vector3(-192.6232f, 1427.798f, 289.517f),
-                new Vector3(-174.808f, 1492.035f, 288.521f)
+                new Vector3(-168.6804f, 1496.93f, 288.4995f)
             };
 
             Tuple<Vector3,Vector3>[] cameraPerspectives = {
