@@ -85,6 +85,10 @@ namespace ModForResearchTUB
             throw new Exception("vehicle model could not be loaded");
         }
 
+        public void addBlip(Blip blip) {
+            blips.Add(blip);
+        }
+
         public void cleanUp()
         {
             foreach (Ped ped in peds)
