@@ -385,7 +385,7 @@ namespace ModForResearchTUB
             }
             World.RenderingCamera.StopPointing();
             // point camera
-            Camera cam = World.CreateCamera(
+            cam = World.CreateCamera(
                 new Vector3(-195.3602f, 1486.22f, 289.9316f),
                 new Vector3(1.860572f, 1.067217E-07f, -74.11179f),
                 19.60003f
