@@ -26,11 +26,13 @@ namespace ModForResearchTUB
     {
         private List<Vehicle> cars;
         private List<Ped> peds;
+        private List<Blip> blips;
         private Camera cam;
 
         public Utilities() {
             cars = new List<Vehicle>();
             peds = new List<Ped>();
+            blips = new List<Blip>();
         }
 
         public Ped createPedAt(PedHash hash, Vector3 pos)
