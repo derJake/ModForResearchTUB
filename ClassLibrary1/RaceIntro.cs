@@ -370,6 +370,10 @@ namespace ModForResearchTUB
 
             // have player drive through waypoints
             for (int i = 0; i < waypoints.Length; i++) {
+                if (i == 3)
+                {
+                    bmsg.ShowOldMessage(rm.GetString("intro_5_1"), regularIntroSceneLength);
+                }
                 player.Task.DriveTo(car, waypoints[i], radius, speed);
                 Function.Call(Hash.SET_DRIVE_TASK_DRIVING_STYLE, player, 1 << 9);
                 World.RenderingCamera.Position = cameraPerspectives[i].Item1;
@@ -379,17 +383,12 @@ namespace ModForResearchTUB
                 while (!player.IsInRangeOf(waypoints[i], radius + radiustolerance)) {
                     Wait(50);
                 }
-                if (i == 4) {
-                    bmsg.ShowOldMessage(rm.GetString("intro5_1"), regularIntroSceneLength);
-                }
             }
             World.RenderingCamera.StopPointing();
             // point camera
-            cam = World.CreateCamera(
-                new Vector3(-195.3602f, 1486.22f, 289.9316f),
-                new Vector3(1.860572f, 1.067217E-07f, -74.11179f),
-                19.60003f
-            );
+            World.RenderingCamera.Position = new Vector3(-195.3602f, 1486.22f, 289.9316f);
+            World.RenderingCamera.Rotation = new Vector3(1.860572f, 1.067217E-07f, -74.11179f);
+            World.RenderingCamera.FieldOfView = 19.60003f;
 
             Vector3 checkpoint_position = new Vector3(-162.1843f, 1501.855f, 288.5133f);
 
