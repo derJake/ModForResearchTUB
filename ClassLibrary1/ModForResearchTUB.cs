@@ -1329,13 +1329,13 @@ namespace ModForResearchTUB
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL_NOW, Game.Player, false);
 
             // try and remove left cars
-            Function.Call(Hash.CLEAR_AREA_OF_VEHICLES,
-               pos.X, pos.Y, pos.Z, 1000, false, false, false, false, false
-            );
+            //Function.Call(Hash.CLEAR_AREA_OF_VEHICLES,
+            //   pos.X, pos.Y, pos.Z, 1000, false, false, false, false, false
+            //);
 
-            foreach (Vehicle car in World.GetNearbyVehicles(player, 100)) {
-                car.Delete();
-            }
+            //foreach (Vehicle car in World.GetNearbyVehicles(player, 100)) {
+            //    car.Delete();
+            //}
 
             race_started = false;
             race_initialized = false;
