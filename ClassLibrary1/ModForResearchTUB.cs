@@ -140,7 +140,8 @@ namespace ModForResearchTUB
         float cam_movement_amount = 0.8f;
 
         private float off_track_distance = 50;
-        private int time_player_got_lost;
+        private int time_player_got_lost,
+            max_lost_time = 3000;
 
         private directorGUI director_gui;
         public String director_cam_position = "",
@@ -1241,6 +1242,12 @@ namespace ModForResearchTUB
                     time_player_got_lost = Game.GameTime;
                 }
                 else {
+                    // set player on road again, if he is lost for too long
+                    if (Game.GameTime - time_player_got_lost > max_lost_time) {
+                        Vector3 node = getClosestVehicleNode();
+                        Game.Player.Character.CurrentVehicle.PlaceOnNextStreet();
+                    }
+
                     if (debug) {
                         new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost)/1000), new Point((850), 75), 0.4f, Color.Orange).Draw();
                     }
