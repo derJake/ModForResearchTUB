@@ -1319,6 +1319,10 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DELETE_CHECKPOINT, currentMarker);
                 currentMarker = -1;
             }
+            if (currentAlternativeMarker > 0) {
+                Function.Call(Hash.DELETE_CHECKPOINT, currentAlternativeMarker);
+                currentMarker = -1;
+            }
 
             // hopefully this prevents falling through the ground
             Function.Call(Hash.CLEAR_HD_AREA);
