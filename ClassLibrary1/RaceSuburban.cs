@@ -161,6 +161,7 @@ namespace ModForResearchTUB
             else {
                 if (obstacle.IsVisible && obstacle_visible == 0) {
                     obstacle_visible = Game.GameTime;
+                    Logger.Log(String.Format("garbage truck visible at {0}", obstacle_visible));
                 }
                 // compare distance of garbage truck to finish with player's car to finish
                 if (World.GetDistance(obstacle.Position, checkpoints[checkpoints.Length - 1].Item1) >
