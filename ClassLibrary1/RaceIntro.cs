@@ -385,9 +385,10 @@ namespace ModForResearchTUB
             }
             World.RenderingCamera.StopPointing();
             // point camera
-            showVector(
-                new Vector3(-199, 1308, 306),
-                new Vector3(-7.977294f, 0, -35)
+            Camera cam = World.CreateCamera(
+                new Vector3(-195.3602f, 1486.22f, 289.9316f),
+                new Vector3(1.860572f, 1.067217E-07f, -74.11179f),
+                19.60003f
             );
 
             Vector3 checkpoint_position = new Vector3(-195.0358f, 1311.87f, 303.8914f);
