@@ -100,6 +100,10 @@ namespace ModForResearchTUB
             {
                 car.Delete();
             }
+
+            foreach (Blip blip in blips) {
+                blip.Remove();
+            }
         }
 
         public void cloneCamera()
