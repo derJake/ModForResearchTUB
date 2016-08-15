@@ -261,9 +261,9 @@ namespace ModForResearchTUB
             // play sound
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
             // change perspective
-            cam.Position = new Vector3(-796.3414f, -2440.611f, 14.31693f);
-            cam.Rotation = new Vector3(1.468822f, 8.80454E-07f, -73.04324f);
-            cam.FieldOfView = 37.20001f;
+            cam.Position = new Vector3(-788.4284f, -2438.03f, 14.66808f);
+            cam.Rotation = new Vector3(-9.091204f, 0f, 108.9772f);
+            cam.FieldOfView = 42.80001f;
             // show instruction
             bmsg.ShowOldMessage(rm.GetString("carvscar_intro_5"), 10000);
             Wait(10000);
