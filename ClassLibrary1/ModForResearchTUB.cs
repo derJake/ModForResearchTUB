@@ -361,6 +361,7 @@ namespace ModForResearchTUB
                     }
 
                     keepPlayerOnTrack();
+                    hideUIComponents();
                 }
                 else if (currentRace >= 0 && 
                     currentRace < races.Length &&
@@ -1919,6 +1920,14 @@ namespace ModForResearchTUB
                 checkpoints = races[currentRace].getCheckpoints();
                 races[currentRace].initRace();
             }
+        }
+
+        private void hideUIComponents() {
+            UI.HideHudComponentThisFrame(HudComponent.Cash);
+            UI.HideHudComponentThisFrame(HudComponent.WeaponWheelStats);
+            UI.HideHudComponentThisFrame(HudComponent.WeaponWheel);
+            UI.HideHudComponentThisFrame(HudComponent.WeaponIcon);
+            UI.HideHudComponentThisFrame(HudComponent.VehicleName);
         }
         #endregion
     }
