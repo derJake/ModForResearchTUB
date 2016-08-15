@@ -143,7 +143,7 @@ namespace ModForResearchTUB
         {
             if (!obstacle_started)
             {
-                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 50))
+                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 100))
                 {
                     if (!car.Equals(obstacle) && !car.Equals(raceVehicle))
                     {
