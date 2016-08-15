@@ -185,8 +185,8 @@ namespace ModForResearchTUB
             Game.Player.Character.Heading = car_spawn_player_heading;
 
             // create the two cars
-            Vehicle vehicle1 = ut.createCarAt(VehicleHash.Buffalo, car1_spawnpoint, car_spawn_heading),
-                vehicle2 = ut.createCarAt(VehicleHash.RapidGT, car2_spawnpoint, car_spawn_heading);
+            Vehicle vehicle1 = ut.createCarAt(VehicleHash.Buffalo, car2_spawnpoint, car_spawn_heading),
+                vehicle2 = ut.createCarAt(VehicleHash.RapidGT, car1_spawnpoint, car_spawn_heading);
             vehicles[0] = vehicle1;
             vehicles[1] = vehicle2;
 
