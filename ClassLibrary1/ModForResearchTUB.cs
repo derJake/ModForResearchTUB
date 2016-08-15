@@ -29,6 +29,8 @@ namespace ModForResearchTUB
         float checkpoint_radius = 5;
         int currentMarker;
         int currentAlternativeMarker;
+        Tuple<int, int, int> regular_checkpoint_color = new Tuple<int, int, int>(255, 155, 0);
+        Tuple<int, int, int> alternative_checkpoint_color = new Tuple<int, int, int>(255, 0, 0);
         bool car_config_done = false;
         bool race_started = false;
         bool race_initialized = false;
@@ -132,8 +134,7 @@ namespace ModForResearchTUB
         private bool route_designer_active = false,
             cam_designer_active = false,
             debug = true;
-        private List<Vector3> route_checkpoints;
-        private List<Blip> route_blips;
+        private List<Tuple<Vector3, int, Blip>> route_checkpoints;
 
         Camera designer_cam;
         float cam_movement_amount = 0.8f;
@@ -385,11 +386,6 @@ namespace ModForResearchTUB
                 }
             }
 
-            // display markers for checkpoints when designing a route
-            if (route_designer_active) {
-                renderRouteCheckpoints();
-            }
-
             // stop bringing up phone on arrow keys
             if (cam_designer_active) {
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
@@ -523,11 +519,13 @@ namespace ModForResearchTUB
             }
 
             currentBlip = World.CreateBlip(coords);
+            ut.addBlip(currentBlip);
             Function.Call(Hash.SET_BLIP_ROUTE, currentBlip, true);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentBlip, currentCheckpoint + 1);
 
             if (nextCoords.HasValue) {
                 nextBlip = World.CreateBlip(nextCoords.Value);
+                ut.addBlip(nextBlip);
                 Function.Call(Hash.SHOW_NUMBER_ON_BLIP, nextBlip, currentCheckpoint + 2);
             }
         }
@@ -544,6 +542,7 @@ namespace ModForResearchTUB
                 nextAltBlip.Remove();
             }
             currentAltBlip = World.CreateBlip(coords);
+            ut.addBlip(currentAltBlip);
             currentAltBlip.Color = BlipColor.Red;
             Function.Call(Hash.SET_NEW_WAYPOINT, coords.X, coords.Y);
             Function.Call(Hash.SHOW_NUMBER_ON_BLIP, currentAltBlip, currentCheckpoint + 1);
@@ -551,13 +550,13 @@ namespace ModForResearchTUB
             if (nextCoords.HasValue)
             {
                 nextAltBlip = World.CreateBlip(nextCoords.Value);
+                ut.addBlip(nextAltBlip);
                 nextAltBlip.Color = BlipColor.Red;
                 Function.Call(Hash.SHOW_NUMBER_ON_BLIP, nextAltBlip, currentCheckpoint + 2);
             }
         }
 
         protected int drawCurrentCheckpoint(Vector3 coords, Vector3? possibleNextCoords, int R, int G, int B, int type) {
-            //UI.Notify("drawCurrentCheckpoint()");
             Vector3 nextCoords = new Vector3();
             // set next checkpoint
 
@@ -566,7 +565,9 @@ namespace ModForResearchTUB
                 nextCoords = possibleNextCoords.Value;
             } else {
                 coords.Z = coords.Z + 3f;
-                currentBlip.Sprite = BlipSprite.RaceFinish;
+                if (currentBlip != null) {
+                    currentBlip.Sprite = BlipSprite.RaceFinish;
+                }
             }
 
             // actually create the 3D marker
@@ -758,21 +759,23 @@ namespace ModForResearchTUB
         private void handleRouteInput() {
             if (route_designer_active)
             {
-                var pos = Game.Player.Character.Position;
+                Vector3 pos = Game.Player.Character.Position;
                 if (route_checkpoints.Count > 0)
                 {
                     // see if checkpoint is near and if so, remove it and its blip
-                    foreach (Vector3 cp in route_checkpoints)
+                    foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints)
                     {
-                        if (World.GetDistance(cp, pos) <= checkpoint_radius)
+                        if (World.GetDistance(cp.Item1, pos) <= checkpoint_radius)
                         {
                             var index = route_checkpoints.IndexOf(cp);
-                            route_blips.ElementAt(index).Remove();
-                            route_blips.RemoveAt(index);
+                            // delete blip
+                            cp.Item3.Remove();
+                            // delete 3D marker
+                            Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
 
                             // decrease blip numbers for following blips
-                            for (int i = index; i < route_blips.Count;i++) {
-                                route_blips.ElementAt(i).ShowNumber(i);
+                            for (int i = index; i < route_checkpoints.Count;i++) {
+                                route_checkpoints.ElementAt(i).Item3.ShowNumber(i);
                             }
                             route_checkpoints.Remove(cp);
                             return;
@@ -781,26 +784,68 @@ namespace ModForResearchTUB
                 }
 
                 // if there are no checkpoints near, create one
-                route_checkpoints.Add(pos);
                 Blip new_blip = World.CreateBlip(pos);
-                Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
+                int type = 14;
+                Vector3? next_coords = new Vector3(0.0f, 0.0f, 0.0f);
+                ut.addBlip(new_blip);
                 new_blip.Color = BlipColor.Yellow;
-                route_blips.Add(new_blip);
+                route_checkpoints.Add(
+                    new Tuple<Vector3, int, Blip>(
+                        pos,
+                        drawCurrentCheckpoint(
+                            pos,
+                            next_coords,
+                            regular_checkpoint_color.Item1,
+                            regular_checkpoint_color.Item2,
+                            regular_checkpoint_color.Item3,
+                            type
+                        ),
+                        new_blip
+                    )
+                );
+                Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
+                renderRouteCheckpoints();
 
                 updateRouteCodeOutput();
             }
         }
 
         private void renderRouteCheckpoints() {
-            foreach (Vector3 cp in route_checkpoints) {
-                World.DrawMarker(MarkerType.VerticalCylinder, cp, new Vector3(), new Vector3(), new Vector3(checkpoint_radius, checkpoint_radius, 15), Color.Yellow);
+            
+            for (int i = 0; i < route_checkpoints.Count; i++) {
+                Vector3? next_coords = null;
+                int type = 14;
+                // if it's not the last checkpoint, set coordinates to point arrows to
+                if (i < route_checkpoints.Count - 1) {
+                    UI.Notify(String.Format("checkpoint {0}", i));
+                    next_coords = route_checkpoints[i + 1].Item1;
+                    type = 2;
+                }
+                // store values
+                Vector3 pos = route_checkpoints[i].Item1;
+                Blip blip = route_checkpoints[i].Item3;
+                // delete 3D marker
+                Function.Call(Hash.DELETE_CHECKPOINT, route_checkpoints[i].Item2);
+                // replace checkpoint with tuple containing new marker reference
+                route_checkpoints[i] = new Tuple<Vector3, int, Blip>(
+                    pos, drawCurrentCheckpoint(
+                        route_checkpoints[i].Item1,
+                        next_coords,
+                        regular_checkpoint_color.Item1,
+                        regular_checkpoint_color.Item2,
+                        regular_checkpoint_color.Item3,
+                        type
+                    ),
+                    blip
+                );
             }
         }
 
         private void updateRouteCodeOutput() {
             if (route_checkpoints.Count > 0) {
                 String route_code = "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
-                foreach (Vector3 cp in route_checkpoints) {
+                foreach (Tuple<Vector3, int, Blip> checkpoint in route_checkpoints) {
+                    var cp = checkpoint.Item1;
                     route_code += String.Format(
                         "\tnew Tuple<Vector3, Vector3?>(new Vector3({0}f, {1}f, {2}f), null),", 
                         cp.X.ToString(CultureInfo.InvariantCulture),
@@ -1741,21 +1786,26 @@ namespace ModForResearchTUB
         private void toggleRouteDesigner() {
             if (route_designer_active)
             {
-                route_checkpoints = new List<Vector3>();
-                route_blips = new List<Blip>();
+                route_checkpoints = new List<Tuple<Vector3, int, Blip>>();
             }
             else {
                 File.AppendAllText("route.log", " Tuple<Vector3, Vector3?>[] checkpointlist = {" + Environment.NewLine);
-                foreach (Vector3 cp in route_checkpoints) {
-                    File.AppendAllText("route.log", String.Format("new Tuple<Vector3, Vector3?>(new Vector3({0}, {1}, {2}), null),", cp.X, cp.Y, cp.Z) + Environment.NewLine);
+                foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints) {
+                    File.AppendAllText(
+                        "route.log",
+                        String.Format(
+                            "new Tuple<Vector3, Vector3?>(new Vector3({0}, {1}, {2}), null),",
+                            cp.Item1.X,
+                            cp.Item1.Y,
+                            cp.Item1.Z
+                            ) + Environment.NewLine);
+                    // delete checkpoint marker
+                    Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
+                    // remove blip
+                    cp.Item3.Remove();
                 }
                 File.AppendAllText("route.log", "};" + Environment.NewLine);
                 route_checkpoints = null;
-
-                foreach (Blip b in route_blips) {
-                    b.Remove();
-                }
-                route_blips = null;
             }
         }
 
