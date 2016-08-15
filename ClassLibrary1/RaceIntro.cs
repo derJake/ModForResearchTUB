@@ -379,6 +379,9 @@ namespace ModForResearchTUB
                 while (!player.IsInRangeOf(waypoints[i], radius + radiustolerance)) {
                     Wait(50);
                 }
+                if (i == 4) {
+                    bmsg.ShowOldMessage(rm.GetString("intro5_1"), regularIntroSceneLength);
+                }
             }
             World.RenderingCamera.StopPointing();
             // point camera
