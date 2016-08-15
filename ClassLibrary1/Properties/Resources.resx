@@ -306,4 +306,7 @@
   <data name="suburban_intro_3" xml:space="preserve">
     <value>Your car is rather fast, despite looks.</value>
   </data>
+  <data name="intro_5_1" xml:space="preserve">
+    <value>The tasks last from 1 to about 3min.</value>
+  </data>
 </root>

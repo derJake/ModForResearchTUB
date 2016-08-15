@@ -250,6 +250,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The tasks last from 1 to about 3min. ähnelt.
+        /// </summary>
+        internal static string intro_5_1 {
+            get {
+                return ResourceManager.GetString("intro_5_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world action game. ähnelt.
         /// </summary>
         internal static string intro1 {
