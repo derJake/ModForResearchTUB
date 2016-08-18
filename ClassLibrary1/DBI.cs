@@ -16,7 +16,14 @@ namespace ModForResearchTUB
             m_dbConnection =
             new SQLiteConnection("Data Source=mod4researchTUB.db;Version=3;");
 
-            createSchema();
+            try {
+                m_dbConnection.Open();
+                m_dbConnection.Close();
+                createSchema();
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public long createDataset(String participant_name) {
