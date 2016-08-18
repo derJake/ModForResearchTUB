@@ -127,6 +127,7 @@ namespace ModForResearchTUB
 
         private Utilities ut = new Utilities();
 
+        // UI
         ResourceManager rm;
 
         BigMessageHandler bmsg;
@@ -134,6 +135,8 @@ namespace ModForResearchTUB
 
         private UIMenu myMenu;
         private MenuPool _myMenuPool = new MenuPool();
+
+        // modding tools
         private bool route_designer_active = false,
             cam_designer_active = false,
             debug = true;
@@ -142,14 +145,18 @@ namespace ModForResearchTUB
         Camera designer_cam;
         float cam_movement_amount = 0.8f;
 
+        private directorGUI director_gui;
+        public String director_cam_position = "",
+            director_cam_rotation = "";
+
+        // route deviation
         private float off_track_distance = 50;
         private int time_player_got_lost,
             max_lost_time = 10000;
 
-        private directorGUI director_gui;
-        public String director_cam_position = "",
-            director_cam_rotation = "";
+        // database
         private DBI database_interface;
+        private long current_data_set_id;
 
         #endregion
 
