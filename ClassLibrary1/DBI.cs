@@ -16,7 +16,7 @@ namespace ModForResearchTUB
             m_dbConnection =
             new SQLiteConnection("Data Source=mod4researchTUB.db;Version=3;");
 
-            createScheme();
+            createSchema();
         }
 
         public long createDataset(String participant_name) {
@@ -66,7 +66,7 @@ namespace ModForResearchTUB
             return 0;
         }
 
-        private void createScheme() {
+        private void createSchema() {
             createDataSetTable();
             createTaskTable();
             createAttributeKeyTable();
