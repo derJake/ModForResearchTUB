@@ -194,6 +194,29 @@ namespace ModForResearchTUB
             }
         }
 
+        private void ddlQuery(String sql) {
+            // open DB connection
+            m_dbConnection.Open();
+
+            // table creation query object
+            SQLiteCommand creationSQL = new SQLiteCommand(sql);
+
+            // execute query
+            try
+            {
+                creationSQL.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                // close DB connection
+                m_dbConnection.Close();
+            }
+        }
+
         #endregion 
     }
 }
