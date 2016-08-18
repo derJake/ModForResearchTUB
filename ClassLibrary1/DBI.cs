@@ -111,9 +111,9 @@ namespace ModForResearchTUB
                 + "data_set_id INT NOT NULL,"
                 + "task_id INT NOT NULL,"
                 + "value DOUBLE NOT NULL,"
-                + "attribute_id INTEGER REFERENCES attribute_key(id) ON UPDATE CASCADE,"
-                + "task_id INTEGER REFERENCES task(id) ON UPDATE CASCADE,"
-                + "data_set_id INTEGER REFERENCES data_set(id) ON UPDATE CASCADE"
+                + "attribute_id INTEGER REFERENCES attribute_key(id) ON UPDATE CASCADE ON DELETE CASCADE,"
+                + "task_id INTEGER REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE,"
+                + "data_set_id INTEGER REFERENCES data_set(id) ON UPDATE CASCADE ON DELETE CASCADE"
                 + ");"
             );
         }
