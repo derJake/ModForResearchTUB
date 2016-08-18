@@ -128,6 +128,34 @@ namespace ModForResearchTUB
             }
         }
 
+        private void createTaskTable()
+        {
+            // open DB connection
+            m_dbConnection.Open();
+
+            // table creation query object
+            SQLiteCommand creationSQL = new SQLiteCommand(
+                "CREATE TABLE IF NOT EXISTS task (id INT NOT NULL AUTO_INCREMENT,"
+                + "name VARCHAR(15) NOT NULL"
+                + ");"
+            );
+
+            // execute query
+            try
+            {
+                creationSQL.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                // close DB connection
+                m_dbConnection.Close();
+            }
+        }
+
         private void createAttributeValueTable() {
             // open DB connection
             m_dbConnection.Open();
