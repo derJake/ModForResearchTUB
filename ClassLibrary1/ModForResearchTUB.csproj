@@ -124,10 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModForResearchTUB.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ModForResearchTUB_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ModForResearchTUB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
