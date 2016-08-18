@@ -126,6 +126,19 @@ namespace ModForResearchTUB
             );
         }
 
+        private void createCheckpointsTable()
+        {
+            ddlQuery(
+                "CREATE TABLE IF NOT EXISTS route_checkpoints (id INT NOT NULL AUTO_INCREMENT,"
+                + "route_id INT NOT NULL,"
+                + "x FLOAT NOT NULL,"
+                + "y FLOAT NOT NULL,"
+                + "z FLOAT NOT NULL,"
+                + "type INT(1) NOT NULL DEFAULT 0"
+                + ");"
+            );
+        }
+
         private void ddlQuery(String sql) {
             // open DB connection
             m_dbConnection.Open();
