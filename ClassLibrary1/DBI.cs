@@ -135,6 +135,7 @@ namespace ModForResearchTUB
                 + "y FLOAT NOT NULL,"
                 + "z FLOAT NOT NULL,"
                 + "type INT(1) NOT NULL DEFAULT 0"
+                + "route_id INTEGER REFERENCES route(id) ON UPDATE CASCADE ON DELETE CASCADE"
                 + ");"
             );
         }
