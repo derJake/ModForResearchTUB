@@ -58,6 +58,10 @@ namespace ModForResearchTUB
 
         }
 
+        public void insertDataCollection(String attribute_key, List<Tuple<String, double>> values) {
+
+        }
+
         private void createAttribute(String attribute_key) {
 
         }
