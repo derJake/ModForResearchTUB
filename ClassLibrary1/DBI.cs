@@ -129,7 +129,36 @@ namespace ModForResearchTUB
         }
 
         private void createAttributeValueTable() {
+            // open DB connection
+            m_dbConnection.Open();
 
+            // table creation query object
+            SQLiteCommand creationSQL = new SQLiteCommand(
+                "CREATE TABLE IF NOT EXISTS attribute_value (id INT NOT NULL AUTO_INCREMENT,"
+                + "attribute_id INT NOT NULL,"
+                + "data_set_id INT NOT NULL,"
+                + "task_id INT NOT NULL,"
+                + "value DOUBLE NOT NULL,"
+                + "attribute_id INTEGER REFERENCES attribute_key(id) ON UPDATE CASCADE,"
+                + "task_id INTEGER REFERENCES task(id) ON UPDATE CASCADE,"
+                + "data_set_id INTEGER REFERENCES data_set(id) ON UPDATE CASCADE"
+                + ");"
+            );
+
+            // execute query
+            try
+            {
+                creationSQL.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                // close DB connection
+                m_dbConnection.Close();
+            }
         }
 
         #endregion 
