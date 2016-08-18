@@ -102,6 +102,30 @@ namespace ModForResearchTUB
         }
 
         private void createAttributeKeyTable() {
+            // open DB connection
+            m_dbConnection.Open();
+
+            // table creation query object
+            SQLiteCommand creationSQL = new SQLiteCommand(
+                "CREATE TABLE IF NOT EXISTS attribute_key (id INT NOT NULL AUTO_INCREMENT,"
+                + "name varchar(30) NOT NULL,"
+                + "description varchar(100) NOT NULL);"
+            );
+
+            // execute query
+            try
+            {
+                creationSQL.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                // close DB connection
+                m_dbConnection.Close();
+            }
         }
 
         private void createAttributeValueTable() {
