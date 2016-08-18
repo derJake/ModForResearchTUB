@@ -141,7 +141,7 @@ namespace ModForResearchTUB
 
         private float off_track_distance = 50;
         private int time_player_got_lost,
-            max_lost_time = 3000;
+            max_lost_time = 10000;
 
         private directorGUI director_gui;
         public String director_cam_position = "",
