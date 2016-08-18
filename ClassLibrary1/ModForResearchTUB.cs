@@ -1205,23 +1205,24 @@ namespace ModForResearchTUB
 
             return false;
         }
-        public Vector3 getClosestVehicleNode() {
+        public Tuple<Vector3, float> getClosestVehicleNodeAndHeading() {
             var pos = Game.Player.Character.Position;
 
             OutputArgument outArgA = new OutputArgument();
+            OutputArgument outArgB = new OutputArgument();
 
-            if (Function.Call<bool>(Hash.GET_CLOSEST_VEHICLE_NODE, pos.X, pos.Y, pos.Z, outArgA, 1, 3.0, 0))
+            if (Function.Call<bool>(Hash.GET_CLOSEST_VEHICLE_NODE, pos.X, pos.Y, pos.Z, outArgA, outArgB, 1, 3.0, 0))
             {
-                var res = outArgA.GetResult<Vector3>();
+                var res = new Tuple<Vector3, float>(outArgA.GetResult<Vector3>(), outArgB.GetResult<float>());
 
                 if (debug) {
-                    World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 1f), Color.Aqua);
+                    World.DrawMarker(MarkerType.UpsideDownCone, res.Item1, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 1f), Color.Aqua);
                 }
 
                 return res; //getting heading if the native returns true
             }
 
-            return new Vector3();
+            return new Tuple<Vector3, float>(new Vector3(), 0);
         }
 
         public bool isPlayerLost() {
