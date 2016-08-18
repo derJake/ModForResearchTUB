@@ -80,7 +80,7 @@ namespace ModForResearchTUB
 
             // table creation query object
             SQLiteCommand creationSQL = new SQLiteCommand(
-                "CREATE TABLE data_set IF NOT EXISTS (id INT NOT NULL AUTO_INCREMENT,"
+                "CREATE TABLE IF NOT EXISTS data_set (id INT NOT NULL AUTO_INCREMENT,"
                 + "participant_name varchar(30) NOT NULL,"
                 + "date DATETIME NOT NULL);"
             );
