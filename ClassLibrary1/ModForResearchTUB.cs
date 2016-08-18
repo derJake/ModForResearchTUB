@@ -1211,7 +1211,7 @@ namespace ModForResearchTUB
             OutputArgument outArgA = new OutputArgument();
             OutputArgument outArgB = new OutputArgument();
 
-            if (Function.Call<bool>(Hash.GET_CLOSEST_VEHICLE_NODE, pos.X, pos.Y, pos.Z, outArgA, outArgB, 1, 3.0, 0))
+            if (Function.Call<bool>(Hash.GET_CLOSEST_VEHICLE_NODE_WITH_HEADING, pos.X, pos.Y, pos.Z, outArgA, outArgB, 1, 3.0, 0))
             {
                 var res = new Tuple<Vector3, float>(outArgA.GetResult<Vector3>(), outArgB.GetResult<float>());
 
