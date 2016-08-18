@@ -1215,7 +1215,7 @@ namespace ModForResearchTUB
                 var res = outArgA.GetResult<Vector3>();
 
                 if (debug) {
-                    World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(3f, 3f, 3f), Color.White);
+                    World.DrawMarker(MarkerType.UpsideDownCone, res, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1f, 1f, 1f), Color.Aqua);
                 }
 
                 return res; //getting heading if the native returns true
