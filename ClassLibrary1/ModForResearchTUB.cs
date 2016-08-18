@@ -146,6 +146,7 @@ namespace ModForResearchTUB
         private directorGUI director_gui;
         public String director_cam_position = "",
             director_cam_rotation = "";
+        private DBI database_interface;
 
         // Main Script
         public Main()
@@ -198,6 +199,8 @@ namespace ModForResearchTUB
                 }
             };
             myWorker.RunWorkerAsync();
+
+            database_interface = new DBI();
         }
 
         private void setUpRaces() {
