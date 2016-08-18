@@ -22,6 +22,7 @@ namespace ModForResearchTUB
 {
     public class Main : Script
     {
+        #region variables
         // Variables
         List<int> trafficSignalHashes = new List<int>(3);
         Blip currentBlip = null, currentAltBlip = null, nextBlip = null, nextAltBlip = null;
@@ -147,6 +148,8 @@ namespace ModForResearchTUB
         public String director_cam_position = "",
             director_cam_rotation = "";
         private DBI database_interface;
+
+        #endregion
 
         // Main Script
         public Main()
