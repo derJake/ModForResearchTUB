@@ -1234,8 +1234,8 @@ namespace ModForResearchTUB
                 || !Game.Player.Character.CurrentVehicle.IsOnAllWheels
                 || Game.Player.Character.CurrentVehicle.IsUpsideDown
                 || Game.Player.Character.CurrentVehicle.Rotation.Y > 100
-                || (getClosestVehicleNode() == null
-                || (World.GetDistance(pos, getClosestVehicleNode()) > off_track_distance
+                || (getClosestVehicleNodeAndHeading().Item1 == null
+                || (World.GetDistance(pos, getClosestVehicleNodeAndHeading().Item1) > off_track_distance
                 && World.GetDistance(pos, checkpoints[currentCheckpoint].Item1) > off_track_distance
                 && (!checkpoints[currentCheckpoint].Item2.HasValue || World.GetDistance(pos, checkpoints[currentCheckpoint].Item2.Value) > off_track_distance)
                 )));
