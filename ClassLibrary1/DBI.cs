@@ -75,7 +75,30 @@ namespace ModForResearchTUB
         #region internal
 
         private void createDataSetTable() {
+            // open DB connection
+            m_dbConnection.Open();
 
+            // table creation query object
+            SQLiteCommand creationSQL = new SQLiteCommand(
+                "CREATE TABLE data_set IF NOT EXISTS (id INT NOT NULL AUTO_INCREMENT,"
+                + "participant_name varchar(30) NOT NULL,"
+                + "date DATETIME NOT NULL);"
+            );
+
+            // execute query
+            try
+            {
+                creationSQL.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                // close DB connection
+                m_dbConnection.Close();
+            }
         }
 
         private void createAttributeKeyTable() {
