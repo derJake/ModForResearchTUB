@@ -759,6 +759,7 @@ namespace ModForResearchTUB
             if (name == null || name.Length == 0) return false;
             UI.Notify(name);
             currentPlayerName = name;
+            database_interface.createDataset(currentPlayerName);
             return true;
         }
 
