@@ -1251,8 +1251,10 @@ namespace ModForResearchTUB
                 else {
                     // set player on road again, if he is lost for too long
                     if (Game.GameTime - time_player_got_lost > max_lost_time) {
-                        Vector3 node = getClosestVehicleNode();
+                        float heading = getClosestVehicleNodeAndHeading().Item2;
+
                         Game.Player.Character.CurrentVehicle.PlaceOnNextStreet();
+                        Game.Player.Character.CurrentVehicle.Heading = heading;
                     }
 
                     if (debug) {
