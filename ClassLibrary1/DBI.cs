@@ -118,6 +118,14 @@ namespace ModForResearchTUB
             );
         }
 
+        private void createRouteTable() {
+            ddlQuery(
+                "CREATE TABLE IF NOT EXISTS attribute_value (id INT NOT NULL AUTO_INCREMENT,"
+                + "name VARCHAR(15) NOT NULL"
+                + ");"
+            );
+        }
+
         private void ddlQuery(String sql) {
             // open DB connection
             m_dbConnection.Open();
