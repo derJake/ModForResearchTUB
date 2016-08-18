@@ -80,93 +80,32 @@ namespace ModForResearchTUB
         #region internal
 
         private void createDataSetTable() {
-            // open DB connection
-            m_dbConnection.Open();
-
-            // table creation query object
-            SQLiteCommand creationSQL = new SQLiteCommand(
+            ddlQuery(
                 "CREATE TABLE IF NOT EXISTS data_set (id INT NOT NULL AUTO_INCREMENT,"
                 + "participant_name varchar(30) NOT NULL,"
                 + "date DATETIME NOT NULL);"
             );
-
-            // execute query
-            try
-            {
-                creationSQL.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                // close DB connection
-                m_dbConnection.Close();
-            }
         }
 
         private void createAttributeKeyTable() {
-            // open DB connection
-            m_dbConnection.Open();
-
-            // table creation query object
-            SQLiteCommand creationSQL = new SQLiteCommand(
+            ddlQuery(
                 "CREATE TABLE IF NOT EXISTS attribute_key (id INT NOT NULL AUTO_INCREMENT,"
                 + "name varchar(30) NOT NULL,"
                 + "description varchar(100) NOT NULL);"
             );
-
-            // execute query
-            try
-            {
-                creationSQL.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                // close DB connection
-                m_dbConnection.Close();
-            }
         }
 
         private void createTaskTable()
         {
-            // open DB connection
-            m_dbConnection.Open();
-
-            // table creation query object
-            SQLiteCommand creationSQL = new SQLiteCommand(
+            ddlQuery(
                 "CREATE TABLE IF NOT EXISTS task (id INT NOT NULL AUTO_INCREMENT,"
                 + "name VARCHAR(15) NOT NULL"
                 + ");"
             );
-
-            // execute query
-            try
-            {
-                creationSQL.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                // close DB connection
-                m_dbConnection.Close();
-            }
         }
 
         private void createAttributeValueTable() {
-            // open DB connection
-            m_dbConnection.Open();
-
-            // table creation query object
-            SQLiteCommand creationSQL = new SQLiteCommand(
+            ddlQuery(
                 "CREATE TABLE IF NOT EXISTS attribute_value (id INT NOT NULL AUTO_INCREMENT,"
                 + "attribute_id INT NOT NULL,"
                 + "data_set_id INT NOT NULL,"
@@ -177,21 +116,6 @@ namespace ModForResearchTUB
                 + "data_set_id INTEGER REFERENCES data_set(id) ON UPDATE CASCADE"
                 + ");"
             );
-
-            // execute query
-            try
-            {
-                creationSQL.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                // close DB connection
-                m_dbConnection.Close();
-            }
         }
 
         private void ddlQuery(String sql) {
