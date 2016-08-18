@@ -15,6 +15,8 @@ namespace ModForResearchTUB
         public DBI() {
             m_dbConnection =
             new SQLiteConnection("Data Source=mod4researchTUB.db;Version=3;");
+
+            createScheme();
         }
 
         public long createDataset(String participant_name) {
