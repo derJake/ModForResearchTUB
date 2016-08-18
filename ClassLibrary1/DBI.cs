@@ -16,13 +16,19 @@ namespace ModForResearchTUB
             m_dbConnection =
             new SQLiteConnection("Data Source=mod4researchTUB.db;Version=3;");
 
-            try {
-                m_dbConnection.Open();
-                m_dbConnection.Close();
-                createSchema();
-            } catch (Exception ex)
+            if (m_dbConnection != null)
             {
-                throw new Exception(ex.Message);
+
+                try
+                {
+                    m_dbConnection.Open();
+                    m_dbConnection.Close();
+                    createSchema();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
         }
 
