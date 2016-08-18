@@ -68,6 +68,7 @@ namespace ModForResearchTUB
 
         private void createScheme() {
             createDataSetTable();
+            createTaskTable();
             createAttributeKeyTable();
             createAttributeValueTable();
         }
