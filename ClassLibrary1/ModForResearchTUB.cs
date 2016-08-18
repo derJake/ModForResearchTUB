@@ -112,10 +112,12 @@ namespace ModForResearchTUB
         List<Tuple<String, double>> speedBySecond = new List<Tuple<String, double>>();
 
         // controller inputs
+        // TODO: make dictionary
         List<Tuple<String, double>> gasPedalInputs = new List<Tuple<String, double>>();
         List<Tuple<String, double>> steeringInputs = new List<Tuple<String, double>>();
         List<Tuple<String, double>> brakingInputs = new List<Tuple<String, double>>();
 
+        // TODO: make dictionary
         private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
 
         protected String[] scenarioGroups { get; private set; }
