@@ -406,7 +406,6 @@ namespace ModForResearchTUB
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
-            World.RenderingCamera.PointAt(checkpoint_position);
 
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
