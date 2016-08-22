@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBI.cs" />
     <Compile Include="directorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
