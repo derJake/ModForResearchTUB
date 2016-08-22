@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NativeUI">
-      <HintPath>G:\SteamLibrary\steamapps\common\Grand Theft Auto V\scripts\NativeUI.dll</HintPath>
+      <HintPath>G:\Uni\Bachelorarbeit\NativeUI_1.7\NativeUI.dll</HintPath>
     </Reference>
     <Reference Include="ScriptHookVDotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -69,7 +69,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBI.cs" />
     <Compile Include="directorGUI.cs">
       <SubType>Form</SubType>
     </Compile>
