@@ -88,7 +88,9 @@ namespace ModForResearchTUB
 
         private void createDataSetTable() {
             ddlQuery(
-                "IF OBJECT_ID('dbo.data_set', 'U') IS NULL CREATE TABLE data_set (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.data_set', 'U') IS NULL "
+                + "CREATE TABLE data_set ("
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "participant_name varchar(30) NOT NULL,"
                 + "date DATETIME NOT NULL);"
             );
@@ -96,7 +98,9 @@ namespace ModForResearchTUB
 
         private void createAttributeKeyTable() {
             ddlQuery(
-                "IF OBJECT_ID('dbo.attribute_key', 'U') IS NULL CREATE TABLE attribute_key (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.attribute_key', 'U') IS NULL "
+                + "CREATE TABLE attribute_key ("
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "name varchar(30) NOT NULL,"
                 + "description varchar(100) NOT NULL);"
             );
@@ -105,7 +109,9 @@ namespace ModForResearchTUB
         private void createTaskTable()
         {
             ddlQuery(
-                "IF OBJECT_ID('dbo.task', 'U') IS NULL CREATE TABLE task (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.task', 'U') IS NULL "
+                + "CREATE TABLE task ( "
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "name VARCHAR(15) NOT NULL"
                 + ");"
             );
@@ -113,7 +119,10 @@ namespace ModForResearchTUB
 
         private void createAttributeValueTable() {
             ddlQuery(
-                "IF OBJECT_ID('dbo.attribute_value', 'U') IS NULL CREATE TABLE attribute_value (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.attribute_value', 'U') IS NULL "
+                + "CREATE TABLE attribute_value "
+                + "("
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "attribute_id INT NOT NULL,"
                 + "data_set_id INT NOT NULL,"
                 + "task_id INT NOT NULL,"
@@ -127,7 +136,9 @@ namespace ModForResearchTUB
 
         private void createRouteTable() {
             ddlQuery(
-                "IF OBJECT_ID('dbo.route', 'U') IS NULL CREATE TABLE route (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.route', 'U') IS NULL "
+                + "CREATE TABLE route ("
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "name VARCHAR(15) NOT NULL"
                 + ");"
             );
@@ -136,7 +147,9 @@ namespace ModForResearchTUB
         private void createCheckpointsTable()
         {
             ddlQuery(
-                "IF OBJECT_ID('dbo.route_checkpoints', 'U') IS NULL CREATE TABLE route_checkpoints (id INT IDENTITY (1,1) NOT NULL,"
+                "IF OBJECT_ID('dbo.route_checkpoints', 'U') IS NULL "
+                + "CREATE TABLE route_checkpoints ("
+                + "id INT IDENTITY (1,1) NOT NULL,"
                 + "route_id INT NOT NULL,"
                 + "x FLOAT NOT NULL,"
                 + "y FLOAT NOT NULL,"
