@@ -21,7 +21,6 @@ namespace ModForResearchTUB
 
             if (m_dbConnection != null)
             {
-
                 try
                 {
                     m_dbConnection.Open();
