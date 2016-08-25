@@ -155,7 +155,7 @@ namespace ModForResearchTUB
             max_lost_time = 10000;
 
         // database
-        //private DBI database_interface;
+        private DBI database_interface;
         private long current_data_set_id;
 
         #endregion
@@ -212,7 +212,7 @@ namespace ModForResearchTUB
             };
             myWorker.RunWorkerAsync();
 
-            //database_interface = new DBI();
+            database_interface = new DBI();
         }
 
         private void setUpRaces() {
@@ -759,7 +759,7 @@ namespace ModForResearchTUB
             if (name == null || name.Length == 0) return false;
             UI.Notify(name);
             currentPlayerName = name;
-            //database_interface.createDataset(currentPlayerName);
+            current_data_set_id = database_interface.createDataset(currentPlayerName);
             return true;
         }
 
