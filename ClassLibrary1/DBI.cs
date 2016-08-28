@@ -59,8 +59,23 @@ namespace ModForResearchTUB
             }
         }
 
-        public void insertValue(String attribute_key, double value) {
+        public int insertValue(String attribute_key, int task_id, int data_set_id, double value) {
+            int attribute_id = getAttributeId(attribute_key);
+            if (attribute_id > 0) {
+                String sql = "INSERT INTO dbo.attribute_value (attribute_id, task_id, data_set_id, value)" 
+                    + "VALUES(@attributeId, @taskId, @dataSetId, @value)";
+                SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+                cmd.Parameters.AddWithValue("@attributeId", attribute_id);
+                cmd.Parameters.AddWithValue("@attributeId", task_id);
+                cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
+                cmd.Parameters.AddWithValue("@value", value);
 
+                m_dbConnection.Open();
+                int numOfRows = cmd.ExecuteNonQuery();
+                m_dbConnection.Close();
+                return numOfRows;
+            }
+            return 0;
         }
 
         public void insertDataCollection(String attribute_key, List<Tuple<String, double>> values) {
