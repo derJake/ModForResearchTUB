@@ -82,6 +82,17 @@ namespace ModForResearchTUB
 
         }
 
+        public int createTask(String name) {
+            String sql = "INSERT INTO task (name) OUTPUT INSERTED.ID VALUES(@taskName)";
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+            cmd.Parameters.AddWithValue("@taskName", name);
+
+            m_dbConnection.Open();
+            int taskId = (Int32)cmd.ExecuteScalar();
+            m_dbConnection.Close();
+            return taskId;
+        }
+
         private void createAttribute(String attribute_key, String attribute_description) {
             String sql = "INSERT INTO dbo.attribute_key (name, description) VALUES(@attributeName, @attributeDescription)";
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
