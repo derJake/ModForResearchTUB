@@ -72,6 +72,27 @@ namespace ModForResearchTUB
         }
 
         public int getAttributeId(String attribute_key) {
+            String sql = "SELECT id FROM dbo.attribute_key WHERE name LIKE @attributeName";
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+            cmd.Parameters.AddWithValue("@attributeName", attribute_key);
+            SqlDataReader reader;
+
+            m_dbConnection.Open();
+
+            reader = cmd.ExecuteReader();
+            // Data is accessible through the DataReader object here.
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    return reader.GetInt32(0);
+                }
+            }
+
+            reader.Close();
+            m_dbConnection.Close();
+
             return 0;
         }
 
