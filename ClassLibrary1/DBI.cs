@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Data;
 
 namespace ModForResearchTUB
 {
@@ -35,15 +36,12 @@ namespace ModForResearchTUB
             // open DB connection
             m_dbConnection.Open();
 
-            // get current date, to format as insert parameter
-            DateTime current_date = new DateTime();
-
             // create the actual insert query and set parameters
             SqlCommand insertSQL = new SqlCommand(
-                "INSERT INTO data_set (participant_name, date) OUTPUT INSERTED.ID VALUES (?,?)", m_dbConnection);
-            insertSQL.Parameters.Add(participant_name);
-            insertSQL.Parameters.Add(current_date.ToString("yyyy-MM-dd HH:mm:ss",
-                  CultureInfo.InvariantCulture));
+                "INSERT INTO data_set (participant_name, date) OUTPUT INSERTED.ID VALUES (@name,@date)", m_dbConnection);
+            insertSQL.Parameters.Add(new SqlParameter("@name", participant_name));
+            insertSQL.Parameters.Add("@date", SqlDbType.DateTime);
+            insertSQL.Parameters["@date"].Value = DateTime.Now;
 
             // execute query
             try
