@@ -78,8 +78,26 @@ namespace ModForResearchTUB
             return 0;
         }
 
-        public void insertDataCollection(String attribute_key, List<Tuple<String, double>> values) {
+        public int insertDataCollection(int attribute_id, int task_id, int data_set_id, Dictionary<String, double> values) {
+            String sql = "INSERT INTO dbo.attribute_value (attribute_id, task_id, data_set_id, value) VALUES";
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
 
+            int i = 0;
+            foreach (KeyValuePair<String, double> entry in values) {
+                cmd.CommandText += "(@attributeId, @taskId, @dataSetId, @value" + i.ToString() + "),";
+                cmd.Parameters.AddWithValue("@value" + i.ToString(), entry.Value);
+                i++;
+            }
+            cmd.CommandText.TrimEnd(',');
+
+            cmd.Parameters.AddWithValue("@attributeId", attribute_id);
+            cmd.Parameters.AddWithValue("@attributeId", task_id);
+            cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
+
+            m_dbConnection.Open();
+            int numOfRows = cmd.ExecuteNonQuery();
+            m_dbConnection.Close();
+            return numOfRows;
         }
 
         public int createTask(String name) {
