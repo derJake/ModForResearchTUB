@@ -93,6 +93,31 @@ namespace ModForResearchTUB
             return taskId;
         }
 
+        public int getTaskIdByName(String name) {
+            String sql = "SELECT id FROM dbo.task WHERE name LIKE @taskName";
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+            cmd.Parameters.AddWithValue("@taskName", name);
+            SqlDataReader reader;
+
+            m_dbConnection.Open();
+
+            reader = cmd.ExecuteReader();
+            // Data is accessible through the DataReader object here.
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    return reader.GetInt32(0);
+                }
+            }
+
+            reader.Close();
+            m_dbConnection.Close();
+
+            return 0;
+        }
+
         private void createAttribute(String attribute_key, String attribute_description) {
             String sql = "INSERT INTO dbo.attribute_key (name, description) VALUES(@attributeName, @attributeDescription)";
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
