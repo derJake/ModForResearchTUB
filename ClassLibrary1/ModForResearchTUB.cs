@@ -760,6 +760,9 @@ namespace ModForResearchTUB
             UI.Notify(name);
             currentPlayerName = name;
             current_data_set_id = database_interface.createDataset(currentPlayerName);
+            if (debug) {
+                UI.Notify(String.Format("Data set: {0}", current_data_set_id));
+            }
             return true;
         }
 
