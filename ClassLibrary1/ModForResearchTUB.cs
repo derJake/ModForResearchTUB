@@ -62,6 +62,8 @@ namespace ModForResearchTUB
         int lastMaxTimeSincePavement;
         int lastMaxTimeSinceAgainstTraffic;
 
+        int possibleCollisions = 0;
+
         int numOfHitVehicles;
         int numOfHitPeds;
         int numOfTimesDrivingOnPavement;
@@ -1086,6 +1088,14 @@ namespace ModForResearchTUB
             }
 
             //displayClosestVehicleNode();
+
+            logPossibleCollisions();
+        }
+
+        private void logPossibleCollisions() {
+            foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character.Position, 10)) {
+                possibleCollisions++;
+            }
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
@@ -1387,6 +1397,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("Cumulative time on pavement: {0}", Math.Round((float)cumulativeTimeOnPavement/1000, 2)));
             Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic/1000, 2)));
             Logger.Log(String.Format("Times vehicle was upside down: {0}", numOfTimesUpsideDown));
+            Logger.Log(String.Format("Possible collisions: {0}", possibleCollisions));
         }
 
         protected void resetLoggingVariables() {
@@ -1411,6 +1422,7 @@ namespace ModForResearchTUB
             numOfTimesDrivingOnPavement = 0;
             numOfTimesDrivingAgaingstTraffic = 0;
 
+            possibleCollisions = 0;
             numOfCollisions = 0;
             numOfDamagedProps = 0;
 
