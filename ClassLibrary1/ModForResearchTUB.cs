@@ -1294,7 +1294,7 @@ namespace ModForResearchTUB
                     }
 
                     if (debug) {
-                        new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost)/1000), new Point((850), 75), 0.4f, Color.Orange).Draw();
+                        new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost)/1000), new Point(850, 75), 0.4f, Color.Orange).Draw();
                     }
                 }
             }
