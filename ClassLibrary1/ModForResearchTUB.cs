@@ -62,7 +62,9 @@ namespace ModForResearchTUB
         int lastMaxTimeSincePavement;
         int lastMaxTimeSinceAgainstTraffic;
 
+        List<Vehicle> knownVehicles = new List<Vehicle>();
         int possibleCollisions = 0;
+        int possibleCollisionRadius = 10;
 
         int numOfHitVehicles;
         int numOfHitPeds;
@@ -1093,8 +1095,16 @@ namespace ModForResearchTUB
         }
 
         private void logPossibleCollisions() {
-            foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character.Position, 10)) {
-                possibleCollisions++;
+            foreach (Vehicle car in World.GetNearbyVehicles(Game.Player.Character.Position, possibleCollisionRadius)) {
+                if (!knownVehicles.Contains(car)) {
+                    possibleCollisions++;
+                    knownVehicles.Add(car);
+                }
+            }
+            foreach (Vehicle knownCar in knownVehicles) {
+                if (World.GetDistance(knownCar.Position, Game.Player.Character.Position) > possibleCollisionRadius) {
+                    knownVehicles.Remove(knownCar);
+                }
             }
         }
 
