@@ -63,8 +63,10 @@ namespace ModForResearchTUB
         int lastMaxTimeSinceAgainstTraffic;
 
         List<Vehicle> knownVehicles = new List<Vehicle>();
-        int possibleCollisions = 0;
         int possibleCollisionRadius = 10;
+        int possibleCollisions = 0;
+        int distanceMeasurements = 0;
+        float meanDistance = 0;
 
         int numOfHitVehicles;
         int numOfHitPeds;
@@ -1102,7 +1104,10 @@ namespace ModForResearchTUB
                 }
             }
             foreach (Vehicle knownCar in knownVehicles) {
-                if (World.GetDistance(knownCar.Position, Game.Player.Character.Position) > possibleCollisionRadius) {
+                var distance = World.GetDistance(knownCar.Position, Game.Player.Character.Position);
+                distanceMeasurements++;
+                meanDistance += distance / distanceMeasurements;
+                if (distance > possibleCollisionRadius) {
                     knownVehicles.Remove(knownCar);
                 }
             }
