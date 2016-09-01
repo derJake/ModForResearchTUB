@@ -1413,6 +1413,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic/1000, 2)));
             Logger.Log(String.Format("Times vehicle was upside down: {0}", numOfTimesUpsideDown));
             Logger.Log(String.Format("Possible collisions: {0}", possibleCollisions));
+            Logger.Log(String.Format("Mean distance: {0}", meanDistance));
         }
 
         protected void resetLoggingVariables() {
