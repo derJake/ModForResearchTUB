@@ -1441,6 +1441,8 @@ namespace ModForResearchTUB
             possibleCollisions = 0;
             numOfCollisions = 0;
             numOfDamagedProps = 0;
+            meanDistance = 0;
+            distanceMeasurements = 0;
 
             startedDrivingOnPavement = 0;
             startedDrivingAgainstTraffic = 0;
@@ -1468,6 +1470,7 @@ namespace ModForResearchTUB
             gasPedalInputs = new List<Tuple<String, double>>();
             steeringInputs = new List<Tuple<String, double>>();
             brakingInputs = new List<Tuple<String, double>>();
+            knownVehicles = new List<Vehicle>();
         }
 
         private void toggleScenarios(bool b) {
