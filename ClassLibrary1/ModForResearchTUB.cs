@@ -1374,12 +1374,14 @@ namespace ModForResearchTUB
         }
 
         protected void writeRaceDataToDB() {
+            // retrieve the ID for the current task
             String taskName = races[currentRace].getCanonicalName();
             int taskId = database_interface.getTaskIdByName(taskName);
             if (!(taskId > 0)) {
                 taskId = database_interface.createTask(taskName);
             }
 
+            // single values
             Dictionary<String, float> map = mapCollectedDataForDB();
             foreach (KeyValuePair<String, float> item in map) {
                 int attributeId = database_interface.getAttributeId(item.Key);
@@ -1388,6 +1390,17 @@ namespace ModForResearchTUB
                 }
 
                 database_interface.insertValue(item.Key, taskId, current_data_set_id, item.Value);
+            }
+
+            // sets of lots of values
+            foreach (KeyValuePair<string, Dictionary<string, double>> data in collectedData) {
+                int attributeId = database_interface.getAttributeId(data.Key);
+                if (!(attributeId > 0))
+                {
+                    attributeId = database_interface.createAttribute(data.Key, rm.GetString(data.Key));
+                }
+
+                database_interface.insertDataCollection(attributeId, taskId, current_data_set_id, data.Value);
             }
         }
 
