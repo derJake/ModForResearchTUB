@@ -18,5 +18,7 @@ namespace ModForResearchTUB
 
         List<Tuple<String, List<Tuple<String, double>>>> getCollectedData();
         Tuple<Vector3, Nullable<Vector3>>[] getCheckpoints();
+
+        String getCanonicalName();
     }
 }
