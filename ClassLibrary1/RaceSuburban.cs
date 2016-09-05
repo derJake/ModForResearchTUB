@@ -328,5 +328,10 @@ namespace ModForResearchTUB
         {
             return false;
         }
+
+        public String getCanonicalName()
+        {
+            return canonicalName;
+        }
     }
 }

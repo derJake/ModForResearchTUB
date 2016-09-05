@@ -880,5 +880,9 @@ namespace ModForResearchTUB
         {
             return raceEndTime > 0 && Game.GameTime > raceEndTime;
         }
+
+        public String getCanonicalName() {
+            return canonicalName;
+        }
     }
 }
