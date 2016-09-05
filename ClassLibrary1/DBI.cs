@@ -136,7 +136,7 @@ namespace ModForResearchTUB
             return 0;
         }
 
-        private int createAttribute(String attribute_key, String attribute_description) {
+        public int createAttribute(String attribute_key, String attribute_description) {
             int id = 0;
             String sql = "INSERT INTO dbo.attribute_key (name, description) OUTPUT INSERTED.ID VALUES(@attributeName, @attributeDescription)";
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
