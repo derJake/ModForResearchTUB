@@ -268,6 +268,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How far away was the leading vehicle from its target when player reached the last checkpoint ähnelt.
+        /// </summary>
+        internal static string distance_leader_target {
+            get {
+                return ResourceManager.GetString("distance_leader_target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player drive against traffic ähnelt.
         /// </summary>
         internal static string duration_against_traffic {
@@ -300,6 +309,15 @@ namespace ModForResearchTUB.Properties {
         internal static string duration_on_pavement {
             get {
                 return ResourceManager.GetString("duration_on_pavement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long was the player in front of the leading vehicle ähnelt.
+        /// </summary>
+        internal static string duration_player_leads {
+            get {
+                return ResourceManager.GetString("duration_player_leads", resourceCulture);
             }
         }
         
@@ -795,6 +813,15 @@ namespace ModForResearchTUB.Properties {
         internal static string times_on_pavement {
             get {
                 return ResourceManager.GetString("times_on_pavement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did player take over the leading vehicle ähnelt.
+        /// </summary>
+        internal static string times_player_leads {
+            get {
+                return ResourceManager.GetString("times_player_leads", resourceCulture);
             }
         }
         

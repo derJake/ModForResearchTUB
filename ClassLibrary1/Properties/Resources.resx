@@ -315,6 +315,9 @@
   <data name="car_health" xml:space="preserve">
     <value>How many hitpoints did the player's vehicle have after the task</value>
   </data>
+  <data name="distance_leader_target" xml:space="preserve">
+    <value>How far away was the leading vehicle from its target when player reached the last checkpoint</value>
+  </data>
   <data name="duration_against_traffic" xml:space="preserve">
     <value>How long did the player drive against traffic</value>
   </data>
@@ -326,6 +329,9 @@
   </data>
   <data name="duration_on_pavement" xml:space="preserve">
     <value>How long did the player drive on pavement</value>
+  </data>
+  <data name="duration_player_leads" xml:space="preserve">
+    <value>How long was the player in front of the leading vehicle</value>
   </data>
   <data name="maximum_speed" xml:space="preserve">
     <value>The maximum speed of the player's vehicle (possibly in m/s)</value>
@@ -362,6 +368,9 @@
   </data>
   <data name="times_on_pavement" xml:space="preserve">
     <value>How many times did the player drive on the pavement</value>
+  </data>
+  <data name="times_player_leads" xml:space="preserve">
+    <value>How many times did player take over the leading vehicle</value>
   </data>
   <data name="upside_down" xml:space="preserve">
     <value>How many times was the player's vehicle upside down</value>
