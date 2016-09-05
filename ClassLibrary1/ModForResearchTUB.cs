@@ -1427,6 +1427,17 @@ namespace ModForResearchTUB
                 {"possible_vehicle_collisions", possibleCollisions},
                 {"possible_vc_mean_distance", meanDistance}
             };
+
+            return mergeRaceSpecificLogValues(mappings);
+        }
+
+        private Dictionary<string, float> mergeRaceSpecificLogValues(Dictionary<string, float> mappings) {
+
+            try {
+                var raceLogs = races[currentRace].getSingularDataValues();
+                mappings = mappings.Concat(raceLogs).ToDictionary(x => x.Key, x => x.Value);
+            } catch (NotImplementedException) {}
+
             return mappings;
         }
 

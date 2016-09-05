@@ -16,7 +16,8 @@ namespace ModForResearchTUB
         bool checkAlternativeBreakCondition();
         void finishRace();
 
-        Dictionary<String, Dictionary<String, double>> getCollectedData();
+        Dictionary<string, Dictionary<string, double>> getCollectedData();
+        Dictionary<string, float> getSingularDataValues();
         Tuple<Vector3, Nullable<Vector3>>[] getCheckpoints();
 
         String getCanonicalName();

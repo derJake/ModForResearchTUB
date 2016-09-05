@@ -324,5 +324,10 @@ namespace ModForResearchTUB
         {
             return canonicalName;
         }
+
+        public Dictionary<string, float> getSingularDataValues()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

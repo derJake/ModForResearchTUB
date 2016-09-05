@@ -254,5 +254,15 @@ namespace ModForResearchTUB
         {
             throw new NotImplementedException();
         }
+
+        public Dictionary<string, double> getSingularDataValues()
+        {
+            throw new NotImplementedException();
+        }
+
+        Dictionary<string, float> RaceInterface.getSingularDataValues()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

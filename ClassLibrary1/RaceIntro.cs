@@ -884,5 +884,10 @@ namespace ModForResearchTUB
         public String getCanonicalName() {
             return canonicalName;
         }
+
+        public Dictionary<string, float> getSingularDataValues()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
