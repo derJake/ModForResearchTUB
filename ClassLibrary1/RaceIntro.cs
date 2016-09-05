@@ -44,7 +44,11 @@ namespace ModForResearchTUB
         ResourceManager rm;
         Utilities ut;
 
-        public RaceIntro(ResourceManager resman, Utilities utils) {
+        public String canonicalName { get; private set; }
+
+        public RaceIntro(ResourceManager resman, Utilities utils, String taskKey) {
+            this.canonicalName = taskKey;
+
             // try and load this area already
             Function.Call(Hash.SET_HD_AREA,
                 car1_spawnpoint.X,
