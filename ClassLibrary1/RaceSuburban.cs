@@ -38,6 +38,8 @@ namespace ModForResearchTUB
         private int standstill_brake_start;
         private int standstill_brake_end;
 
+        private Dictionary<string, float> singularValues = new Dictionary<string, float>();
+
         ResourceManager rm;
         Utilities ut;
 
@@ -87,8 +89,15 @@ namespace ModForResearchTUB
             UI.Notify(String.Format(rm.GetString("race_finished"), (Game.GameTime - raceStartTime) / 1000));
 
             Logger.Log(String.Format("obstacle visible: {0}", obstacle_visible));
+
+            singularValues.Add("obstacle_visible", obstacle_visible);
+            singularValues.Add("player_passed_garbage_truck", 0);
+            singularValues.Add("obstacle_visible", obstacle_visible);
+            singularValues.Add("brake_in_front_of_garbage_truck", 0);
+
             if (player_passed_obstacle)
             {
+                singularValues["player_passed_garbage_truck"] = 1;
                 Logger.Log("player passed garbage truck");
             }
             else {
@@ -96,7 +105,9 @@ namespace ModForResearchTUB
             }
 
             if (standstill_brake_end > 0) {
-                Logger.Log(String.Format("player braked in front of obstacle for {0}s", (standstill_brake_end - standstill_brake_end / 1000)));
+                float standstill_time = (standstill_brake_start - standstill_brake_end / 1000);
+                Logger.Log(String.Format("player braked in front of obstacle for {0}s", standstill_time));
+                singularValues["brake_in_front_of_garbage_truck"] = standstill_time;
             }
 
             // drop wanted level
@@ -336,7 +347,7 @@ namespace ModForResearchTUB
 
         public Dictionary<string, float> getSingularDataValues()
         {
-            throw new NotImplementedException();
+            return singularValues;
         }
     }
 }
