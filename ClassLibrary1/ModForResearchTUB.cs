@@ -1436,7 +1436,28 @@ namespace ModForResearchTUB
         }
 
         protected Dictionary<String, float> mapCollectedDataForDB() {
-            Dictionary<String, float> mappings = new Dictionary<string, float>();
+            Dictionary<String, float> mappings = new Dictionary<string, float> {
+                {"task_start_time", raceStartTime},
+                {"task_end_time", raceEndTime},
+                {"task_total_time", (float)(raceEndTime - raceStartTime) / 1000},
+                {"player_health", Game.Player.Character.Health},
+                {"car_health", car_health},
+                {"average_speed", speeds / (float)numOfSpeeds},
+                {"maximum_speed", maxSpeed},
+                {"times_braked", numBrakeApplied},
+                {"times_handbraked", numHandBrakeApplied},
+                {"duration_brake", (float)cumulativeTimeBraking / 1000},
+                {"duration_handbrake", (float)cumulativeTimeHandbraking / 1000},
+                {"vehicle_collisions", numOfHitVehicles},
+                {"pedestrian_collisions", numOfHitPeds},
+                {"times_against_traffic", numOfTimesDrivingAgaingstTraffic},
+                {"times_on_pavement", numOfTimesDrivingOnPavement},
+                {"duration_on_pavement", (float)cumulativeTimeOnPavement / 1000},
+                {"duration_against_traffic", (float)cumulativeTimeDrivingAgainstTraffic / 1000},
+                {"upside_down", numOfTimesUpsideDown},
+                {"possible_vehicle_collisions", possibleCollisions},
+                {"possible_vc_mean_distance", meanDistance}
+            };
             return mappings;
         }
 
