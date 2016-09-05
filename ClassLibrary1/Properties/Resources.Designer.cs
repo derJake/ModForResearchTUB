@@ -61,11 +61,29 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The average speed of the player&apos;s vehicle (possibly in m/s) ähnelt.
+        /// </summary>
+        internal static string average_speed {
+            get {
+                return ResourceManager.GetString("average_speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active: {0} ähnelt.
         /// </summary>
         internal static string cam_designer_active {
             get {
                 return ResourceManager.GetString("cam_designer_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many hitpoints did the player&apos;s vehicle have after the task ähnelt.
+        /// </summary>
+        internal static string car_health {
+            get {
+                return ResourceManager.GetString("car_health", resourceCulture);
             }
         }
         
@@ -246,6 +264,42 @@ namespace ModForResearchTUB.Properties {
         internal static string desert_intro_5 {
             get {
                 return ResourceManager.GetString("desert_intro_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player drive against traffic ähnelt.
+        /// </summary>
+        internal static string duration_against_traffic {
+            get {
+                return ResourceManager.GetString("duration_against_traffic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long was the brake pedal applied overall ähnelt.
+        /// </summary>
+        internal static string duration_brake {
+            get {
+                return ResourceManager.GetString("duration_brake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long was the handbrake applied overall ähnelt.
+        /// </summary>
+        internal static string duration_handbrake {
+            get {
+                return ResourceManager.GetString("duration_handbrake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player drive on pavement ähnelt.
+        /// </summary>
+        internal static string duration_on_pavement {
+            get {
+                return ResourceManager.GetString("duration_on_pavement", resourceCulture);
             }
         }
         
@@ -484,6 +538,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The maximum speed of the player&apos;s vehicle (possibly in m/s) ähnelt.
+        /// </summary>
+        internal static string maximum_speed {
+            get {
+                return ResourceManager.GetString("maximum_speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die English ähnelt.
         /// </summary>
         internal static string menu_english {
@@ -543,6 +606,42 @@ namespace ModForResearchTUB.Properties {
         internal static string menu_toggle_route_designer {
             get {
                 return ResourceManager.GetString("menu_toggle_route_designer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player collide with pedestrians ähnelt.
+        /// </summary>
+        internal static string pedestrian_collisions {
+            get {
+                return ResourceManager.GetString("pedestrian_collisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many hitpoints did the player&apos;s character have after the task ähnelt.
+        /// </summary>
+        internal static string player_health {
+            get {
+                return ResourceManager.GetString("player_health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How far away were nearby vehicles on average ähnelt.
+        /// </summary>
+        internal static string possible_vc_mean_distance {
+            get {
+                return ResourceManager.GetString("possible_vc_mean_distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many cars were in a radius around the player, providing the possibility for collision ähnelt.
+        /// </summary>
+        internal static string possible_vehicle_collisions {
+            get {
+                return ResourceManager.GetString("possible_vehicle_collisions", resourceCulture);
             }
         }
         
@@ -628,11 +727,92 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The GameTime the task was finished at ähnelt.
+        /// </summary>
+        internal static string task_end_time {
+            get {
+                return ResourceManager.GetString("task_end_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The GameTime the task started at ähnelt.
+        /// </summary>
+        internal static string task_start_time {
+            get {
+                return ResourceManager.GetString("task_start_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The task has started! ähnelt.
         /// </summary>
         internal static string task_started {
             get {
                 return ResourceManager.GetString("task_started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long it took the player to finish the task ähnelt.
+        /// </summary>
+        internal static string task_total_time {
+            get {
+                return ResourceManager.GetString("task_total_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player drive against traffic ähnelt.
+        /// </summary>
+        internal static string times_against_traffic {
+            get {
+                return ResourceManager.GetString("times_against_traffic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times was the brake pressed ähnelt.
+        /// </summary>
+        internal static string times_braked {
+            get {
+                return ResourceManager.GetString("times_braked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times was the handbrake used ähnelt.
+        /// </summary>
+        internal static string times_handbraked {
+            get {
+                return ResourceManager.GetString("times_handbraked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player drive on the pavement ähnelt.
+        /// </summary>
+        internal static string times_on_pavement {
+            get {
+                return ResourceManager.GetString("times_on_pavement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times was the player&apos;s vehicle upside down ähnelt.
+        /// </summary>
+        internal static string upside_down {
+            get {
+                return ResourceManager.GetString("upside_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player collide with other vehicles ähnelt.
+        /// </summary>
+        internal static string vehicle_collisions {
+            get {
+                return ResourceManager.GetString("vehicle_collisions", resourceCulture);
             }
         }
     }

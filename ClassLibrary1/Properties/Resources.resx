@@ -309,4 +309,64 @@
   <data name="intro_5_1" xml:space="preserve">
     <value>The tasks last from 1 to about 3min.</value>
   </data>
+  <data name="average_speed" xml:space="preserve">
+    <value>The average speed of the player's vehicle (possibly in m/s)</value>
+  </data>
+  <data name="car_health" xml:space="preserve">
+    <value>How many hitpoints did the player's vehicle have after the task</value>
+  </data>
+  <data name="duration_against_traffic" xml:space="preserve">
+    <value>How long did the player drive against traffic</value>
+  </data>
+  <data name="duration_brake" xml:space="preserve">
+    <value>How long was the brake pedal applied overall</value>
+  </data>
+  <data name="duration_handbrake" xml:space="preserve">
+    <value>How long was the handbrake applied overall</value>
+  </data>
+  <data name="duration_on_pavement" xml:space="preserve">
+    <value>How long did the player drive on pavement</value>
+  </data>
+  <data name="maximum_speed" xml:space="preserve">
+    <value>The maximum speed of the player's vehicle (possibly in m/s)</value>
+  </data>
+  <data name="pedestrian_collisions" xml:space="preserve">
+    <value>How many times did the player collide with pedestrians</value>
+  </data>
+  <data name="player_health" xml:space="preserve">
+    <value>How many hitpoints did the player's character have after the task</value>
+  </data>
+  <data name="possible_vc_mean_distance" xml:space="preserve">
+    <value>How far away were nearby vehicles on average</value>
+  </data>
+  <data name="possible_vehicle_collisions" xml:space="preserve">
+    <value>How many cars were in a radius around the player, providing the possibility for collision</value>
+  </data>
+  <data name="task_end_time" xml:space="preserve">
+    <value>The GameTime the task was finished at</value>
+  </data>
+  <data name="task_start_time" xml:space="preserve">
+    <value>The GameTime the task started at</value>
+  </data>
+  <data name="task_total_time" xml:space="preserve">
+    <value>How long it took the player to finish the task</value>
+  </data>
+  <data name="times_against_traffic" xml:space="preserve">
+    <value>How many times did the player drive against traffic</value>
+  </data>
+  <data name="times_braked" xml:space="preserve">
+    <value>How many times was the brake pressed</value>
+  </data>
+  <data name="times_handbraked" xml:space="preserve">
+    <value>How many times was the handbrake used</value>
+  </data>
+  <data name="times_on_pavement" xml:space="preserve">
+    <value>How many times did the player drive on the pavement</value>
+  </data>
+  <data name="upside_down" xml:space="preserve">
+    <value>How many times was the player's vehicle upside down</value>
+  </data>
+  <data name="vehicle_collisions" xml:space="preserve">
+    <value>How many times did the player collide with other vehicles</value>
+  </data>
 </root>
