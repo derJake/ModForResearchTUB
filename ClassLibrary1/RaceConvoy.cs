@@ -30,8 +30,8 @@ namespace ModForResearchTUB
         private float leader_heading = 82f;
         private float car_spawn_heading = 94.7f;
         private float car_spawn_player_heading = 71.70087f;
-        private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
-        private List<Tuple<String, double>> distance = new List<Tuple<String, double>>();
+        private Dictionary<string, Dictionary<string, double>> collectedData = new Dictionary<string, Dictionary<string, double>>();
+        private Dictionary<string, double> distance = new Dictionary<string, double>();
         private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
         private int regularIntroSceneLength = 10000;
@@ -115,7 +115,7 @@ namespace ModForResearchTUB
             raceVehicle.MarkAsNoLongerNeeded();
             raceVehicle.Delete();
 
-            this.collectedData.Add(new Tuple<string, List<Tuple<string, double>>>("distance", distance));
+            this.collectedData.Add("distance", distance);
         }
 
         public Tuple<Vector3, Vector3?>[] getCheckpoints()
@@ -141,10 +141,10 @@ namespace ModForResearchTUB
                 barPool.Draw();
 
                 // log it for later diagram drawing
-                distance.Add(new Tuple<String, double>(
+                distance.Add(
                     Game.GameTime.ToString(),
                     currentDistance
-                ));
+                );
 
                 float leader_to_target = World.GetDistance(leader.Position, checkpoints[checkpoints.Length - 1].Item1),
                     player_to_target = World.GetDistance(Game.Player.Character.CurrentVehicle.Position, checkpoints[checkpoints.Length - 1].Item1);
@@ -310,7 +310,7 @@ namespace ModForResearchTUB
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
 
-        public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
+        public Dictionary<String, Dictionary<String, double>> getCollectedData()
         {
             return this.collectedData;
         }

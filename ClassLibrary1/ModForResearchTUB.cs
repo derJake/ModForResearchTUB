@@ -110,21 +110,19 @@ namespace ModForResearchTUB
         // length of time the key was held down and amount of times it was held that long
         static double roundTo = 5;
         static int roundToMultiplier = Convert.ToInt32(roundTo);
-        List<Tuple<String, double>> keypressLengths = new List<Tuple<String, double>>();
+        Dictionary<string, double> keypressLengths = new Dictionary<string, double>();
         int lastKeydownA;
         int lastKeydownD;
 
         // 
-        List<Tuple<String, double>> speedBySecond = new List<Tuple<String, double>>();
+        Dictionary<string, double> speedBySecond = new Dictionary<string, double>();
 
         // controller inputs
-        // TODO: make dictionary
-        List<Tuple<String, double>> gasPedalInputs = new List<Tuple<String, double>>();
-        List<Tuple<String, double>> steeringInputs = new List<Tuple<String, double>>();
-        List<Tuple<String, double>> brakingInputs = new List<Tuple<String, double>>();
+        Dictionary<string, double> gasPedalInputs = new Dictionary<string, double>();
+        Dictionary<string, double> steeringInputs = new Dictionary<string, double>();
+        Dictionary<string, double> brakingInputs = new Dictionary<string, double>();
 
-        // TODO: make dictionary
-        private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
+        private Dictionary<string, Dictionary<string, double>> collectedData = new Dictionary<string, Dictionary<string, double>>();
 
         protected String[] scenarioGroups { get; private set; }
         protected String[] scenarios { get; private set; }
@@ -418,55 +416,14 @@ namespace ModForResearchTUB
         }
 
         protected void renderDiagrams() {
-
-            foreach (Tuple<String, List<Tuple<String, double>>> item in collectedData) {
+            foreach (KeyValuePair<string, Dictionary<string, double>> item in collectedData) {
                 DrawDiagram.renderDiagramToDisk(
-                    item.Item2,
-                    item.Item1,
-                    item.Item1,
-                    currentPlayerName + "-race-" + (currentRace + 1) + "-" + item.Item1
+                    item.Value,
+                    item.Key,
+                    item.Key,
+                    currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
                 );
             }
-
-            // draw diagram for keypresses by length
-            DrawDiagram.renderDiagramToDisk(
-                keypressLengths,
-                "keypresses by length",
-                "times pressed for given amount of time",
-                currentPlayerName + "-race-" + currentRace + 1 + "-keypress-lengths"
-            );
-
-            // draw diagram for speed every tick
-            DrawDiagram.renderDiagramToDisk(
-                speedBySecond,
-                "speed by second",
-                "speed",
-                currentPlayerName + "-race-" + currentRace + 1 + "-speed-by-second"
-            );
-
-            // draw diagram for gas pedal input
-            DrawDiagram.renderDiagramToDisk(
-                gasPedalInputs,
-                "gas pedal pressed",
-                "gas",
-                currentPlayerName + "-race-" + currentRace + 1 + "-gas"
-            );
-
-            // draw diagram for brake pedal input
-            DrawDiagram.renderDiagramToDisk(
-                brakingInputs,
-                "brake pedal pressed",
-                "brake",
-                currentPlayerName + "-race-" + currentRace + 1 + "-brake"
-            );
-
-            // draw diagram for brake pedal input
-            DrawDiagram.renderDiagramToDisk(
-                steeringInputs,
-                "steering wheel input",
-                "value",
-                currentPlayerName + "-race-" + currentRace + 1 + "-steering"
-            );
         }
 
         protected void setupNextCheckpoint() {
@@ -699,13 +656,12 @@ namespace ModForResearchTUB
                     if (race_started && lastKeydownA > 0) {
                         var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA)) / roundTo) * roundToMultiplier).ToString();
                         //UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
-                        if (keypressLengths.Exists(x => x.Item1 == length))
+                        if (keypressLengths.ContainsKey(length))
                         {
-                            var index = keypressLengths.FindIndex(x => x.Item1 == length);
-                            keypressLengths[index] = new Tuple<String, double>(length, keypressLengths[index].Item2 + 1);
+                            keypressLengths[length]++;
                         }
                         else {
-                            keypressLengths.Add(new Tuple<String, double>(length, 1));
+                            keypressLengths.Add(length, 1);
                         }
                     }
                     break;
@@ -714,13 +670,12 @@ namespace ModForResearchTUB
                     {
                         var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownD)) / roundTo) * roundToMultiplier).ToString();
                         //UI.ShowSubtitle(String.Format("keyup [D], length {0}", length));
-                        if (keypressLengths.Exists(x => x.Item1 == length))
+                        if (keypressLengths.ContainsKey(length))
                         {
-                            var index = keypressLengths.FindIndex(x => x.Item1 == length);
-                            keypressLengths[index] = new Tuple<String, double>(length, keypressLengths[index].Item2 + 1);
+                            keypressLengths[length]++;
                         }
                         else {
-                            keypressLengths.Add(new Tuple<String, double>(length, 1));
+                            keypressLengths.Add(length, 1);
                         }
 
                     }
@@ -1054,12 +1009,12 @@ namespace ModForResearchTUB
 
             // save the vehicle's speed for this second
             var raceTimeElapsed = (Game.GameTime - raceStartTime);
-            speedBySecond.Add(new Tuple<String, double>(raceTimeElapsed.ToString(), car.Speed));
+            speedBySecond.Add(raceTimeElapsed.ToString(), car.Speed);
 
             // get controller values
-            gasPedalInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 11) - 127)));
-            brakingInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) - 127)));
-            steeringInputs.Add(new Tuple<String, double>(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9))));
+            gasPedalInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 11) - 127));
+            brakingInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) - 127));
+            steeringInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9)));
 
             if (debug)
             {
@@ -1510,11 +1465,11 @@ namespace ModForResearchTUB
 
             numOfRedlights = 0;
 
-            keypressLengths = new List<Tuple<String, double>>();
-            speedBySecond = new List<Tuple<String, double>>();
-            gasPedalInputs = new List<Tuple<String, double>>();
-            steeringInputs = new List<Tuple<String, double>>();
-            brakingInputs = new List<Tuple<String, double>>();
+            keypressLengths = new Dictionary<string, double>();
+            speedBySecond = new Dictionary<string, double>();
+            gasPedalInputs = new Dictionary<string, double>();
+            steeringInputs = new Dictionary<string, double>();
+            brakingInputs = new Dictionary<string, double>();
             knownVehicles = new List<Vehicle>();
         }
 
@@ -1762,11 +1717,16 @@ namespace ModForResearchTUB
             collectedData.Add(new Tuple<String, List<Tuple<String, double>>>("input frequency", inputFrequency));*/
 
             // get data point lists from current race, if there are any
+            collectedData.Add("speed", speedBySecond);
+            collectedData.Add("gas", gasPedalInputs);
+            collectedData.Add("brake", brakingInputs);
+            collectedData.Add("steering", steeringInputs);
+
             try
             {
-                foreach (Tuple<String, List<Tuple<String, double>>> dataList in races[currentRace].getCollectedData())
+                foreach (KeyValuePair<string, Dictionary<string, double>> dataList in races[currentRace].getCollectedData())
                 {
-                    collectedData.Add(dataList);
+                    collectedData.Add(dataList.Key, dataList.Value);
                 }
             }
             catch (NotImplementedException) { }

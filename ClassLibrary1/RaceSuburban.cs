@@ -319,7 +319,7 @@ namespace ModForResearchTUB
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
 
-        public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
+        public Dictionary<string, Dictionary<string, double>> getCollectedData()
         {
             throw new NotImplementedException();
         }

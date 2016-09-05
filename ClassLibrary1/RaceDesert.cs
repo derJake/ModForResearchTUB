@@ -255,7 +255,7 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = true;
 
         }
-        public List<Tuple<String, List<Tuple<String, double>>>> getCollectedData()
+        public Dictionary<string, Dictionary<string, double>> getCollectedData()
         {
             throw new NotImplementedException();
         }

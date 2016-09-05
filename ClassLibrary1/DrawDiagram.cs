@@ -13,7 +13,7 @@ namespace ModForResearchTUB
         static String fontName = "Helvetica";
         static float fontSize = 24;
 
-        public static void renderDiagramToDisk(List<Tuple<String, double>> data, String title, String yAxisTitle, String diagramtype)
+        public static void renderDiagramToDisk(Dictionary<string, double> data, String title, String yAxisTitle, String diagramtype)
         {
             using (Chart chart = new Chart() { Height = 2400, Width = 4800 })
             {
@@ -34,11 +34,11 @@ namespace ModForResearchTUB
                 });
                 chart.Series.Add(new Series("data") { ChartType = SeriesChartType.Column });
                 // Daten
-                foreach (Tuple<String, double> entry in data) {
+                foreach (KeyValuePair<string, double> entry in data) {
                     chart.Series["data"].Points.Add(
                         new DataPoint() {
-                            AxisLabel = entry.Item1.ToString(),
-                            YValues = new double[] { entry.Item2 }
+                            AxisLabel = entry.Key.ToString(),
+                            YValues = new double[] { entry.Value }
                         }
                     );
                 }

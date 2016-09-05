@@ -28,7 +28,7 @@ namespace ModForResearchTUB
         private Vector3 car1_spawnpoint = new Vector3(-748.7908f, -79.43627f, 41.31476f);
         private float car_spawn_heading = 26.37f;
         private float car_spawn_player_heading = 164.5883f;
-        private List<Tuple<String, List<Tuple<String, double>>>> collectedData = new List<Tuple<String, List<Tuple<String, double>>>>();
+        private Dictionary<String, Dictionary<String, double>> collectedData;
         private VehicleHash vehicleHash = VehicleHash.Comet2;
         private int regularIntroSceneLength = 10000;
 
@@ -233,7 +233,7 @@ namespace ModForResearchTUB
             return (Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Equals(raceVehicle));
         }
 
-        public List<Tuple<string, List<Tuple<string, double>>>> getCollectedData()
+        public Dictionary<String, Dictionary<String, double>> getCollectedData()
         {
             return this.collectedData;
         }

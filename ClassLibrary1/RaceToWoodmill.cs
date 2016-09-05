@@ -244,5 +244,15 @@ namespace ModForResearchTUB
         {
             return false;
         }
+
+        Dictionary<string, Dictionary<string, double>> RaceInterface.getCollectedData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string getCanonicalName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
