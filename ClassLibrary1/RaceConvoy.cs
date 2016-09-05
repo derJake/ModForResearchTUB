@@ -31,6 +31,7 @@ namespace ModForResearchTUB
         private float car_spawn_heading = 94.7f;
         private float car_spawn_player_heading = 71.70087f;
         private Dictionary<string, Dictionary<string, double>> collectedData = new Dictionary<string, Dictionary<string, double>>();
+        private Dictionary<string, float> singularValues = new Dictionary<string, float>();
         private Dictionary<string, double> distance = new Dictionary<string, double>();
         private VehicleHash vehicleHash = VehicleHash.Rumpo;
 
@@ -80,6 +81,9 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("number of times player passed leader: {0}", num_take_overs));
             Logger.Log(String.Format("time player was in front of leader: {0}", time_player_leads));
             Logger.Log(String.Format("leading vehicle distance to target: {0}", World.GetDistance(leader.Position, leader_target)));
+            singularValues.Add("times_player_leads", num_take_overs);
+            singularValues.Add("duration_player_leads", time_player_leads);
+            singularValues.Add("distance_leader_target", World.GetDistance(leader.Position, leader_target));
 
             // drop wanted level
             Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player, 0, false);
@@ -327,7 +331,7 @@ namespace ModForResearchTUB
 
         public Dictionary<string, float> getSingularDataValues()
         {
-            throw new NotImplementedException();
+            return singularValues;
         }
     }
 }
