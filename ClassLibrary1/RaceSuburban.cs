@@ -92,7 +92,6 @@ namespace ModForResearchTUB
 
             singularValues.Add("obstacle_visible", obstacle_visible);
             singularValues.Add("player_passed_garbage_truck", 0);
-            singularValues.Add("obstacle_visible", obstacle_visible);
             singularValues.Add("brake_in_front_of_garbage_truck", 0);
 
             if (player_passed_obstacle)
