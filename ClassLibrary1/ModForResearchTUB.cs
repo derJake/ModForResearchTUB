@@ -1269,12 +1269,13 @@ namespace ModForResearchTUB
         protected void teleportPlayerToCarCustomization() {
             if (Game.Player.Character.IsSittingInVehicle() && !car_config_done)
             {
-                Game.Player.LastVehicle.Position = new Vector3(-1140.731f, -1985.894f, 12.78301f);
-                Game.Player.LastVehicle.Rotation = new Vector3(0.0f, 0.0f, 135.0f);
+                var car = Game.Player.Character.CurrentVehicle;
+                car.Position = new Vector3(-1140.731f, -1985.894f, 12.78301f);
+                car.Rotation = new Vector3(0.0f, 0.0f, 135.0f);
                 Logger.Log("Player is entering garage");
                 Game.Player.Character.Task.DriveTo(
-                    Game.Player.LastVehicle,
-                    new GTA.Math.Vector3(-1147.906f, -1993.416f, 12.7937f),
+                    car,
+                    new Vector3(-1147.906f, -1993.416f, 12.7937f),
                     1.0f,
                     5.0f
                 );
