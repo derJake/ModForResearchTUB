@@ -162,7 +162,7 @@ namespace ModForResearchTUB
 
         // database
         private DBI database_interface;
-        private long current_data_set_id;
+        private int current_data_set_id;
 
         #endregion
 
@@ -223,11 +223,11 @@ namespace ModForResearchTUB
 
         private void setUpRaces() {
             races = new RaceInterface[5];
-            races[0] = new RaceIntro(rm, ut);
-            races[1] = new RaceConvoy(rm, ut);
-            races[2] = new RaceSuburban(rm, ut);
-            races[3] = new RaceDesert(rm, ut);
-            races[4] = new RaceCarvsCar(rm, ut);
+            races[0] = new RaceIntro(rm, ut, "intro");
+            races[1] = new RaceConvoy(rm, ut, "convoy");
+            races[2] = new RaceSuburban(rm, ut, "garbagetruck");
+            races[3] = new RaceDesert(rm, ut, "desert");
+            races[4] = new RaceCarvsCar(rm, ut, "car_vs_car");
             //races[5] = new RaceToWoodmill();
             currentRace = 0;
             if (debug) {
@@ -360,6 +360,7 @@ namespace ModForResearchTUB
                             raceEndTime = Game.GameTime;
 
                             writeRaceDataToLog();
+                            writeRaceDataToDB();
 
                             renderDiagrams();
 
@@ -385,11 +386,11 @@ namespace ModForResearchTUB
                     keepPlayerOnTrack();
                     hideUIComponents();
                 }
-                else if (currentRace >= 0 && 
+                else if (currentRace >= 0 &&
                     currentRace < races.Length &&
                     races[currentRace] != null &&
                     races[currentRace].checkRaceStartCondition()) {
-                   
+
                     // show countdown
                     countDown();
 
@@ -696,7 +697,7 @@ namespace ModForResearchTUB
             {
                 case Keys.A:
                     if (race_started && lastKeydownA > 0) {
-                        var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA))/ roundTo) * roundToMultiplier).ToString();
+                        var length = (Math.Round((Convert.ToDouble(Game.GameTime) - Convert.ToDouble(lastKeydownA)) / roundTo) * roundToMultiplier).ToString();
                         //UI.ShowSubtitle(String.Format("keyup [A], length {0}", length));
                         if (keypressLengths.Exists(x => x.Item1 == length))
                         {
@@ -801,7 +802,7 @@ namespace ModForResearchTUB
                             Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
 
                             // decrease blip numbers for following blips
-                            for (int i = index; i < route_checkpoints.Count;i++) {
+                            for (int i = index; i < route_checkpoints.Count; i++) {
                                 route_checkpoints.ElementAt(i).Item3.ShowNumber(i);
                             }
                             route_checkpoints.Remove(cp);
@@ -838,7 +839,7 @@ namespace ModForResearchTUB
         }
 
         private void renderRouteCheckpoints() {
-            
+
             for (int i = 0; i < route_checkpoints.Count; i++) {
                 Vector3? next_coords = null;
                 int type = 14;
@@ -874,7 +875,7 @@ namespace ModForResearchTUB
                 foreach (Tuple<Vector3, int, Blip> checkpoint in route_checkpoints) {
                     var cp = checkpoint.Item1;
                     route_code += String.Format(
-                        "\tnew Tuple<Vector3, Vector3?>(new Vector3({0}f, {1}f, {2}f), null),", 
+                        "\tnew Tuple<Vector3, Vector3?>(new Vector3({0}f, {1}f, {2}f), null),",
                         cp.X.ToString(CultureInfo.InvariantCulture),
                         cp.Y.ToString(CultureInfo.InvariantCulture),
                         cp.Z.ToString(CultureInfo.InvariantCulture)
@@ -1140,9 +1141,9 @@ namespace ModForResearchTUB
             if (lastRedlight != null &&
                 lastNearestVehicleToRedlight != null &&
                 Function.Call<bool>(Hash.IS_VEHICLE_STOPPED_AT_TRAFFIC_LIGHTS, lastNearestVehicleToRedlight) &&
-                (lastNearestVehicleDistance * 0.75f) > World.GetDistance(pos,lastRedlight.Position)
+                (lastNearestVehicleDistance * 0.75f) > World.GetDistance(pos, lastRedlight.Position)
                 && debug) {
-                World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(0,0,0), new Vector3(3f, 3f, 3f), Color.Red);
+                World.DrawMarker(MarkerType.UpsideDownCone, lastRedlight.Position, lastRedlight.ForwardVector, new Vector3(0, 0, 0), new Vector3(3f, 3f, 3f), Color.Red);
             }
 
             Entity lastTrafficLight = null;
@@ -1190,7 +1191,7 @@ namespace ModForResearchTUB
 
                     var fvTl = -lastTrafficLight.ForwardVector;
                     var entPos = lastTrafficLight.Position;
-                    var stoppedNearlimit = entPos + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0,0,pad);
+                    var stoppedNearlimit = entPos + 0.25f * pad * new Vector3(-fvTl.Y, fvTl.X, 0) + new Vector3(0, 0, pad);
                     var stoppedFarLimit = (entPos + (1.5f * checkDistance * fvTl) + 0.5f * pad * new Vector3(fvTl.Y, -fvTl.X, 0)) + new Vector3(0, 0, -pad);
 
                     //World.DrawMarker(MarkerType.UpsideDownCone, stoppedNearlimit, new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(5f, 5f, 5f), Color.Blue);
@@ -1299,7 +1300,7 @@ namespace ModForResearchTUB
                     }
 
                     if (debug) {
-                        new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost)/1000), new Point(850, 75), 0.4f, Color.Orange).Draw();
+                        new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost) / 1000), new Point(850, 75), 0.4f, Color.Orange).Draw();
                     }
                 }
             }
@@ -1322,7 +1323,7 @@ namespace ModForResearchTUB
                     1.0f,
                     5.0f
                 );
-                
+
                 //Game.Player.LastVehicle.Position = new Vector3(-1156.724f, -2007.222f, 12.79617f);
             }
         }
@@ -1397,23 +1398,46 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("time taken: {0}s", Math.Round((float)(raceEndTime - raceStartTime) / 1000, 2)));
             Logger.Log(String.Format("player health: {0}/100", Game.Player.Character.Health));
             Logger.Log(String.Format("car health: {0}/1000", car_health));
-            Logger.Log(String.Format("average speed: {0}mph", speeds/(float)numOfSpeeds));
-            Logger.Log(String.Format("average speed: {0}km/h",(speeds / (float)numOfSpeeds) * mTokm));
+            Logger.Log(String.Format("average speed: {0}mph", speeds / (float)numOfSpeeds));
+            Logger.Log(String.Format("average speed: {0}km/h", (speeds / (float)numOfSpeeds) * mTokm));
             Logger.Log(String.Format("maximum speed: {0}mph", maxSpeed));
             Logger.Log(String.Format("maximum speed: {0}km/h", maxSpeed * mTokm));
             Logger.Log(String.Format("Number of times player applied brakes: {0}", numBrakeApplied));
             Logger.Log(String.Format("Number of times player applied handbrake: {0}", numHandBrakeApplied));
-            Logger.Log(String.Format("Cumulative time spent braking: {0}s", Math.Round((float)cumulativeTimeBraking/1000, 2)));
-            Logger.Log(String.Format("Cumulative time spent on handbrake: {0}s", Math.Round((float)cumulativeTimeHandbraking/1000, 2)));
+            Logger.Log(String.Format("Cumulative time spent braking: {0}s", Math.Round((float)cumulativeTimeBraking / 1000, 2)));
+            Logger.Log(String.Format("Cumulative time spent on handbrake: {0}s", Math.Round((float)cumulativeTimeHandbraking / 1000, 2)));
             Logger.Log(String.Format("Vehicle collisions: {0}", numOfHitVehicles));
             Logger.Log(String.Format("Pedestrian collisions: {0}", numOfHitPeds));
             Logger.Log(String.Format("Number of times player has driven against traffic: {0}", numOfTimesDrivingAgaingstTraffic));
             Logger.Log(String.Format("Number of times player has driven against on pavement: {0}", numOfTimesDrivingOnPavement));
-            Logger.Log(String.Format("Cumulative time on pavement: {0}", Math.Round((float)cumulativeTimeOnPavement/1000, 2)));
-            Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic/1000, 2)));
+            Logger.Log(String.Format("Cumulative time on pavement: {0}", Math.Round((float)cumulativeTimeOnPavement / 1000, 2)));
+            Logger.Log(String.Format("Cumulative time driving against traffic: {0}", Math.Round((float)cumulativeTimeDrivingAgainstTraffic / 1000, 2)));
             Logger.Log(String.Format("Times vehicle was upside down: {0}", numOfTimesUpsideDown));
             Logger.Log(String.Format("Possible collisions: {0}", possibleCollisions));
             Logger.Log(String.Format("Mean distance: {0}", meanDistance));
+        }
+
+        protected void writeRaceDataToDB() {
+            String taskName = races[currentRace].getCanonicalName();
+            int taskId = database_interface.getTaskIdByName(taskName);
+            if (!(taskId > 0)) {
+                taskId = database_interface.createTask(taskName);
+            }
+
+            Dictionary<String, float> map = mapCollectedDataForDB();
+            foreach (KeyValuePair<String, float> item in map) {
+                int attributeId = database_interface.getAttributeId(item.Key);
+                if (!(attributeId > 0)) {
+                    attributeId = database_interface.createAttribute(item.Key, rm.GetString(item.Key));
+                }
+
+                database_interface.insertValue(item.Key, taskId, current_data_set_id, item.Value);
+            }
+        }
+
+        protected Dictionary<String, float> mapCollectedDataForDB() {
+            Dictionary<String, float> mappings = new Dictionary<string, float>();
+            return mappings;
         }
 
         protected void resetLoggingVariables() {
