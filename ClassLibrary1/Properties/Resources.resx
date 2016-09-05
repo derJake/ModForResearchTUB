@@ -312,6 +312,9 @@
   <data name="average_speed" xml:space="preserve">
     <value>The average speed of the player's vehicle (possibly in m/s)</value>
   </data>
+  <data name="brake_in_front_of_garbage_truck" xml:space="preserve">
+    <value>How long did the player apply the brakes before the garbage truck</value>
+  </data>
   <data name="car_health" xml:space="preserve">
     <value>How many hitpoints did the player's vehicle have after the task</value>
   </data>
@@ -336,11 +339,17 @@
   <data name="maximum_speed" xml:space="preserve">
     <value>The maximum speed of the player's vehicle (possibly in m/s)</value>
   </data>
+  <data name="obstacle_visible" xml:space="preserve">
+    <value>When was the garbage truck visible to the player</value>
+  </data>
   <data name="pedestrian_collisions" xml:space="preserve">
     <value>How many times did the player collide with pedestrians</value>
   </data>
   <data name="player_health" xml:space="preserve">
     <value>How many hitpoints did the player's character have after the task</value>
+  </data>
+  <data name="player_passed_garbage_truck" xml:space="preserve">
+    <value>Did the player drive past the garbage truck</value>
   </data>
   <data name="possible_vc_mean_distance" xml:space="preserve">
     <value>How far away were nearby vehicles on average</value>

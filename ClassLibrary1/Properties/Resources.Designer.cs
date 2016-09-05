@@ -70,6 +70,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player apply the brakes before the garbage truck ähnelt.
+        /// </summary>
+        internal static string brake_in_front_of_garbage_truck {
+            get {
+                return ResourceManager.GetString("brake_in_front_of_garbage_truck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cam Designer active: {0} ähnelt.
         /// </summary>
         internal static string cam_designer_active {
@@ -628,6 +637,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die When was the garbage truck visible to the player ähnelt.
+        /// </summary>
+        internal static string obstacle_visible {
+            get {
+                return ResourceManager.GetString("obstacle_visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player collide with pedestrians ähnelt.
         /// </summary>
         internal static string pedestrian_collisions {
@@ -642,6 +660,15 @@ namespace ModForResearchTUB.Properties {
         internal static string player_health {
             get {
                 return ResourceManager.GetString("player_health", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Did the player drive past the garbage truck ähnelt.
+        /// </summary>
+        internal static string player_passed_garbage_truck {
+            get {
+                return ResourceManager.GetString("player_passed_garbage_truck", resourceCulture);
             }
         }
         
