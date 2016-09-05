@@ -136,15 +136,28 @@ namespace ModForResearchTUB
             return 0;
         }
 
-        private void createAttribute(String attribute_key, String attribute_description) {
-            String sql = "INSERT INTO dbo.attribute_key (name, description) VALUES(@attributeName, @attributeDescription)";
+        private int createAttribute(String attribute_key, String attribute_description) {
+            int id = 0;
+            String sql = "INSERT INTO dbo.attribute_key (name, description) OUTPUT INSERTED.ID VALUES(@attributeName, @attributeDescription)";
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
             cmd.Parameters.AddWithValue("@attributeName", attribute_key);
             cmd.Parameters.AddWithValue("@attributeDescription", attribute_description);
 
-            m_dbConnection.Open();
-            cmd.ExecuteNonQuery();
-            m_dbConnection.Close();
+            try
+            {
+                m_dbConnection.Open();
+                id = (Int32)cmd.ExecuteScalar();
+                
+            }
+            catch (SqlException e)
+            {
+                Logger.Log(e.Message);
+            }
+            finally {
+                m_dbConnection.Close();
+            }
+
+            return id;
         }
 
         public int getAttributeId(String attribute_key) {
