@@ -639,7 +639,10 @@ namespace ModForResearchTUB
                     lastTimeHandbrake = Game.GameTime;
                     break;
                 case Keys.X:
-                    handleRouteInput();
+                    handleRouteInput(false);
+                    break;
+                case Keys.Y:
+                    handleRouteInput(true);
                     break;
                 default:
                     break;
@@ -743,31 +746,45 @@ namespace ModForResearchTUB
             }
         }
 
-        private void handleRouteInput() {
+        private void handleRouteInput(bool alternative) {
             if (route_designer_active)
             {
                 Vector3 pos = Game.Player.Character.Position;
                 if (route_checkpoints.Count > 0)
                 {
-                    // see if checkpoint is near and if so, remove it and its blip
-                    foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints)
+                    // regular checkpoint
+                    if (!alternative)
                     {
-                        if (World.GetDistance(cp.Item1, pos) <= checkpoint_radius)
+                        // see if checkpoint is near and if so, remove it and its blip
+                        foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints)
                         {
-                            var index = route_checkpoints.IndexOf(cp);
-                            // delete blip
-                            cp.Item3.Remove();
-                            // delete 3D marker
-                            Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
+                            if (World.GetDistance(cp.Item1, pos) <= checkpoint_radius)
+                            {
+                                var index = route_checkpoints.IndexOf(cp);
+                                // delete blip
+                                cp.Item3.Remove();
+                                // delete 3D marker
+                                Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
 
-                            // decrease blip numbers for following blips
-                            for (int i = index; i < route_checkpoints.Count; i++) {
-                                route_checkpoints.ElementAt(i).Item3.ShowNumber(i);
+                                // decrease blip numbers for following blips
+                                for (int i = index; i < route_checkpoints.Count; i++)
+                                {
+                                    route_checkpoints.ElementAt(i).Item3.ShowNumber(i);
+                                }
+                                route_checkpoints.Remove(cp);
+                                return;
                             }
-                            route_checkpoints.Remove(cp);
-                            return;
                         }
+                    } else
+                    {
+                        // TODO: think of data structure to incorporate alt checkpoints here
+                        //foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints) {
+
+                        //}
                     }
+                }
+                else if (alternative) {
+                    return;
                 }
 
                 // if there are no checkpoints near, create one
