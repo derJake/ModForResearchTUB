@@ -1065,6 +1065,7 @@ namespace ModForResearchTUB
                 meanDistance += distance / distanceMeasurements;
                 if (distance > possibleCollisionRadius) {
                     knownVehicles.Remove(knownCar);
+                    break;
                 }
             }
         }
@@ -1247,17 +1248,22 @@ namespace ModForResearchTUB
                 }
                 else {
                     // set player on road again, if he is lost for too long
-                    if (Game.GameTime - time_player_got_lost > max_lost_time) {
+                    if (Game.GameTime - time_player_got_lost > max_lost_time)
+                    {
                         float heading = getClosestVehicleNodeAndHeading().Item2;
 
                         Game.Player.Character.CurrentVehicle.PlaceOnNextStreet();
                         Game.Player.Character.CurrentVehicle.Heading = heading;
                     }
 
-                    if (debug) {
+                    if (debug)
+                    {
                         new UIResText(String.Format("player is lost! {0}", (Game.GameTime - time_player_got_lost) / 1000), new Point(850, 75), 0.4f, Color.Orange).Draw();
                     }
                 }
+            }
+            else {
+                time_player_got_lost = 0;
             }
         }
 
