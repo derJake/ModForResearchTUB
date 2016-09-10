@@ -413,6 +413,10 @@ namespace ModForResearchTUB
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
                 debugCamDesigner();
             }
+
+            if (route_designer_active) {
+                handleRouteDesigner(res, safe);
+            }
         }
 
         protected void renderDiagrams() {
@@ -791,6 +795,10 @@ namespace ModForResearchTUB
 
                 updateRouteCodeOutput();
             }
+        }
+
+        private void handleRouteDesigner(SizeF res, Point safe) {
+            new UIResText("press X to toggle a waypoint", new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 100), 0.75f, Color.White).Draw();
         }
 
         private void renderRouteCheckpoints() {
