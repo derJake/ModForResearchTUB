@@ -846,6 +846,7 @@ namespace ModForResearchTUB
                             {
                                 // create alternative Blip
                                 Blip altBlip = World.CreateBlip(pos);
+                                ut.addBlip(altBlip);
                                 altBlip.Color = BlipColor.Red;
                                 altBlip.ShowNumber(newAltIndex);
 
