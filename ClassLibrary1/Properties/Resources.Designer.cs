@@ -736,6 +736,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no checkpoint to add an alternative to! ähnelt.
+        /// </summary>
+        internal static string route_designer_no_cp {
+            get {
+                return ResourceManager.GetString("route_designer_no_cp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die press X to toggle a waypoint ähnelt.
         /// </summary>
         internal static string route_designer_reg_cp {

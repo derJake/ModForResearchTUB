@@ -842,7 +842,8 @@ namespace ModForResearchTUB
                             }
 
                             // no more alt checkpoints after the last one
-                            if (newAltIndex < route_checkpoints.Count) {
+                            if (newAltIndex < route_checkpoints.Count)
+                            {
                                 // create alternative Blip
                                 Blip altBlip = World.CreateBlip(pos);
                                 altBlip.Color = BlipColor.Red;
@@ -852,7 +853,8 @@ namespace ModForResearchTUB
                                 Vector3? possibleNextCoords = null;
 
                                 // there is at least one other checkpoint after
-                                if (newAltIndex < (route_checkpoints.Count - 1)) {
+                                if (newAltIndex < (route_checkpoints.Count - 1))
+                                {
                                     // set marker to arrows
                                     markerType = 2;
                                     // point to next regular checkpoint
@@ -879,11 +881,16 @@ namespace ModForResearchTUB
                                     altBlip
                                     );
                             }
+                            else {
+                                UI.ShowSubtitle(rm.GetString("route_designer_no_cp"), 5000);
+                                return;
+                            }
                         }
 
                     }
                 }
-                else if (!alternative) {
+                else if (!alternative)
+                {
                     // if there are no checkpoints, create one
                     Blip new_blip = World.CreateBlip(pos);
                     int type = 14;
@@ -908,6 +915,9 @@ namespace ModForResearchTUB
                         )
                     );
                     Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
+                }
+                else {
+                    UI.ShowSubtitle(rm.GetString("route_designer_no_cp"), 5000);
                 }
                 
                 renderRouteCheckpoints();

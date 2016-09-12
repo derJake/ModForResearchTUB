@@ -390,6 +390,9 @@
   <data name="route_designer_alt_cp" xml:space="preserve">
     <value>press Y to add an alternative waypoint</value>
   </data>
+  <data name="route_designer_no_cp" xml:space="preserve">
+    <value>There is no checkpoint to add an alternative to!</value>
+  </data>
   <data name="route_designer_reg_cp" xml:space="preserve">
     <value>press X to toggle a waypoint</value>
   </data>
