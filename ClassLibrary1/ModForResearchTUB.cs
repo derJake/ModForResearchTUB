@@ -844,7 +844,7 @@ namespace ModForResearchTUB
                         }
                         else {
                             // append to the existing alt checkpoints
-                            if (closest <= lastAltCheckpoint)
+                            if (route_alternative_checkpoints > 0)
                             {
                                 newAltIndex = lastAltCheckpoint + 1;
                             }
