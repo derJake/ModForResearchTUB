@@ -847,6 +847,7 @@ namespace ModForResearchTUB
                                 // create alternative Blip
                                 Blip altBlip = World.CreateBlip(pos);
                                 altBlip.Color = BlipColor.Red;
+                                altBlip.ShowNumber(newAltIndex);
 
                                 // last checkpoint?
                                 int markerType = 14;
