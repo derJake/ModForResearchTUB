@@ -929,7 +929,6 @@ namespace ModForResearchTUB
                 int type = 14;
                 // if it's not the last checkpoint, set coordinates to point arrows to
                 if (i < route_checkpoints.Count - 1) {
-                    UI.Notify(String.Format("checkpoint {0}", i));
                     // point marker to next checkpoint
                     next_coords = route_checkpoints[i + 1].Item1;
 
