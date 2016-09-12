@@ -895,9 +895,9 @@ namespace ModForResearchTUB
                 {
                     // if there are no checkpoints, create one
                     Blip new_blip = World.CreateBlip(pos);
+                    ut.addBlip(new_blip);
                     int type = 14;
                     Vector3? next_coords = new Vector3(0.0f, 0.0f, 0.0f);
-                    ut.addBlip(new_blip);
                     new_blip.Color = BlipColor.Yellow;
                     route_checkpoints.Add(
                         new Tuple<Vector3, int, Blip, Vector3?, int, Blip>(
