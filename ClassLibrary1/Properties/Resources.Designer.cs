@@ -727,6 +727,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die press Y to add an alternative waypoint ähnelt.
+        /// </summary>
+        internal static string route_designer_alt_cp {
+            get {
+                return ResourceManager.GetString("route_designer_alt_cp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die press X to toggle a waypoint ähnelt.
+        /// </summary>
+        internal static string route_designer_reg_cp {
+            get {
+                return ResourceManager.GetString("route_designer_reg_cp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press [F10] to start first race ähnelt.
         /// </summary>
         internal static string startracepromp {

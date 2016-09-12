@@ -387,4 +387,10 @@
   <data name="vehicle_collisions" xml:space="preserve">
     <value>How many times did the player collide with other vehicles</value>
   </data>
+  <data name="route_designer_alt_cp" xml:space="preserve">
+    <value>press Y to add an alternative waypoint</value>
+  </data>
+  <data name="route_designer_reg_cp" xml:space="preserve">
+    <value>press X to toggle a waypoint</value>
+  </data>
 </root>

@@ -917,8 +917,8 @@ namespace ModForResearchTUB
         }
 
         private void handleRouteDesigner(SizeF res, Point safe) {
-            new UIResText("press X to toggle a waypoint", new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 25), 0.5f, Color.White).Draw();
-            new UIResText("press Y to add an alternative waypoint", new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
+            new UIResText(rm.GetString("route_designer_reg_cp"), new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 25), 0.5f, Color.White).Draw();
+            new UIResText(rm.GetString("route_designer_alt_cp"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
         }
 
         private void renderRouteCheckpoints() {
