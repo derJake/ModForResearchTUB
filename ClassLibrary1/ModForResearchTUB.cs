@@ -836,6 +836,9 @@ namespace ModForResearchTUB
                                 );
 
                             UI.ShowSubtitle(rm.GetString("route_designer_rm_alt_cp"), 5000);
+
+                            route_alternative_checkpoints--;
+
                             renderRouteCheckpoints();
                             updateRouteCodeOutput();
                         }
@@ -891,6 +894,8 @@ namespace ModForResearchTUB
                                     altMarker,
                                     altBlip
                                     );
+
+                                route_alternative_checkpoints++;
                             }
                             else {
                                 UI.ShowSubtitle(rm.GetString("route_designer_no_cp"), 5000);
