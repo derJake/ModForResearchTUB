@@ -891,7 +891,8 @@ namespace ModForResearchTUB
 
                     }
                 }
-                else if (!alternative)
+
+                if (!alternative)
                 {
                     // if there are no checkpoints, create one
                     Blip new_blip = World.CreateBlip(pos);
@@ -917,9 +918,6 @@ namespace ModForResearchTUB
                         )
                     );
                     Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
-                }
-                else {
-                    UI.ShowSubtitle(rm.GetString("route_designer_no_cp"), 5000);
                 }
                 
                 renderRouteCheckpoints();
