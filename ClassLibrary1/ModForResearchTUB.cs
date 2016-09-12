@@ -557,7 +557,7 @@ namespace ModForResearchTUB
             }
 
             // actually create the 3D marker
-            return Function.Call<int>(Hash.CREATE_CHECKPOINT,
+            int markerId = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 type, // type
                 coords.X,
                 coords.Y,
@@ -572,6 +572,8 @@ namespace ModForResearchTUB
                 100,    // Alpha
                 0 // number displayed in marker, if type is 42-44
                 );
+            ut.addMarker(markerId);
+            return markerId;
         }
 
         protected void disableUnwantedControls() {

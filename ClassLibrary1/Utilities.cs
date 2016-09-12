@@ -27,12 +27,14 @@ namespace ModForResearchTUB
         private List<Vehicle> cars;
         private List<Ped> peds;
         private List<Blip> blips;
+        private List<int> markers;
         private Camera cam;
 
         public Utilities() {
             cars = new List<Vehicle>();
             peds = new List<Ped>();
             blips = new List<Blip>();
+            markers = new List<int>();
         }
 
         public Ped createPedAt(PedHash hash, Vector3 pos)
@@ -89,6 +91,10 @@ namespace ModForResearchTUB
             blips.Add(blip);
         }
 
+        public void addMarker(int markerId) {
+            markers.Add(markerId);
+        }
+
         public void cleanUp()
         {
             foreach (Ped ped in peds)
@@ -103,6 +109,10 @@ namespace ModForResearchTUB
 
             foreach (Blip blip in blips) {
                 blip.Remove();
+            }
+
+            foreach (int markerId in markers) {
+                Function.Call(Hash.DELETE_CHECKPOINT, markerId);
             }
         }
 
