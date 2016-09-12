@@ -754,6 +754,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Alternative checkpoint removed ähnelt.
+        /// </summary>
+        internal static string route_designer_rm_alt_cp {
+            get {
+                return ResourceManager.GetString("route_designer_rm_alt_cp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Checkpoint removed ähnelt.
+        /// </summary>
+        internal static string route_designer_rm_cp {
+            get {
+                return ResourceManager.GetString("route_designer_rm_cp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press [F10] to start first race ähnelt.
         /// </summary>
         internal static string startracepromp {

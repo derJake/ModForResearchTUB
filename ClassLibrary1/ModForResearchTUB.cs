@@ -785,6 +785,7 @@ namespace ModForResearchTUB
                                         route_checkpoints[i].Item6.ShowNumber(i);
                                     }
                                 }
+                                UI.ShowSubtitle(rm.GetString("route_designer_rm_cp"), 5000);
                                 route_checkpoints.Remove(cp);
                                 return;
                             }
@@ -829,6 +830,8 @@ namespace ModForResearchTUB
                                 0,
                                 null
                                 );
+
+                            UI.ShowSubtitle(rm.GetString("route_designer_rm_alt_cp"), 5000);
                         }
                         else {
                             // append to the existing alt checkpoints

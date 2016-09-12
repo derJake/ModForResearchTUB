@@ -396,4 +396,10 @@
   <data name="route_designer_reg_cp" xml:space="preserve">
     <value>press X to toggle a waypoint</value>
   </data>
+  <data name="route_designer_rm_alt_cp" xml:space="preserve">
+    <value>Alternative checkpoint removed</value>
+  </data>
+  <data name="route_designer_rm_cp" xml:space="preserve">
+    <value>Checkpoint removed</value>
+  </data>
 </root>
