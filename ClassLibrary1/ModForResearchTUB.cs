@@ -945,7 +945,7 @@ namespace ModForResearchTUB
                 }
                 // store values
                 Vector3 pos = route_checkpoints[i].Item1;
-                Vector3? altpos = route_checkpoints[i].Item4.Value;
+                Vector3? altpos = route_checkpoints[i].Item4;
                 Blip blip = route_checkpoints[i].Item3,
                     altBlip = route_checkpoints[i].Item6;
                 int altMarker = 0;
