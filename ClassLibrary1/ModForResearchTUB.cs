@@ -144,7 +144,8 @@ namespace ModForResearchTUB
         private bool route_designer_active = false,
             cam_designer_active = false,
             debug = true;
-        private List<Tuple<Vector3, int, Blip>> route_checkpoints;
+        private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
+        private int route_alternative_checkpoints = 0;
 
         Camera designer_cam;
         float cam_movement_amount = 0.8f;
@@ -756,58 +757,158 @@ namespace ModForResearchTUB
                     if (!alternative)
                     {
                         // see if checkpoint is near and if so, remove it and its blip
-                        foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints)
+                        foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> cp in route_checkpoints)
                         {
                             if (World.GetDistance(cp.Item1, pos) <= checkpoint_radius)
                             {
                                 var index = route_checkpoints.IndexOf(cp);
                                 // delete blip
                                 cp.Item3.Remove();
+                                // delete alt blip
+                                if (cp.Item6 != null)
+                                {
+                                    cp.Item6.Remove();
+                                }
                                 // delete 3D marker
                                 Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
+
+                                // delete alt 3D marker
+                                Function.Call(Hash.DELETE_CHECKPOINT, cp.Item5);
 
                                 // decrease blip numbers for following blips
                                 for (int i = index; i < route_checkpoints.Count; i++)
                                 {
-                                    route_checkpoints.ElementAt(i).Item3.ShowNumber(i);
+                                    route_checkpoints[i].Item3.ShowNumber(i);
+                                    // alt blip
+                                    if (route_checkpoints[i].Item6 != null)
+                                    {
+                                        route_checkpoints[i].Item6.ShowNumber(i);
+                                    }
                                 }
                                 route_checkpoints.Remove(cp);
                                 return;
                             }
                         }
-                    } else
+                    }
+                    else
                     {
-                        // TODO: think of data structure to incorporate alt checkpoints here
-                        //foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints) {
+                        int closest = 0,
+                            lastAltCheckpoint = -1,
+                            newAltIndex = 0;
 
-                        //}
+                        for (int i = 0; i < route_checkpoints.Count; i++)
+                        {
+                            // store checkpoint closest to player
+                            if (World.GetDistance(route_checkpoints[i].Item1, pos) < World.GetDistance(route_checkpoints[closest].Item1, pos))
+                            {
+                                closest = i;
+                            }
+                            // store last alt checkpoint
+                            if (route_checkpoints[i].Item4.HasValue)
+                            {
+                                lastAltCheckpoint = i;
+                            }
+                        }
+
+                        // is player inside an alt checkpoint?
+                        if (route_checkpoints[closest].Item4.HasValue
+                            && World.GetDistance(route_checkpoints[closest].Item4.Value, pos) < checkpoint_radius)
+                        {
+                            // delete alt blip
+                            route_checkpoints[closest].Item6.Remove();
+
+                            // delete alt 3D marker
+                            Function.Call(Hash.DELETE_CHECKPOINT, route_checkpoints[closest].Item5);
+
+                            // insert waypoint without alternative
+                            route_checkpoints[closest] = new Tuple<Vector3, int, Blip, Vector3?, int, Blip>(
+                                route_checkpoints[closest].Item1,
+                                route_checkpoints[closest].Item2,
+                                route_checkpoints[closest].Item3,
+                                null,
+                                0,
+                                null
+                                );
+                        }
+                        else {
+                            // append to the existing alt checkpoints
+                            if (closest <= lastAltCheckpoint)
+                            {
+                                newAltIndex = lastAltCheckpoint + 1;
+                            }
+                            else {
+                                // start new alt route at checkpoint that's closest by
+                                newAltIndex = closest;
+                            }
+
+                            // no more alt checkpoints after the last one
+                            if (newAltIndex < route_checkpoints.Count) {
+                                // create alternative Blip
+                                Blip altBlip = World.CreateBlip(pos);
+
+                                // last checkpoint?
+                                int markerType = 14;
+                                Vector3? possibleNextCoords = null;
+
+                                // there is at least one other checkpoint after
+                                if (newAltIndex < (route_checkpoints.Count - 1)) {
+                                    // set marker to arrows
+                                    markerType = 2;
+                                    // point to next regular checkpoint
+                                    possibleNextCoords = route_checkpoints[newAltIndex + 1].Item1;
+                                }
+
+                                // create alternative 3D marker
+                                int altMarker = drawCurrentCheckpoint(
+                                    pos,
+                                    possibleNextCoords,
+                                    alternative_checkpoint_color.Item1,
+                                    alternative_checkpoint_color.Item2,
+                                    alternative_checkpoint_color.Item3,
+                                    markerType
+                                    );
+
+                                // insert waypoint containing alternative
+                                route_checkpoints[newAltIndex] = new Tuple<Vector3, int, Blip, Vector3?, int, Blip>(
+                                    route_checkpoints[newAltIndex].Item1,
+                                    route_checkpoints[newAltIndex].Item2,
+                                    route_checkpoints[newAltIndex].Item3,
+                                    pos,
+                                    altMarker,
+                                    altBlip
+                                    );
+                            }
+                        }
+
                     }
                 }
-                else if (alternative) {
-                    return;
-                }
-
-                // if there are no checkpoints near, create one
-                Blip new_blip = World.CreateBlip(pos);
-                int type = 14;
-                Vector3? next_coords = new Vector3(0.0f, 0.0f, 0.0f);
-                ut.addBlip(new_blip);
-                new_blip.Color = BlipColor.Yellow;
-                route_checkpoints.Add(
-                    new Tuple<Vector3, int, Blip>(
-                        pos,
-                        drawCurrentCheckpoint(
+                else if (!alternative) {
+                    // if there are no checkpoints, create one
+                    Blip new_blip = World.CreateBlip(pos);
+                    int type = 14;
+                    Vector3? next_coords = new Vector3(0.0f, 0.0f, 0.0f);
+                    ut.addBlip(new_blip);
+                    new_blip.Color = BlipColor.Yellow;
+                    route_checkpoints.Add(
+                        new Tuple<Vector3, int, Blip, Vector3?, int, Blip>(
                             pos,
-                            next_coords,
-                            regular_checkpoint_color.Item1,
-                            regular_checkpoint_color.Item2,
-                            regular_checkpoint_color.Item3,
-                            type
-                        ),
-                        new_blip
-                    )
-                );
-                Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
+                            drawCurrentCheckpoint(
+                                pos,
+                                next_coords,
+                                regular_checkpoint_color.Item1,
+                                regular_checkpoint_color.Item2,
+                                regular_checkpoint_color.Item3,
+                                type
+                            ),
+                            new_blip,
+                            null,
+                            0,
+                            null
+                        )
+                    );
+                    Function.Call(Hash.SHOW_NUMBER_ON_BLIP, new_blip, route_checkpoints.Count);
+                }
+                
                 renderRouteCheckpoints();
 
                 updateRouteCodeOutput();
@@ -815,27 +916,59 @@ namespace ModForResearchTUB
         }
 
         private void handleRouteDesigner(SizeF res, Point safe) {
-            new UIResText("press X to toggle a waypoint", new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, Convert.ToInt32(res.Height) - safe.Y - 100), 0.75f, Color.White).Draw();
+            new UIResText("press X to toggle a waypoint", new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 100), 0.6f, Color.White).Draw();
+            new UIResText("press Y to add an alternative waypoint", new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 150), 0.6f, Color.White).Draw();
         }
 
         private void renderRouteCheckpoints() {
 
             for (int i = 0; i < route_checkpoints.Count; i++) {
                 Vector3? next_coords = null;
+                Vector3? nextAltCoords = null;
                 int type = 14;
                 // if it's not the last checkpoint, set coordinates to point arrows to
                 if (i < route_checkpoints.Count - 1) {
                     UI.Notify(String.Format("checkpoint {0}", i));
+                    // point marker to next checkpoint
                     next_coords = route_checkpoints[i + 1].Item1;
+
+                    // point alt marker to next checkpoint
+                    nextAltCoords = route_checkpoints[i + 1].Item1;
+
+                    // point alt marker to next alt checkpoint, if it exists
+                    if (route_checkpoints[i + 1].Item4.HasValue) {
+                        nextAltCoords = route_checkpoints[i + 1].Item4.Value;
+                    }
+
                     type = 2;
                 }
                 // store values
                 Vector3 pos = route_checkpoints[i].Item1;
-                Blip blip = route_checkpoints[i].Item3;
+                Vector3? altpos = route_checkpoints[i].Item4.Value;
+                Blip blip = route_checkpoints[i].Item3,
+                    altBlip = route_checkpoints[i].Item6;
+                int altMarker = 0;
+
+                // delete alt 3D marker
+                Function.Call(Hash.DELETE_CHECKPOINT, route_checkpoints[i].Item5);
+
+                // (re)create alternative 3D marker
+                if (altpos.HasValue)
+                {
+                    altMarker = drawCurrentCheckpoint(
+                            altpos.Value,
+                            nextAltCoords,
+                            alternative_checkpoint_color.Item1,
+                            alternative_checkpoint_color.Item2,
+                            alternative_checkpoint_color.Item3,
+                            type
+                        );
+                }
                 // delete 3D marker
                 Function.Call(Hash.DELETE_CHECKPOINT, route_checkpoints[i].Item2);
+                
                 // replace checkpoint with tuple containing new marker reference
-                route_checkpoints[i] = new Tuple<Vector3, int, Blip>(
+                route_checkpoints[i] = new Tuple<Vector3, int, Blip, Vector3?, int, Blip>(
                     pos, drawCurrentCheckpoint(
                         route_checkpoints[i].Item1,
                         next_coords,
@@ -844,26 +977,55 @@ namespace ModForResearchTUB
                         regular_checkpoint_color.Item3,
                         type
                     ),
-                    blip
+                    blip,
+                    altpos,
+                    altMarker,
+                    altBlip
                 );
             }
         }
 
         private void updateRouteCodeOutput() {
             if (route_checkpoints.Count > 0) {
-                String route_code = "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
-                foreach (Tuple<Vector3, int, Blip> checkpoint in route_checkpoints) {
-                    var cp = checkpoint.Item1;
-                    route_code += String.Format(
-                        "\tnew Tuple<Vector3, Vector3?>(new Vector3({0}f, {1}f, {2}f), null),",
-                        cp.X.ToString(CultureInfo.InvariantCulture),
-                        cp.Y.ToString(CultureInfo.InvariantCulture),
-                        cp.Z.ToString(CultureInfo.InvariantCulture)
-                        ) + Environment.NewLine;
-                }
-                route_code += "};";
+                String route_code = routeToString();
                 director_gui.SetRouteCodeText(route_code);
             }
+        }
+
+        private String routeToString() {
+            String route_code = "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
+            foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> checkpoint in route_checkpoints)
+            {
+                var cp = checkpoint.Item1;
+                Vector3? alt = null;
+                if (checkpoint.Item4.HasValue)
+                {
+                    alt = checkpoint.Item4.Value;
+                }
+                route_code += String.Format(
+                    "\tnew Tuple<Vector3, Vector3?>({0}, {1}),",
+                    vector3ToString(cp),
+                    vector3ToString(alt)
+                    ) + Environment.NewLine;
+            }
+            route_code += "};";
+
+            return route_code;
+        }
+
+        public String vector3ToString(Vector3? vector) {
+            String str = "null";
+            if (vector.HasValue)
+            {
+                str = String.Format(
+                    "new Vector3({0}f, {1}f, {2}f)",
+                    vector.Value.X.ToString(CultureInfo.InvariantCulture),
+                    vector.Value.Y.ToString(CultureInfo.InvariantCulture),
+                    vector.Value.Z.ToString(CultureInfo.InvariantCulture)
+                    );
+            }
+
+            return str;
         }
 
         protected void logVariables(SizeF res, Point safe) {
@@ -1906,27 +2068,34 @@ namespace ModForResearchTUB
         private void toggleRouteDesigner() {
             if (route_designer_active)
             {
-                route_checkpoints = new List<Tuple<Vector3, int, Blip>>();
+                route_checkpoints = new List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>>();
             }
             else {
-                File.AppendAllText("route.log", " Tuple<Vector3, Vector3?>[] checkpointlist = {" + Environment.NewLine);
-                foreach (Tuple<Vector3, int, Blip> cp in route_checkpoints) {
-                    File.AppendAllText(
-                        "route.log",
-                        String.Format(
-                            "new Tuple<Vector3, Vector3?>(new Vector3({0}, {1}, {2}), null),",
-                            cp.Item1.X,
-                            cp.Item1.Y,
-                            cp.Item1.Z
-                            ) + Environment.NewLine);
-                    // delete checkpoint marker
-                    Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
-                    // remove blip
-                    cp.Item3.Remove();
-                }
-                File.AppendAllText("route.log", "};" + Environment.NewLine);
-                route_checkpoints = null;
+                // write route to log
+                File.AppendAllText("route.log", routeToString());
+                deleteCurrentRoute();
             }
+        }
+
+        private void deleteCurrentRoute() {
+            foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> cp in route_checkpoints)
+            {
+                // delete checkpoint marker
+                Function.Call(Hash.DELETE_CHECKPOINT, cp.Item2);
+                // delete alternative checkpoint marker
+                if (cp.Item5 > 0)
+                {
+                    Function.Call(Hash.DELETE_CHECKPOINT, cp.Item5);
+                }
+                // remove blip
+                cp.Item3.Remove();
+                // remove alternative blip
+                if (cp.Item6 != null)
+                {
+                    cp.Item6.Remove();
+                }
+            }
+            route_checkpoints = null;
         }
 
         private void toggleCamDesigner() {
