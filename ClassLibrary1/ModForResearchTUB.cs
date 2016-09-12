@@ -845,6 +845,7 @@ namespace ModForResearchTUB
                             if (newAltIndex < route_checkpoints.Count) {
                                 // create alternative Blip
                                 Blip altBlip = World.CreateBlip(pos);
+                                altBlip.Color = BlipColor.Red;
 
                                 // last checkpoint?
                                 int markerType = 14;
