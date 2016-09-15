@@ -103,7 +103,7 @@ namespace ModForResearchTUB
             cmd.CommandText.TrimEnd(',');
 
             cmd.Parameters.AddWithValue("@attributeId", attribute_id);
-            cmd.Parameters.AddWithValue("@attributeId", task_id);
+            cmd.Parameters.AddWithValue("@taskId", task_id);
             cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
 
             try
