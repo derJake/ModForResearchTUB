@@ -28,6 +28,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
         }
@@ -51,6 +52,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
             finally {
@@ -77,6 +79,7 @@ namespace ModForResearchTUB
                     return numOfRows;
                 }
                 catch (Exception ex) {
+                    Logger.Log(ex.StackTrace);
                     Logger.Log(ex.Message);
                 }
                 finally
@@ -110,6 +113,7 @@ namespace ModForResearchTUB
                 return numOfRows;
             }
             catch (Exception ex) {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
             finally
@@ -154,6 +158,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
             finally
@@ -179,6 +184,7 @@ namespace ModForResearchTUB
             }
             catch (SqlException e)
             {
+                Logger.Log(e.StackTrace);
                 Logger.Log(e.Message);
             }
             finally {
@@ -212,6 +218,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
             finally
@@ -316,6 +323,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
+                Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
             finally
