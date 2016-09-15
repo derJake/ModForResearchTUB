@@ -70,6 +70,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Signal received from brake pedal ähnelt.
+        /// </summary>
+        internal static string brake {
+            get {
+                return ResourceManager.GetString("brake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player apply the brakes before the garbage truck ähnelt.
         /// </summary>
         internal static string brake_in_front_of_garbage_truck {
@@ -327,6 +336,15 @@ namespace ModForResearchTUB.Properties {
         internal static string duration_player_leads {
             get {
                 return ResourceManager.GetString("duration_player_leads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Signal received from gas pedal ähnelt.
+        /// </summary>
+        internal static string gas {
+            get {
+                return ResourceManager.GetString("gas", resourceCulture);
             }
         }
         
@@ -772,11 +790,29 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Velocity of the player&apos;s car ähnelt.
+        /// </summary>
+        internal static string speed {
+            get {
+                return ResourceManager.GetString("speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press [F10] to start first race ähnelt.
         /// </summary>
         internal static string startracepromp {
             get {
                 return ResourceManager.GetString("startracepromp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Input of the steering wheel ähnelt.
+        /// </summary>
+        internal static string steering {
+            get {
+                return ResourceManager.GetString("steering", resourceCulture);
             }
         }
         

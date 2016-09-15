@@ -402,4 +402,16 @@
   <data name="route_designer_rm_cp" xml:space="preserve">
     <value>Checkpoint removed</value>
   </data>
+  <data name="brake" xml:space="preserve">
+    <value>Signal received from brake pedal</value>
+  </data>
+  <data name="gas" xml:space="preserve">
+    <value>Signal received from gas pedal</value>
+  </data>
+  <data name="speed" xml:space="preserve">
+    <value>Velocity of the player's car</value>
+  </data>
+  <data name="steering" xml:space="preserve">
+    <value>Input of the steering wheel</value>
+  </data>
 </root>
