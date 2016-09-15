@@ -69,7 +69,7 @@ namespace ModForResearchTUB
                     + "VALUES(@attributeId, @taskId, @dataSetId, @value)";
                 SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
                 cmd.Parameters.AddWithValue("@attributeId", attribute_id);
-                cmd.Parameters.AddWithValue("@attributeId", task_id);
+                cmd.Parameters.AddWithValue("@taskId", task_id);
                 cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
                 cmd.Parameters.AddWithValue("@value", value);
                 try
@@ -92,27 +92,37 @@ namespace ModForResearchTUB
 
         public int insertDataCollection(int attribute_id, int task_id, int data_set_id, Dictionary<String, double> values) {
             String sql = "INSERT INTO dbo.attribute_value (attribute_id, task_id, data_set_id, value) VALUES";
-            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
-
+            String currentInsert = sql;
+            int numRows = 0;
             int i = 0;
-            foreach (KeyValuePair<String, double> entry in values) {
-                cmd.CommandText += "(@attributeId, @taskId, @dataSetId, @value" + i.ToString() + "),";
-                cmd.Parameters.AddWithValue("@value" + i.ToString(), entry.Value);
-                i++;
-            }
-            cmd.CommandText.TrimEnd(',');
 
-            cmd.Parameters.AddWithValue("@attributeId", attribute_id);
-            cmd.Parameters.AddWithValue("@taskId", task_id);
-            cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
+            foreach (KeyValuePair<String, double> entry in values) {
+                currentInsert += "(" + attribute_id + ", " + task_id + ", " + data_set_id + ", " + entry.Value + ")," + Environment.NewLine;
+                i++;
+
+                // cut off
+                if (i == 999) {
+                    currentInsert.TrimEnd(',');
+                    numRows += insertDataSubset(currentInsert);
+                    currentInsert = sql;
+                    i = 0;
+                }
+                
+            }
+
+            return numRows;
+        }
+
+        private int insertDataSubset(String sql) {
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
 
             try
             {
                 m_dbConnection.Open();
-                int numOfRows = cmd.ExecuteNonQuery();
-                return numOfRows;
+                return cmd.ExecuteNonQuery();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
             }
