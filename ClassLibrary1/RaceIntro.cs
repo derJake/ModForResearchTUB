@@ -235,7 +235,7 @@ namespace ModForResearchTUB
 
         public Dictionary<String, Dictionary<String, double>> getCollectedData()
         {
-            return this.collectedData;
+            throw new NotImplementedException();
         }
 
         private void doIntroSequence() {
