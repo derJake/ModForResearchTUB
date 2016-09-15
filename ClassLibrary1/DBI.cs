@@ -28,7 +28,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Logger.Log(ex.Message);
             }
         }
 
@@ -51,12 +51,13 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Logger.Log(ex.Message);
             }
             finally {
                 // close DB connection
                 m_dbConnection.Close();
             }
+            return 0;
         }
 
         public int insertValue(String attribute_key, int task_id, int data_set_id, double value) {
@@ -69,11 +70,19 @@ namespace ModForResearchTUB
                 cmd.Parameters.AddWithValue("@attributeId", task_id);
                 cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
                 cmd.Parameters.AddWithValue("@value", value);
-
-                m_dbConnection.Open();
-                int numOfRows = cmd.ExecuteNonQuery();
-                m_dbConnection.Close();
-                return numOfRows;
+                try
+                {
+                    m_dbConnection.Open();
+                    int numOfRows = cmd.ExecuteNonQuery();
+                    return numOfRows;
+                }
+                catch (Exception ex) {
+                    Logger.Log(ex.Message);
+                }
+                finally
+                {
+                    m_dbConnection.Close();
+                }
             }
             return 0;
         }
@@ -94,10 +103,20 @@ namespace ModForResearchTUB
             cmd.Parameters.AddWithValue("@attributeId", task_id);
             cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
 
-            m_dbConnection.Open();
-            int numOfRows = cmd.ExecuteNonQuery();
-            m_dbConnection.Close();
-            return numOfRows;
+            try
+            {
+                m_dbConnection.Open();
+                int numOfRows = cmd.ExecuteNonQuery();
+                return numOfRows;
+            }
+            catch (Exception ex) {
+                Logger.Log(ex.Message);
+            }
+            finally
+            {
+                m_dbConnection.Close();
+            }
+            return 0;
         }
 
         public int createTask(String name) {
@@ -117,21 +136,30 @@ namespace ModForResearchTUB
             cmd.Parameters.AddWithValue("@taskName", name);
             SqlDataReader reader;
 
-            m_dbConnection.Open();
+            try {
+                m_dbConnection.Open();
 
-            reader = cmd.ExecuteReader();
-            // Data is accessible through the DataReader object here.
+                reader = cmd.ExecuteReader();
+                // Data is accessible through the DataReader object here.
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+                if (reader.HasRows)
                 {
-                    return reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
                 }
-            }
 
-            reader.Close();
-            m_dbConnection.Close();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+            }
+            finally
+            {
+                m_dbConnection.Close();
+            }
 
             return 0;
         }
@@ -166,21 +194,30 @@ namespace ModForResearchTUB
             cmd.Parameters.AddWithValue("@attributeName", attribute_key);
             SqlDataReader reader;
 
-            m_dbConnection.Open();
+            try {
+                m_dbConnection.Open();
 
-            reader = cmd.ExecuteReader();
-            // Data is accessible through the DataReader object here.
+                reader = cmd.ExecuteReader();
+                // Data is accessible through the DataReader object here.
 
-            if (reader.HasRows)
-            {
-                while (reader.Read())
+                if (reader.HasRows)
                 {
-                    return reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
                 }
-            }
 
-            reader.Close();
-            m_dbConnection.Close();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+            }
+            finally
+            {
+                m_dbConnection.Close();
+            }
 
             return 0;
         }
@@ -279,7 +316,7 @@ namespace ModForResearchTUB
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Logger.Log(ex.Message);
             }
             finally
             {
