@@ -1605,7 +1605,7 @@ namespace ModForResearchTUB
             Dictionary<String, float> map = mapCollectedDataForDB();
             foreach (KeyValuePair<String, float> item in map) {
                 int attributeId = database_interface.getAttributeId(item.Key);
-                if (!(attributeId > 0)) {
+                if (attributeId == 0) {
                     attributeId = database_interface.createAttribute(item.Key, rm.GetString(item.Key));
                 }
 
