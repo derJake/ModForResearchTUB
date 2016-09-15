@@ -1597,7 +1597,7 @@ namespace ModForResearchTUB
             // retrieve the ID for the current task
             String taskName = races[currentRace].getCanonicalName();
             int taskId = database_interface.getTaskIdByName(taskName);
-            if (!(taskId > 0)) {
+            if (taskId == 0) {
                 taskId = database_interface.createTask(taskName);
             }
 
