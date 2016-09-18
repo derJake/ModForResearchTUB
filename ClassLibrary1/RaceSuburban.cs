@@ -189,7 +189,7 @@ namespace ModForResearchTUB
             }
 
             if (obstacle_visible > 0) {
-                new UIResText(String.Format("obstacle visible: {0}", obstacle_visible), new Point(950, 75), 0.3f, Color.White).Draw();
+                //new UIResText(String.Format("obstacle visible: {0}", obstacle_visible), new Point(950, 75), 0.3f, Color.White).Draw();
 
                 // brakeing?
                 if (Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 8) >= 254 &&
