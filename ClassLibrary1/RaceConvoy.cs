@@ -296,7 +296,7 @@ namespace ModForResearchTUB
 
             UI.ShowSubtitle(rm.GetString("task_started"), 3000);
 
-            Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 2";
+            Game.Player.Character.CurrentVehicle.NumberPlate = this.getCanonicalName();
 
             raceStartTime = Game.GameTime;
 
