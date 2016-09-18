@@ -405,8 +405,6 @@ namespace ModForResearchTUB
                     Logger.Log("----------------------------------------------------------");
 
                     setupNextCheckpoint();
-                    // PED_FLAG_CAN_FLY_THRU_WINDSCREEN = 32
-                    Function.Call(Hash.SET_PED_CONFIG_FLAG, Game.Player.Character, 32, false);
                     races[currentRace].startRace();
                 }
             }
@@ -1483,6 +1481,12 @@ namespace ModForResearchTUB
             }
             else {
                 time_player_got_lost = 0;
+            }
+
+            if (Game.Player.Character.CurrentVehicle != null)
+            {
+                // PED_FLAG_CAN_FLY_THRU_WINDSCREEN = 32
+                Function.Call(Hash.SET_PED_CONFIG_FLAG, Game.Player.Character, 32, false);
             }
         }
 
