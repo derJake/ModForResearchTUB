@@ -1575,6 +1575,8 @@ namespace ModForResearchTUB
             {
                 UI.ShowSubtitle("Everything reset", 3000);
             }
+
+            collectedData = new Dictionary<string, Dictionary<string, double>>();
         }
 
         protected void writeRaceDataToLog() {
