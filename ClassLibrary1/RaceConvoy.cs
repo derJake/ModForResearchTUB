@@ -298,6 +298,8 @@ namespace ModForResearchTUB
 
             Game.Player.Character.CurrentVehicle.NumberPlate = this.getCanonicalName();
 
+            Wait(3000);
+
             raceStartTime = Game.GameTime;
 
             leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
