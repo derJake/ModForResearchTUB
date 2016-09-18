@@ -298,7 +298,7 @@ namespace ModForResearchTUB
 
             Game.Player.Character.CurrentVehicle.NumberPlate = this.getCanonicalName();
 
-            Wait(3000);
+            Wait(6000);
 
             raceStartTime = Game.GameTime;
 
