@@ -1725,6 +1725,8 @@ namespace ModForResearchTUB
             foreach (String scenarioGroup in scenarioGroups) {
                 Function.Call(Hash.SET_SCENARIO_GROUP_ENABLED, scenarioGroup, b);
             }
+
+            Function.Call(Hash.SET_PLAYER_CAN_BE_HASSLED_BY_GANGS, b);
         }
 
         private void setScenarioGroupList() {
