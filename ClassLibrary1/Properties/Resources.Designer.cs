@@ -736,6 +736,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Your car is placed on the road in: {0} ähnelt.
+        /// </summary>
+        internal static string reset_warning {
+            get {
+                return ResourceManager.GetString("reset_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ~r~route designer active: ~b~{0} ähnelt.
         /// </summary>
         internal static string route_designer_active {
