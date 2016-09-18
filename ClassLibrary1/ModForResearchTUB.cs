@@ -2255,6 +2255,7 @@ namespace ModForResearchTUB
             UI.HideHudComponentThisFrame(HudComponent.WeaponWheel);
             UI.HideHudComponentThisFrame(HudComponent.WeaponIcon);
             UI.HideHudComponentThisFrame(HudComponent.VehicleName);
+            UI.HideHudComponentThisFrame(HudComponent.Reticle);
         }
         #endregion
     }
