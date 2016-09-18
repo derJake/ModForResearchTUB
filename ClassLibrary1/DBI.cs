@@ -97,7 +97,7 @@ namespace ModForResearchTUB
             int i = 0;
 
             foreach (KeyValuePair<String, double> entry in values) {
-                currentInsert += "(" + attribute_id + ", " + task_id + ", " + data_set_id + ", " + entry.Value + ")," + Environment.NewLine;
+                currentInsert += "(" + attribute_id + ", " + task_id + ", " + data_set_id + ", " + entry.Value + "),";
                 i++;
 
                 // cut off
