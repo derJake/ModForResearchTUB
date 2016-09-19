@@ -194,6 +194,7 @@ namespace ModForResearchTUB
             }
             catch (SqlException e)
             {
+                Logger.Log("attribute_key: " + attribute_key);
                 Logger.Log(e.StackTrace);
                 Logger.Log(e.Message);
             }
