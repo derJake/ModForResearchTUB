@@ -147,8 +147,11 @@ namespace ModForResearchTUB
             debug = true;
         Vector3 lastPedPosition = new Vector3();
         private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
-        private int route_alternative_checkpoints = 0;
-        private int tentativeMarker = 0;
+        private int route_alternative_checkpoints = 0,
+            tentativeMarker = 0,
+            tentativeMarkerAlpha = 120;
+        Vector3 markerOffset = new Vector3(0,0,1);
+
 
         Camera designer_cam;
         float cam_movement_amount = 0.8f;
@@ -985,14 +988,14 @@ namespace ModForResearchTUB
                         );
                 }
 
-                Function.Call(Hash._0xF51D36185993515D,
+                Function.Call(Hash.DELETE_CHECKPOINT, tentativeMarker);
+                tentativeMarker = createRegularCheckpoint(rcr.HitCoords - markerOffset);
+                Function.Call(Hash.SET_CHECKPOINT_RGBA,
                     tentativeMarker,
-                    rcr.HitCoords.X,
-                    rcr.HitCoords.Y,
-                    rcr.HitCoords.Z,
-                    0.1f,
-                    0.1f,
-                    0.1f
+                    regular_checkpoint_color.Item1,
+                    regular_checkpoint_color.Item2,
+                    regular_checkpoint_color.Item3,
+                    tentativeMarkerAlpha
                     );
             }
         }
