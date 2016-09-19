@@ -24,11 +24,13 @@ namespace ModForResearchTUB
 
     public class Utilities : Script
     {
+        #region classVariables
         private List<Vehicle> cars;
         private List<Ped> peds;
         private List<Blip> blips;
         private List<int> markers;
         private Camera cam;
+        #endregion classVariables
 
         public Utilities() {
             cars = new List<Vehicle>();
