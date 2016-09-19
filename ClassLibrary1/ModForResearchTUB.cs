@@ -2203,7 +2203,7 @@ namespace ModForResearchTUB
             }
             if (Game.IsKeyPressed(Keys.D))
             {
-                ped.Position += ped.Position += new Vector3(camFV.Y, -camFV.X, 0);
+                ped.Position += new Vector3(camFV.Y, -camFV.X, 0);
             }
         }
 
