@@ -2159,6 +2159,7 @@ namespace ModForResearchTUB
                 ut.activateScriptCam();
             }
             else {
+                ut.deactivateScriptCam();
                 ut.deleteScriptCams();
                 World.DestroyAllCameras();
                 exploration_mode = true;
