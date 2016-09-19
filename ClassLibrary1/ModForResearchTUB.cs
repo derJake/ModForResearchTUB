@@ -198,7 +198,6 @@ namespace ModForResearchTUB
             KeyDown += this.KeyDownEvent;
             KeyUp += this.KeyUpEvent;
 
-            //UI.ShowSubtitle("Press [F10] to start first race", 1250);
             UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
 
             director_gui = new directorGUI();
