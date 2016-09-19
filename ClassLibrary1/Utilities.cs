@@ -159,7 +159,7 @@ namespace ModForResearchTUB
             }
             var pos = cam.Position;
             var rot = cam.Rotation;
-            var fv = getCamForwardVector(cam);
+            var fv = rotationToDirection(rot);
             var lv = new Vector3(-fv.Y, fv.X, 0);
             
             switch (dir) {
@@ -237,9 +237,9 @@ namespace ModForResearchTUB
             cam = null;
         }
 
-        public Vector3 getCamForwardVector(Camera camera) {
-            double theta = degreeToRadians(camera.Rotation.X + 90),
-                phi = degreeToRadians(camera.Rotation.Z + 90);
+        public Vector3 rotationToDirection(Vector3 rotationVector) {
+            double theta = degreeToRadians(rotationVector.X + 90),
+                phi = degreeToRadians(rotationVector.Z + 90);
 
             return new Vector3(
                 Convert.ToSingle(Math.Sin(theta) * Math.Cos(phi)),
