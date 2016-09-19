@@ -419,8 +419,7 @@ namespace ModForResearchTUB
             if (cam_designer_active) {
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
                 debugCamDesigner();
-                if (!myMenu.Visible
-                && !exploration_mode)
+                if (!exploration_mode)
                 {
                     handleCamMovement();
                 }
