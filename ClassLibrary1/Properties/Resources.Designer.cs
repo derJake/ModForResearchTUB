@@ -97,6 +97,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use WASD, Up/Down, +/- and Numpad 7/9 to control cam ähnelt.
+        /// </summary>
+        internal static string cam_designer_cam_move {
+            get {
+                return ResourceManager.GetString("cam_designer_cam_move", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use WASD and mouse to move ähnelt.
+        /// </summary>
+        internal static string cam_designer_move {
+            get {
+                return ResourceManager.GetString("cam_designer_move", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press X to toggle camera mode ähnelt.
+        /// </summary>
+        internal static string cam_designer_toggle {
+            get {
+                return ResourceManager.GetString("cam_designer_toggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How many hitpoints did the player&apos;s vehicle have after the task ähnelt.
         /// </summary>
         internal static string car_health {

@@ -420,4 +420,13 @@
   <data name="reset_warning" xml:space="preserve">
     <value>Your car is placed on the road in: {0}</value>
   </data>
+  <data name="cam_designer_cam_move" xml:space="preserve">
+    <value>Use WASD, Up/Down, +/- and Numpad 7/9 to control cam</value>
+  </data>
+  <data name="cam_designer_move" xml:space="preserve">
+    <value>Use WASD and mouse to move</value>
+  </data>
+  <data name="cam_designer_toggle" xml:space="preserve">
+    <value>Press X to toggle camera mode</value>
+  </data>
 </root>
