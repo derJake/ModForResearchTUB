@@ -369,9 +369,9 @@ namespace ModForResearchTUB.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use WASD and mouse to move ähnelt.
         /// </summary>
-        internal static string exploration_designer_move {
+        internal static string exploration_move {
             get {
-                return ResourceManager.GetString("exploration_designer_move", resourceCulture);
+                return ResourceManager.GetString("exploration_move", resourceCulture);
             }
         }
         
