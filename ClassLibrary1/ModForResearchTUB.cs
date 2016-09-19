@@ -770,6 +770,9 @@ namespace ModForResearchTUB
             if (route_designer_active)
             {
                 Vector3 pos = Game.Player.Character.Position;
+                if (lastTentativePosition != null) {
+                    pos = lastTentativePosition;
+                }
                 if (route_checkpoints.Count > 0)
                 {
                     // regular checkpoint
