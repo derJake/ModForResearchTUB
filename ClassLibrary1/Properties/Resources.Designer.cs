@@ -106,15 +106,6 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Use WASD and mouse to move ähnelt.
-        /// </summary>
-        internal static string cam_designer_move {
-            get {
-                return ResourceManager.GetString("cam_designer_move", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press X to toggle camera mode ähnelt.
         /// </summary>
         internal static string cam_designer_toggle {
@@ -372,6 +363,15 @@ namespace ModForResearchTUB.Properties {
         internal static string duration_player_leads {
             get {
                 return ResourceManager.GetString("duration_player_leads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use WASD and mouse to move ähnelt.
+        /// </summary>
+        internal static string exploration_designer_move {
+            get {
+                return ResourceManager.GetString("exploration_designer_move", resourceCulture);
             }
         }
         
