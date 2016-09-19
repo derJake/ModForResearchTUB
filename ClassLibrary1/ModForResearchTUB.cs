@@ -412,16 +412,21 @@ namespace ModForResearchTUB
             }
 
             if (exploration_mode) {
+                new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
                 handleExplorationMode();
             }
-
-            // stop bringing up phone on arrow keys
+            
             if (cam_designer_active) {
+                // stop bringing up phone on arrow keys
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
                 debugCamDesigner();
                 if (!exploration_mode)
                 {
+                    new UIResText(rm.GetString("cam_designer_cam_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 25), 0.5f, Color.White).Draw();
                     handleCamMovement();
+                }
+                else {
+                    new UIResText(rm.GetString("cam_designer_toggle"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 25), 0.5f, Color.White).Draw();
                 }
             }
 
