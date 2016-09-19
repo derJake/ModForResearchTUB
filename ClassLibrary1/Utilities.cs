@@ -118,7 +118,7 @@ namespace ModForResearchTUB
             }
         }
 
-        public void cloneCamera()
+        public Camera cloneCamera()
         {
             Vector3 pos, rot;
             float fov;
@@ -153,6 +153,7 @@ namespace ModForResearchTUB
                 fov
                 );
             Function.Call(Hash.RENDER_SCRIPT_CAMS, true, false, cam, 0, 0);
+            return cam;
         }
 
         public void moveCamera(Direction dir, float amount) {
