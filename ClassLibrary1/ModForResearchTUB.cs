@@ -148,6 +148,7 @@ namespace ModForResearchTUB
         Vector3 lastPedPosition = new Vector3();
         private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
         private int route_alternative_checkpoints = 0;
+        private int tentativeMarker = 0;
 
         Camera designer_cam;
         float cam_movement_amount = 0.8f;
@@ -412,7 +413,7 @@ namespace ModForResearchTUB
 
             if (exploration_mode) {
                 freezePlayerPed();
-                new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 150, 60), 0.5f, Color.White).Draw();
+                new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 150, 80), 0.5f, Color.White).Draw();
                 handleExplorationMode();
             }
             
@@ -424,11 +425,7 @@ namespace ModForResearchTUB
                 if (!myMenu.Visible
                     && !exploration_mode)
                 {
-                    new UIResText(rm.GetString("cam_designer_cam_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 25), 0.5f, Color.White).Draw();
                     handleCamMovement();
-                }
-                else {
-                    new UIResText(rm.GetString("cam_designer_toggle"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 150, 25), 0.5f, Color.White).Draw();
                 }
             }
 
@@ -960,8 +957,32 @@ namespace ModForResearchTUB
         }
 
         private void handleRouteDesigner(SizeF res, Point safe) {
-            new UIResText(rm.GetString("route_designer_reg_cp"), new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 25), 0.5f, Color.White).Draw();
-            new UIResText(rm.GetString("route_designer_alt_cp"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
+            //new UIResText(rm.GetString("route_designer_reg_cp"), new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 25), 0.5f, Color.White).Draw();
+            //new UIResText(rm.GetString("route_designer_alt_cp"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
+
+            var ped = Game.Player.Character;
+            Vector3 fv = GameplayCamera.Position - ped.Position;
+            fv.Normalize();
+
+            RaycastResult rcr = World.Raycast(
+                ped.Position,
+                ped.Position + 105 * fv,
+                100,
+                IntersectOptions.Map
+                );
+
+            if (rcr.DitHitAnything
+                && rcr.HitCoords != null) {
+                Function.Call(Hash._0xF51D36185993515D,
+                    tentativeMarker,
+                    rcr.HitCoords.X,
+                    rcr.HitCoords.Y,
+                    rcr.HitCoords.Z,
+                    0f,
+                    0f,
+                    0f
+                    );
+            }
         }
 
         private void renderRouteCheckpoints() {
@@ -2044,6 +2065,14 @@ namespace ModForResearchTUB
                 }
             };
 
+            // instructional button
+            var checkpointButton = new InstructionalButton("X", rm.GetString("route_designer_reg_cp"));
+            var altCheckpointButton = new InstructionalButton("Y", rm.GetString("route_designer_alt_cp"));
+            checkpointButton.BindToItem(route_designer_checkbox);
+            altCheckpointButton.BindToItem(route_designer_checkbox);
+            myMenu.AddInstructionalButton(checkpointButton);
+            myMenu.AddInstructionalButton(altCheckpointButton);
+
             // checkbox for cam designer
             var cam_designer_checkbox = new UIMenuCheckboxItem("Cam Designer", cam_designer_active, rm.GetString("menu_toggle_cam_designer"));
             myMenu.AddItem(cam_designer_checkbox);
@@ -2066,6 +2095,14 @@ namespace ModForResearchTUB
                     UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
                 }
             };
+
+            // instructional button
+            var camDesignerButton = new InstructionalButton("X", rm.GetString("cam_designer_toggle"));
+            var camDesignerMove = new InstructionalButton("WASD/7/9/+/-", rm.GetString("cam_designer_cam_move"));
+            camDesignerButton.BindToItem(cam_designer_checkbox);
+            camDesignerMove.BindToItem(cam_designer_checkbox);
+            myMenu.AddInstructionalButton(camDesignerButton);
+            myMenu.AddInstructionalButton(camDesignerMove);
 
             // checkbox for debug mode
             var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, rm.GetString("menu_toggle_debug"));
@@ -2127,12 +2164,36 @@ namespace ModForResearchTUB
             if (route_designer_active)
             {
                 route_checkpoints = new List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>>();
+                exploration_mode = true;
+                tentativeMarker = createRegularCheckpoint(new Vector3(0,0,0));
+                int alpha = 120;
+                Function.Call(
+                    Hash.SET_CHECKPOINT_RGBA,
+                    tentativeMarker,
+                    regular_checkpoint_color.Item1,
+                    regular_checkpoint_color.Item2,
+                    regular_checkpoint_color.Item3,
+                    alpha
+                    );
             }
             else {
                 // write route to log
                 File.AppendAllText("route.log", routeToString());
                 deleteCurrentRoute();
+                exploration_mode = false;
+                Function.Call(Hash.DELETE_CHECKPOINT, tentativeMarker);
             }
+        }
+
+        private int createRegularCheckpoint(Vector3 pos) {
+            return drawCurrentCheckpoint(
+                    pos,
+                    null,
+                    regular_checkpoint_color.Item1,
+                    regular_checkpoint_color.Item2,
+                    regular_checkpoint_color.Item3,
+                    2
+                    );
         }
 
         private void deleteCurrentRoute() {
