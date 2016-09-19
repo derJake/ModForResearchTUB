@@ -412,7 +412,7 @@ namespace ModForResearchTUB
 
             if (exploration_mode) {
                 freezePlayerPed();
-                new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
+                new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 150, 60), 0.5f, Color.White).Draw();
                 handleExplorationMode();
             }
             
@@ -428,7 +428,7 @@ namespace ModForResearchTUB
                     handleCamMovement();
                 }
                 else {
-                    new UIResText(rm.GetString("cam_designer_toggle"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 25), 0.5f, Color.White).Draw();
+                    new UIResText(rm.GetString("cam_designer_toggle"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 150, 25), 0.5f, Color.White).Draw();
                 }
             }
 
