@@ -966,21 +966,33 @@ namespace ModForResearchTUB
 
             RaycastResult rcr = World.Raycast(
                 ped.Position,
-                ped.Position + 105 * fv,
-                100,
+                ped.Position - 105 * fv,
                 IntersectOptions.Map
                 );
 
             if (rcr.DitHitAnything
                 && rcr.HitCoords != null) {
+                if (debug)
+                {
+                    new UIResText("cp coords", new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 900), 0.5f, Color.White).Draw();
+                    World.DrawMarker(
+                        MarkerType.UpsideDownCone,
+                        rcr.HitCoords,
+                        new Vector3(0,0,0),
+                        new Vector3(180,0,0),
+                        new Vector3(2.5f,2.5f,2.5f),
+                        Color.Yellow
+                        );
+                }
+
                 Function.Call(Hash._0xF51D36185993515D,
                     tentativeMarker,
                     rcr.HitCoords.X,
                     rcr.HitCoords.Y,
                     rcr.HitCoords.Z,
-                    0f,
-                    0f,
-                    0f
+                    0.1f,
+                    0.1f,
+                    0.1f
                     );
             }
         }
