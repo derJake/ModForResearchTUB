@@ -960,9 +960,6 @@ namespace ModForResearchTUB
         }
 
         private void handleRouteDesigner(SizeF res, Point safe) {
-            //new UIResText(rm.GetString("route_designer_reg_cp"), new Point(Convert.ToInt32(res.Width/2) - safe.X - 250, 25), 0.5f, Color.White).Draw();
-            //new UIResText(rm.GetString("route_designer_alt_cp"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
-
             var ped = Game.Player.Character;
             Vector3 fv = GameplayCamera.Position - ped.Position;
             fv.Normalize();
@@ -979,8 +976,8 @@ namespace ModForResearchTUB
                 {
                     new UIResText("cp coords", new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 900), 0.5f, Color.White).Draw();
                     World.DrawMarker(
-                        MarkerType.UpsideDownCone,
-                        rcr.HitCoords,
+                        MarkerType.HorizontalCircleFat,
+                        rcr.HitCoords + markerOffset,
                         new Vector3(0,0,0),
                         new Vector3(180,0,0),
                         new Vector3(2.5f,2.5f,2.5f),
@@ -2365,9 +2362,9 @@ namespace ModForResearchTUB
 
         private void freezePlayerPed() {
             var ped = Game.Player.Character;
-            ped.IsInvincible = cam_designer_active;
-            ped.FreezePosition = cam_designer_active;
-            ped.IsVisible = !cam_designer_active;
+            ped.IsInvincible = true;
+            ped.FreezePosition = true;
+            ped.IsVisible = true;
             Function.Call(Hash.SET_PED_CONFIG_FLAG, ped, 52, true);
             Function.Call(Hash.SET_PED_CONFIG_FLAG, ped, 410, false);
 
