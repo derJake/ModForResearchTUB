@@ -143,7 +143,9 @@ namespace ModForResearchTUB
         // modding tools
         private bool route_designer_active = false,
             cam_designer_active = false,
+            exploration_mode = false,
             debug = true;
+        Vector3 lastPedPosition = new Vector3();
         private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
         private int route_alternative_checkpoints = 0;
 
@@ -409,10 +411,19 @@ namespace ModForResearchTUB
                 }
             }
 
+            if (exploration_mode) {
+                handleExplorationMode();
+            }
+
             // stop bringing up phone on arrow keys
             if (cam_designer_active) {
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
                 debugCamDesigner();
+                if (!myMenu.Visible
+                && !exploration_mode)
+                {
+                    handleCamMovement();
+                }
             }
 
             if (route_designer_active) {
@@ -642,6 +653,9 @@ namespace ModForResearchTUB
                     lastTimeHandbrake = Game.GameTime;
                     break;
                 case Keys.X:
+                    if (cam_designer_active) {
+                        toggleCamDesigner();
+                    }
                     handleRouteInput(false);
                     break;
                 case Keys.Y:
@@ -649,10 +663,6 @@ namespace ModForResearchTUB
                     break;
                 default:
                     break;
-            }
-
-            if (cam_designer_active && !myMenu.Visible) {
-                handleCamMovement(sender, e);
             }
         }
 
@@ -2044,7 +2054,7 @@ namespace ModForResearchTUB
                     }
 
                     cam_designer_active = checked_;
-                    toggleCamDesigner();
+                    exploration_mode = checked_;
                     UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
                 }
             };
@@ -2139,73 +2149,118 @@ namespace ModForResearchTUB
         }
 
         private void toggleCamDesigner() {
-            Game.Player.Character.IsInvincible = cam_designer_active;
-            if (cam_designer_active)
+            var ped = Game.Player.Character;
+
+            if (exploration_mode)
             {
-                designer_cam = World.CreateCamera(
-                    GameplayCamera.Position,
-                    GameplayCamera.Rotation,
-                    GameplayCamera.FieldOfView);
+                lastPedPosition = ped.Position;
+                exploration_mode = false;
+                designer_cam = ut.cloneCamera();
                 ut.setScriptCam(designer_cam);
                 ut.activateScriptCam();
-                Game.Player.CanControlCharacter = false;
             }
             else {
-                Game.Player.CanControlCharacter = true;
                 ut.deleteScriptCams();
                 World.DestroyAllCameras();
+                exploration_mode = true;
             }
         }
 
         private void debugCamDesigner() {
-            if (debug && designer_cam != null) {
-                Vector3 pos = designer_cam.Position,
-                    fv = ut.getCamForwardVector(designer_cam),
-                    rot = designer_cam.Rotation;
+            if (debug) {
+                Vector3 pos = GameplayCamera.Position,
+                    fv = ut.rotationToDirection(GameplayCamera.Rotation),
+                    rot = GameplayCamera.Rotation;
 
-                World.DrawMarker(MarkerType.DebugSphere, pos + fv*5, fv, rot, new Vector3(1,1,1), Color.White);
+                World.DrawMarker(MarkerType.UpsideDownCone, pos + fv*5, fv, rot, new Vector3(0.5f, 0.5f, 0.5f), Color.White);
             }
         }
 
-        private void handleCamMovement(object sender, KeyEventArgs e) {
-            switch (e.KeyCode)
+        private void handleExplorationMode() {
+            movePlayerPedAround();
+        }
+
+        private void movePlayerPedAround() {
+            var ped = Game.Player.Character;
+            ped.IsInvincible = cam_designer_active;
+            ped.FreezePosition = cam_designer_active;
+            ped.IsVisible = !cam_designer_active;
+            Function.Call(Hash.SET_PED_CONFIG_FLAG, Game.Player.Character, 410, false);
+
+            Vector3 camFV = ped.Position - GameplayCamera.Position;
+
+            if (Game.IsKeyPressed(Keys.W))
             {
-                case Keys.W:
-                    ut.moveCamera(Direction.Forward, cam_movement_amount/4);
-                    break;
-                case Keys.S:
-                    ut.moveCamera(Direction.Backward, cam_movement_amount/4);
-                    break;
-                case Keys.A:
-                    ut.moveCamera(Direction.Left, cam_movement_amount/4);
-                    break;
-                case Keys.D:
-                    ut.moveCamera(Direction.Right, cam_movement_amount/4);
-                    break;
-                case Keys.NumPad7:
-                    ut.moveCamera(Direction.TurnLeft, cam_movement_amount);
-                    break;
-                case Keys.NumPad9:
-                    ut.moveCamera(Direction.TurnRight, cam_movement_amount);
-                    break;
-                case Keys.NumPad8:
-                    ut.moveCamera(Direction.TurnDown, cam_movement_amount);
-                    break;
-                case Keys.NumPad5:
-                    ut.moveCamera(Direction.TurnUp, cam_movement_amount);
-                    break;
-                case Keys.Up:
-                    ut.moveCamera(Direction.Up, cam_movement_amount/4);
-                    break;
-                case Keys.Down:
-                    ut.moveCamera(Direction.Down, cam_movement_amount/4);
-                    break;
-                case Keys.Add:
-                    ut.changeCamFieldOfView(Direction.Up, cam_movement_amount);
-                    break;
-                case Keys.Subtract:
-                    ut.changeCamFieldOfView(Direction.Up, -cam_movement_amount);
-                    break;
+                ped.Position += camFV;
+            }
+            if (Game.IsKeyPressed(Keys.S))
+            {
+                ped.Position -= camFV;
+            }
+            if (Game.IsKeyPressed(Keys.A))
+            {
+                ped.Position += new Vector3(-camFV.Y, camFV.X, 0);
+            }
+            if (Game.IsKeyPressed(Keys.D))
+            {
+                ped.Position += ped.Position += new Vector3(camFV.Y, -camFV.X, 0);
+            }
+        }
+
+        private void handleCamMovement() {
+            var ped = Game.Player.Character;
+            ped.IsInvincible = cam_designer_active;
+            ped.Position = lastPedPosition;
+            ped.FreezePosition = cam_designer_active;
+            ped.IsVisible = !cam_designer_active;
+
+            if (Game.IsKeyPressed(Keys.W))
+            {
+                ut.moveCamera(Direction.Forward, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.S))
+            {
+                ut.moveCamera(Direction.Backward, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.A))
+            {
+                ut.moveCamera(Direction.Left, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.D))
+            {
+                ut.moveCamera(Direction.Right, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.NumPad7))
+            {
+                ut.moveCamera(Direction.TurnLeft, cam_movement_amount);
+            }
+            if (Game.IsKeyPressed(Keys.NumPad9))
+            {
+                ut.moveCamera(Direction.TurnRight, cam_movement_amount);
+            }
+            if (Game.IsKeyPressed(Keys.NumPad8))
+            {
+                ut.moveCamera(Direction.TurnDown, cam_movement_amount);
+            }
+            if (Game.IsKeyPressed(Keys.NumPad5))
+            {
+                ut.moveCamera(Direction.TurnUp, cam_movement_amount);
+            }
+            if (Game.IsKeyPressed(Keys.Up))
+            {
+                ut.moveCamera(Direction.Up, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.Down))
+            {
+                ut.moveCamera(Direction.Down, cam_movement_amount / 4);
+            }
+            if (Game.IsKeyPressed(Keys.Add))
+            {
+                ut.changeCamFieldOfView(Direction.Up, cam_movement_amount);
+            }
+            if (Game.IsKeyPressed(Keys.Subtract))
+            {
+                ut.changeCamFieldOfView(Direction.Up, -cam_movement_amount);
             }
 
             director_cam_position = "new Vector3(" +
