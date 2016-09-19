@@ -412,15 +412,18 @@ namespace ModForResearchTUB
             }
 
             if (exploration_mode) {
+                freezePlayerPed();
                 new UIResText(rm.GetString("exploration_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 60), 0.5f, Color.White).Draw();
                 handleExplorationMode();
             }
             
             if (cam_designer_active) {
+                freezePlayerPed();
                 // stop bringing up phone on arrow keys
                 Function.Call(Hash.DESTROY_MOBILE_PHONE);
                 debugCamDesigner();
-                if (!exploration_mode)
+                if (!myMenu.Visible
+                    && !exploration_mode)
                 {
                     new UIResText(rm.GetString("cam_designer_cam_move"), new Point(Convert.ToInt32(res.Width / 2) - safe.X - 350, 25), 0.5f, Color.White).Draw();
                     handleCamMovement();
@@ -2057,8 +2060,10 @@ namespace ModForResearchTUB
                         return;
                     }
 
+                    lastPedPosition = Game.Player.Character.Position;
                     cam_designer_active = checked_;
                     exploration_mode = checked_;
+                    
                     UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
                 }
             };
@@ -2187,10 +2192,6 @@ namespace ModForResearchTUB
 
         private void movePlayerPedAround() {
             var ped = Game.Player.Character;
-            ped.IsInvincible = cam_designer_active;
-            ped.FreezePosition = cam_designer_active;
-            ped.IsVisible = !cam_designer_active;
-            Function.Call(Hash.SET_PED_CONFIG_FLAG, Game.Player.Character, 410, false);
 
             Vector3 camFV = ped.Position - GameplayCamera.Position;
 
@@ -2213,12 +2214,6 @@ namespace ModForResearchTUB
         }
 
         private void handleCamMovement() {
-            var ped = Game.Player.Character;
-            ped.IsInvincible = cam_designer_active;
-            ped.Position = lastPedPosition;
-            ped.FreezePosition = cam_designer_active;
-            ped.IsVisible = !cam_designer_active;
-
             if (Game.IsKeyPressed(Keys.W))
             {
                 ut.moveCamera(Direction.Forward, cam_movement_amount / 4);
@@ -2291,6 +2286,21 @@ namespace ModForResearchTUB
                 "cam.Rotation = " + director_cam_rotation + ";" + Environment.NewLine +
                 "cam.FieldOfView = " + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f;";
             director_gui.SetText(cam_code);
+        }
+
+        private void freezePlayerPed() {
+            var ped = Game.Player.Character;
+            ped.IsInvincible = cam_designer_active;
+            ped.FreezePosition = cam_designer_active;
+            ped.IsVisible = !cam_designer_active;
+            Function.Call(Hash.SET_PED_CONFIG_FLAG, ped, 52, true);
+            Function.Call(Hash.SET_PED_CONFIG_FLAG, ped, 410, false);
+
+            // actually keep the ped in position
+            if (!exploration_mode)
+            {
+                ped.Position = lastPedPosition;
+            }
         }
 
         private void startMod() {
