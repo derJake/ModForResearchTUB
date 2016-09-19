@@ -414,6 +414,9 @@
   <data name="steering" xml:space="preserve">
     <value>Input of the steering wheel</value>
   </data>
+  <data name="distance" xml:space="preserve">
+    <value>How far is the player away from the leading convoy vehicle.</value>
+  </data>
   <data name="reset_warning" xml:space="preserve">
     <value>Your car is placed on the road in: {0}</value>
   </data>

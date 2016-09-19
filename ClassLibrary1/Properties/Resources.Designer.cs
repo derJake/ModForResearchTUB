@@ -286,6 +286,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How far is the player away from the leading convoy vehicle. ähnelt.
+        /// </summary>
+        internal static string distance {
+            get {
+                return ResourceManager.GetString("distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How far away was the leading vehicle from its target when player reached the last checkpoint ähnelt.
         /// </summary>
         internal static string distance_leader_target {
