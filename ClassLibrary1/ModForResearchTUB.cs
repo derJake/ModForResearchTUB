@@ -150,7 +150,8 @@ namespace ModForResearchTUB
         private int route_alternative_checkpoints = 0,
             tentativeMarker = 0,
             tentativeMarkerAlpha = 120;
-        Vector3 markerOffset = new Vector3(0,0,1);
+        Vector3 markerOffset = new Vector3(0,0,1),
+            lastTentativePosition;
 
 
         Camera designer_cam;
@@ -994,6 +995,7 @@ namespace ModForResearchTUB
                     regular_checkpoint_color.Item3,
                     tentativeMarkerAlpha
                     );
+                lastTentativePosition = rcr.HitCoords;
             }
         }
 
