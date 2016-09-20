@@ -118,7 +118,9 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (Game.Player.Character.CurrentVehicle != raceVehicle) {
+                Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            }
         }
 
         public void initRace()
