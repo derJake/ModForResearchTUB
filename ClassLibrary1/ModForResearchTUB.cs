@@ -25,6 +25,8 @@ namespace ModForResearchTUB
         #region variables
         // Variables
         List<int> trafficSignalHashes = new List<int>(3);
+        List<Trafficlight> trafficLights = new List<Trafficlight>();
+        TrafficLightManager trafficLightManager = new TrafficLightManager();
         Blip currentBlip = null, currentAltBlip = null, nextBlip = null, nextAltBlip = null;
         Tuple<Vector3, Vector3?>[] checkpoints;
         float checkpoint_radius = 5;
@@ -144,7 +146,8 @@ namespace ModForResearchTUB
         private bool route_designer_active = false,
             cam_designer_active = false,
             exploration_mode = false,
-            debug = true;
+            debug = true,
+            trafficLightManagerActive = false;
         Vector3 lastPedPosition = new Vector3();
         private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
         private int route_alternative_checkpoints = 0,
@@ -435,6 +438,10 @@ namespace ModForResearchTUB
 
             if (route_designer_active) {
                 handleRouteDesigner(res, safe);
+            }
+
+            if (trafficLightManagerActive) {
+                trafficLightManager.handleOnTick();
             }
         }
 
@@ -2120,6 +2127,29 @@ namespace ModForResearchTUB
             camDesignerMove.BindToItem(cam_designer_checkbox);
             myMenu.AddInstructionalButton(camDesignerButton);
             myMenu.AddInstructionalButton(camDesignerMove);
+
+            // checkbox for cam designer
+            var trafficLightCheckbox = new UIMenuCheckboxItem("Traffic Light Manager", trafficLightManagerActive, rm.GetString("menu_toggle_tl_mgr"));
+            myMenu.AddItem(trafficLightCheckbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == trafficLightCheckbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify(rm.GetString("menu_not_during_task"));
+                        return;
+                    }
+
+                    lastPedPosition = Game.Player.Character.Position;
+                    trafficLightManagerActive = checked_;
+                    exploration_mode = checked_;
+
+                    UI.Notify(String.Format(rm.GetString("tl_mgr_active"), trafficLightManagerActive));
+                }
+            };
 
             // checkbox for debug mode
             var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, rm.GetString("menu_toggle_debug"));

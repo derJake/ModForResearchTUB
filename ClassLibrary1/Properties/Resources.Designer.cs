@@ -691,6 +691,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle the traffic light manager ähnelt.
+        /// </summary>
+        internal static string menu_toggle_tl_mgr {
+            get {
+                return ResourceManager.GetString("menu_toggle_tl_mgr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die When was the garbage truck visible to the player ähnelt.
         /// </summary>
         internal static string obstacle_visible {
@@ -975,6 +984,15 @@ namespace ModForResearchTUB.Properties {
         internal static string times_player_leads {
             get {
                 return ResourceManager.GetString("times_player_leads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Traffic light manager active: {0} ähnelt.
+        /// </summary>
+        internal static string tl_mgr_active {
+            get {
+                return ResourceManager.GetString("tl_mgr_active", resourceCulture);
             }
         }
         

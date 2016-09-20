@@ -429,4 +429,10 @@
   <data name="exploration_move" xml:space="preserve">
     <value>Use WASD and mouse to move</value>
   </data>
+  <data name="menu_toggle_tl_mgr" xml:space="preserve">
+    <value>Toggle the traffic light manager</value>
+  </data>
+  <data name="tl_mgr_active" xml:space="preserve">
+    <value>Traffic light manager active: {0}</value>
+  </data>
 </root>

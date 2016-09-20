@@ -80,6 +80,9 @@
       <DependentUpon>directorGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="DrawDiagram.cs" />
+    <Compile Include="Race.cs" />
+    <Compile Include="Trafficlight.cs" />
+    <Compile Include="TrafficLightManager.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="LomontFFT.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
