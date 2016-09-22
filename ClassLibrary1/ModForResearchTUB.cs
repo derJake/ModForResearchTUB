@@ -1525,10 +1525,11 @@ namespace ModForResearchTUB
                     // set player on road again, if he is lost for too long
                     if (Game.GameTime - time_player_got_lost > max_lost_time)
                     {
-                        float heading = getClosestVehicleNodeAndHeading().Item2;
+                        float heading = getHeading(Game.Player.Character.Position, checkpoints[currentCheckpoint].Item1);
 
                         Game.Player.Character.CurrentVehicle.PlaceOnNextStreet();
                         Game.Player.Character.CurrentVehicle.Heading = heading;
+                        time_player_got_lost = 0;
                     }
 
                     if (debug)
@@ -2433,6 +2434,18 @@ namespace ModForResearchTUB
             UI.HideHudComponentThisFrame(HudComponent.WeaponIcon);
             UI.HideHudComponentThisFrame(HudComponent.VehicleName);
             UI.HideHudComponentThisFrame(HudComponent.Reticle);
+        }
+
+        public float getHeading(Vector3 pos, Vector3 target) {
+            Vector3 fv = (pos - target);
+            fv.Normalize();
+            float heading = Convert.ToSingle(Math.Acos(fv.X)*180/Math.PI);
+            if (fv.Y < 0)
+            {
+                heading = -heading;
+            }
+
+            return heading;
         }
         #endregion
     }
