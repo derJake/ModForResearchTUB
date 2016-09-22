@@ -241,6 +241,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Task {0}/{1} ähnelt.
+        /// </summary>
+        internal static string current_task_notification {
+            get {
+                return ResourceManager.GetString("current_task_notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ~r~debug mode: ~b~{0} ähnelt.
         /// </summary>
         internal static string debug_mode_active {

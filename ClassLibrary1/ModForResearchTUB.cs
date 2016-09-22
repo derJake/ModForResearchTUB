@@ -305,7 +305,7 @@ namespace ModForResearchTUB
                     }
 
                     // display what the current race is and how many there are
-                    new UIResText(String.Format("race {0}/{1}", currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
+                    new UIResText(String.Format(rm.GetString("current_task_notification"), currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
 
                     // log speed, collisions, brakes, etc.
                     logVariables(res, safe);

@@ -435,4 +435,7 @@
   <data name="tl_mgr_active" xml:space="preserve">
     <value>Traffic light manager active: {0}</value>
   </data>
+  <data name="current_task_notification" xml:space="preserve">
+    <value>Task {0}/{1}</value>
+  </data>
 </root>
