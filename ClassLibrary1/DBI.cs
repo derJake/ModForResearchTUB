@@ -11,6 +11,7 @@ namespace ModForResearchTUB
     class DBI
     {
         SqlConnection m_dbConnection;
+        char[] trim = { ',', ' '};
 
         public DBI() {
             m_dbConnection =
@@ -97,12 +98,12 @@ namespace ModForResearchTUB
             int i = 0;
 
             foreach (KeyValuePair<String, double> entry in values) {
-                currentInsert += "(" + attribute_id + ", " + task_id + ", " + data_set_id + ", " + entry.Value + "),";
+                currentInsert += "('" + attribute_id + "', '" + task_id + "', '" + data_set_id + "', '" + entry.Value.ToString(CultureInfo.InvariantCulture) + "'),";
                 i++;
 
                 // cut off
                 if (i == 999) {
-                    currentInsert.TrimEnd(',');
+                    currentInsert = currentInsert.TrimEnd(trim);
                     numRows += insertDataSubset(currentInsert);
                     currentInsert = sql;
                     i = 0;
@@ -125,6 +126,7 @@ namespace ModForResearchTUB
             {
                 Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
+                Logger.Log("sql: " + sql.Substring(sql.Length - 50));
             }
             finally
             {
