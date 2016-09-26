@@ -128,6 +128,7 @@ namespace ModForResearchTUB
             );
 
             cam.IsActive = true;
+            World.RenderingCamera = cam;
 
             cam.InterpTo(
                 World.CreateCamera(
