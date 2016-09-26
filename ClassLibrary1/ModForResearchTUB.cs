@@ -12,7 +12,6 @@ using System.Linq;
 using System.Globalization;
 using ModForResearchTUB.Properties;
 using System.Resources;
-using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.ComponentModel;
@@ -1081,7 +1080,9 @@ namespace ModForResearchTUB
         }
 
         private String routeToString() {
-            String route_code = "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
+            String route_code = "// " + World.GetZoneName(route_checkpoints[0].Item1)
+                + " " + Environment.NewLine
+                + "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
             foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> checkpoint in route_checkpoints)
             {
                 var cp = checkpoint.Item1;
@@ -1097,6 +1098,9 @@ namespace ModForResearchTUB
                     ) + Environment.NewLine;
             }
             route_code += "};";
+
+            route_code += Environment.NewLine + "// "
+                + World.GetZoneName(route_checkpoints[route_checkpoints.Count - 1].Item1);
 
             return route_code;
         }
