@@ -2232,6 +2232,7 @@ namespace ModForResearchTUB
                     );
             }
             else {
+                Game.Player.Character.FreezePosition = false;
                 // write route to log
                 File.AppendAllText("route.log", routeToString());
                 deleteCurrentRoute();
