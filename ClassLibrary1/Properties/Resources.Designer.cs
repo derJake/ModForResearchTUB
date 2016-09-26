@@ -952,6 +952,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is an alternative route later on. ähnelt.
+        /// </summary>
+        internal static string terminal_intro_1 {
+            get {
+                return ResourceManager.GetString("terminal_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player drive against traffic ähnelt.
         /// </summary>
         internal static string times_against_traffic {

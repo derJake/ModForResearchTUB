@@ -438,4 +438,7 @@
   <data name="current_task_notification" xml:space="preserve">
     <value>Task {0}/{1}</value>
   </data>
+  <data name="terminal_intro_1" xml:space="preserve">
+    <value>There is an alternative route later on.</value>
+  </data>
 </root>
