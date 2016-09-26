@@ -29,7 +29,7 @@ namespace ModForResearchTUB
 
             RaycastResult rcr = World.Raycast(
                 ped.Position,
-                ped.Position - 105 * fv,
+                ped.Position - 210 * fv,
                 IntersectOptions.Map
                 );
 
@@ -44,7 +44,7 @@ namespace ModForResearchTUB
                             ent.Position,
                             new Vector3(),
                             new Vector3(),
-                            new Vector3(10, 10, 10f),
+                            new Vector3(7.5f, 7.5f, 10f),
                             Color.Red
                         );
                     }
