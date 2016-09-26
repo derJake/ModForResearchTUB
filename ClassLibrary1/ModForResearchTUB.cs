@@ -1080,25 +1080,28 @@ namespace ModForResearchTUB
         }
 
         private String routeToString() {
-            String route_code = "// " + World.GetZoneName(route_checkpoints[0].Item1)
-                + " " + Environment.NewLine
-                + "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
-            foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> checkpoint in route_checkpoints)
+            String route_code = "";
+            if (route_checkpoints.Count > 0)
             {
-                var cp = checkpoint.Item1;
-                Vector3? alt = null;
-                if (checkpoint.Item4.HasValue)
+                    route_code += "// " + World.GetZoneName(route_checkpoints[0].Item1)
+                    + " " + Environment.NewLine
+                    + "Tuple<Vector3, Vector3?>[] checkpointlist = { " + Environment.NewLine;
+                foreach (Tuple<Vector3, int, Blip, Vector3?, int, Blip> checkpoint in route_checkpoints)
                 {
-                    alt = checkpoint.Item4.Value;
+                    var cp = checkpoint.Item1;
+                    Vector3? alt = null;
+                    if (checkpoint.Item4.HasValue)
+                    {
+                        alt = checkpoint.Item4.Value;
+                    }
+                    route_code += String.Format(
+                        "\tnew Tuple<Vector3, Vector3?>({0}, {1}),",
+                        vector3ToString(cp),
+                        vector3ToString(alt)
+                        ) + Environment.NewLine;
                 }
-                route_code += String.Format(
-                    "\tnew Tuple<Vector3, Vector3?>({0}, {1}),",
-                    vector3ToString(cp),
-                    vector3ToString(alt)
-                    ) + Environment.NewLine;
-            }
-            route_code += "};";
-            if (route_checkpoints.Count > 0) {
+                route_code += "};";
+            
                 route_code += Environment.NewLine + "// "
                     + World.GetZoneName(route_checkpoints[route_checkpoints.Count - 1].Item1);
             }
