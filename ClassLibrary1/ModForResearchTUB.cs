@@ -2446,11 +2446,7 @@ namespace ModForResearchTUB
         public float getHeading(Vector3 pos, Vector3 target) {
             Vector3 fv = (pos - target);
             fv.Normalize();
-            float heading = Convert.ToSingle(Math.Acos(fv.X)*180/Math.PI);
-            if (fv.Y < 0)
-            {
-                heading = -heading;
-            }
+            float heading = Function.Call<float>(Hash.GET_HEADING_FROM_VECTOR_2D, fv.X, fv.Y);
 
             return heading;
         }
