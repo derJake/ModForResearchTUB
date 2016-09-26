@@ -110,6 +110,12 @@ namespace ModForResearchTUB
 
         public void initRace()
         {
+            // set time of day
+            World.CurrentDayTime = new TimeSpan(15, 35, 0);
+
+            // set weather to rain
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
+
             var bmsg = BigMessageThread.MessageInstance;
 
             Game.Player.CanControlCharacter = false;
@@ -145,6 +151,7 @@ namespace ModForResearchTUB
             Wait(regularIntroSceneLength);
 
             World.DestroyAllCameras();
+            World.RenderingCamera = null;
             Game.Player.CanControlCharacter = true;
             ped.IsInvincible = false;
         }
