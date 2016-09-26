@@ -1098,10 +1098,10 @@ namespace ModForResearchTUB
                     ) + Environment.NewLine;
             }
             route_code += "};";
-
-            route_code += Environment.NewLine + "// "
-                + World.GetZoneName(route_checkpoints[route_checkpoints.Count - 1].Item1);
-
+            if (route_checkpoints.Count > 0) {
+                route_code += Environment.NewLine + "// "
+                    + World.GetZoneName(route_checkpoints[route_checkpoints.Count - 1].Item1);
+            }
             return route_code;
         }
 
