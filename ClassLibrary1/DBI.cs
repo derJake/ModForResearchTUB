@@ -64,21 +64,21 @@ namespace ModForResearchTUB
             return 0;
         }
 
-        public int insertCheckpoint(int task_id, Tuple<Vector3, Vector3?> tup)
+        public int insertCheckpoint(int task_id, Vector3 coordsNormal, Vector3? coordsAlt)
         {
             String sql = "INSERT INTO dbo.task_checkpoint (task_id, x_normal, y_normal, z_normal, x_alt, y_alt, z_alt)"
                 + "VALUES(@taskId, @coordsNormalX, @coordsNormalY, @coordsNormalZ, @coordsAltX, @coordsAltY, @coordsAltZ)";
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
             cmd.Parameters.AddWithValue("@taskId", task_id);
-            cmd.Parameters.AddWithValue("@coordsNormalX", tup.Item1.X);
-            cmd.Parameters.AddWithValue("@coordsNormalY", tup.Item1.Y);
-            cmd.Parameters.AddWithValue("@coordsNormalZ", tup.Item1.Z);
+            cmd.Parameters.AddWithValue("@coordsNormalX", coordsNormal.X);
+            cmd.Parameters.AddWithValue("@coordsNormalY", coordsNormal.Y);
+            cmd.Parameters.AddWithValue("@coordsNormalZ", coordsNormal.Z);
 
-            if (tup.Item2.HasValue)
+            if (coordsAlt.HasValue)
             {
-                cmd.Parameters.AddWithValue("@coordsAltX", tup.Item2.Value.X);
-                cmd.Parameters.AddWithValue("@coordsAltY", tup.Item2.Value.Y);
-                cmd.Parameters.AddWithValue("@coordsAltZ", tup.Item2.Value.Z);
+                cmd.Parameters.AddWithValue("@coordsAltX", coordsAlt.Value.X);
+                cmd.Parameters.AddWithValue("@coordsAltY", coordsAlt.Value.Y);
+                cmd.Parameters.AddWithValue("@coordsAltZ", coordsAlt.Value.Z);
             }
             else {
                 cmd.Parameters.AddWithValue("@coordsAltX", null);
