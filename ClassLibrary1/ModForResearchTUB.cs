@@ -151,7 +151,8 @@ namespace ModForResearchTUB
         private List<Tuple<Vector3, int, Blip, Vector3?, int, Blip>> route_checkpoints;
         private int route_alternative_checkpoints = 0,
             tentativeMarker = 0,
-            tentativeMarkerAlpha = 120;
+            tentativeMarkerAlpha = 120,
+            currentRouteTaskId = 0;
         Vector3 markerOffset = new Vector3(0,0,1),
             lastTentativePosition;
 
@@ -2235,6 +2236,7 @@ namespace ModForResearchTUB
                 Game.Player.Character.FreezePosition = false;
                 // write route to log
                 File.AppendAllText("route.log", routeToString());
+                writeRouteToDB();
                 deleteCurrentRoute();
                 exploration_mode = false;
                 Function.Call(Hash.DELETE_CHECKPOINT, tentativeMarker);
@@ -2271,6 +2273,20 @@ namespace ModForResearchTUB
                 }
             }
             route_checkpoints = null;
+        }
+
+        private int writeRouteToDB() {
+            int insertedRows = 0;
+
+            for (int i = 0; i < route_checkpoints.Count; i++) {
+                insertedRows += database_interface.insertCheckpoint(
+                    currentRouteTaskId,
+                    route_checkpoints[i].Item1,
+                    route_checkpoints[i].Item4
+                    );
+            }
+
+            return insertedRows;
         }
 
         private void toggleCamDesigner() {
