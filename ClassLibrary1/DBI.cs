@@ -263,6 +263,7 @@ namespace ModForResearchTUB
             createTaskTable();
             createAttributeKeyTable();
             createAttributeValueTable();
+            createCheckpointsTable();
         }
 
         #region internal
