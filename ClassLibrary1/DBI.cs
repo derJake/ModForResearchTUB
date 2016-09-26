@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Data;
+using GTA.Math;
 
 namespace ModForResearchTUB
 {
@@ -45,22 +46,7 @@ namespace ModForResearchTUB
             insertSQL.Parameters.Add("@date", SqlDbType.DateTime);
             insertSQL.Parameters["@date"].Value = DateTime.Now;
 
-            // execute query
-            try
-            {
-                // data set insert was successful
-                return (Int32)insertSQL.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(ex.StackTrace);
-                Logger.Log(ex.Message);
-            }
-            finally {
-                // close DB connection
-                m_dbConnection.Close();
-            }
-            return 0;
+            return insert(insertSQL);
         }
 
         public int insertValue(String attribute_key, int task_id, int data_set_id, double value) {
@@ -73,23 +59,53 @@ namespace ModForResearchTUB
                 cmd.Parameters.AddWithValue("@taskId", task_id);
                 cmd.Parameters.AddWithValue("@dataSetId", data_set_id);
                 cmd.Parameters.AddWithValue("@value", value);
-                try
-                {
-                    m_dbConnection.Open();
-                    int numOfRows = cmd.ExecuteNonQuery();
-                    return numOfRows;
-                }
-                catch (Exception ex) {
-                    Logger.Log(ex.StackTrace);
-                    Logger.Log(ex.Message);
-                }
-                finally
-                {
-                    m_dbConnection.Close();
-                }
+                return insert(cmd);
             }
             return 0;
         }
+
+        public int insertCheckpoint(int task_id, Tuple<Vector3, Vector3?> tup)
+        {
+            String sql = "INSERT INTO dbo.task_checkpoint (task_id, x_normal, y_normal, z_normal, x_alt, y_alt, z_alt)"
+                + "VALUES(@taskId, @coordsNormalX, @coordsNormalY, @coordsNormalZ, @coordsAltX, @coordsAltY, @coordsAltZ)";
+            SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+            cmd.Parameters.AddWithValue("@taskId", task_id);
+            cmd.Parameters.AddWithValue("@coordsNormalX", tup.Item1.X);
+            cmd.Parameters.AddWithValue("@coordsNormalY", tup.Item1.Y);
+            cmd.Parameters.AddWithValue("@coordsNormalZ", tup.Item1.Z);
+
+            if (tup.Item2.HasValue)
+            {
+                cmd.Parameters.AddWithValue("@coordsAltX", tup.Item2.Value.X);
+                cmd.Parameters.AddWithValue("@coordsAltY", tup.Item2.Value.Y);
+                cmd.Parameters.AddWithValue("@coordsAltZ", tup.Item2.Value.Z);
+            }
+            else {
+                cmd.Parameters.AddWithValue("@coordsAltX", null);
+                cmd.Parameters.AddWithValue("@coordsAltY", null);
+                cmd.Parameters.AddWithValue("@coordsAltZ", null);
+            }
+            return insert(cmd);
+        }
+
+        private int insert(SqlCommand cmd) {
+            try
+            {
+                m_dbConnection.Open();
+                int numOfRows = cmd.ExecuteNonQuery();
+                return numOfRows;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.StackTrace);
+                Logger.Log(ex.Message);
+            }
+            finally
+            {
+                m_dbConnection.Close();
+            }
+            return 0;
+    }
 
         public int insertDataCollection(int attribute_id, int task_id, int data_set_id, Dictionary<String, double> values) {
             String sql = "INSERT INTO dbo.attribute_value (attribute_id, task_id, data_set_id, value) VALUES";
@@ -309,15 +325,17 @@ namespace ModForResearchTUB
         private void createCheckpointsTable()
         {
             ddlQuery(
-                "IF OBJECT_ID('dbo.route_checkpoints', 'U') IS NULL "
-                + "CREATE TABLE route_checkpoints ("
+                "IF OBJECT_ID('dbo.task_checkpoints', 'U') IS NULL "
+                + "CREATE TABLE task_checkpoints ("
                 + "id INT IDENTITY (1,1) NOT NULL,"
                 + "route_id INT,"
-                + "x FLOAT NOT NULL,"
-                + "y FLOAT NOT NULL,"
-                + "z FLOAT NOT NULL,"
-                + "type INT(1) NOT NULL DEFAULT 0"
-                + "route_id INTEGER REFERENCES route(id) ON UPDATE CASCADE ON DELETE CASCADE"
+                + "normal_x FLOAT NOT NULL,"
+                + "normal_y FLOAT NOT NULL,"
+                + "normal_z FLOAT NOT NULL,"
+                + "alt_x FLOAT NOT NULL,"
+                + "alt_y FLOAT NOT NULL,"
+                + "alt_z FLOAT NOT NULL,"
+                + "route_id INTEGER REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE"
                 + ");"
             );
         }
