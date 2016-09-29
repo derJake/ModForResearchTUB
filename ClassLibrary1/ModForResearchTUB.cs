@@ -208,23 +208,7 @@ namespace ModForResearchTUB
 
             UI.ShowSubtitle(rm.GetString("startracepromp", CultureInfo));
 
-            director_gui = new directorGUI();
-            director_gui.ut = ut;
-
-            BackgroundWorker myWorker = new BackgroundWorker();
-            myWorker.DoWork += (sender, e) =>
-            {
-                try
-                {
-                    Application.EnableVisualStyles();
-                    Application.Run(director_gui);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(ex.ToString());
-                }
-            };
-            myWorker.RunWorkerAsync();
+            initDirectorGUI();
 
             database_interface = new DBI();
         }
@@ -2287,6 +2271,26 @@ namespace ModForResearchTUB
             }
 
             return insertedRows;
+        }
+
+        private void initDirectorGUI() {
+            director_gui = new directorGUI();
+            director_gui.ut = ut;
+
+            BackgroundWorker myWorker = new BackgroundWorker();
+            myWorker.DoWork += (sender, e) =>
+            {
+                try
+                {
+                    Application.EnableVisualStyles();
+                    Application.Run(director_gui);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+            };
+            myWorker.RunWorkerAsync();
         }
 
         private void toggleCamDesigner() {
