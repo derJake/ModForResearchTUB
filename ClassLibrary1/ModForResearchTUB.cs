@@ -219,12 +219,13 @@ namespace ModForResearchTUB
         }
 
         private void setUpRaces() {
-            races = new RaceInterface[5];
+            races = new RaceInterface[6];
             races[0] = new RaceIntro(rm, ut, "intro");
             races[1] = new RaceConvoy(rm, ut, "convoy");
             races[2] = new RaceSuburban(rm, ut, "garbagetruck");
             races[3] = new RaceDesert(rm, ut, "desert");
-            races[4] = new RaceCarvsCar(rm, ut, "car_vs_car");
+            races[4] = new RaceTerminal(rm, ut, "terminal");
+            races[5] = new RaceCarvsCar(rm, ut, "car_vs_car");
             //races[5] = new RaceToWoodmill();
             currentRace = 0;
             if (debug) {
