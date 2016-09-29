@@ -37,6 +37,7 @@ namespace ModForResearchTUB
         private bool player_passed_obstacle = false;
         private int standstill_brake_start;
         private int standstill_brake_end;
+        private int obstacleStartTime = 0;
 
         private Dictionary<string, float> singularValues = new Dictionary<string, float>();
 
@@ -157,6 +158,7 @@ namespace ModForResearchTUB
         {
             if (!obstacle_started)
             {
+                // remove cars
                 foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 100))
                 {
                     if (!car.Equals(obstacle) && !car.Equals(raceVehicle))
@@ -165,11 +167,28 @@ namespace ModForResearchTUB
                     }
                 }
 
+                // trigger first
                 if (Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f))
                 {
-                    obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
-                    obstacle_started = true;
-                    Logger.Log(String.Format("garbage truck started driving at {0}", Game.GameTime));
+                    float dist = Game.Player.Character.Position.DistanceTo(obstacle_spawnpoint),
+                        speed = Game.Player.Character.CurrentVehicle.Speed;
+                    int timeToStart = Convert.ToInt32(Math.Round(dist / speed))*1000;
+
+                    UI.Notify(String.Format("timeToStart: {0}", timeToStart));
+                    obstacleStartTime = Game.GameTime + timeToStart;
+                }
+
+                // start obstacle driving
+                if (obstacleStartTime > 0) {
+
+                    new UIResText(String.Format("obstacle in {0}", obstacleStartTime - Game.GameTime), new Point(400, 20), 0.5f, Color.OrangeRed).Draw();
+
+                    if (Game.GameTime > obstacleStartTime)
+                    {
+                        obstacle_driver.Task.DriveTo(obstacle, obstacle_target, 3.0f, 10.0f, (int)DrivingStyle.Normal);
+                        obstacle_started = true;
+                        Logger.Log(String.Format("garbage truck started driving at {0}", Game.GameTime));
+                    }
                 }
             }
             else {
@@ -296,7 +315,7 @@ namespace ModForResearchTUB
             Audio.PlaySoundFrontend("SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET");
             // change perspective
             cam.Position = new Vector3(-478.3805f, 654.7722f, 144.4642f);
-            cam.Rotation = new Vector3(-17.35267f, -1.280661E-06f, 83.03968f);
+            cam.Rotation = new Vector3(-12.35267f, -1.280661E-06f, 83.03968f);
             cam.FieldOfView = 61.19999f;
             // show instruction
             bmsg.ShowOldMessage(rm.GetString("suburban_intro_3"), 10000);
@@ -346,7 +365,7 @@ namespace ModForResearchTUB
 
         public Dictionary<string, float> getSingularDataValues()
         {
-            return singularValues;
+            throw new NotImplementedException();
         }
     }
 }
