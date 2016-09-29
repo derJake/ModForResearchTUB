@@ -12,12 +12,20 @@ namespace ModForResearchTUB
     class DBI
     {
         SqlConnection m_dbConnection;
+        String defaultHost = "localhost";
         char[] trim = { ',', ' '};
 
-        public DBI() {
+        public DBI(String dbHost) {
+            String hostName = defaultHost;
+            if (!dbHost.Equals("")) {
+                hostName = dbHost;
+            }
+
             m_dbConnection =
             new SqlConnection("user id=TUBMod4Research;" +
-                                "password=123456;server=localhost;" +
+                                "password=123456;server=" +
+                                hostName +
+                                ";" +
                                 "Trusted_Connection=yes;" +
                                 "database=TUBMod4Research; " +
                                 "connection timeout=30");

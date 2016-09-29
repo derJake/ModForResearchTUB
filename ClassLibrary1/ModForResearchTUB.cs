@@ -5,6 +5,7 @@ using GTA.Native;
 using GTA;
 using GTA.Math;
 using System.Windows.Forms;
+using System.Configuration;
 using System.Drawing;
 using System.Collections.Generic;
 using NativeUI;
@@ -15,6 +16,7 @@ using System.Resources;
 using System.IO;
 using System.Threading;
 using System.ComponentModel;
+using System.Collections.Specialized;
 #endregion
 
 namespace ModForResearchTUB
@@ -173,6 +175,7 @@ namespace ModForResearchTUB
         private DBI database_interface;
         private int current_data_set_id;
 
+        KeyValueConfigurationCollection confCollection;
         #endregion
 
         // Main Script
@@ -210,7 +213,9 @@ namespace ModForResearchTUB
 
             initDirectorGUI();
 
-            database_interface = new DBI();
+            readConfig();
+
+            database_interface = new DBI(confCollection["dbHost"].Value);
         }
 
         private void setUpRaces() {
@@ -2470,6 +2475,11 @@ namespace ModForResearchTUB
             float heading = Function.Call<float>(Hash.GET_HEADING_FROM_VECTOR_2D, fv.X, fv.Y);
 
             return heading;
+        }
+
+        private void readConfig() {
+            Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            confCollection = configManager.AppSettings.Settings;
         }
         #endregion
     }
