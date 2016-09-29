@@ -186,7 +186,7 @@ namespace ModForResearchTUB
             rm = new ResourceManager(typeof(Resources));
             bmsg = BigMessageThread.MessageInstance;
 
-            // registers the races / courses / whatever you want to call it
+            // registers the tasks
             setUpRaces();
 
             // try to disable scenarios like angry bikers
