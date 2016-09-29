@@ -174,6 +174,7 @@ namespace ModForResearchTUB
         // database
         private DBI database_interface;
         private int current_data_set_id;
+        private String host = "";
 
         KeyValueConfigurationCollection confCollection;
         #endregion
@@ -215,17 +216,17 @@ namespace ModForResearchTUB
 
             readConfig();
 
-            database_interface = new DBI(confCollection["dbHost"].Value);
+            database_interface = new DBI(host);
         }
 
         private void setUpRaces() {
-            races = new RaceInterface[6];
-            races[0] = new RaceIntro(rm, ut, "intro");
-            races[1] = new RaceConvoy(rm, ut, "convoy");
-            races[2] = new RaceSuburban(rm, ut, "garbagetruck");
-            races[3] = new RaceDesert(rm, ut, "desert");
-            races[4] = new RaceTerminal(rm, ut, "terminal");
-            races[5] = new RaceCarvsCar(rm, ut, "car_vs_car");
+            races = new RaceInterface[1];
+            //races[0] = new RaceIntro(rm, ut, "intro");
+            //races[1] = new RaceConvoy(rm, ut, "convoy");
+            races[0] = new RaceSuburban(rm, ut, "garbagetruck");
+            //races[3] = new RaceDesert(rm, ut, "desert");
+            //races[4] = new RaceTerminal(rm, ut, "terminal");
+            //races[5] = new RaceCarvsCar(rm, ut, "car_vs_car");
             //races[5] = new RaceToWoodmill();
             currentRace = 0;
             if (debug) {
@@ -2479,8 +2480,27 @@ namespace ModForResearchTUB
         }
 
         private void readConfig() {
-            Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            confCollection = configManager.AppSettings.Settings;
+            try
+            {
+                Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                if (configManager.AppSettings == null)
+                {
+                    Logger.Log(rm.GetString("no_settings_key"));
+                }
+                confCollection = configManager.AppSettings.Settings;
+
+                if (confCollection.Count == 0)
+                {
+                    Logger.Log(rm.GetString("no_settings"));
+                }
+
+                host = confCollection["dbHost"].Value ?? host;
+            }
+            catch (NullReferenceException ex) {
+                Logger.Log(rm.GetString("no_settings_file"));
+                Logger.Log(ex.Message);
+                Logger.Log(ex.StackTrace);
+            }
         }
         #endregion
     }

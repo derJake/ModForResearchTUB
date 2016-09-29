@@ -709,6 +709,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No settings were found in the configuration file. ähnelt.
+        /// </summary>
+        internal static string no_settings {
+            get {
+                return ResourceManager.GetString("no_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The file &quot;App.config&quot; could not be opened. ähnelt.
+        /// </summary>
+        internal static string no_settings_file {
+            get {
+                return ResourceManager.GetString("no_settings_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No key &apos;AppSettings&apos; was found in App.config ähnelt.
+        /// </summary>
+        internal static string no_settings_key {
+            get {
+                return ResourceManager.GetString("no_settings_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die When was the garbage truck visible to the player ähnelt.
         /// </summary>
         internal static string obstacle_visible {

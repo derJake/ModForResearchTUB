@@ -441,4 +441,13 @@
   <data name="terminal_intro_1" xml:space="preserve">
     <value>There is an alternative route later on.</value>
   </data>
+  <data name="no_settings" xml:space="preserve">
+    <value>No settings were found in the configuration file.</value>
+  </data>
+  <data name="no_settings_file" xml:space="preserve">
+    <value>The file "App.config" could not be opened.</value>
+  </data>
+  <data name="no_settings_key" xml:space="preserve">
+    <value>No key 'AppSettings' was found in App.config</value>
+  </data>
 </root>
