@@ -38,6 +38,9 @@ namespace ModForResearchTUB
         private int standstill_brake_start;
         private int standstill_brake_end;
         private int obstacleStartTime = 0;
+        private Dictionary<Vector3, float> exclusionZones;
+        private List<Vehicle> knownCars;
+        private Vector3 sendCarsTo = new Vector3(-814, 832, 201);
 
         private Dictionary<string, float> singularValues = new Dictionary<string, float>();
 
@@ -82,6 +85,14 @@ namespace ModForResearchTUB
 
             rm = resman;
             ut = utils;
+
+            exclusionZones = new Dictionary<Vector3, float> {
+                { obstacle_spawnpoint, 200f },
+                { new Vector3(-690, 599, 143), 180 },
+                { new Vector3(-1005, 695, 160), 170 }
+            };
+
+            knownCars = new List<Vehicle>();
         }
 
         public void finishRace()
@@ -158,14 +169,7 @@ namespace ModForResearchTUB
         {
             if (!obstacle_started)
             {
-                // remove cars
-                foreach (Vehicle car in World.GetNearbyVehicles(obstacle_spawnpoint, 100))
-                {
-                    if (!car.Equals(obstacle) && !car.Equals(raceVehicle))
-                    {
-                        car.Delete();
-                    }
-                }
+                sendAwayOtherCars();
 
                 // trigger first
                 if (Game.Player.Character.IsInRangeOf(obstacle_trigger, 7.0f))
@@ -366,6 +370,29 @@ namespace ModForResearchTUB
         public Dictionary<string, float> getSingularDataValues()
         {
             throw new NotImplementedException();
+        }
+
+        private void sendAwayOtherCars() {
+            foreach (KeyValuePair<Vector3, float> kvp in exclusionZones)
+            {
+                foreach (Vehicle car in World.GetNearbyVehicles(kvp.Key, kvp.Value))
+                {
+                    if (!car.Equals(obstacle) 
+                        && !car.Equals(raceVehicle)
+                        && !knownCars.Contains(car))
+                    {
+                        //car.Delete();
+                        var driver = car.GetPedOnSeat(VehicleSeat.Driver);
+                        driver.Task.DriveTo(
+                            car,
+                            sendCarsTo,
+                            5,
+                            35
+                        );
+                        knownCars.Add(car);
+                    }
+                }
+            }
         }
     }
 }
