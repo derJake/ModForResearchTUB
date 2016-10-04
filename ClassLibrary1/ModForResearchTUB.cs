@@ -188,8 +188,10 @@ namespace ModForResearchTUB
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
 
+            // set up Localization
             CultureInfo = CultureInfo.CurrentCulture;
             rm = new ResourceManager(typeof(Resources));
+            // Class for displaying mission like on screen messages
             bmsg = BigMessageThread.MessageInstance;
 
             // registers the tasks
