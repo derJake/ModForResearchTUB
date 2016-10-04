@@ -183,6 +183,7 @@ namespace ModForResearchTUB
         // Main Script
         public Main()
         {
+            // TODO: remove this and use TrafficLightManager
             trafficSignalHashes.Add(-655644382);
             trafficSignalHashes.Add(862871082);
             trafficSignalHashes.Add(1043035044);
