@@ -44,9 +44,6 @@ namespace ModForResearchTUB
         }
 
         public int createDataset(String participant_name) {
-            // open DB connection
-            m_dbConnection.Open();
-
             // create the actual insert query and set parameters
             SqlCommand insertSQL = new SqlCommand(
                 "INSERT INTO data_set (participant_name, date) OUTPUT INSERTED.ID VALUES (@name,@date)", m_dbConnection);
@@ -54,7 +51,20 @@ namespace ModForResearchTUB
             insertSQL.Parameters.Add("@date", SqlDbType.DateTime);
             insertSQL.Parameters["@date"].Value = DateTime.Now;
 
-            return insert(insertSQL);
+            try
+            {
+                // open DB connection
+                m_dbConnection.Open();
+                return (Int32)insertSQL.ExecuteScalar();
+            }
+            catch (Exception ex) {
+                Logger.Log(ex.StackTrace);
+                Logger.Log(ex.Message);
+            }
+            finally {
+                m_dbConnection.Close();
+            }
+            return 0;
         }
 
         public int insertValue(String attribute_key, int task_id, int data_set_id, double value) {
