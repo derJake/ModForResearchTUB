@@ -751,6 +751,9 @@ namespace ModForResearchTUB
             UI.Notify(name);
             currentPlayerName = name;
             current_data_set_id = database_interface.createDataset(currentPlayerName);
+            if (current_data_set_id == 0) {
+                abort_race = true;
+            }
             if (debug) {
                 UI.Notify(String.Format("Data set: {0}", current_data_set_id));
             }
