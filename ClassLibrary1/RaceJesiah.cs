@@ -93,7 +93,7 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Function.Call(Hash.CANCEL_STUNT_JUMP);
         }
 
         public void initRace()
