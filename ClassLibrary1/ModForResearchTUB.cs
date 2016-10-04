@@ -17,6 +17,7 @@ using System.IO;
 using System.Threading;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using System.Reflection;
 #endregion
 
 namespace ModForResearchTUB
@@ -2482,7 +2483,17 @@ namespace ModForResearchTUB
         private void readConfig() {
             try
             {
-                Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+                string localPath = new Uri(assemblyFolder).LocalPath;
+                string xmlFileName = Path.Combine(localPath, "App.config");
+                Logger.Log(String.Format("assemblyFolder: {0}", assemblyFolder));
+                Logger.Log(String.Format("localPath: {0}", localPath));
+                Logger.Log(String.Format("xmlFileName: {0}", xmlFileName));
+
+                ExeConfigurationFileMap configMap = new ExeConfigurationFileMap();
+                configMap.ExeConfigFilename = @xmlFileName;
+
+                Configuration configManager = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
                 if (configManager.AppSettings == null)
                 {
                     Logger.Log(rm.GetString("no_settings_key"));
