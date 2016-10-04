@@ -442,13 +442,18 @@ namespace ModForResearchTUB
 
         protected void renderDiagrams() {
             foreach (KeyValuePair<string, Dictionary<string, double>> item in collectedData) {
+                // empty data doesn't do us any good
+                if (item.Value.Count == 0) {
+                    continue;
+                }
+
                 try
                 {
                     DrawDiagram.renderDiagramToDisk(
                         item.Value,
                         item.Key,
                         item.Key,
-                        currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
+                        "-" + current_data_set_id + "-" + currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
                     );
                 }
                 catch (ThreadAbortException tae) {
