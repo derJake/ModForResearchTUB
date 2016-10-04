@@ -99,9 +99,9 @@ namespace ModForResearchTUB
                 cmd.Parameters.AddWithValue("@coordsAltZ", coordsAlt.Value.Z);
             }
             else {
-                cmd.Parameters.AddWithValue("@coordsAltX", null);
-                cmd.Parameters.AddWithValue("@coordsAltY", null);
-                cmd.Parameters.AddWithValue("@coordsAltZ", null);
+                cmd.Parameters.AddWithValue("@coordsAltX", DBNull.Value);
+                cmd.Parameters.AddWithValue("@coordsAltY", DBNull.Value);
+                cmd.Parameters.AddWithValue("@coordsAltZ", DBNull.Value);
             }
             return insert(cmd);
         }
