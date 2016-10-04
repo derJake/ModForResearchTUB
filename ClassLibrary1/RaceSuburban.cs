@@ -178,7 +178,6 @@ namespace ModForResearchTUB
                         speed = Game.Player.Character.CurrentVehicle.Speed;
                     int timeToStart = Convert.ToInt32(Math.Round(dist / speed))*1000;
 
-                    UI.Notify(String.Format("timeToStart: {0}", timeToStart));
                     obstacleStartTime = Game.GameTime + timeToStart;
                 }
 
