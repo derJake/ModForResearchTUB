@@ -107,6 +107,10 @@ namespace ModForResearchTUB
             {
                 Logger.Log(ex.StackTrace);
                 Logger.Log(ex.Message);
+                Logger.Log("Query: " + cmd.CommandText);
+                for (int i = 0; i < cmd.Parameters.Count; i++) {
+                    Logger.Log(cmd.Parameters[i].ParameterName.ToString() + ": " + cmd.Parameters[i].Value.ToString());
+                }
             }
             finally
             {
@@ -337,7 +341,6 @@ namespace ModForResearchTUB
                 "IF OBJECT_ID('dbo.task_checkpoints', 'U') IS NULL "
                 + "CREATE TABLE task_checkpoints ("
                 + "id INT IDENTITY (1,1) NOT NULL,"
-                + "route_id INT,"
                 + "normal_x FLOAT NOT NULL,"
                 + "normal_y FLOAT NOT NULL,"
                 + "normal_z FLOAT NOT NULL,"
