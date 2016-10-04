@@ -99,10 +99,10 @@ namespace ModForResearchTUB
         public void initRace()
         {
             // set time of day
-            World.CurrentDayTime = new TimeSpan(15, 35, 0);
+            World.CurrentDayTime = new TimeSpan(11, 45, 0);
 
             // set weather to rain
-            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "CLEAR");
+            Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, "EXTRASUNNY");
 
             var bmsg = BigMessageThread.MessageInstance;
 
