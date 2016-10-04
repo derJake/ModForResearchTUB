@@ -442,12 +442,20 @@ namespace ModForResearchTUB
 
         protected void renderDiagrams() {
             foreach (KeyValuePair<string, Dictionary<string, double>> item in collectedData) {
-                DrawDiagram.renderDiagramToDisk(
-                    item.Value,
-                    item.Key,
-                    item.Key,
-                    currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
-                );
+                try
+                {
+                    DrawDiagram.renderDiagramToDisk(
+                        item.Value,
+                        item.Key,
+                        item.Key,
+                        currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
+                    );
+                }
+                catch (ThreadAbortException tae) {
+                    Logger.Log(String.Format("{0} diagram drawing thread aborted", item.Key));
+                    Logger.Log(tae.Message);
+                    Logger.Log(tae.StackTrace);
+                }
             }
         }
 
