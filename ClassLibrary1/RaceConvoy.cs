@@ -164,6 +164,11 @@ namespace ModForResearchTUB
                     last_take_over = 0;
                     num_take_overs++;
                 }
+
+                if (currentDistance > 150)
+                {
+                    hintAtLeader();
+                }
             }
         }
 
@@ -332,6 +337,17 @@ namespace ModForResearchTUB
         public Dictionary<string, float> getSingularDataValues()
         {
             return singularValues;
+        }
+
+        private void hintAtLeader() {
+            World.DrawMarker(
+                MarkerType.ThickChevronUp,
+                leader.Position,
+                new Vector3(),
+                new Vector3(180, 0, 0),
+                new Vector3(10,10,10),
+                Color.Blue
+            );
         }
     }
 }
