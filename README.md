@@ -21,6 +21,7 @@ This is a modification intended for use with the popular game GTA V.
   * defining camera perspectives and generating code for camera creation
 * Localization support via Resource files
 
+### Example log file
 ```
 14.03.2016 15:36:10 : --------------------------------
 14.03.2016 15:36:10 : Player is in car with good traction
@@ -74,6 +75,9 @@ to a folder called
 scripts/
 ```
 inside of your GTA V game folder.
+
+## Usage
+Press the [F10] key while inside the game. The mod's menu should show up.
 
    [scripthook v]: <http://www.dev-c.com/gtav/scripthookv/>
    [nativeui]: <https://github.com/Guad/NativeUI>
