@@ -46,7 +46,7 @@ namespace ModForResearchTUB
                 new Tuple<Vector3, Vector3?>(new Vector3(-826.0171f, 4053.514f, 162.6224f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-885.3699f, 4094.885f, 162.5385f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-989.8645f, 4142.516f, 124.0036f), new Vector3(-969.2205f, 4180.824f, 134.0562f)),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1036.606f, 4215.612f, 117.0383f), new Vector3(-1015.542f, 4227.466f, 111.6766f)),
+                new Tuple<Vector3, Vector3?>(new Vector3(-1036.606f, 4215.612f, 117.0383f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-1047.547f, 4259.354f, 110.8161f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-1088.466f, 4277.344f, 95.2999f), null),
                 new Tuple<Vector3, Vector3?>(new Vector3(-1140.096f, 4286.141f, 84.89371f), null),
