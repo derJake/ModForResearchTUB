@@ -18,10 +18,26 @@ namespace ModForResearchTUB
             1043035044
         };
 
+        Prop targetedLight,
+            currentTrafficLight;
+        List<Trafficlight> trafficLights;
+        Vector3 position,
+            haltZoneFrom,
+            haltZoneTo,
+            intersectionFrom,
+            intersectionTo;
+
         public TrafficLightManager() {
+            trafficLights = new List<Trafficlight>();
         }
 
         public void handleOnTick() {
+            searchForLights();
+
+            highlightCurrentTrafficLight();
+        }
+
+        private void searchForLights() {
             UI.ShowHudComponentThisFrame(HudComponent.Reticle);
             var ped = Game.Player.Character;
             Vector3 fv = GameplayCamera.Position - ped.Position;
@@ -36,19 +52,62 @@ namespace ModForResearchTUB
             if (rcr.DitHitAnything
                 && rcr.HitCoords != null)
             {
-                foreach (Prop ent in World.GetNearbyProps(rcr.HitCoords, 10)) {
+                foreach (Prop ent in World.GetNearbyProps(rcr.HitCoords, 10))
+                {
                     if (trafficSignalHashes.Contains(ent.Model.Hash))
                     {
-                        World.DrawMarker(
-                            MarkerType.VerticalCylinder,
-                            ent.Position,
-                            new Vector3(),
-                            new Vector3(),
-                            new Vector3(7.5f, 7.5f, 10f),
-                            Color.Red
-                        );
+                        
+
+                        targetedLight = ent;
                     }
                 }
+            }
+        }
+
+        public void handleInput() {
+            if (currentTrafficLight == null)
+            {
+                if (targetedLight != null)
+                {
+                    currentTrafficLight = targetedLight;
+                    position = currentTrafficLight.Position;
+                }
+            }
+            else {
+                if (targetedLight != null
+                    && targetedLight == currentTrafficLight)
+                {
+                    // TODO confirm user wants to discard traffic light
+                }
+                else {
+                    // handle zones
+                }
+            }
+        }
+
+        private void highlightCurrentTrafficLight() {
+            Vector3? pos = null;
+            Color color = Color.Red;
+
+            if (currentTrafficLight != null) {
+                pos = currentTrafficLight.Position;
+                color = Color.Green;
+            }
+
+            if (targetedLight != null) {
+                pos = targetedLight.Position;
+            }
+
+            if (pos.HasValue)
+            {
+                World.DrawMarker(
+                    MarkerType.VerticalCylinder,
+                    pos.Value,
+                    new Vector3(),
+                    new Vector3(),
+                    new Vector3(7.5f, 7.5f, 10f),
+                    color
+                );
             }
         }
     }
