@@ -4,11 +4,22 @@ This is a modification intended for use with the popular game GTA V.
 
 ## Current state
 
-* teleports player to car selection
-* one car has moderate acceleration and good traction
-* the other one is accelerating fast, harder to handle and sounds an alarm, thereby informing the police
-* when the player enters one of the cars, he/she is prompted to drive through checkpoints, composing a route
-* at the last checkpoint, several variables are written to a log file
+* defines several tracks or tasks each one containing at least one decision event
+  * Intro: explaining the tests and providing 10min. of free play time
+  * Convoy: following another vehicle (while logging the distance)
+  * Suburban: placing an obstacle in the player's path, logging passing or braking
+  * Desert: alternative waypoints with more exciting route through hills and landscape
+  * Terminal: another alternative route, through tight backalleys
+  * Car vs. Car: make the player choose between two cars, a fast one with a wanted level and a regular one with better maneuverability
+  * Jesiah: a mountain road with alt. waypoints leading to a ramp jump
+* logs variables like gas pedal, brake pedal and steering input, velocity of the vehicle and collisions
+* each task might introduce additional logging variables, tied to its specific decision events
+* logs are written to a SQL Server DB and a textual log file
+* continuous variables get exported as diagrams
+* provides tools for
+  * generating routes in free fly mode via checkpoints and generating code for those
+  * defining camera perspectives and generating code for camera creation
+* Localization support via Resource files
 
 ```
 14.03.2016 15:36:10 : --------------------------------
@@ -36,17 +47,21 @@ This is a modification intended for use with the popular game GTA V.
 ## TO DO
 
 * Create more races / decision events
-   *    use ramp for jump or take safe route
-   *    go cross-country (risking collisions with foliage and rocks) or take road
    *    buy better engine/turbo or something with better traction
    *    race against opponents or drive alone
-   *    Pass garbage truck, which appears on narrow road, or wait patiently
-* log running red lights
-* display introduction / tutorial more clearly
-* show some decisive parts of the race track beforehand
+* finish traffic signal logging tools
+  * complete state machine for selecting a traffic light and defining the zones in which to look for halted cars and cars running the red light
+  * write to / read from DB
+  * edit mode
+* finish route designer tool
+  * create task for each route
+  * load from DB
+  * edit mode
+  * generic class for testing the route
 
 ## Dependencies:
-* [ScriptHook V] or .NET, if you compile from source
+* [ScriptHook V]
+* [Community ScriptHook V .NET]
 * [NativeUI]
 
 ## Installation:
@@ -62,3 +77,4 @@ inside of your GTA V game folder.
 
    [scripthook v]: <http://www.dev-c.com/gtav/scripthookv/>
    [nativeui]: <https://github.com/Guad/NativeUI>
+   [Community ScriptHook V .NET]: <https://github.com/crosire/scripthookvdotnet/releases>
