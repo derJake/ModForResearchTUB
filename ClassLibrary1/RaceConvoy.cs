@@ -342,7 +342,7 @@ namespace ModForResearchTUB
         private void hintAtLeader() {
             World.DrawMarker(
                 MarkerType.ThickChevronUp,
-                leader.Position,
+                leader.Position + new Vector3(0,0,10),
                 new Vector3(),
                 new Vector3(180, 0, 0),
                 new Vector3(10,10,10),
