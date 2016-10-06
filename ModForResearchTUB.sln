@@ -10,16 +10,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		mod4researchTUB.db = mod4researchTUB.db
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gta5EyeTracking", "..\..\..\..\Source\Repos\gta5eyetracking\Gta5EyeTracking\Gta5EyeTracking.csproj", "{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Debug|x64.Build.0 = Debug|Any CPU
 		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Release|x64.ActiveCfg = Release|Any CPU
+		{3245ED76-B1D2-458C-A6D6-58C3CE8D0D77}.Release|x64.Build.0 = Release|Any CPU
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Debug|x64.ActiveCfg = Debug|x64
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Debug|x64.Build.0 = Debug|x64
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Release|x64.ActiveCfg = Release|x64
+		{9585ABAB-B222-40B4-A9F7-AC8BE027DFAF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
