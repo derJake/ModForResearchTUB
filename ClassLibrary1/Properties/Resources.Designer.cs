@@ -826,6 +826,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Times player was reset after being lost. ähnelt.
+        /// </summary>
+        internal static string resets {
+            get {
+                return ResourceManager.GetString("resets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ~r~route designer active: ~b~{0} ähnelt.
         /// </summary>
         internal static string route_designer_active {

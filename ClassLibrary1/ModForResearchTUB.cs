@@ -170,7 +170,8 @@ namespace ModForResearchTUB
         // route deviation
         private float off_track_distance = 50;
         private int time_player_got_lost,
-            max_lost_time = 10000;
+            max_lost_time = 10000,
+            timesPlayerWasLost = 0;
 
         // database
         private DBI database_interface;
@@ -233,7 +234,7 @@ namespace ModForResearchTUB
             races[5] = new RaceCarvsCar(rm, ut, "car_vs_car");
             races[6] = new RaceJesiah(rm, ut, "jesiah");
             //races[5] = new RaceToWoodmill();
-            currentRace = 0;
+            currentRace = 6;
             if (debug) {
                 UI.Notify(rm.GetString("racessetup"));
             }
@@ -1550,6 +1551,7 @@ namespace ModForResearchTUB
                         Game.Player.Character.CurrentVehicle.PlaceOnNextStreet();
                         Game.Player.Character.CurrentVehicle.Heading = heading;
                         time_player_got_lost = 0;
+                        timesPlayerWasLost++;
                     }
 
                     if (debug)
@@ -1684,6 +1686,7 @@ namespace ModForResearchTUB
             Logger.Log(String.Format("Times vehicle was upside down: {0}", numOfTimesUpsideDown));
             Logger.Log(String.Format("Possible collisions: {0}", possibleCollisions));
             Logger.Log(String.Format("Mean distance: {0}", meanDistance));
+            Logger.Log(String.Format("Times player was reset after being lost: {0}", timesPlayerWasLost));
         }
 
         protected void writeRaceDataToDB() {
@@ -1738,7 +1741,8 @@ namespace ModForResearchTUB
                 {"duration_against_traffic", (float)cumulativeTimeDrivingAgainstTraffic / 1000},
                 {"upside_down", numOfTimesUpsideDown},
                 {"possible_vehicle_collisions", possibleCollisions},
-                {"possible_vc_mean_distance", meanDistance}
+                {"possible_vc_mean_distance", meanDistance},
+                {"resets", timesPlayerWasLost }
             };
 
             return mergeRaceSpecificLogValues(mappings);

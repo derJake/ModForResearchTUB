@@ -450,4 +450,7 @@
   <data name="no_settings_key" xml:space="preserve">
     <value>No key 'AppSettings' was found in App.config</value>
   </data>
+  <data name="resets" xml:space="preserve">
+    <value>Times player was reset after being lost.</value>
+  </data>
 </root>
