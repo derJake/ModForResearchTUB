@@ -239,7 +239,7 @@ namespace ModForResearchTUB
             races[5] = new RaceCarvsCar(rm, ut, "car_vs_car");
             races[6] = new RaceJesiah(rm, ut, "jesiah");
             //races[5] = new RaceToWoodmill();
-            currentRace = 6;
+            currentRace = 0;
             if (debug) {
                 UI.Notify(rm.GetString("racessetup"));
             }
