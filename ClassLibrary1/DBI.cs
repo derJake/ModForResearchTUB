@@ -354,9 +354,9 @@ namespace ModForResearchTUB
                 + "normal_x FLOAT NOT NULL,"
                 + "normal_y FLOAT NOT NULL,"
                 + "normal_z FLOAT NOT NULL,"
-                + "alt_x FLOAT NOT NULL,"
-                + "alt_y FLOAT NOT NULL,"
-                + "alt_z FLOAT NOT NULL,"
+                + "alt_x FLOAT,"
+                + "alt_y FLOAT,"
+                + "alt_z FLOAT,"
                 + "route_id INTEGER REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE"
                 + ");"
             );
