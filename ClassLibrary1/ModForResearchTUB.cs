@@ -221,7 +221,7 @@ namespace ModForResearchTUB
 
             readConfig();
 
-            if (String.IsNullOrEmpty(host)) {
+            if (string.IsNullOrEmpty(host)) {
                 string input = Microsoft.VisualBasic.Interaction.InputBox("Title", "Prompt", "Default", 0, 0);
                 UI.Notify(input);
             }
