@@ -372,7 +372,14 @@ namespace ModForResearchTUB
                             writeRaceDataToLog();
                             writeRaceDataToDB();
 
-                            renderDiagrams();
+                            try
+                            {
+                                renderDiagrams();
+                            }
+                            catch (ThreadAbortException tae) {
+                                Logger.Log(tae.StackTrace);
+                                Logger.Log(tae.Message);
+                            }
 
                             // reset variables and remove vehicles/props etc.
                             clearStuffUp();
