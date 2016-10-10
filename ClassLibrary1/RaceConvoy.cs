@@ -262,33 +262,8 @@ namespace ModForResearchTUB
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(8000);
 
-            // switch back to main cam
-            Function.Call(Hash.RENDER_SCRIPT_CAMS, 0, 1, cam, 0, 0);
-
-            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, true);
-            leader_driver.Task.DriveTo(leader, leader_target, 5, 20, Convert.ToInt32("110111111", 2));
-            //player.Task.DriveTo(raceVehicle, checkpoints[checkpoints.Length - 1].Item1, 5, 20, Convert.ToInt32("110111111", 2));
-            player.Task.VehicleChase(leader_driver);
-            player.DrivingStyle = DrivingStyle.AvoidTraffic;
-
-            Wait(regularIntroSceneLength);
-
-            // put vehicles back to start
-            player.Task.ClearAll();
-            leader_driver.Task.ClearAll();
-            raceVehicle.Position = car1_spawnpoint;
-            raceVehicle.Heading = car_spawn_heading;
-            raceVehicle.IsInvincible = false;
-            leader.Position = leader_spawnpoint;
-            leader.Heading = leader_heading;
-
-            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, false);
-
             player.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
-
-            // set time of day
-            World.CurrentDayTime = new TimeSpan(18, 35, 0);
         }
 
         public void startRace()
