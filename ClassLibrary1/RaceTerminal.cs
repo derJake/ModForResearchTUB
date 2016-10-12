@@ -15,6 +15,7 @@ namespace ModForResearchTUB
     class RaceTerminal : Script, RaceInterface
     {
         private Tuple<Vector3, Vector3?>[] checkpoints;
+        private Vector3 rampLightPosition = new Vector3(832.2669f, -2369.38f, 33.28733f);
         Vehicle raceVehicle;
 
         int regularIntroSceneLength = 10000;
@@ -105,7 +106,16 @@ namespace ModForResearchTUB
 
         public void handleOnTick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            World.DrawSpotLightWithShadow(
+                rampLightPosition,
+                Vector3.WorldDown,
+                System.Drawing.Color.White,
+                30, // distance
+                60, // brightness
+                1, // roundness
+                40, // radius
+                15 // fadeout
+            );
         }
 
         public void initRace()
