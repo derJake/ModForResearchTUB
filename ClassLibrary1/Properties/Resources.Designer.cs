@@ -655,6 +655,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Long intro is active: {0} ähnelt.
+        /// </summary>
+        internal static string long_intro_active {
+            get {
+                return ResourceManager.GetString("long_intro_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The maximum speed of the player&apos;s vehicle (possibly in m/s) ähnelt.
         /// </summary>
         internal static string maximum_speed {
@@ -714,6 +723,15 @@ namespace ModForResearchTUB.Properties {
         internal static string menu_toggle_debug {
             get {
                 return ResourceManager.GetString("menu_toggle_debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show long intro before playing? ähnelt.
+        /// </summary>
+        internal static string menu_toggle_intro {
+            get {
+                return ResourceManager.GetString("menu_toggle_intro", resourceCulture);
             }
         }
         

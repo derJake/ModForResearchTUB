@@ -47,6 +47,7 @@ namespace ModForResearchTUB
 
         int currentRace = -1;
         RaceInterface[] races;
+        RaceIntro intro;
 
         float speeds;
         int numOfSpeeds;
@@ -228,7 +229,8 @@ namespace ModForResearchTUB
 
         private void setUpRaces() {
             races = new RaceInterface[7];
-            races[0] = new RaceIntro(rm, ut, "intro");
+            intro = new RaceIntro(rm, ut, "intro");
+            races[0] = intro;
             races[1] = new RaceConvoy(rm, ut, "convoy");
             races[2] = new RaceSuburban(rm, ut, "garbagetruck");
             races[3] = new RaceDesert(rm, ut, "desert");
@@ -2105,101 +2107,10 @@ namespace ModForResearchTUB
         protected void buildMenu() {
             myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
 
-            // checkbox for route designer
-            var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, rm.GetString("menu_toggle_route_designer"));
-            myMenu.AddItem(route_designer_checkbox);
-            myMenu.RefreshIndex();
-
-            myMenu.OnCheckboxChange += (sender, item, checked_) =>
-            {
-                if (item == route_designer_checkbox)
-                {
-                    if (race_initialized || race_started) {
-                        UI.Notify(rm.GetString("menu_not_during_task"));
-                        return;
-                    }
-
-                    route_designer_active = checked_;
-                    toggleRouteDesigner();
-                    UI.Notify(String.Format(rm.GetString("route_designer_active"), route_designer_active));
-                }
-            };
-
-            // instructional button
-            var checkpointButton = new InstructionalButton("X", rm.GetString("route_designer_reg_cp"));
-            var altCheckpointButton = new InstructionalButton("Y", rm.GetString("route_designer_alt_cp"));
-            checkpointButton.BindToItem(route_designer_checkbox);
-            altCheckpointButton.BindToItem(route_designer_checkbox);
-            myMenu.AddInstructionalButton(checkpointButton);
-            myMenu.AddInstructionalButton(altCheckpointButton);
-
-            // checkbox for cam designer
-            var cam_designer_checkbox = new UIMenuCheckboxItem("Cam Designer", cam_designer_active, rm.GetString("menu_toggle_cam_designer"));
-            myMenu.AddItem(cam_designer_checkbox);
-            myMenu.RefreshIndex();
-
-            myMenu.OnCheckboxChange += (sender, item, checked_) =>
-            {
-                if (item == cam_designer_checkbox)
-                {
-                    if (race_initialized || race_started)
-                    {
-                        UI.Notify(rm.GetString("menu_not_during_task"));
-                        return;
-                    }
-
-                    lastPedPosition = Game.Player.Character.Position;
-                    cam_designer_active = checked_;
-                    exploration_mode = checked_;
-                    
-                    UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
-                }
-            };
-
-            // instructional button
-            var camDesignerButton = new InstructionalButton("X", rm.GetString("cam_designer_toggle"));
-            var camDesignerMove = new InstructionalButton("WASD/7/9/+/-", rm.GetString("cam_designer_cam_move"));
-            camDesignerButton.BindToItem(cam_designer_checkbox);
-            camDesignerMove.BindToItem(cam_designer_checkbox);
-            myMenu.AddInstructionalButton(camDesignerButton);
-            myMenu.AddInstructionalButton(camDesignerMove);
-
-            // checkbox for cam designer
-            var trafficLightCheckbox = new UIMenuCheckboxItem("Traffic Light Manager", trafficLightManagerActive, rm.GetString("menu_toggle_tl_mgr"));
-            myMenu.AddItem(trafficLightCheckbox);
-            myMenu.RefreshIndex();
-
-            myMenu.OnCheckboxChange += (sender, item, checked_) =>
-            {
-                if (item == trafficLightCheckbox)
-                {
-                    if (race_initialized || race_started)
-                    {
-                        UI.Notify(rm.GetString("menu_not_during_task"));
-                        return;
-                    }
-
-                    lastPedPosition = Game.Player.Character.Position;
-                    trafficLightManagerActive = checked_;
-                    exploration_mode = checked_;
-
-                    UI.Notify(String.Format(rm.GetString("tl_mgr_active"), trafficLightManagerActive));
-                }
-            };
-
-            // checkbox for debug mode
-            var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, rm.GetString("menu_toggle_debug"));
-            myMenu.AddItem(debug_checkbox);
-            myMenu.RefreshIndex();
-
-            myMenu.OnCheckboxChange += (sender, item, checked_) =>
-            {
-                if (item == debug_checkbox)
-                {
-                    debug = checked_;
-                    UI.Notify(String.Format(rm.GetString("debug_mode_active"), debug));
-                }
-            };
+            addRouteDesignerToggle();
+            addCamDesignerToggle();
+            addDebugModeCheckbox();
+            addIntroActiveCheckbox();
 
             // list of languages available
             var language_list = new UIMenuListItem(
@@ -2241,6 +2152,125 @@ namespace ModForResearchTUB
             myMenu.AddItem(newitem);
 
             _myMenuPool.Add(myMenu);
+        }
+
+        private void addDebugModeCheckbox() {
+            // checkbox for debug mode
+            var debug_checkbox = new UIMenuCheckboxItem("Debug mode", debug, rm.GetString("menu_toggle_debug"));
+            myMenu.AddItem(debug_checkbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == debug_checkbox)
+                {
+                    debug = checked_;
+                    UI.Notify(String.Format(rm.GetString("debug_mode_active"), debug));
+                }
+            };
+        }
+
+        private void addRouteDesignerToggle() {
+            // checkbox for route designer
+            var route_designer_checkbox = new UIMenuCheckboxItem("Route Designer", route_designer_active, rm.GetString("menu_toggle_route_designer"));
+            myMenu.AddItem(route_designer_checkbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == route_designer_checkbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify(rm.GetString("menu_not_during_task"));
+                        return;
+                    }
+
+                    route_designer_active = checked_;
+                    toggleRouteDesigner();
+                    UI.Notify(String.Format(rm.GetString("route_designer_active"), route_designer_active));
+                }
+            };
+
+            // instructional button
+            var checkpointButton = new InstructionalButton("X", rm.GetString("route_designer_reg_cp"));
+            var altCheckpointButton = new InstructionalButton("Y", rm.GetString("route_designer_alt_cp"));
+            checkpointButton.BindToItem(route_designer_checkbox);
+            altCheckpointButton.BindToItem(route_designer_checkbox);
+            myMenu.AddInstructionalButton(checkpointButton);
+            myMenu.AddInstructionalButton(altCheckpointButton);
+        }
+
+        private void addCamDesignerToggle() {
+            // checkbox for cam designer
+            var cam_designer_checkbox = new UIMenuCheckboxItem("Cam Designer", cam_designer_active, rm.GetString("menu_toggle_cam_designer"));
+            myMenu.AddItem(cam_designer_checkbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == cam_designer_checkbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify(rm.GetString("menu_not_during_task"));
+                        return;
+                    }
+
+                    lastPedPosition = Game.Player.Character.Position;
+                    cam_designer_active = checked_;
+                    exploration_mode = checked_;
+
+                    UI.Notify(String.Format(rm.GetString("cam_designer_active"), cam_designer_active));
+                }
+            };
+
+            // instructional button
+            var camDesignerButton = new InstructionalButton("X", rm.GetString("cam_designer_toggle"));
+            var camDesignerMove = new InstructionalButton("WASD/7/9/+/-", rm.GetString("cam_designer_cam_move"));
+            camDesignerButton.BindToItem(cam_designer_checkbox);
+            camDesignerMove.BindToItem(cam_designer_checkbox);
+            myMenu.AddInstructionalButton(camDesignerButton);
+            myMenu.AddInstructionalButton(camDesignerMove);
+
+            // checkbox for cam designer
+            var trafficLightCheckbox = new UIMenuCheckboxItem("Traffic Light Manager", trafficLightManagerActive, rm.GetString("menu_toggle_tl_mgr"));
+            myMenu.AddItem(trafficLightCheckbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == trafficLightCheckbox)
+                {
+                    if (race_initialized || race_started)
+                    {
+                        UI.Notify(rm.GetString("menu_not_during_task"));
+                        return;
+                    }
+
+                    lastPedPosition = Game.Player.Character.Position;
+                    trafficLightManagerActive = checked_;
+                    exploration_mode = checked_;
+
+                    UI.Notify(String.Format(rm.GetString("tl_mgr_active"), trafficLightManagerActive));
+                }
+            };
+        }
+
+        private void addIntroActiveCheckbox() {
+            // checkbox for showing long intro
+            var introCheckbox = new UIMenuCheckboxItem("Show long intro", intro.IntroActive, rm.GetString("menu_toggle_intro"));
+            myMenu.AddItem(introCheckbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == introCheckbox)
+                {
+                    intro.IntroActive = checked_;
+                    UI.Notify(String.Format(rm.GetString("long_intro_active"), intro.IntroActive));
+                }
+            };
         }
 
         private void toggleRouteDesigner() {

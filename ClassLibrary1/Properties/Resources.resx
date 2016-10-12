@@ -462,4 +462,10 @@
   <data name="intro7_3" xml:space="preserve">
     <value>Overall the test will take about 10min.</value>
   </data>
+  <data name="long_intro_active" xml:space="preserve">
+    <value>Long intro is active: {0}</value>
+  </data>
+  <data name="menu_toggle_intro" xml:space="preserve">
+    <value>Show long intro before playing?</value>
+  </data>
 </root>
