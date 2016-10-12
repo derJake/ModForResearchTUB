@@ -425,6 +425,9 @@ namespace ModForResearchTUB
                     }
                 }
             }
+
+            car.HandbrakeOn = true;
+
             World.RenderingCamera.StopPointing();
             // point camera
             World.RenderingCamera.Position = new Vector3(-195.3602f, 1486.22f, 289.9316f);
@@ -452,8 +455,6 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro6"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            //show regular camera
-            World.DestroyAllCameras();
             bmsg.ShowOldMessage(rm.GetString("intro7"), regularIntroSceneLength);
             Blip blip = World.CreateBlip(checkpoint_position);
             Function.Call(Hash._SET_RADAR_BIGMAP_ENABLED, 1, 0);
@@ -475,6 +476,10 @@ namespace ModForResearchTUB
 
             // remove checkpoint graphic
             Function.Call(Hash.DELETE_CHECKPOINT, mock_checkpoint);
+
+            // deactivate scriptcam
+            World.RenderingCamera = null;
+            car.HandbrakeOn = false;
 
             // some more driving
             //Vector3 target = new Vector3(217.9269f, 1327.979f, 238.8758f); // next intersection
@@ -503,13 +508,24 @@ namespace ModForResearchTUB
             player.Position = new Vector3(-130f, -1709.683f, 29.85f);
 
             // point camera
-            showVector(
+            var trafficLightCam = showVector(
                 new Vector3(-120.2002f, -1728f, 32f),
                 new Vector3(-4.43f, 0, -45f)
             );
             World.RenderingCamera.FieldOfView = 75;
 
             bmsg.ShowOldMessage(rm.GetString("intro8"), regularIntroSceneLength);
+
+            trafficLightCam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-116.5719f, -1723.378f, 35.87222f),
+                    new Vector3(-10.53937f, 3.415095E-06f, -38.5164f),
+                    50.20222f
+                ),
+                Convert.ToInt32(regularIntroSceneLength * 0.75),
+                true,
+                true
+            );
 
             // circle through traffic light states
             for (int i = 0; i < 7; i++)
@@ -521,10 +537,10 @@ namespace ModForResearchTUB
                         Function.Call(Hash.SET_ENTITY_TRAFFICLIGHT_OVERRIDE, ent, i%3);
                     }
                 }
-                Wait(1000);
+                Wait(1500);
             }
-            
-            Wait(regularIntroSceneLength);
+
+            //Wait(regularIntroSceneLength);
 
             // run over pedestrian
 
