@@ -1069,6 +1069,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You will drive agile this buggy. ähnelt.
+        /// </summary>
+        internal static string terminal_intro_5 {
+            get {
+                return ResourceManager.GetString("terminal_intro_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player drive against traffic ähnelt.
         /// </summary>
         internal static string times_against_traffic {

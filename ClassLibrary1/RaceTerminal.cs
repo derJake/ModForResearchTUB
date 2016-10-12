@@ -214,6 +214,8 @@ namespace ModForResearchTUB
             camLast.IsActive = true;
             World.RenderingCamera = camLast;
 
+            bmsg.ShowOldMessage(rm.GetString("terminal_intro_5"), regularIntroSceneLength);
+
             camLast.InterpTo(
                 World.CreateCamera(
                     new Vector3(805.2513f, -3043.604f, 5.435494f),
@@ -225,7 +227,7 @@ namespace ModForResearchTUB
                 true
             );
 
-            
+            Wait(regularIntroSceneLength);
 
             World.DestroyAllCameras();
             World.RenderingCamera = null;

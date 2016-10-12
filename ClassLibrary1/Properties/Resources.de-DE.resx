@@ -318,4 +318,7 @@
   <data name="terminal_intro_4" xml:space="preserve">
     <value>Die Aufgabe endet bei der Taquería.</value>
   </data>
+  <data name="terminal_intro_5" xml:space="preserve">
+    <value>Sie fahren diesen wendigen Buggy.</value>
+  </data>
 </root>
