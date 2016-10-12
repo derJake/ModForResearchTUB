@@ -259,6 +259,9 @@ namespace ModForResearchTUB
             Function.Call(Hash.FLASH_MINIMAP_DISPLAY);
             Wait(8000);
 
+            World.RenderingCamera = null;
+            World.DestroyAllCameras();
+
             player.IsInvincible = false;
             Game.Player.CanControlCharacter = true;
         }
