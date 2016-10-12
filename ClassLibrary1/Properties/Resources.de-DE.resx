@@ -306,4 +306,16 @@
   <data name="intro7_3" xml:space="preserve">
     <value>Insgesamt dauert der Test etwa 10min.</value>
   </data>
+  <data name="terminal_intro_1" xml:space="preserve">
+    <value>Diese Aufgabe beinhaltet wieder eine alternative Route.</value>
+  </data>
+  <data name="terminal_intro_2" xml:space="preserve">
+    <value>Die alternative Route führt durch schmale Gassen.</value>
+  </data>
+  <data name="terminal_intro_3" xml:space="preserve">
+    <value>Die normale Route führt entlang dieser Straße.</value>
+  </data>
+  <data name="terminal_intro_4" xml:space="preserve">
+    <value>Die Aufgabe endet bei der Taquería.</value>
+  </data>
 </root>

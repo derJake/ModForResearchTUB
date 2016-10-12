@@ -1033,11 +1033,38 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die There is an alternative route later on. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die This task has an alternative route again. ähnelt.
         /// </summary>
         internal static string terminal_intro_1 {
             get {
                 return ResourceManager.GetString("terminal_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The alternative route leads through small alleys. ähnelt.
+        /// </summary>
+        internal static string terminal_intro_2 {
+            get {
+                return ResourceManager.GetString("terminal_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The regular route leads along this road. ähnelt.
+        /// </summary>
+        internal static string terminal_intro_3 {
+            get {
+                return ResourceManager.GetString("terminal_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The task ends at the taco place. ähnelt.
+        /// </summary>
+        internal static string terminal_intro_4 {
+            get {
+                return ResourceManager.GetString("terminal_intro_4", resourceCulture);
             }
         }
         

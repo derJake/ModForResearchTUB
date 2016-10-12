@@ -439,7 +439,7 @@
     <value>Task {0}/{1}</value>
   </data>
   <data name="terminal_intro_1" xml:space="preserve">
-    <value>There is an alternative route later on.</value>
+    <value>This task has an alternative route again.</value>
   </data>
   <data name="no_settings" xml:space="preserve">
     <value>No settings were found in the configuration file.</value>
@@ -467,5 +467,14 @@
   </data>
   <data name="menu_toggle_intro" xml:space="preserve">
     <value>Show long intro before playing?</value>
+  </data>
+  <data name="terminal_intro_2" xml:space="preserve">
+    <value>The alternative route leads through small alleys.</value>
+  </data>
+  <data name="terminal_intro_3" xml:space="preserve">
+    <value>The regular route leads along this road.</value>
+  </data>
+  <data name="terminal_intro_4" xml:space="preserve">
+    <value>The task ends at the taco place.</value>
   </data>
 </root>

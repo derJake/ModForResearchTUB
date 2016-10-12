@@ -131,22 +131,90 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = false;
             var ped = Game.Player.Character;
             ped.IsInvincible = true;
+
+            // intro
+            ped.Position = new Vector3(834.0682f, -2460.903f, 26.09346f);
+
+            bmsg.ShowOldMessage(rm.GetString("terminal_intro_1"), regularIntroSceneLength);
+
+            Camera cam = World.CreateCamera(
+                new Vector3(825.8586f, -2450.914f, 25.3525f),
+                new Vector3(5.946738f, 1.334021E-07f, -3.860392f),
+                50f
+            );
+
+            Camera cam2 = World.CreateCamera(
+                new Vector3(829.6897f, -2374.563f, 29.85822f),
+                new Vector3(0.3948801f, 2.134434E-07f, -23.37468f),
+                62.79999f
+            );
+
+            cam.IsActive = true;
+            World.RenderingCamera = cam;
+            cam.InterpTo(cam2, 10000, true, true);
+
+            Wait(regularIntroSceneLength);
+
+            bmsg.ShowOldMessage(rm.GetString("terminal_intro_2"), regularIntroSceneLength);
+
+            Camera cam3 = World.CreateCamera(
+                new Vector3(846.8107f, -2328.636f, 49.60936f),
+                new Vector3(-35.63461f, 1.28066E-06f, -8.205003f),
+                82.00005f
+            );
+
+            World.RenderingCamera = cam2;
+            cam2.InterpTo(cam3, 10000, true, true);
+
+            Wait(regularIntroSceneLength);
+
+            // regular route
+            bmsg.ShowOldMessage(rm.GetString("terminal_intro_3"), regularIntroSceneLength);
+
+            Camera cam4 = World.CreateCamera(
+                new Vector3(747.2258f, -2460.846f, 34.20919f),
+                new Vector3(-25.7344f, 4.268869E-07f, -16.06508f),
+                74.80003f
+            );
+            World.RenderingCamera = cam4;
+
+            Camera cam5 = World.CreateCamera(
+                new Vector3(771.1152f, -2240.101f, 30.27721f),
+                new Vector3(2.739829f, -2.668042E-08f, -9.541548f),
+                50.01287f
+            );
+            cam2.InterpTo(cam5, 10000, true, true);
+
+            Wait(regularIntroSceneLength);
+
+            // show target
+            bmsg.ShowOldMessage(rm.GetString("terminal_intro_4"), regularIntroSceneLength);
+            ped.Position = new Vector3(958.2729f, -1422.381f, 31.3452f);
+            Camera cam6 = World.CreateCamera(
+                new Vector3(947.9563f, -1434.416f, 32.11513f),
+                new Vector3(4.151041f, 6.403302E-07f, -45.72819f),
+                33.20002f
+            );
+            World.RenderingCamera = cam6;
+            Wait(regularIntroSceneLength);
+
+            // take ped to actual harbor terminal
             ped.Position = new Vector3(806.9824f, -3042.711f, 5.74216f);
 
             raceVehicle = ut.createCarAt(VehicleHash.Bifta, new Vector3(808.551f, -3041.54f, 5.274242f), 56.59f);
 
             ped.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
-            Camera cam = World.CreateCamera(
+            Camera camLast = World.CreateCamera(
                 new Vector3(890.9266f, -3074.217f, 22.59832f),
                 new Vector3(-20.58238f, 8.537736E-07f, 60.61644f),
                 64.39999f
             );
 
-            cam.IsActive = true;
-            World.RenderingCamera = cam;
+            camLast.IsActive = true;
+            World.RenderingCamera = camLast;
 
-            cam.InterpTo(
+            camLast.InterpTo(
                 World.CreateCamera(
                     new Vector3(805.2513f, -3043.604f, 5.435494f),
                     new Vector3(20.04803f, 0f, -65.11039f),
@@ -157,8 +225,7 @@ namespace ModForResearchTUB
                 true
             );
 
-            bmsg.ShowOldMessage(rm.GetString("terminal_intro_1"), regularIntroSceneLength);
-            Wait(regularIntroSceneLength);
+            
 
             World.DestroyAllCameras();
             World.RenderingCamera = null;
