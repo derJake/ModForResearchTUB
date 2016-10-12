@@ -385,6 +385,13 @@ namespace ModForResearchTUB
                 // wait for player to drive to waypoint
                 while (!player.IsInRangeOf(waypoints[i], radius + radiustolerance)) {
                     Wait(50);
+                    // delete cars close to the last waypoint
+                    foreach (Vehicle otherCar in World.GetNearbyVehicles(waypoints[waypoints.Length - 1], 10)) {
+                        if (otherCar != car)
+                        {
+                            otherCar.Delete();
+                        }
+                    }
                 }
             }
             World.RenderingCamera.StopPointing();
