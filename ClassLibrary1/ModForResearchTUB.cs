@@ -2187,6 +2187,7 @@ namespace ModForResearchTUB
                     }
 
                     route_designer_active = checked_;
+                    Game.Player.Character.IsVisible = checked_;
                     toggleRouteDesigner();
                     UI.Notify(String.Format(rm.GetString("route_designer_active"), route_designer_active));
                 }
