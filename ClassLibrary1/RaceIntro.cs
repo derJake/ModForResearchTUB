@@ -142,6 +142,12 @@ namespace ModForResearchTUB
                 textbar.Text = timeLeft.ToString(@"mm\:ss");
                 barPool.Draw();
             }
+
+            foreach (Vehicle otherCar in World.GetNearbyVehicles(checkpoints[checkpoints.Length - 1].Item1, 5)) {
+                if (otherCar != raceVehicle) {
+                    otherCar.Delete();
+                }
+            }
         }
 
         public void initRace()
