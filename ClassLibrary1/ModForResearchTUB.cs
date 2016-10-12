@@ -259,6 +259,11 @@ namespace ModForResearchTUB
 
             _myMenuPool.ProcessMenus();
 
+            if (race_initialized || race_started) {
+                // have stay player in car and not shoot at things
+                disableUnwantedControls();
+            }
+
             if (race_started) {
                 // player has died -> abort race
                 if (Game.Player.IsDead) {
@@ -310,9 +315,6 @@ namespace ModForResearchTUB
 
                     // log speed, collisions, brakes, etc.
                     logVariables(res, safe);
-
-                    // have stay player in car and not shoot at things
-                    disableUnwantedControls();
 
                     // display what the next checkpoint to be reached is
                     if (currentCheckpoint >= 0)
