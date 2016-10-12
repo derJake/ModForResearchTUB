@@ -421,6 +421,8 @@ namespace ModForResearchTUB
 
                     setupNextCheckpoint();
                     races[currentRace].startRace();
+
+                    Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, Game.Player.Character.CurrentVehicle, 2);
                 }
             }
 
