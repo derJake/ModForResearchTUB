@@ -157,7 +157,10 @@ namespace ModForResearchTUB
 
             try
             {
-                m_dbConnection.Open();
+                if (m_dbConnection.State != ConnectionState.Open)
+                {
+                    m_dbConnection.Open();
+                }
                 return cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -168,7 +171,10 @@ namespace ModForResearchTUB
             }
             finally
             {
-                m_dbConnection.Close();
+                if (m_dbConnection.State == ConnectionState.Open)
+                {
+                    m_dbConnection.Close();
+                }
             }
             return 0;
         }
