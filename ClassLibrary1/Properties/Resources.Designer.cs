@@ -637,6 +637,42 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die In this task you drive a cross motorcycle. ähnelt.
+        /// </summary>
+        internal static string jesiah_intro_1 {
+            get {
+                return ResourceManager.GetString("jesiah_intro_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is a ramp jump which you can avoid. ähnelt.
+        /// </summary>
+        internal static string jesiah_intro_2 {
+            get {
+                return ResourceManager.GetString("jesiah_intro_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The jump leads over a gorge. ähnelt.
+        /// </summary>
+        internal static string jesiah_intro_3 {
+            get {
+                return ResourceManager.GetString("jesiah_intro_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Be sure to approach it with enough speed! ähnelt.
+        /// </summary>
+        internal static string jesiah_intro_4 {
+            get {
+                return ResourceManager.GetString("jesiah_intro_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Language selected:  ähnelt.
         /// </summary>
         internal static string language_selected {

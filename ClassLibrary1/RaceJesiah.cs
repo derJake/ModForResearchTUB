@@ -17,6 +17,9 @@ namespace ModForResearchTUB
         private Tuple<Vector3, Vector3?>[] checkpoints;
         Vehicle raceVehicle;
 
+        private Vector3 vehicleSpawnPosition = new Vector3(-223, 3886.454f, 37.09313f);
+        private float vehicleSpawnHeading = 1.4f;
+
         int regularIntroSceneLength = 10000;
 
         public CultureInfo CultureInfo { get; private set; }
@@ -113,34 +116,88 @@ namespace ModForResearchTUB
 
             raceVehicle = ut.createCarAt(
                 VehicleHash.Sanchez,
-                new Vector3(-223, 3886.454f, 37.09313f),
-                1.4f
+                vehicleSpawnPosition,
+                vehicleSpawnHeading
             );
 
             ped.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
 
-            //Camera cam = World.CreateCamera(
-            //    new Vector3(890.9266f, -3074.217f, 22.59832f),
-            //    new Vector3(-20.58238f, 8.537736E-07f, 60.61644f),
-            //    64.39999f
-            //);
+            bmsg.ShowOldMessage(rm.GetString("jesiah_intro_1"), regularIntroSceneLength);
 
-            //cam.IsActive = true;
-            //World.RenderingCamera = cam;
+            Camera cam = World.CreateCamera(
+                new Vector3(-227.4976f, 3883.823f, 39.39329f),
+                new Vector3(-3.245464f, 3.201651E-07f, -50.24673f),
+                61.19999f
+            );
 
-            //cam.InterpTo(
-            //    World.CreateCamera(
-            //        new Vector3(805.2513f, -3043.604f, 5.435494f),
-            //        new Vector3(20.04803f, 0f, -65.11039f),
-            //        70f
-            //    ),
-            //    regularIntroSceneLength,
-            //    true,
-            //    true
-            //);
+            cam.IsActive = true;
+            World.RenderingCamera = cam;
 
-            //bmsg.ShowOldMessage(rm.GetString("terminal_intro_1"), regularIntroSceneLength);
-            //Wait(regularIntroSceneLength);
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-212.0282f, 3878.323f, 37.97884f),
+                    new Vector3(5.618358f, -1.28066E-06f, 47.25439f),
+                    36.40001f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
+
+            Wait(regularIntroSceneLength);
+
+            // show ramp
+            raceVehicle.Position = new Vector3(-883.2684f, 4096.976f, 163.0778f);
+
+            bmsg.ShowOldMessage(rm.GetString("jesiah_intro_2"), regularIntroSceneLength);
+
+            Camera cam2 = World.CreateCamera(
+                new Vector3(-886.0941f, 4089.522f, 165.773f),
+                new Vector3(-14.47898f, -2.561321E-06f, 38.35268f),
+                50f
+            );
+
+            World.RenderingCamera = cam2;
+
+            cam2.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-931.7852f, 4140.451f, 165.0232f),
+                    new Vector3(-36.34506f, 8.537736E-07f, 56.64264f),
+                    50f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
+
+            Wait(regularIntroSceneLength);
+
+            bmsg.ShowOldMessage(rm.GetString("jesiah_intro_3"), regularIntroSceneLength);
+
+            Camera cam3 = World.CreateCamera(
+                new Vector3(-973.6657f, 4148.937f, 157.4709f),
+                new Vector3(-37.56199f, -2.134434E-06f, 4.579413f),
+                56.39999f
+            );
+            World.RenderingCamera = cam3;
+
+            Wait(regularIntroSceneLength);
+
+            bmsg.ShowOldMessage(rm.GetString("jesiah_intro_4"), regularIntroSceneLength);
+
+            Camera cam4 = World.CreateCamera(
+                new Vector3(-1048.025f, 4239.32f, 145.8998f),
+                new Vector3(-12.56698f, -1.28066E-06f, -145.7042f),
+                50f
+            );
+            World.RenderingCamera = cam4;
+
+            Wait(regularIntroSceneLength);
+
+            // reset vehicle to start position
+
+            raceVehicle.Position = vehicleSpawnPosition;
+            raceVehicle.Heading = vehicleSpawnHeading;
 
             World.DestroyAllCameras();
             World.RenderingCamera = null;

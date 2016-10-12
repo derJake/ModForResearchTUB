@@ -306,6 +306,18 @@
   <data name="intro7_3" xml:space="preserve">
     <value>Insgesamt dauert der Test etwa 10min.</value>
   </data>
+  <data name="jesiah_intro_1" xml:space="preserve">
+    <value>In dieser Aufgabe fahren Sie ein Cross-Motorrad.</value>
+  </data>
+  <data name="jesiah_intro_2" xml:space="preserve">
+    <value>Es gibt eine Sprungschanze, die sie umfahren können.</value>
+  </data>
+  <data name="jesiah_intro_3" xml:space="preserve">
+    <value>Dahinter liegt eine Schlucht.</value>
+  </data>
+  <data name="jesiah_intro_4" xml:space="preserve">
+    <value>Fahren Sie mit genügend Geschwindigkeit über die Schanze!</value>
+  </data>
   <data name="terminal_intro_1" xml:space="preserve">
     <value>Diese Aufgabe beinhaltet wieder eine alternative Route.</value>
   </data>

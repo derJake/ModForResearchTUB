@@ -462,6 +462,18 @@
   <data name="intro7_3" xml:space="preserve">
     <value>Overall the test will take about 10min.</value>
   </data>
+  <data name="jesiah_intro_1" xml:space="preserve">
+    <value>In this task you drive a cross motorcycle.</value>
+  </data>
+  <data name="jesiah_intro_2" xml:space="preserve">
+    <value>There is a ramp jump which you can avoid.</value>
+  </data>
+  <data name="jesiah_intro_3" xml:space="preserve">
+    <value>The jump leads over a gorge.</value>
+  </data>
+  <data name="jesiah_intro_4" xml:space="preserve">
+    <value>Be sure to approach it with enough speed!</value>
+  </data>
   <data name="long_intro_active" xml:space="preserve">
     <value>Long intro is active: {0}</value>
   </data>
