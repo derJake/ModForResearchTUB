@@ -206,7 +206,7 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
-            raceVehicle.IsInvincible = false;
+            //raceVehicle.IsInvincible = false;
         }
 
         public void startRace()
