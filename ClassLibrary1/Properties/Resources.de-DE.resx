@@ -297,4 +297,13 @@
   <data name="intro_5_1" xml:space="preserve">
     <value>Die Aufgabe dauern etwa zwischen 1 und 3min.</value>
   </data>
+  <data name="intro7_1" xml:space="preserve">
+    <value>Jede Aufgabe beinhaltet eine Entscheidungssituation.</value>
+  </data>
+  <data name="intro7_2" xml:space="preserve">
+    <value>Dabei gibt es kein richtig oder falsch.</value>
+  </data>
+  <data name="intro7_3" xml:space="preserve">
+    <value>Insgesamt dauert der Test etwa 10min.</value>
+  </data>
 </root>
