@@ -200,10 +200,31 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro22"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            Vector3 checkpoint_position = new Vector3(-780.5286f, -78.88348f, 37.79788f);
+
+            int mock_checkpoint = Function.Call<int>(Hash.CREATE_CHECKPOINT,
+                2, // type
+                checkpoint_position.X,
+                checkpoint_position.Y,
+                checkpoint_position.Z,
+                0, // facing next checkpoint?
+                0,
+                0,
+                5.0f,    // radius
+                255,    // R
+                155,     // G
+                0,        // B
+                100,    // Alpha
+                0 // number displayed in marker, if type is 42-44
+                );
+
             World.RenderingCamera.Position = new Vector3(-773, -86, 43f);
             World.RenderingCamera.Rotation = new Vector3(-10f, 0, 76);
             bmsg.ShowOldMessage(rm.GetString("intro23"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
+
+            // remove checkpoint graphic
+            Function.Call(Hash.DELETE_CHECKPOINT, mock_checkpoint);
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
