@@ -183,7 +183,7 @@ namespace ModForResearchTUB
                 new Vector3(2.739829f, -2.668042E-08f, -9.541548f),
                 50.01287f
             );
-            cam2.InterpTo(cam5, 10000, true, true);
+            cam4.InterpTo(cam5, 10000, true, true);
 
             Wait(regularIntroSceneLength);
 
