@@ -165,7 +165,7 @@ namespace ModForResearchTUB
                     num_take_overs++;
                 }
 
-                if (currentDistance > 150)
+                if (currentDistance > 50)
                 {
                     hintAtLeader();
                 }
@@ -317,10 +317,10 @@ namespace ModForResearchTUB
         private void hintAtLeader() {
             World.DrawMarker(
                 MarkerType.ThickChevronUp,
-                leader.Position + new Vector3(0,0,10),
+                leader.Position + new Vector3(0,0,7),
                 new Vector3(),
-                new Vector3(180, 0, 0),
-                new Vector3(10,10,10),
+                new Vector3(180, 0, 90),
+                new Vector3(7,7,7),
                 Color.Blue
             );
         }
