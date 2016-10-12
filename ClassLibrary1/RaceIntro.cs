@@ -176,7 +176,7 @@ namespace ModForResearchTUB
             raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
             // make player enter vehicle
-            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            //Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
             var bmsg = BigMessageThread.MessageInstance;
 
             Game.Player.CanControlCharacter = false;
