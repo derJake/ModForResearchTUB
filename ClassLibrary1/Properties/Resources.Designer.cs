@@ -592,6 +592,33 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Each task will contain a decision event. ähnelt.
+        /// </summary>
+        internal static string intro7_1 {
+            get {
+                return ResourceManager.GetString("intro7_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are no right or wrong decisions. ähnelt.
+        /// </summary>
+        internal static string intro7_2 {
+            get {
+                return ResourceManager.GetString("intro7_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Overall the test will take about 10min. ähnelt.
+        /// </summary>
+        internal static string intro7_3 {
+            get {
+                return ResourceManager.GetString("intro7_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You can either adhere to the traffic rules or ignore them. ähnelt.
         /// </summary>
         internal static string intro8 {

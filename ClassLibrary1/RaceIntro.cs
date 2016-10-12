@@ -438,6 +438,26 @@ namespace ModForResearchTUB
             // remove checkpoint graphic
             Function.Call(Hash.DELETE_CHECKPOINT, mock_checkpoint);
 
+            // some more driving
+            //Vector3 target = new Vector3(217.9269f, 1327.979f, 238.8758f); // next intersection
+
+            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, true);
+
+            Vector3 target = new Vector3(743.7599f, 1199.881f, 325.914f); // Hollywood Sign
+            player.Task.DriveTo(car, target, radius, speed);
+            Function.Call(Hash.SET_DRIVE_TASK_DRIVING_STYLE, player, 1 << 9);
+
+            bmsg.ShowOldMessage(rm.GetString("intro7_1"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            bmsg.ShowOldMessage(rm.GetString("intro7_2"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            bmsg.ShowOldMessage(rm.GetString("intro7_3"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
+            Function.Call(Hash.SET_CINEMATIC_MODE_ACTIVE, false);
+
             // show traffic light
 
             World.CurrentDayTime = new TimeSpan(7, 0, 0);

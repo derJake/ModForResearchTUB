@@ -453,4 +453,13 @@
   <data name="resets" xml:space="preserve">
     <value>Times player was reset after being lost.</value>
   </data>
+  <data name="intro7_1" xml:space="preserve">
+    <value>Each task will contain a decision event.</value>
+  </data>
+  <data name="intro7_2" xml:space="preserve">
+    <value>There are no right or wrong decisions.</value>
+  </data>
+  <data name="intro7_3" xml:space="preserve">
+    <value>Overall the test will take about 10min.</value>
+  </data>
 </root>
