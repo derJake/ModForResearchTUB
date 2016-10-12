@@ -35,6 +35,7 @@ namespace ModForResearchTUB
         private TimerBarPool barPool = new TimerBarPool();
         private TextTimerBar textbar;
         private int introPlayTime = 600;
+        private bool introActive = true;
         private int raceEndTime;
 
         private List<Vehicle> cars;
@@ -152,7 +153,10 @@ namespace ModForResearchTUB
             // while we're showing what's to come, we don't want the player hurt
             Game.Player.Character.IsInvincible = true;
 
-            doIntroSequence();
+            if (introActive)
+            {
+                doIntroSequence();
+            }
 
             Game.Player.Character.IsInvincible = false;
 
@@ -915,6 +919,19 @@ namespace ModForResearchTUB
         public Dictionary<string, float> getSingularDataValues()
         {
             throw new NotImplementedException();
+        }
+
+        public bool IntroActive
+        {
+            get
+            {
+                return introActive;
+            }
+
+            set
+            {
+                introActive = value;
+            }
         }
     }
 }
