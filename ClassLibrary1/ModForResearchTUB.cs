@@ -212,6 +212,7 @@ namespace ModForResearchTUB
 
             // Initialize Events
             Tick += this.OnTickEvent;
+            Tick += intro.handleCharSelection;
             KeyDown += this.KeyDownEvent;
             KeyUp += this.KeyUpEvent;
 

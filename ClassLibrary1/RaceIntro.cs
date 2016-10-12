@@ -34,8 +34,12 @@ namespace ModForResearchTUB
 
         private TimerBarPool barPool = new TimerBarPool();
         private TextTimerBar textbar;
-        private int introPlayTime = 600;
-        private bool introActive = true;
+        private int introPlayTime = 600,
+            selectedCharacter = 0,
+            lastCharSelectInput = 0;
+        private bool introActive = true,
+            charSelectionActive = false,
+            charSelected = false;
         private int raceEndTime;
 
         private List<Vehicle> cars;
@@ -182,7 +186,7 @@ namespace ModForResearchTUB
             raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
             // make player enter vehicle
-            //Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+            Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
             var bmsg = BigMessageThread.MessageInstance;
 
             Game.Player.CanControlCharacter = false;
@@ -234,6 +238,8 @@ namespace ModForResearchTUB
 
             World.RenderingCamera = null;
             World.DestroyAllCameras();
+
+            //charSelection();
 
             Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
@@ -974,6 +980,83 @@ namespace ModForResearchTUB
             set
             {
                 introActive = value;
+            }
+        }
+
+        private void charSelection() {
+            peds = new List<Ped>(3);
+            var heading = 10;
+
+            Game.Player.Character.Position = car_selection + new Vector3(4,0,0);
+
+            Ped franklin = ut.createPedAt(PedHash.Franklin, car_selection + new Vector3(2,0,0));
+            Ped trevor = ut.createPedAt(PedHash.Trevor, car_selection);
+
+            peds.Add(Game.Player.Character);
+            peds.Add(franklin);
+            peds.Add(trevor);
+
+            foreach (Ped ped in peds) {
+                ped.Heading = heading;
+            }
+
+            Camera cam = World.CreateCamera(
+                new Vector3(-744.9541f, -69.96282f, 42.44214f),
+                new Vector3(-2.048578f, -6.536705E-07f, 174.0962f),
+                61.19999f
+            );
+
+            World.RenderingCamera = cam;
+
+            charSelectionActive = true;
+        }
+
+        public void handleCharSelection(object sender, EventArgs e) {
+            SizeF res = UIMenu.GetScreenResolutionMantainRatio();
+            Point safe = UIMenu.GetSafezoneBounds();
+
+            Game.Player.CanControlCharacter = charSelected;
+            Game.Player.IsInvincible = !charSelected;
+
+            if (charSelectionActive) {
+                var pos = peds[selectedCharacter].Position;
+
+                World.DrawMarker(
+                    MarkerType.VerticalCylinder,
+                    pos - new Vector3(0,0,1),
+                    new Vector3(),
+                    new Vector3(),
+                    new Vector3(2,2,1),
+                    Color.Yellow
+                );
+
+                new UIResText(
+                    String.Format("Select by turning the wheel"),
+                    new Point((Convert.ToInt32(res.Width)/2 - 200), 75),
+                    0.5f,
+                    Color.White
+                ).Draw();
+
+                new UIResText(
+                    String.Format("Confirm selection with blue button"),
+                    new Point((Convert.ToInt32(res.Width) / 2 - 200), 125),
+                    0.5f,
+                    Color.White
+                ).Draw();
+
+                if (lastCharSelectInput + 250 < Game.GameTime) {
+                    if (Game.IsKeyPressed(Keys.A)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100) {
+                        selectedCharacter = peds.Count - (((selectedCharacter + 1) % peds.Count) - 1);
+                        lastCharSelectInput = Game.GameTime;
+                    }
+                    if (Game.IsKeyPressed(Keys.D)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
+                    {
+                        selectedCharacter = (selectedCharacter + 1) % peds.Count;
+                        lastCharSelectInput = Game.GameTime;
+                    }
+                }
             }
         }
     }
