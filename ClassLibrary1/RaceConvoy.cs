@@ -207,6 +207,9 @@ namespace ModForResearchTUB
             // create the vehicles
             raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
             leader = ut.createCarAt(vehicleHash, leader_spawnpoint, leader_heading);
+            leader.CustomPrimaryColor = Color.Cyan;
+            Function.Call(Hash.SET_VEHICLE_MOD_COLOR_1, leader, 5, 0);
+            leader.PearlescentColor = VehicleColor.Chrome;
             leader.IsInvincible = true;
 
             // create the ped driving the leading vehicle
