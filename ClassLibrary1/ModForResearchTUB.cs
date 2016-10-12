@@ -18,6 +18,7 @@ using System.Threading;
 using System.ComponentModel;
 using System.Collections.Specialized;
 using System.Reflection;
+using System.Threading;
 #endregion
 
 namespace ModForResearchTUB
@@ -426,7 +427,7 @@ namespace ModForResearchTUB
                     setupNextCheckpoint();
                     races[currentRace].startRace();
 
-                    Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, Game.Player.Character.CurrentVehicle, 2);
+                    secureCar();
                 }
             }
 
@@ -466,12 +467,15 @@ namespace ModForResearchTUB
 
                 try
                 {
-                    DrawDiagram.renderDiagramToDisk(
-                        item.Value,
-                        item.Key,
-                        item.Key,
-                        "-" + current_data_set_id + "-" + currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
+                    var diagramRenderer = new Thread(
+                        () => DrawDiagram.renderDiagramToDisk(
+                            item.Value,
+                            item.Key,
+                            item.Key,
+                            "-" + current_data_set_id + "-" + currentPlayerName + "-race-" + races[currentRace].getCanonicalName() + "-" + item.Key
+                        )
                     );
+                    diagramRenderer.Start();
                 }
                 catch (ThreadAbortException tae) {
                     Logger.Log(String.Format("{0} diagram drawing thread aborted", item.Key));
@@ -647,6 +651,15 @@ namespace ModForResearchTUB
 
             // don't let player exit his racecar by conventional means
             Game.DisableControl(0, GTA.Control.VehicleExit);
+        }
+
+        private void secureCar() {
+            Function.Call(Hash.SET_VEHICLE_DOORS_LOCKED, Game.Player.Character.CurrentVehicle, 2);
+
+            Game.Player.Character.CanBeTargetted = false;
+            Game.Player.Character.CanBeKnockedOffBike = false;
+            Game.Player.Character.CanBeDraggedOutOfVehicle = false;
+            Game.Player.Character.CanSwitchWeapons = false;
         }
 
         private void toggleRaceCarBlip() {
@@ -1731,7 +1744,10 @@ namespace ModForResearchTUB
                     attributeId = database_interface.createAttribute(data.Key, rm.GetString(data.Key));
                 }
 
-                database_interface.insertDataCollection(attributeId, taskId, current_data_set_id, data.Value);
+                var dataCollectionInserter = new Thread(
+                    () => database_interface.insertDataCollection(attributeId, taskId, current_data_set_id, data.Value)
+                );
+                dataCollectionInserter.Start();
             }
         }
 
