@@ -1629,6 +1629,10 @@ namespace ModForResearchTUB
             Ped player = Game.Player.Character;
             Vector3 pos = player.Position;
             player.Task.ClearAllImmediately(); // give back control to player
+            player.FreezePosition = false;
+            player.IsInvincible = false;
+            player.IsVisible = true;
+            Game.Player.CanControlCharacter = true;
 
             // clear map blip
             if (currentBlip != null)
@@ -1688,6 +1692,9 @@ namespace ModForResearchTUB
             }
 
             collectedData = new Dictionary<string, Dictionary<string, double>>();
+
+            // reset camera to default cam
+            World.RenderingCamera = null;
         }
 
         protected void writeRaceDataToLog() {
