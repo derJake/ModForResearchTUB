@@ -16,9 +16,7 @@ using System.Resources;
 using System.IO;
 using System.Threading;
 using System.ComponentModel;
-using System.Collections.Specialized;
 using System.Reflection;
-using System.Threading;
 #endregion
 
 namespace ModForResearchTUB
