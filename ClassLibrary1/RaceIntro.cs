@@ -1088,10 +1088,13 @@ namespace ModForResearchTUB
                     }
                 }
             }
-            else if (charSelected && !checkRaceStartCondition()) {
+            else if (charSelected 
+                && !(raceEndTime > 0 && Game.GameTime > raceEndTime)
+                || (Game.Player.Character.CurrentVehicle != null
+                    && Game.Player.Character.CurrentVehicle != raceVehicle)) {
                 new UIResText(
                     rm.GetString("intro24"),
-                    new Point((Convert.ToInt32(res.Width) / 2 - 200), 125),
+                    new Point((Convert.ToInt32(res.Width) / 2 - 400), 125),
                     0.5f,
                     Color.White
                 ).Draw();
