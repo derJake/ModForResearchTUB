@@ -636,22 +636,22 @@ namespace ModForResearchTUB
             // Function.Call(Hash.STOP_PLAYER_SWITCH); doesn't really stop player from switching
 
             // disable controls that might interfere with the test
-            Game.DisableControl(0, GTA.Control.SelectCharacterFranklin);
-            Game.DisableControl(0, GTA.Control.SelectCharacterMichael);
-            Game.DisableControl(0, GTA.Control.SelectNextWeapon);
-            Game.DisableControl(0, GTA.Control.SelectPrevWeapon);
-            Game.DisableControl(0, GTA.Control.SelectWeapon);
+            Game.DisableControlThisFrame(0, GTA.Control.SelectCharacterFranklin);
+            Game.DisableControlThisFrame(0, GTA.Control.SelectCharacterMichael);
+            Game.DisableControlThisFrame(0, GTA.Control.SelectNextWeapon);
+            Game.DisableControlThisFrame(0, GTA.Control.SelectPrevWeapon);
+            Game.DisableControlThisFrame(0, GTA.Control.SelectWeapon);
             // disable shooting from car?
-            Game.DisableControl(0, GTA.Control.AccurateAim);
-            Game.DisableControl(0, GTA.Control.VehiclePassengerAim);
+            Game.DisableControlThisFrame(0, GTA.Control.AccurateAim);
+            Game.DisableControlThisFrame(0, GTA.Control.VehiclePassengerAim);
             // this actually seems to prevent shooting out of the car's window
-            Game.DisableControl(0, GTA.Control.Aim);
-            Game.DisableControl(0, GTA.Control.VehicleAim);
-            Game.DisableControl(0, GTA.Control.VehicleSelectNextWeapon);
-            Game.DisableControl(0, GTA.Control.VehicleSelectPrevWeapon);
+            Game.DisableControlThisFrame(0, GTA.Control.Aim);
+            Game.DisableControlThisFrame(0, GTA.Control.VehicleAim);
+            Game.DisableControlThisFrame(0, GTA.Control.VehicleSelectNextWeapon);
+            Game.DisableControlThisFrame(0, GTA.Control.VehicleSelectPrevWeapon);
 
             // don't let player exit his racecar by conventional means
-            Game.DisableControl(0, GTA.Control.VehicleExit);
+            Game.DisableControlThisFrame(0, GTA.Control.VehicleExit);
         }
 
         private void secureCar() {
@@ -1438,7 +1438,7 @@ namespace ModForResearchTUB
                     // get traffic lights in front of player, that look roughly in the same direction
                     if (trafficSignalHashes.Contains(ent.Model.Hash) &&
                         Math.Abs(ent.Heading - heading) < 30f &&
-                        ent.IsInArea(nearLimit, farLimit, 0)
+                        ent.IsInAngledArea(nearLimit, farLimit, 0)
                         && debug)
                     {
                         var dist = World.GetDistance(pos, ent.Position);
@@ -1487,7 +1487,7 @@ namespace ModForResearchTUB
 
                         // check for other cars in front of player looking in the same direction
                         if (Math.Abs(car.Heading - lastTrafficLight.Heading) < 30f &&
-                            car.IsInArea(stoppedNearlimit, stoppedFarLimit, 0))
+                            car.IsInAngledArea(stoppedNearlimit, stoppedFarLimit, 0))
                         {
 
                             // check if they are stopped at a red light
