@@ -547,6 +547,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press the yellow button to enter the car. ähnelt.
+        /// </summary>
+        internal static string intro24 {
+            get {
+                return ResourceManager.GetString("intro24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You control one of these three player characters. ähnelt.
         /// </summary>
         internal static string intro3 {

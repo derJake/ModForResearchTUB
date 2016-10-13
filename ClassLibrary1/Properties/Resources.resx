@@ -492,4 +492,7 @@
   <data name="terminal_intro_5" xml:space="preserve">
     <value>You will drive agile this buggy.</value>
   </data>
+  <data name="intro24" xml:space="preserve">
+    <value>Press the yellow button to enter the car.</value>
+  </data>
 </root>
