@@ -154,6 +154,7 @@ namespace ModForResearchTUB
 
         private int insertDataSubset(String sql) {
             SqlCommand cmd = new SqlCommand(sql, m_dbConnection);
+            cmd.CommandTimeout = 600;
 
             try
             {
