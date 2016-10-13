@@ -1096,6 +1096,7 @@ namespace ModForResearchTUB
             }
 
             loadAndSetPlayerModel(modelName + modelSuffix);
+            removeOtherPeds();
         }
 
         private void loadAndSetPlayerModel(String pedModelName) {
@@ -1113,6 +1114,14 @@ namespace ModForResearchTUB
                 Game.Player.ChangeModel(pedmodel);
 
                 pedmodel.MarkAsNoLongerNeeded();
+            }
+        }
+
+        private void removeOtherPeds() {
+            foreach (Ped ped in peds) {
+                if (ped != Game.Player.Character) {
+                    ped.Delete();
+                }
             }
         }
     }
