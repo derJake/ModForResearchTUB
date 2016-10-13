@@ -529,7 +529,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You can drive wherever you want. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can explore the street network ähnelt.
         /// </summary>
         internal static string intro22 {
             get {
