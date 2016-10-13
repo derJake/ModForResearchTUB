@@ -1739,17 +1739,23 @@ namespace ModForResearchTUB
 
             // sets of lots of values
             foreach (KeyValuePair<string, Dictionary<string, double>> data in collectedData) {
-                int attributeId = database_interface.getAttributeId(data.Key);
-                if (!(attributeId > 0))
-                {
-                    attributeId = database_interface.createAttribute(data.Key, rm.GetString(data.Key));
-                }
-
-                var dataCollectionInserter = new Thread(
-                    () => database_interface.insertDataCollection(attributeId, taskId, current_data_set_id, data.Value)
-                );
-                dataCollectionInserter.Start();
+                doThreadedDBInsert(data, taskId);
             }
+        }
+
+        private void doThreadedDBInsert(KeyValuePair<string, Dictionary<string, double>> data, int taskId) {
+            DBI threadDBI = new DBI(host);
+
+            int attributeId = threadDBI.getAttributeId(data.Key);
+            if (!(attributeId > 0))
+            {
+                attributeId = threadDBI.createAttribute(data.Key, rm.GetString(data.Key));
+            }
+
+            var dataCollectionInserter = new Thread(
+                () => threadDBI.insertDataCollection(attributeId, taskId, current_data_set_id, data.Value)
+            );
+            dataCollectionInserter.Start();
         }
 
         protected Dictionary<String, float> mapCollectedDataForDB() {
