@@ -1040,14 +1040,14 @@ namespace ModForResearchTUB
                 ).Draw();
 
                 new UIResText(
-                    String.Format("Confirm selection with blue button"),
+                    rm.GetString("intro23_1"),
                     new Point((Convert.ToInt32(res.Width) / 2 - 200), 125),
                     0.5f,
                     Color.White
                 ).Draw();
 
                 // provide some delay, so player can react
-                if (lastCharSelectInput + 250 < Game.GameTime)
+                if (lastCharSelectInput + 1000 < Game.GameTime)
                 {
 
                     // cycle left
@@ -1055,7 +1055,7 @@ namespace ModForResearchTUB
                         || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
                         || Game.IsControlPressed(0, GTA.Control.MoveLeft))
                     {
-                        selectedCharacter = (peds.Count - ((selectedCharacter + 1) % peds.Count)) - 1;
+                        selectedCharacter = (peds.Count - 1) - ((selectedCharacter + 1) % peds.Count);
                         lastCharSelectInput = Game.GameTime;
                     }
 
