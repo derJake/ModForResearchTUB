@@ -1077,6 +1077,8 @@ namespace ModForResearchTUB
                             charSelected = true;
                             charSelectionActive = false;
 
+                            World.RenderingCamera = null;
+
                             changePedToSelectedSkin();
                         }
                     }
