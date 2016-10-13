@@ -1019,21 +1019,22 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = charSelected;
             Game.Player.IsInvincible = !charSelected;
 
-            if (charSelectionActive) {
+            if (charSelectionActive)
+            {
                 var pos = peds[selectedCharacter].Position;
 
                 World.DrawMarker(
                     MarkerType.VerticalCylinder,
-                    pos - new Vector3(0,0,1),
+                    pos - new Vector3(0, 0, 1),
                     new Vector3(),
                     new Vector3(),
-                    new Vector3(2,2,1),
+                    new Vector3(2, 2, 1),
                     Color.Yellow
                 );
 
                 new UIResText(
                     String.Format("Select by turning the wheel"),
-                    new Point((Convert.ToInt32(res.Width)/2 - 200), 75),
+                    new Point((Convert.ToInt32(res.Width) / 2 - 200), 75),
                     0.5f,
                     Color.White
                 ).Draw();
@@ -1046,12 +1047,14 @@ namespace ModForResearchTUB
                 ).Draw();
 
                 // provide some delay, so player can react
-                if (lastCharSelectInput + 250 < Game.GameTime) {
+                if (lastCharSelectInput + 250 < Game.GameTime)
+                {
 
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
                         || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
-                        || Game.IsControlPressed(0, GTA.Control.MoveLeft)) {
+                        || Game.IsControlPressed(0, GTA.Control.MoveLeft))
+                    {
                         selectedCharacter = (peds.Count - ((selectedCharacter + 1) % peds.Count)) - 1;
                         lastCharSelectInput = Game.GameTime;
                     }
@@ -1067,13 +1070,15 @@ namespace ModForResearchTUB
 
                     // pressing confirm button
                     if (Game.IsKeyPressed(Keys.Enter)
-                        || Game.IsControlPressed(0, GTA.Control.Enter)) {
+                        || Game.IsControlPressed(0, GTA.Control.Enter))
+                    {
 
                         if (!charSelectionConfirmed)
                         {
                             charSelectionConfirmed = true;
                         }
-                        else {
+                        else
+                        {
                             charSelected = true;
                             charSelectionActive = false;
 
@@ -1083,6 +1088,14 @@ namespace ModForResearchTUB
                         }
                     }
                 }
+            }
+            else if (charSelected && !checkRaceStartCondition()) {
+                new UIResText(
+                    rm.GetString("intro24"),
+                    new Point((Convert.ToInt32(res.Width) / 2 - 200), 125),
+                    0.5f,
+                    Color.White
+                ).Draw();
             }
         }
 
