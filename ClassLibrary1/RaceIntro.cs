@@ -1050,14 +1050,16 @@ namespace ModForResearchTUB
 
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100) {
-                        selectedCharacter = peds.Count - (((selectedCharacter + 1) % peds.Count) - 1);
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
+                        || Game.IsControlPressed(0, GTA.Control.MoveLeft)) {
+                        selectedCharacter = (peds.Count - ((selectedCharacter + 1) % peds.Count)) - 1;
                         lastCharSelectInput = Game.GameTime;
                     }
 
                     // cycle right
                     if (Game.IsKeyPressed(Keys.D)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155
+                        || Game.IsControlPressed(0, GTA.Control.MoveRight))
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
