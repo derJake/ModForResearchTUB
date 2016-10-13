@@ -492,6 +492,12 @@
   <data name="terminal_intro_5" xml:space="preserve">
     <value>You will drive agile this buggy.</value>
   </data>
+  <data name="intro23_1" xml:space="preserve">
+    <value>Press the yellow button to select a character.</value>
+  </data>
+  <data name="intro23_2" xml:space="preserve">
+    <value>Turn the wheel to cycle through characters.</value>
+  </data>
   <data name="intro24" xml:space="preserve">
     <value>Press the yellow button to enter the car.</value>
   </data>

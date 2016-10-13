@@ -547,6 +547,24 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press the yellow button to select a character. ähnelt.
+        /// </summary>
+        internal static string intro23_1 {
+            get {
+                return ResourceManager.GetString("intro23_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Turn the wheel to cycle through characters. ähnelt.
+        /// </summary>
+        internal static string intro23_2 {
+            get {
+                return ResourceManager.GetString("intro23_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press the yellow button to enter the car. ähnelt.
         /// </summary>
         internal static string intro24 {
