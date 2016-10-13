@@ -392,7 +392,9 @@ namespace ModForResearchTUB
                                 races[currentRace].initRace();
                             } else {
                                 toggleScenarios(true);
-                                UI.Notify(rm.GetString("last_race"));
+                                var str = rm.GetString("last_race");
+                                UI.Notify(str);
+                                bmsg.ShowMpMessageLarge(str);
                             }
                             return;
                         }
