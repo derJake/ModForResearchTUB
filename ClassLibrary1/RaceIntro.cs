@@ -1016,11 +1016,10 @@ namespace ModForResearchTUB
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
 
-            Game.Player.CanControlCharacter = charSelected;
-            Game.Player.IsInvincible = !charSelected;
-
             if (charSelectionActive)
             {
+                Game.Player.CanControlCharacter = charSelected;
+                Game.Player.IsInvincible = !charSelected;
                 var pos = peds[selectedCharacter].Position;
 
                 World.DrawMarker(
