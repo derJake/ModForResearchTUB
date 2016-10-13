@@ -39,6 +39,7 @@ namespace ModForResearchTUB
             lastCharSelectInput = 0;
         private bool introActive = true,
             charSelectionActive = false,
+            charSelectionConfirmed = false,
             charSelected = false;
         private int raceEndTime;
 
@@ -239,7 +240,7 @@ namespace ModForResearchTUB
             World.RenderingCamera = null;
             World.DestroyAllCameras();
 
-            //charSelection();
+            charSelection();
 
             Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
@@ -1044,19 +1045,74 @@ namespace ModForResearchTUB
                     Color.White
                 ).Draw();
 
+                // provide some delay, so player can react
                 if (lastCharSelectInput + 250 < Game.GameTime) {
+
+                    // cycle left
                     if (Game.IsKeyPressed(Keys.A)
                         || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100) {
                         selectedCharacter = peds.Count - (((selectedCharacter + 1) % peds.Count) - 1);
                         lastCharSelectInput = Game.GameTime;
                     }
+
+                    // cycle right
                     if (Game.IsKeyPressed(Keys.D)
                         || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
                     }
+
+                    // pressing confirm button
+                    if (Game.IsKeyPressed(Keys.Enter)
+                        || Game.IsControlPressed(0, GTA.Control.Enter)) {
+
+                        if (!charSelectionConfirmed)
+                        {
+                            charSelectionConfirmed = true;
+                        }
+                        else {
+                            charSelected = true;
+                            charSelectionActive = false;
+
+                            changePedToSelectedSkin();
+                        }
+                    }
                 }
+            }
+        }
+
+        private void changePedToSelectedSkin() {
+            String modelSuffix = "zero",
+                modelName = "player_";
+
+            switch (selectedCharacter) {
+                case 1:
+                    modelSuffix = "one";
+                    break;
+                case 2:
+                    modelSuffix = "two";
+                    break;
+            }
+
+            loadAndSetPlayerModel(modelName + modelSuffix);
+        }
+
+        private void loadAndSetPlayerModel(String pedModelName) {
+            var pedmodel = new Model(pedModelName);
+            pedmodel.Request();
+
+            if (pedmodel.IsInCdImage &&
+                pedmodel.IsValid
+                )
+            {
+                // If the model isn't loaded, wait until it is
+                while (!pedmodel.IsLoaded)
+                    Script.Wait(100);
+
+                Game.Player.ChangeModel(pedmodel);
+
+                pedmodel.MarkAsNoLongerNeeded();
             }
         }
     }
