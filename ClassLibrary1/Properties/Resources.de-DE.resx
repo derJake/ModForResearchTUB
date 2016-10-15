@@ -345,4 +345,7 @@
   <data name="intro17_1" xml:space="preserve">
     <value>Die Kupplung wird nicht benötigt.</value>
   </data>
+  <data name="intro23_0" xml:space="preserve">
+    <value>Sie können jetzt einen Charakter wählen</value>
+  </data>
 </root>

@@ -556,6 +556,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can select a character now ähnelt.
+        /// </summary>
+        internal static string intro23_0 {
+            get {
+                return ResourceManager.GetString("intro23_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Press the yellow button to select a character. ähnelt.
         /// </summary>
         internal static string intro23_1 {

@@ -504,4 +504,7 @@
   <data name="intro17_1" xml:space="preserve">
     <value>You don't need the clutch.</value>
   </data>
+  <data name="intro23_0" xml:space="preserve">
+    <value>You can select a character now</value>
+  </data>
 </root>

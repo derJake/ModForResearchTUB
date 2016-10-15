@@ -240,6 +240,7 @@ namespace ModForResearchTUB
             World.RenderingCamera = null;
             World.DestroyAllCameras();
 
+            bmsg.ShowOldMessage(rm.GetString("intro23_0"), regularIntroSceneLength);
             charSelection();
 
             Game.Player.CanControlCharacter = true;
