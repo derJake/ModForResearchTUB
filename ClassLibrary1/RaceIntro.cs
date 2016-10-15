@@ -1092,8 +1092,8 @@ namespace ModForResearchTUB
                 }
             }
             else if ((charSelected && raceEndTime == 0)
-                || (Game.Player.Character.CurrentVehicle != null
-                    && Game.Player.Character.CurrentVehicle != raceVehicle)) {
+                && (Game.Player.Character.CurrentVehicle == null
+                    || Game.Player.Character.CurrentVehicle != raceVehicle)) {
 
                 Game.Player.CanControlCharacter = true;
                 Game.Player.IsInvincible = false;
