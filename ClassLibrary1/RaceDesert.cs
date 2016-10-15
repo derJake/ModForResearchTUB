@@ -218,14 +218,26 @@ namespace ModForResearchTUB
             int[] alt_checkpoint_markers = new int[checkpoints.Length - 1];
             for (int i = 0; i < checkpoints.Length - 1; i++) {
                 if (checkpoints[i].Item2.HasValue) {
+                    // default
+                    Vector3 next = new Vector3(0,0,0);
+
+                    // actually face next checkpoint
+                    if (checkpoints[i + 1].Item2.HasValue)
+                    {
+                        next = checkpoints[i + 1].Item2.Value;
+                    }
+                    else {
+                        next = checkpoints[i + 1].Item1;
+                    }
+
                     alt_checkpoint_markers[i] = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                         2, // type
                         checkpoints[i].Item2.Value.X,
                         checkpoints[i].Item2.Value.Y,
                         checkpoints[i].Item2.Value.Z,
-                        0, // facing next checkpoint?
-                        0,
-                        0,
+                        next.X, // facing next checkpoint?
+                        next.Y,
+                        next.Z,
                         5.0f,    // radius
                         255,    // R
                         0,     // G
