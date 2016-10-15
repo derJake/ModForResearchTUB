@@ -1141,7 +1141,7 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You will drive agile this buggy. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You will drive this agile buggy. ähnelt.
         /// </summary>
         internal static string terminal_intro_5 {
             get {
