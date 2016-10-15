@@ -761,6 +761,7 @@ namespace ModForResearchTUB
             Vehicle desert_car = ut.createCarAt(VehicleHash.Surge, new Vector3(1791, 3324, 41), 180);
 
             bmsg.ShowOldMessage(rm.GetString("intro17"), regularIntroSceneLength);
+            var timestamp = Game.GameTime;
 
             // make player enter vehicle
             //Game.Player.Character.Task.EnterVehicle(desert_car, VehicleSeat.Driver, 10000, 2.0f, 16);
@@ -790,8 +791,6 @@ namespace ModForResearchTUB
                 Wait(100);
             }
 
-            
-
             // have player drive through waypoints
             for (int i = 0; i < waypoints_desert.Length; i++)
             {
@@ -811,6 +810,10 @@ namespace ModForResearchTUB
                         }
                     }
                     Wait(50);
+
+                    if (Game.GameTime > timestamp + regularIntroSceneLength) {
+                        bmsg.ShowOldMessage(rm.GetString("intro17_1"), regularIntroSceneLength);
+                    }
                 }
             }
 
