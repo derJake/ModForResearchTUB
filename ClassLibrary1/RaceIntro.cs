@@ -1021,8 +1021,8 @@ namespace ModForResearchTUB
 
             if (charSelectionActive)
             {
-                Game.Player.CanControlCharacter = charSelected;
-                Game.Player.IsInvincible = !charSelected;
+                Game.Player.CanControlCharacter = false;
+                Game.Player.IsInvincible = true;
                 var pos = peds[selectedCharacter].Position;
 
                 World.DrawMarker(
@@ -1091,11 +1091,13 @@ namespace ModForResearchTUB
                     }
                 }
             }
-            else if (charSelected 
-                && raceEndTime == 0 
-                && !(Game.GameTime > raceEndTime)
+            else if ((charSelected && raceEndTime == 0)
                 || (Game.Player.Character.CurrentVehicle != null
                     && Game.Player.Character.CurrentVehicle != raceVehicle)) {
+
+                Game.Player.CanControlCharacter = true;
+                Game.Player.IsInvincible = false;
+
                 new UIResText(
                     rm.GetString("intro24"),
                     new Point((Convert.ToInt32(res.Width) / 2 - 400), 125),
