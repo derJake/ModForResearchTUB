@@ -385,12 +385,13 @@ namespace ModForResearchTUB
                             // reset variables and remove vehicles/props etc.
                             clearStuffUp();
 
-                            // switch to next race, if there is one
+                            // switch to next task, if there is one
                             if (currentRace < (races.Length - 1)) {
                                 ++currentRace;
                                 checkpoints = races[currentRace].getCheckpoints();
                                 races[currentRace].initRace();
                             } else {
+                                // last task
                                 toggleScenarios(true);
                                 var str = rm.GetString("last_race");
                                 UI.Notify(str);
