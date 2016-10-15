@@ -287,6 +287,8 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = true;
             Game.Player.Character.IsInvincible = false;
+
+            bmsg.ShowOldMessage(rm.GetString("intro24"), 10000);
         }
 
         public Dictionary<string, Dictionary<string, double>> getCollectedData()
