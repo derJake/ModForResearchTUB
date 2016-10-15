@@ -501,4 +501,7 @@
   <data name="intro24" xml:space="preserve">
     <value>Press the yellow button to enter the car.</value>
   </data>
+  <data name="intro17_1" xml:space="preserve">
+    <value>You don't need the clutch.</value>
+  </data>
 </root>

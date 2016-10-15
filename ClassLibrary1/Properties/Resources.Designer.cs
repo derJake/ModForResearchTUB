@@ -484,6 +484,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You don&apos;t need the clutch. ähnelt.
+        /// </summary>
+        internal static string intro17_1 {
+            get {
+                return ResourceManager.GetString("intro17_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There are no blinkers. Just turn. ähnelt.
         /// </summary>
         internal static string intro18 {

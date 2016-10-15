@@ -342,4 +342,7 @@
   <data name="intro24" xml:space="preserve">
     <value>Drücken Sie den gelben Knopf, um in das Fahrzeug einzusteigen.</value>
   </data>
+  <data name="intro17_1" xml:space="preserve">
+    <value>Die Kupplung wird nicht benötigt.</value>
+  </data>
 </root>
