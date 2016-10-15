@@ -1092,7 +1092,8 @@ namespace ModForResearchTUB
                 }
             }
             else if (charSelected 
-                && !(raceEndTime > 0 && Game.GameTime > raceEndTime)
+                && raceEndTime == 0 
+                && !(Game.GameTime > raceEndTime)
                 || (Game.Player.Character.CurrentVehicle != null
                     && Game.Player.Character.CurrentVehicle != raceVehicle)) {
                 new UIResText(
