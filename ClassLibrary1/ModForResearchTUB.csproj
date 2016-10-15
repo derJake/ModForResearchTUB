@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="ScriptHookVDotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\SteamLibrary\steamapps\common\Grand Theft Auto V\ScriptHookVDotNet.dll</HintPath>
+      <HintPath>G:\Uni\Bachelorarbeit\ScriptHookVDotNet_2.9.2\ScriptHookVDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
