@@ -360,7 +360,7 @@ namespace ModForResearchTUB
                             // save race car's health
                             car_health = Game.Player.Character.CurrentVehicle.Health;
 
-                            // have current race do it's finish stuff
+                            // have current race do its finish stuff
                             races[currentRace].finishRace();
                             Function.Call(Hash.CLEAR_GPS_PLAYER_WAYPOINT);
                             Function.Call(Hash.SET_WAYPOINT_OFF);
