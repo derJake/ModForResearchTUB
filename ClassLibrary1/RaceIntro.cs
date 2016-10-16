@@ -988,6 +988,8 @@ namespace ModForResearchTUB
             }
         }
 
+        #region characterSelection
+
         private void charSelection() {
             peds = new List<Ped>(3);
             var heading = 10;
@@ -1152,5 +1154,7 @@ namespace ModForResearchTUB
                 }
             }
         }
+
+        #endregion characterSelection
     }
 }
