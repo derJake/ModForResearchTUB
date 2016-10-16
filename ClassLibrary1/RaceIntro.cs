@@ -1009,6 +1009,8 @@ namespace ModForResearchTUB
             peds.Add(trevor);
 
             foreach (Ped ped in peds) {
+                ped.IsInvincible = true;
+                ped.FreezePosition = true;
                 ped.Heading = heading;
             }
 
