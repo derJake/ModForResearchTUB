@@ -403,6 +403,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player take to select a character? ähnelt.
+        /// </summary>
+        internal static string intro_char_selection_time {
+            get {
+                return ResourceManager.GetString("intro_char_selection_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die GTA V is an open world action game. ähnelt.
         /// </summary>
         internal static string intro1 {

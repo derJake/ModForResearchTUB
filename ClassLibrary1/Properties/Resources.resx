@@ -507,4 +507,7 @@
   <data name="intro23_0" xml:space="preserve">
     <value>You can select a character now</value>
   </data>
+  <data name="intro_char_selection_time" xml:space="preserve">
+    <value>How long did the player take to select a character?</value>
+  </data>
 </root>
