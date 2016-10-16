@@ -31,7 +31,8 @@ namespace ModForResearchTUB
         private Dictionary<String, Dictionary<String, double>> collectedData;
         private Dictionary<string, float> singularValues;
         private VehicleHash vehicleHash = VehicleHash.Comet2;
-        private int regularIntroSceneLength = 10000;
+        private int regularIntroSceneLength = 10000,
+            charSelectionStartedAt = 0;
 
         private TimerBarPool barPool = new TimerBarPool();
         private TextTimerBar textbar;
@@ -1020,6 +1021,7 @@ namespace ModForResearchTUB
             World.RenderingCamera = cam;
 
             charSelectionActive = true;
+            charSelectionStartedAt = Game.GameTime;
         }
 
         public void handleCharSelection(object sender, EventArgs e) {
@@ -1092,6 +1094,10 @@ namespace ModForResearchTUB
                             charSelected = true;
                             charSelectionActive = false;
 
+                            // log the time it took the player
+                            singularValues.Add("intro_char_selection_time", Game.GameTime - charSelectionStartedAt);
+
+                            // revert to regular camera
                             World.RenderingCamera = null;
 
                             changePedToSelectedSkin();
