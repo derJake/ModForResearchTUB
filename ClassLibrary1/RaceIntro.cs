@@ -1010,7 +1010,7 @@ namespace ModForResearchTUB
 
             foreach (Ped ped in peds) {
                 ped.IsInvincible = true;
-                ped.FreezePosition = true;
+                //ped.FreezePosition = true;
                 ped.Heading = heading;
             }
 
@@ -1062,20 +1062,17 @@ namespace ModForResearchTUB
                 // provide some delay, so player can react
                 if (lastCharSelectInput + 1000 < Game.GameTime)
                 {
-
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
-                        || Game.IsControlPressed(0, GTA.Control.MoveLeft))
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100)
                     {
-                        selectedCharacter = (peds.Count - 1) - ((selectedCharacter + 1) % peds.Count);
+                        selectedCharacter = mod(selectedCharacter - 1, peds.Count);
                         lastCharSelectInput = Game.GameTime;
                     }
 
                     // cycle right
                     if (Game.IsKeyPressed(Keys.D)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155
-                        || Game.IsControlPressed(0, GTA.Control.MoveRight))
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
@@ -1183,6 +1180,12 @@ namespace ModForResearchTUB
                     ped.Delete();
                 }
             }
+        }
+
+        private int mod(int x, int m)
+        {
+            int r = x % m;
+            return r < 0 ? r + m : r;
         }
 
         #endregion characterSelection
