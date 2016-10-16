@@ -189,7 +189,7 @@ namespace ModForResearchTUB
 
             // show target
             bmsg.ShowOldMessage(rm.GetString("terminal_intro_4"), regularIntroSceneLength);
-            ped.Position = new Vector3(958.2729f, -1422.381f, 31.3452f);
+            ped.Position = new Vector3(950.2383f, -1409.826f, 31.48705f);
             Camera cam6 = World.CreateCamera(
                 new Vector3(947.9563f, -1434.416f, 32.11513f),
                 new Vector3(4.151041f, 6.403302E-07f, -45.72819f),
