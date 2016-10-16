@@ -992,12 +992,13 @@ namespace ModForResearchTUB
             peds = new List<Ped>(3);
             var heading = 10;
 
-            Game.Player.Character.Position = car_selection + new Vector3(4,0,0);
+            Game.Player.Character.Position = car_selection + new Vector3(3,-2,0);
 
+            Ped michael = ut.createPedAt(PedHash.Michael, car_selection + new Vector3(4, 0, 0));
             Ped franklin = ut.createPedAt(PedHash.Franklin, car_selection + new Vector3(2,0,0));
             Ped trevor = ut.createPedAt(PedHash.Trevor, car_selection);
 
-            peds.Add(Game.Player.Character);
+            peds.Add(michael);
             peds.Add(franklin);
             peds.Add(trevor);
 
@@ -1036,7 +1037,7 @@ namespace ModForResearchTUB
                 );
 
                 new UIResText(
-                    String.Format("Select by turning the wheel"),
+                    rm.GetString("intro23_2"),
                     new Point((Convert.ToInt32(res.Width) / 2 - 200), 75),
                     0.5f,
                     Color.White
