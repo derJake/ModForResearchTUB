@@ -1113,6 +1113,7 @@ namespace ModForResearchTUB
 
                 Game.Player.CanControlCharacter = true;
                 Game.Player.IsInvincible = false;
+                Game.Player.Character.FreezePosition = false;
 
                 new UIResText(
                     rm.GetString("intro24"),
