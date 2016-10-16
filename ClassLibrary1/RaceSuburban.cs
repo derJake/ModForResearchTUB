@@ -275,6 +275,7 @@ namespace ModForResearchTUB
 
             // load the car model
             obstacle = ut.createCarAt(VehicleHash.Trash, obstacle_spawnpoint, obstacle_spawn_heading);
+            Function.Call(Hash.TRACK_VEHICLE_VISIBILITY, obstacle.Handle);
 
             // load the driver model
             obstacle_driver = ut.createPedAt(PedHash.GarbageSMY, obstacle_driver_spawnpoint);
