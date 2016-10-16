@@ -998,7 +998,7 @@ namespace ModForResearchTUB
             peds = new List<Ped>(3);
             var heading = 10;
 
-            Game.Player.Character.Position = car_selection + new Vector3(3,-2,0);
+            Game.Player.Character.Position = car_selection + new Vector3(-3, 2, 0);
 
             Ped michael = ut.createPedAt(PedHash.Michael, car_selection + new Vector3(4, 0, 0));
             Ped franklin = ut.createPedAt(PedHash.Franklin, car_selection + new Vector3(2,0,0));
