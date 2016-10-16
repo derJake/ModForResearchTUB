@@ -31,11 +31,14 @@ namespace ModForResearchTUB
         private Vector3 race1Start = new Vector3(-1015.348f, -2715.956f, 12.58948f);
         private Vector3 race1End = new Vector3(-45.45972f, -784.222f, 44.34782f);
 
-        private int initCalled = 0;
+        private int initCalled = 0,
+            carSelectionStartedAt;
         private bool flashWantedStopped = false;
 
         ResourceManager rm;
         Utilities ut;
+
+        Dictionary<string, float> singularValues;
 
         public String canonicalName { get; private set; }
 
@@ -289,6 +292,8 @@ namespace ModForResearchTUB
             Game.Player.Character.IsInvincible = false;
 
             bmsg.ShowOldMessage(rm.GetString("intro24"), 10000);
+
+            carSelectionStartedAt = Game.GameTime;
         }
 
         public Dictionary<string, Dictionary<string, double>> getCollectedData()
@@ -308,6 +313,8 @@ namespace ModForResearchTUB
             Game.Player.Character.CurrentVehicle.NumberPlate = "RACE 1";
 
             raceStartTime = Game.GameTime;
+
+            singularValues.Add("car_selection_time", raceStartTime - carSelectionStartedAt);
         }
 
         public bool checkRaceStartCondition()
@@ -345,7 +352,7 @@ namespace ModForResearchTUB
 
         public Dictionary<string, float> getSingularDataValues()
         {
-            throw new NotImplementedException();
+            return singularValues;
         }
     }
 }

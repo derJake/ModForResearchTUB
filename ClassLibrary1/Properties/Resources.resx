@@ -510,4 +510,7 @@
   <data name="intro_char_selection_time" xml:space="preserve">
     <value>How long did the player take to select a character?</value>
   </data>
+  <data name="car_selection_time" xml:space="preserve">
+    <value>How long did the player take to choose a car?</value>
+  </data>
 </root>

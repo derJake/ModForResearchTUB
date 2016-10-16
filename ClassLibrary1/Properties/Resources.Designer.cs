@@ -124,6 +124,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player take to choose a car? ähnelt.
+        /// </summary>
+        internal static string car_selection_time {
+            get {
+                return ResourceManager.GetString("car_selection_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Car vs. Car Initialization ähnelt.
         /// </summary>
         internal static string carvscar_initialization {
