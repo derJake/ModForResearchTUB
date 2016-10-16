@@ -1111,9 +1111,13 @@ namespace ModForResearchTUB
                 && (Game.Player.Character.CurrentVehicle == null
                     || Game.Player.Character.CurrentVehicle != raceVehicle)) {
 
+                var player = Game.Player.Character;
+                float radius = 13,
+                    halfradiussquared = 68;
+
                 Game.Player.CanControlCharacter = true;
                 Game.Player.IsInvincible = false;
-                Game.Player.Character.FreezePosition = false;
+                player.FreezePosition = false;
 
                 new UIResText(
                     rm.GetString("intro24"),
@@ -1121,6 +1125,20 @@ namespace ModForResearchTUB
                     0.5f,
                     Color.White
                 ).Draw();
+
+                World.DrawMarker(
+                    MarkerType.VerticalCylinder,
+                    car_selection,
+                    new Vector3(),
+                    new Vector3(),
+                    new Vector3(radius, radius, 0.3f),
+                    Color.Aqua
+                );
+
+                if (player.Position.DistanceToSquared(car_selection) > halfradiussquared)
+                {
+                    player.Position = car_selection;
+                }
             }
         }
 
