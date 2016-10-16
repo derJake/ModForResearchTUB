@@ -1076,6 +1076,7 @@ namespace ModForResearchTUB
                     if (Game.IsKeyPressed(Keys.Enter)
                         || Game.IsControlPressed(0, GTA.Control.Enter))
                     {
+                        lastCharSelectInput = Game.GameTime;
 
                         if (!charSelectionConfirmed)
                         {
