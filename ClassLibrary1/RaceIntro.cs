@@ -29,6 +29,7 @@ namespace ModForResearchTUB
         private float car_spawn_heading = 26.37f;
         private float car_spawn_player_heading = 164.5883f;
         private Dictionary<String, Dictionary<String, double>> collectedData;
+        private Dictionary<string, float> singularValues;
         private VehicleHash vehicleHash = VehicleHash.Comet2;
         private int regularIntroSceneLength = 10000;
 
@@ -89,6 +90,8 @@ namespace ModForResearchTUB
             CultureInfo = CultureInfo.CurrentCulture;
             rm = resman;
             ut = utils;
+
+            singularValues = new Dictionary<string, float>();
         }
 
         public void finishRace()
@@ -972,7 +975,7 @@ namespace ModForResearchTUB
 
         public Dictionary<string, float> getSingularDataValues()
         {
-            throw new NotImplementedException();
+            return singularValues;
         }
 
         public bool IntroActive
