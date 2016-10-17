@@ -254,5 +254,11 @@ namespace ModForResearchTUB
         public double degreeToRadians(double degrees) {
             return degrees * Math.PI / 180;
         }
+
+        public int mod(int x, int m)
+        {
+            int r = x % m;
+            return r < 0 ? r + m : r;
+        }
     }
 }

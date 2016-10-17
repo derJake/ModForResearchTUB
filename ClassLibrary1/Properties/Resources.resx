@@ -513,4 +513,10 @@
   <data name="car_selection_time" xml:space="preserve">
     <value>How long did the player take to choose a car?</value>
   </data>
+  <data name="dress_mode_active" xml:space="preserve">
+    <value>~b~Dress mode active: ~r~{0}</value>
+  </data>
+  <data name="menu_toggle_dress_mode" xml:space="preserve">
+    <value>Toggle the character dresser mode?</value>
+  </data>
 </root>

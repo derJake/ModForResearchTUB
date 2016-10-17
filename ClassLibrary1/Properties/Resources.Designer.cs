@@ -340,6 +340,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ~b~Dress mode active: ~r~{0} ähnelt.
+        /// </summary>
+        internal static string dress_mode_active {
+            get {
+                return ResourceManager.GetString("dress_mode_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player drive against traffic ähnelt.
         /// </summary>
         internal static string duration_against_traffic {
@@ -822,6 +831,15 @@ namespace ModForResearchTUB.Properties {
         internal static string menu_toggle_debug {
             get {
                 return ResourceManager.GetString("menu_toggle_debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Toggle the character dresser mode? ähnelt.
+        /// </summary>
+        internal static string menu_toggle_dress_mode {
+            get {
+                return ResourceManager.GetString("menu_toggle_dress_mode", resourceCulture);
             }
         }
         

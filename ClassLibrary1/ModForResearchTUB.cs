@@ -167,6 +167,12 @@ namespace ModForResearchTUB
         public String director_cam_position = "",
             director_cam_rotation = "";
 
+        // character dressing
+        private bool characterDresserActive = false;
+        private int currentComponent = 0,
+            currentDrawable = 0,
+            currentTexture = 0;
+
         // route deviation
         private float off_track_distance = 50;
         private int time_player_got_lost,
@@ -304,23 +310,10 @@ namespace ModForResearchTUB
                         }
                     }
 
-                    // display how many checkpoints there are
-                    if (debug && checkpoints != null)
-                    {
-                        new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
-                    }
-
-                    // display what the current race is and how many there are
-                    new UIResText(String.Format(rm.GetString("current_task_notification"), currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
+                    showTextInfoToPlayer(res, safe);
 
                     // log speed, collisions, brakes, etc.
                     logVariables(res, safe);
-
-                    // display what the next checkpoint to be reached is
-                    if (currentCheckpoint >= 0)
-                    {
-                        new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
-                    }
 
                     // check if player is near (alternative) checkpoint
                     if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item1, checkpoint_radius) ||
@@ -331,8 +324,8 @@ namespace ModForResearchTUB
                         Audio.PlaySoundFrontend("NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET");
 
                         // show the players current position
-                        UI.ShowSubtitle(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length), 3000);
-                        UI.Notify(string.Format("checkpoint {0}/{1} reached", currentCheckpoint + 1, checkpoints.Length));
+                        UI.ShowSubtitle(string.Format(rm.GetString("checkpoint_reached"), currentCheckpoint + 1, checkpoints.Length), 3000);
+                        UI.Notify(string.Format(rm.GetString("checkpoint_reached"), currentCheckpoint + 1, checkpoints.Length));
 
                         // make log entry
                         var altCheckpointReached = (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius)) ? "alternative " : "";
@@ -445,6 +438,27 @@ namespace ModForResearchTUB
 
             if (trafficLightManagerActive) {
                 trafficLightManager.handleOnTick();
+            }
+
+            if (characterDresserActive) {
+                dressCharacter();
+            }
+        }
+
+        private void showTextInfoToPlayer(SizeF res, Point safe) {
+            // display how many checkpoints there are
+            if (debug && checkpoints != null)
+            {
+                new UIResText(String.Format("checkpoints: {0}", checkpoints.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 75), 0.3f, Color.White).Draw();
+            }
+
+            // display what the current race is and how many there are
+            new UIResText(String.Format(rm.GetString("current_task_notification"), currentRace + 1, races.Length), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 50), 0.3f, Color.White).Draw();
+
+            // display what the next checkpoint to be reached is
+            if (currentCheckpoint >= 0)
+            {
+                new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
             }
         }
 
@@ -706,6 +720,76 @@ namespace ModForResearchTUB
                 default:
                     break;
             }
+        }
+
+        private void dressCharacter() {
+            // stop bringing up phone on arrow keys
+            Function.Call(Hash.DESTROY_MOBILE_PHONE);
+            Ped ped = Game.Player.Character;
+            int numComponents = 12,
+                comp = currentComponent;
+            bool changed = false;
+
+            // handle vertical movement
+            if (Game.IsKeyPressed(Keys.Up)) {
+                comp--;
+                changed = true;
+            }
+            if (Game.IsKeyPressed(Keys.Down)) {
+                comp++;
+                changed = true;
+            }
+
+            comp = ut.mod(comp, numComponents);
+            currentComponent = comp;
+
+            // up/down movement, set cursors to current values of that component
+            if (changed) {
+                currentDrawable = Function.Call<int>(Hash.GET_PED_DRAWABLE_VARIATION, ped, currentComponent);
+                currentTexture = Function.Call<int>(Hash.GET_PED_TEXTURE_VARIATION, ped, currentComponent);
+            }
+
+            // get max values for this component
+            int draws = Function.Call<int>(Hash.GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS, ped, comp);
+            int texts = Function.Call<int>(Hash.GET_NUMBER_OF_PED_TEXTURE_VARIATIONS, ped, comp, currentDrawable);
+
+            // handle sideways movement
+            if (Game.IsKeyPressed(Keys.Left))
+            {
+                if (currentTexture == 0)
+                {
+                    currentDrawable--;
+                    currentDrawable = ut.mod(currentDrawable, draws);
+                }
+                else {
+                    currentTexture--;
+                }
+
+                changed = true;
+            }
+            if (Game.IsKeyPressed(Keys.Right))
+            {
+                if (currentTexture == (texts))
+                {
+                    currentDrawable++;
+                    currentDrawable = ut.mod(currentDrawable, draws);
+                }
+                else {
+                    currentTexture++;
+                }
+
+                changed = true;
+            }
+
+            bool isVariationValid = Function.Call<bool>(Hash.IS_PED_COMPONENT_VARIATION_VALID, ped, currentComponent, currentDrawable, currentTexture);
+
+            if (changed && isVariationValid)
+            {
+                Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, comp, currentDrawable, currentTexture, 0);
+                UI.ShowSubtitle(String.Format("Component: {0}, drawable: {1}, texture: {2}", comp, currentDrawable, currentTexture), 2000);
+                Script.Wait(100);
+            }
+            
         }
 
         // KeyUp Event
@@ -2128,6 +2212,7 @@ namespace ModForResearchTUB
         protected void buildMenu() {
             myMenu = new UIMenu("Mod4ResearchTUB", "~b~meh");
 
+            addCharacterDresserCheckbox();
             addRouteDesignerToggle();
             addCamDesignerToggle();
             addDebugModeCheckbox();
@@ -2187,6 +2272,23 @@ namespace ModForResearchTUB
                 {
                     debug = checked_;
                     UI.Notify(String.Format(rm.GetString("debug_mode_active"), debug));
+                }
+            };
+        }
+
+        private void addCharacterDresserCheckbox()
+        {
+            // checkbox for debug mode
+            var dresser_checkbox = new UIMenuCheckboxItem("Character dresser", characterDresserActive, rm.GetString("menu_toggle_dress_mode"));
+            myMenu.AddItem(dresser_checkbox);
+            myMenu.RefreshIndex();
+
+            myMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == dresser_checkbox)
+                {
+                    characterDresserActive = checked_;
+                    UI.Notify(String.Format(rm.GetString("dress_mode_active"), characterDresserActive));
                 }
             };
         }
