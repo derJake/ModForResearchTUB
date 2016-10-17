@@ -797,7 +797,7 @@ namespace ModForResearchTUB
 
         private void logCharacterVariation() {
             var ped = Game.Player.Character;
-            int pedHash = ped.GetHashCode();
+            int pedHash = ped.Model.GetHashCode();
             int franklin = PedHash.Franklin.GetHashCode(),
                 michael = PedHash.Michael.GetHashCode(),
                 trevor = PedHash.Trevor.GetHashCode();
