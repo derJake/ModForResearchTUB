@@ -54,7 +54,7 @@ namespace ModForResearchTUB
 
         public String canonicalName { get; private set; }
 
-        private int[,] franklinProperties,
+        private int[][] franklinProperties,
             trevorProperties,
             michaelProperties;
 
@@ -1210,60 +1210,60 @@ namespace ModForResearchTUB
         }
 
         private void initFranklinProperties() {
-            franklinProperties = new int[,] {
-                {0, 8},
-                {1, 0},
-                {0, 2},
-                {13, 6},
-                {15, 4},
-                {1, 0},
-                {12, 3},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0}
+            franklinProperties = new int[][] {
+                new int[] {0, 8},
+                new int[] {1, 0},
+                new int[] {0, 2},
+                new int[] {13, 6},
+                new int[] {15, 4},
+                new int[] {1, 0},
+                new int[] {12, 3},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0}
             };
         }
 
         private void initTrevorProperties() {
-            trevorProperties = new int[,] {
-                {0, 1},
-                {5, 0},
-                {4, 0},
-                {24, 1},
-                {19, 3},
-                {0, 0},
-                {1, 0},
-                {0, 0},
-                {14, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0}
+            trevorProperties = new int[][] {
+                new int[] {0, 1},
+                new int[] {5, 0},
+                new int[] {4, 0},
+                new int[] {24, 1},
+                new int[] {19, 3},
+                new int[] {0, 0},
+                new int[] {1, 0},
+                new int[] {0, 0},
+                new int[] {14, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0}
             };
         }
 
         private void initMichaelProperties() {
-            michaelProperties = new int[,] {
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 12},
-                {0, 12},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0},
-                {0, 0}
+            michaelProperties = new int[][] {
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 12},
+                new int[] {0, 12},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0},
+                new int[] {0, 0}
             };
         }
 
-        private void loadCharacterProperties(Ped ped, int[,] properties) {
+        private void loadCharacterProperties(Ped ped, int[][] properties) {
             for (int i = 0; i < properties.Length; i++) {
-                if (Function.Call<bool>(Hash.IS_PED_COMPONENT_VARIATION_VALID, ped, i, properties[i,0], properties[i,1])) {
-                    Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, i, properties[i, 0], properties[i, 1], 0);
+                if (Function.Call<bool>(Hash.IS_PED_COMPONENT_VARIATION_VALID, ped, i, properties[i][0], properties[i][1])) {
+                    Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, i, properties[i][0], properties[i][1], 0);
                 }
             }
         }
