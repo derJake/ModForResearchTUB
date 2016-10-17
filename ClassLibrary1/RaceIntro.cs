@@ -54,7 +54,9 @@ namespace ModForResearchTUB
 
         public String canonicalName { get; private set; }
 
-        private int[,] franklinProperties;
+        private int[,] franklinProperties,
+            trevorProperties,
+            michaelProperties;
 
         public RaceIntro(ResourceManager resman, Utilities utils, String taskKey) {
             this.canonicalName = taskKey;
@@ -1206,6 +1208,23 @@ namespace ModForResearchTUB
                 {0, 0},
                 {0, 0},
                 {0, 0}
+            };
+        }
+
+        private void initTrevorProperties() {
+            trevorProperties = new int[,] {
+                {0, 1},
+                {5, 0},
+                {4, 0},
+                {24, 1},
+                {19, 3},
+                {0, 0},
+                {1, 0},
+                {0, 0},
+                {14, 0},
+                {0, 0},
+                {0, 0},
+                {0, 0},
             };
         }
 
