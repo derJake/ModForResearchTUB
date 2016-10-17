@@ -322,18 +322,6 @@ namespace ModForResearchTUB
                         new UIResText(string.Format("currentCheckpoint is {0}/{1}", currentCheckpoint, checkpoints.Length), new Point(Convert.ToInt32(res.Width) - safe.X - 180, Convert.ToInt32(res.Height) - safe.Y - 275), 0.3f, Color.White).Draw();
                     }
 
-                    // debug stuff
-                    if (debug)
-                    {
-                        new UIResText(String.Format("altCheckpointAvailable: {0}", altCheckpointAvailable), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 100), 0.3f, Color.White).Draw();
-                        if (altCheckpointAvailable)
-                        {
-                            var coords = checkpoints[currentCheckpoint].Item2.Value;
-                            new UIResText(String.Format("coords: {0}, {1}, {2}", coords.X, coords.Y, coords.Z), new Point((Convert.ToInt32(res.Width) - safe.X - 350), 125), 0.3f, Color.White).Draw();
-                            new UIResText(String.Format("distance: {0}", World.GetDistance(coords, Game.Player.Character.Position)), new Point((Convert.ToInt32(res.Width) - safe.X - 250), 145), 0.3f, Color.AntiqueWhite).Draw();
-                        }
-                    }
-
                     // check if player is near (alternative) checkpoint
                     if (Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item1, checkpoint_radius) ||
                         (checkpoints[currentCheckpoint].Item2.HasValue && Game.Player.Character.IsInRangeOf(checkpoints[currentCheckpoint].Item2.Value, checkpoint_radius))
