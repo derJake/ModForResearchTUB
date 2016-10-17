@@ -949,11 +949,19 @@ namespace ModForResearchTUB
 
         private List<Ped> spawnCharacters() {
 
-            List<Ped> characters = new List<Ped>(2);
+            List<Ped> characters = new List<Ped>(3);
+            Ped michael = ut.createPedAt(PedHash.Michael, new Vector3(-341.388f, 1147.779f, 325.7267f));
+            loadCharacterProperties(michael, michaelProperties);
             Ped franklin = ut.createPedAt(PedHash.Franklin, new Vector3(-343.1626f, 1147.788f, 325.7267f));
+            loadCharacterProperties(franklin, franklinProperties);
             Ped trevor = ut.createPedAt(PedHash.Trevor, new Vector3(-345.1988f, 1147.625f, 325.7263f));
+            loadCharacterProperties(trevor, trevorProperties);
+
+            michael.Heading = 7.05f;
             franklin.Heading = 7.05f;
             trevor.Heading = 7.05f;
+
+            characters.Add(michael);
             characters.Add(franklin);
             characters.Add(trevor);
 
