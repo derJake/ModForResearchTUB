@@ -54,6 +54,8 @@ namespace ModForResearchTUB
 
         public String canonicalName { get; private set; }
 
+        private int[,] franklinProperties;
+
         public RaceIntro(ResourceManager resman, Utilities utils, String taskKey) {
             this.canonicalName = taskKey;
 
@@ -93,6 +95,8 @@ namespace ModForResearchTUB
             ut = utils;
 
             singularValues = new Dictionary<string, float>();
+
+            initFranklinProperties();
         }
 
         public void finishRace()
@@ -1186,6 +1190,23 @@ namespace ModForResearchTUB
         {
             int r = x % m;
             return r < 0 ? r + m : r;
+        }
+
+        private void initFranklinProperties() {
+            franklinProperties = new int[,] {
+                {0, 8},
+                {1, 0},
+                {0, 2},
+                {13, 6},
+                {15, 4},
+                {1, 0},
+                {12, 3},
+                {0, 0},
+                {0, 0},
+                {0, 0},
+                {0, 0},
+                {0, 0}
+            };
         }
 
         #endregion characterSelection
