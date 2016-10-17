@@ -338,12 +338,13 @@ namespace ModForResearchTUB
             player.Position = new Vector3(-370.7453f, 1164.046f, 325.699f);
             player.Heading = 7.05f;
 
-            List<Ped> characters = spawnCharacters();
             showVector(
                 new Vector3(-343f, 1151, 327f),
                 new Vector3(-8.71f, 0, -179.58f)
             );
+
             World.RenderingCamera.FieldOfView = 70;
+            List<Ped> characters = spawnCharacters();
             bmsg.ShowOldMessage(rm.GetString("intro3"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
