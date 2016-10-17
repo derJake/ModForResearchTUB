@@ -805,22 +805,26 @@ namespace ModForResearchTUB
 
             if (pedHash == franklin)
             {
+                UI.ShowSubtitle("saving Franklin");
                 fileName = charVariationFileFranklin;
             }
             else if (pedHash == michael)
             {
+                UI.ShowSubtitle("saving Michael");
                 fileName = charVariationFileMichael;
             }
             else if (pedHash == trevor)
             {
+                UI.ShowSubtitle("saving Trevor");
                 fileName = charVariationFileTrevor;
             }
             else {
-                return;
+                UI.ShowSubtitle("character could not be identified");
+                fileName = "ModForResearchTUB-" + pedHash.ToString() + ".log";
             }
 
-            File.Delete(charVariationFileFranklin);
-            File.AppendAllText(charVariationFileFranklin, "{" + Environment.NewLine);
+            File.Delete(fileName);
+            File.AppendAllText(fileName, "{" + Environment.NewLine);
 
             for (int i = 0; i < 12; i++) {
                 int drawable = Function.Call<int>(Hash.GET_PED_DRAWABLE_VARIATION, ped, i);
@@ -828,11 +832,11 @@ namespace ModForResearchTUB
 
                 //UI.Notify(String.Format("Component: {0}, drawable: {1}, texture: {2}", i, drawable, texture));
                 File.AppendAllText(
-                    charVariationFileFranklin,
+                    fileName,
                     "\t{" + String.Format("{1}, {2}", i, drawable, texture) + "}," + Environment.NewLine);
             }
 
-            File.AppendAllText(charVariationFileFranklin, "}");
+            File.AppendAllText(fileName, "}");
         }
 
         // KeyUp Event
