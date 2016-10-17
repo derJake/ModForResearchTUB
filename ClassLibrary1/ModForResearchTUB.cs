@@ -805,21 +805,17 @@ namespace ModForResearchTUB
 
             if (pedHash == franklin)
             {
-                UI.ShowSubtitle("saving Franklin");
                 fileName = charVariationFileFranklin;
             }
             else if (pedHash == michael)
             {
-                UI.ShowSubtitle("saving Michael");
                 fileName = charVariationFileMichael;
             }
             else if (pedHash == trevor)
             {
-                UI.ShowSubtitle("saving Trevor");
                 fileName = charVariationFileTrevor;
             }
             else {
-                UI.ShowSubtitle("character could not be identified");
                 fileName = "ModForResearchTUB-" + pedHash.ToString() + ".log";
             }
 
