@@ -100,6 +100,7 @@ namespace ModForResearchTUB
 
             initFranklinProperties();
             initTrevorProperties();
+            initMichaelProperties();
         }
 
         public void finishRace()
@@ -1223,6 +1224,23 @@ namespace ModForResearchTUB
                 {1, 0},
                 {0, 0},
                 {14, 0},
+                {0, 0},
+                {0, 0},
+                {0, 0},
+            };
+        }
+
+        private void initMichaelProperties() {
+            michaelProperties = new int[,] {
+                {0, 0},
+                {0, 0},
+                {0, 0},
+                {0, 12},
+                {0, 12},
+                {0, 0},
+                {0, 0},
+                {0, 0},
+                {0, 0},
                 {0, 0},
                 {0, 0},
                 {0, 0},
