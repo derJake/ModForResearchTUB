@@ -99,6 +99,7 @@ namespace ModForResearchTUB
             singularValues = new Dictionary<string, float>();
 
             initFranklinProperties();
+            initTrevorProperties();
         }
 
         public void finishRace()
