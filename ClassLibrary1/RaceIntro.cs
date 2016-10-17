@@ -1247,6 +1247,14 @@ namespace ModForResearchTUB
             };
         }
 
+        private void loadCharacterProperties(Ped ped, int[,] properties) {
+            for (int i = 0; i < properties.Length; i++) {
+                if (Function.Call<bool>(Hash.IS_PED_COMPONENT_VARIATION_VALID, ped, i, properties[i,0], properties[i,1])) {
+                    Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, i, properties[i, 0], properties[i, 1], 0);
+                }
+            }
+        }
+
         #endregion characterSelection
     }
 }
