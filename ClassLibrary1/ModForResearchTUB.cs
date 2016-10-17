@@ -769,7 +769,7 @@ namespace ModForResearchTUB
             }
             if (Game.IsKeyPressed(Keys.Right))
             {
-                if (currentTexture == (texts))
+                if (currentTexture == (texts - 1))
                 {
                     currentDrawable++;
                     currentDrawable = ut.mod(currentDrawable, draws);
@@ -787,9 +787,20 @@ namespace ModForResearchTUB
             {
                 Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, comp, currentDrawable, currentTexture, 0);
                 UI.ShowSubtitle(String.Format("Component: {0}, drawable: {1}, texture: {2}", comp, currentDrawable, currentTexture), 2000);
+                logCharacterVariation();
                 Script.Wait(100);
             }
-            
+        }
+
+        private void logCharacterVariation() {
+            var ped = Game.Player.Character;
+
+            for (int i = 0; i < 12; i++) {
+                int drawable = Function.Call<int>(Hash.GET_PED_DRAWABLE_VARIATION, ped, i);
+                int texture = Function.Call<int>(Hash.GET_PED_TEXTURE_VARIATION, ped, i);
+
+                UI.Notify(String.Format("Component: {0}, drawable: {1}, texture: {2}", i, drawable, texture));
+            }
         }
 
         // KeyUp Event
