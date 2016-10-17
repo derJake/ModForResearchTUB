@@ -1012,6 +1012,10 @@ namespace ModForResearchTUB
             Ped franklin = ut.createPedAt(PedHash.Franklin, car_selection + new Vector3(2,0,0));
             Ped trevor = ut.createPedAt(PedHash.Trevor, car_selection);
 
+            loadCharacterProperties(michael, michaelProperties);
+            loadCharacterProperties(franklin, franklinProperties);
+            loadCharacterProperties(trevor, trevorProperties);
+
             peds.Add(michael);
             peds.Add(franklin);
             peds.Add(trevor);
