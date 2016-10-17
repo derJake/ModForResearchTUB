@@ -172,6 +172,9 @@ namespace ModForResearchTUB
         private int currentComponent = 0,
             currentDrawable = 0,
             currentTexture = 0;
+        private string charVariationFileFranklin = "ModForResearchTUB-franklin.log",
+            charVariationFileMichael = "ModForResearchTUB-michael.log",
+            charVariationFileTrevor = "ModForResearchTUB-trevor.log";
 
         // route deviation
         private float off_track_distance = 50;
@@ -794,13 +797,42 @@ namespace ModForResearchTUB
 
         private void logCharacterVariation() {
             var ped = Game.Player.Character;
+            int pedHash = ped.GetHashCode();
+            int franklin = PedHash.Franklin.GetHashCode(),
+                michael = PedHash.Michael.GetHashCode(),
+                trevor = PedHash.Trevor.GetHashCode();
+            string fileName;
+
+            if (pedHash == franklin)
+            {
+                fileName = charVariationFileFranklin;
+            }
+            else if (pedHash == michael)
+            {
+                fileName = charVariationFileMichael;
+            }
+            else if (pedHash == trevor)
+            {
+                fileName = charVariationFileTrevor;
+            }
+            else {
+                return;
+            }
+
+            File.Delete(charVariationFileFranklin);
+            File.AppendAllText(charVariationFileFranklin, "{" + Environment.NewLine);
 
             for (int i = 0; i < 12; i++) {
                 int drawable = Function.Call<int>(Hash.GET_PED_DRAWABLE_VARIATION, ped, i);
                 int texture = Function.Call<int>(Hash.GET_PED_TEXTURE_VARIATION, ped, i);
 
-                UI.Notify(String.Format("Component: {0}, drawable: {1}, texture: {2}", i, drawable, texture));
+                //UI.Notify(String.Format("Component: {0}, drawable: {1}, texture: {2}", i, drawable, texture));
+                File.AppendAllText(
+                    charVariationFileFranklin,
+                    "\t{" + String.Format("{1}, {2}", i, drawable, texture) + "}," + Environment.NewLine);
             }
+
+            File.AppendAllText(charVariationFileFranklin, "}");
         }
 
         // KeyUp Event
