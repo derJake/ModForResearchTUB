@@ -1238,7 +1238,7 @@ namespace ModForResearchTUB
                 {14, 0},
                 {0, 0},
                 {0, 0},
-                {0, 0},
+                {0, 0}
             };
         }
 
@@ -1255,7 +1255,7 @@ namespace ModForResearchTUB
                 {0, 0},
                 {0, 0},
                 {0, 0},
-                {0, 0},
+                {0, 0}
             };
         }
 
