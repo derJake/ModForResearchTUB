@@ -222,7 +222,7 @@ namespace ModForResearchTUB
                     new Vector3(20.04803f, 0f, -65.11039f),
                     70f
                 ),
-                regularIntroSceneLength,
+                regularIntroSceneLength / 2,
                 true,
                 true
             );
