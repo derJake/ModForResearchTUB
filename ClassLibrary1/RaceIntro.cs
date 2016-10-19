@@ -24,9 +24,9 @@ namespace ModForResearchTUB
 
         private Vehicle raceVehicle;
 
-        private Vector3 car_selection = new Vector3(-747.7241f, -74.62083f, 41.31352f);
-        private Vector3 car1_spawnpoint = new Vector3(-748.7908f, -79.43627f, 41.31476f);
-        private float car_spawn_heading = 26.37f;
+        private Vector3 car_selection = new Vector3(-39.77127f, 207.4368f, 102.1461f);
+        private Vector3 car1_spawnpoint = new Vector3(-42.8537f, 212.8025f, 105.8433f);
+        private float car_spawn_heading = 341.7267f;
         private float car_spawn_player_heading = 164.5883f;
         private Dictionary<String, Dictionary<String, double>> collectedData;
         private Dictionary<string, float> singularValues;
@@ -214,24 +214,50 @@ namespace ModForResearchTUB
             player.IsInvincible = true;
             raceVehicle.IsInvincible = true;
 
-            showVector(
-                new Vector3(-750, -83, 42.5f),
-                new Vector3(-5f, 0, -19)
+            Camera cam = showVector(
+                new Vector3(-36.50168f, 206.7234f, 107.3275f),
+                new Vector3(-2.045077f, -2.668042E-07f, 103.3765f)
             );
-            World.RenderingCamera.FieldOfView = 75;
-            //World.RenderingCamera.Position = new Vector3(-750, -83, 42.5f);
-            //World.RenderingCamera.Rotation = new Vector3(-5f, 0, -19);
+            World.RenderingCamera.FieldOfView = 50;
+
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-37.82938f, 214.4279f, 107.3489f),
+                    new Vector3(-4.445077f, -2.134434E-07f, 104.1765f),
+                    50f
+                ),
+                regularIntroSceneLength / 2,
+                true,
+                true
+            );
 
             bmsg.ShowOldMessage(rm.GetString("intro21"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            World.RenderingCamera.Position = new Vector3(-743, -76, 43f);
-            World.RenderingCamera.Rotation = new Vector3(-10f, 0, 126);
+            Camera cam2 = World.CreateCamera(
+                new Vector3(-18.56182f, 241.6352f, 124.6819f),
+                new Vector3(-19.64479f, 8.537736E-07f, 64.97605f),
+                61.19999f
+            );
+
+            cam2.IsActive = true;
+            World.RenderingCamera = cam2;
+
+            cam2.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-12.38881f, 257.8497f, 116.882f),
+                    new Vector3(-10.04478f, -4.802477E-07f, 87.37595f),
+                    61.19999f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
 
             bmsg.ShowOldMessage(rm.GetString("intro22"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            Vector3 checkpoint_position = new Vector3(-780.5286f, -78.88348f, 37.79788f);
+            Vector3 checkpoint_position = new Vector3(7.46516f, 202.9962f, 104.0948f);
 
             int mock_checkpoint = Function.Call<int>(Hash.CREATE_CHECKPOINT,
                 2, // type
@@ -249,8 +275,26 @@ namespace ModForResearchTUB
                 0 // number displayed in marker, if type is 42-44
                 );
 
-            World.RenderingCamera.Position = new Vector3(-773, -86, 43f);
-            World.RenderingCamera.Rotation = new Vector3(-10f, 0, 76);
+            Camera cam3 = World.CreateCamera(
+                new Vector3(18.69672f, 214.1314f, 114.4572f),
+                new Vector3(-17.24473f, -8.537736E-07f, 133.775f),
+                61.19999f
+            );
+
+            cam3.IsActive = true;
+            World.RenderingCamera = cam3;
+
+            cam3.InterpTo(
+                World.CreateCamera(
+                    new Vector3(21.32537f, 210.6287f, 110.8572f),
+                    new Vector3(-10.04471f, -1.707547E-06f, 121.7748f),
+                    61.19999f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
+
             bmsg.ShowOldMessage(rm.GetString("intro23"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
