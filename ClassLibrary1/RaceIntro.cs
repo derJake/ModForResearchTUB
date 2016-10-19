@@ -24,7 +24,7 @@ namespace ModForResearchTUB
 
         private Vehicle raceVehicle;
 
-        private Vector3 car_selection = new Vector3(-39.77127f, 207.4368f, 102.1461f);
+        private Vector3 car_selection = new Vector3(-41.13648f, 214.2873f, 105.5534f);
         private Vector3 car1_spawnpoint = new Vector3(-42.8537f, 212.8025f, 105.8433f);
         private float car_spawn_heading = 341.7267f;
         private float car_spawn_player_heading = 164.5883f;
@@ -52,6 +52,7 @@ namespace ModForResearchTUB
 
         ResourceManager rm;
         Utilities ut;
+        BigMessageHandler bmsg;
 
         public String canonicalName { get; private set; }
 
@@ -208,7 +209,7 @@ namespace ModForResearchTUB
 
             // make player enter vehicle
             Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
-            var bmsg = BigMessageThread.MessageInstance;
+            bmsg = BigMessageThread.MessageInstance;
 
             Game.Player.CanControlCharacter = false;
             player.IsInvincible = true;
@@ -1067,7 +1068,7 @@ namespace ModForResearchTUB
             peds = new List<Ped>(3);
             var heading = 105.6581f;
 
-            Game.Player.Character.Position = car_selection + new Vector3(-3, 2, 0);
+            Game.Player.Character.Position = new Vector3(-42.44312f, 208.1661f, 102.1461f);
 
             Ped michael = ut.createPedAt(PedHash.Michael, new Vector3(-39.91827f, 215.1007f, 106.5534f));
             Ped franklin = ut.createPedAt(PedHash.Franklin, new Vector3(-37.49139f, 215.4538f, 106.5535f));
@@ -1087,12 +1088,78 @@ namespace ModForResearchTUB
                 ped.Heading = heading;
             }
 
-            Camera cam = World.CreateCamera(
-                new Vector3(-744.9541f, -69.96282f, 42.44214f),
-                new Vector3(-2.048578f, -6.536705E-07f, 174.0962f),
-                61.19999f
+            // show the peds
+            int interpolationTime = 1500,
+                showCharacterFor = 5000;
+
+            Camera cam1 = World.CreateCamera(
+                new Vector3(-42.87101f, 216.0611f, 106.7447f),
+                new Vector3(-5.745561f, 1.28066E-06f, -68.76078f),
+                31.60002f
             );
 
+            Camera cam2 = World.CreateCamera(
+                new Vector3(-41.86174f, 213.4643f, 106.9447f),
+                new Vector3(-5.745561f, 1.28066E-06f, -68.76078f),
+                31.60002f
+            );
+
+            Camera cam3 = World.CreateCamera(
+                new Vector3(-41.06875f, 211.424f, 106.9447f),
+                new Vector3(-5.745561f, 1.28066E-06f, -68.76078f),
+                31.60002f
+            );
+
+            cam1.IsActive = true;
+            World.RenderingCamera = cam1;
+
+            bmsg.ShowOldMessage("Michael", showCharacterFor);
+            Wait(showCharacterFor);
+
+            cam1.InterpTo(
+                cam2,
+                interpolationTime,
+                true,
+                true
+            );
+
+            Wait(interpolationTime);
+
+            cam2.IsActive = true;
+            World.RenderingCamera = cam2;
+
+            bmsg.ShowOldMessage("Franklin", showCharacterFor);
+            Wait(showCharacterFor);
+
+            cam2.InterpTo(
+                cam3,
+                interpolationTime,
+                true,
+                true
+            );
+            Wait(interpolationTime);
+
+            cam3.IsActive = true;
+            World.RenderingCamera = cam3;
+
+            bmsg.ShowOldMessage("Trevor", showCharacterFor);
+            Wait(showCharacterFor);
+
+            Camera cam = World.CreateCamera(
+                new Vector3(-50.30263f, 210.1201f, 108.0545f),
+                new Vector3(-4.945566f, 1.280661E-06f, -66.3608f),
+                18.80003f
+            );
+
+            cam3.InterpTo(
+                cam,
+                interpolationTime,
+                true,
+                true
+            );
+            Wait(interpolationTime);
+
+            cam.IsActive = true;
             World.RenderingCamera = cam;
 
             charSelectionActive = true;
