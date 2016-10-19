@@ -80,6 +80,8 @@ namespace ModForResearchTUB
 
             rm = resman;
             ut = utils;
+
+            singularValues = new Dictionary<string, float>();
         }
 
         public void finishRace()
