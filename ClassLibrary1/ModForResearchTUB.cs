@@ -2661,7 +2661,11 @@ namespace ModForResearchTUB
                 "cam.Position = " + director_cam_position + ";" + Environment.NewLine +
                 "cam.Rotation = " + director_cam_rotation + ";" + Environment.NewLine +
                 "cam.FieldOfView = " + designer_cam.FieldOfView.ToString(CultureInfo.InvariantCulture) + "f;";
-            director_gui.SetText(cam_code);
+
+            if (ut.getHasCamChanged())
+            {
+                director_gui.SetText(cam_code);
+            }
         }
 
         private void freezePlayerPed() {

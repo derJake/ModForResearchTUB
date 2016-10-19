@@ -30,6 +30,7 @@ namespace ModForResearchTUB
         private List<Blip> blips;
         private List<int> markers;
         private Camera cam;
+        private bool hasCamChanged = false;
         #endregion classVariables
 
         public Utilities() {
@@ -197,6 +198,8 @@ namespace ModForResearchTUB
                     cam.Rotation = new Vector3(rot.X - amount, rot.Y, rot.Z);
                     break;
             }
+
+            hasCamChanged = true;
         }
 
         public void changeCamFieldOfView(Direction dir, float amount) {
@@ -213,6 +216,8 @@ namespace ModForResearchTUB
                     cam.FieldOfView -= amount;
                     break;
             }
+
+            hasCamChanged = true;
         }
 
         public void setScriptCam(Camera camera) {
@@ -259,6 +264,13 @@ namespace ModForResearchTUB
         {
             int r = x % m;
             return r < 0 ? r + m : r;
+        }
+
+        public bool getHasCamChanged() {
+            bool value = hasCamChanged;
+            hasCamChanged = false;
+
+            return value;
         }
     }
 }
