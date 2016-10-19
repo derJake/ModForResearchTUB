@@ -201,9 +201,17 @@ namespace ModForResearchTUB
             Ped player = Game.Player.Character;
             player.Task.ClearAllImmediately(); // give back control to player
 
+            foreach (Ped ped in World.GetNearbyPeds(car_selection, 10)) {
+                ped.Delete();
+            }
+
             // teleport player and turn him towards cars
             Game.Player.Character.Position = car_selection;
             Game.Player.Character.Heading = car_spawn_player_heading;
+
+            foreach (Vehicle car in World.GetNearbyVehicles(car1_spawnpoint, 10)) {
+                car.Delete();
+            }
 
             raceVehicle = ut.createCarAt(vehicleHash, car1_spawnpoint, car_spawn_heading);
 
