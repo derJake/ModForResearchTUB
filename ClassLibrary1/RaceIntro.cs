@@ -1065,13 +1065,13 @@ namespace ModForResearchTUB
 
         private void charSelection() {
             peds = new List<Ped>(3);
-            var heading = 10;
+            var heading = 105.6581f;
 
             Game.Player.Character.Position = car_selection + new Vector3(-3, 2, 0);
 
-            Ped michael = ut.createPedAt(PedHash.Michael, car_selection + new Vector3(4, 0, 0));
-            Ped franklin = ut.createPedAt(PedHash.Franklin, car_selection + new Vector3(2,0,0));
-            Ped trevor = ut.createPedAt(PedHash.Trevor, car_selection);
+            Ped michael = ut.createPedAt(PedHash.Michael, new Vector3(-39.91827f, 215.1007f, 106.5534f));
+            Ped franklin = ut.createPedAt(PedHash.Franklin, new Vector3(-37.49139f, 215.4538f, 106.5535f));
+            Ped trevor = ut.createPedAt(PedHash.Trevor, new Vector3(-36.45705f, 213.0283f, 106.5534f));
 
             loadCharacterProperties(michael, michaelProperties);
             loadCharacterProperties(franklin, franklinProperties);
