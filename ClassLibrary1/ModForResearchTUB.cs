@@ -448,6 +448,27 @@ namespace ModForResearchTUB
             }
         }
 
+        private void drawBottomText(String txt, SizeF res, Point safe) {
+            int x = Convert.ToInt32(res.Width / 2),
+                y = Convert.ToInt32(res.Height - 100);
+
+            UIResText charName = new UIResText(
+                    txt,
+                    new Point(x, y),
+                    1,
+                    Color.Yellow,
+                    GTA.Font.Pricedown,
+                    UIResText.Alignment.Centered
+                );
+            charName.Outline = true;
+            charName.Shadow = true;
+            charName.Draw();
+
+            //Function.Call(Hash.SET_TEXT_OUTLINE);
+            //Function.Call(Hash._SET_TEXT_ENTRY, "STRING");
+            //Function.Call(Hash._DRAW_TEXT, x, y);
+        }
+
         private void showTextInfoToPlayer(SizeF res, Point safe) {
             // display how many checkpoints there are
             if (debug && checkpoints != null)
@@ -1126,6 +1147,36 @@ namespace ModForResearchTUB
 
                 updateRouteCodeOutput();
             }
+        }
+
+        private Vector3 characterPosition() {
+            var ped = Game.Player.Character;
+            Vector3 fv = GameplayCamera.Position - ped.Position,
+                pos = new Vector3();
+            fv.Normalize();
+
+            RaycastResult rcr = World.Raycast(
+                ped.Position - (2*fv),
+                ped.Position - 105 * fv,
+                IntersectOptions.Peds1
+                );
+
+            if (rcr.DitHitAnything
+                && rcr.DitHitEntity)
+            {
+                World.DrawMarker(
+                    MarkerType.VerticalCylinder,
+                    rcr.HitEntity.Position,
+                    new Vector3(),
+                    new Vector3(),
+                    new Vector3(1,1,1),
+                    Color.Aqua
+                    );
+
+                pos = rcr.HitEntity.Position;
+            }
+
+            return pos;
         }
 
         private void handleRouteDesigner(SizeF res, Point safe) {
