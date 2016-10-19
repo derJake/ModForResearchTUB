@@ -160,7 +160,7 @@ namespace ModForResearchTUB
                 barPool.Draw();
             }
 
-            foreach (Vehicle otherCar in World.GetNearbyVehicles(checkpoints[checkpoints.Length - 1].Item1, 5)) {
+            foreach (Vehicle otherCar in World.GetNearbyVehicles(checkpoints[checkpoints.Length - 1].Item1, 10)) {
                 if (otherCar != raceVehicle) {
                     otherCar.Delete();
                 }
