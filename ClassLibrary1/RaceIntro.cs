@@ -1191,6 +1191,18 @@ namespace ModForResearchTUB
 
                 Game.Player.ChangeModel(pedmodel);
 
+                switch (selectedCharacter) {
+                    case 0:
+                        loadCharacterProperties(Game.Player.Character, michaelProperties);
+                        break;
+                    case 1:
+                        loadCharacterProperties(Game.Player.Character, franklinProperties);
+                        break;
+                    case 2:
+                        loadCharacterProperties(Game.Player.Character, trevorProperties);
+                        break;
+                }
+
                 pedmodel.MarkAsNoLongerNeeded();
             }
         }
