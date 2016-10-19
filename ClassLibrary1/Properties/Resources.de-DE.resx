@@ -348,4 +348,7 @@
   <data name="intro23_0" xml:space="preserve">
     <value>Sie können jetzt einen Charakter wählen</value>
   </data>
+  <data name="intro25" xml:space="preserve">
+    <value>Nutzen Sie den linken Joystick am Lenkrad, um die Perspektive zu ändern.</value>
+  </data>
 </root>

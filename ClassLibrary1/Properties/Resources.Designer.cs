@@ -619,6 +619,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use the left joystick on the wheel to change the perspective. ähnelt.
+        /// </summary>
+        internal static string intro25 {
+            get {
+                return ResourceManager.GetString("intro25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You control one of these three player characters. ähnelt.
         /// </summary>
         internal static string intro3 {

@@ -519,4 +519,7 @@
   <data name="menu_toggle_dress_mode" xml:space="preserve">
     <value>Toggle the character dresser mode?</value>
   </data>
+  <data name="intro25" xml:space="preserve">
+    <value>Use the left joystick on the wheel to change the perspective.</value>
+  </data>
 </root>
