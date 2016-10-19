@@ -42,7 +42,8 @@ namespace ModForResearchTUB
         private bool introActive = true,
             charSelectionActive = false,
             charSelectionConfirmed = false,
-            charSelected = false;
+            charSelected = false,
+            hintShown = false;
         private int raceEndTime;
 
         private List<Vehicle> cars;
@@ -164,6 +165,13 @@ namespace ModForResearchTUB
                 if (otherCar != raceVehicle) {
                     otherCar.Delete();
                 }
+            }
+
+            if (!hintShown && Game.GameTime > raceStartTime + 10000) {
+                hintShown = true;
+
+                BigMessageHandler bmsg = BigMessageThread.MessageInstance;
+                bmsg.ShowOldMessage(rm.GetString("intro25"), regularIntroSceneLength);
             }
         }
 
