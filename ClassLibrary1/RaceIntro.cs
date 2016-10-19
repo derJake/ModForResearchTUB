@@ -71,23 +71,29 @@ namespace ModForResearchTUB
                 50f
             );
 
-            // add some checkpoints for our race
-            Tuple<Vector3, Vector3?>[] checkpointlist =
-            {
-                new Tuple<Vector3, Vector3?>(new Vector3(-754.8044f, -71.13426f, 41.37538f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-778.4377f, -84.18153f, 37.79903f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-811.071f, -74.18734f, 37.47362f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-862.2216f, -101.1226f, 37.57107f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1094.416f, -221.9508f, 37.49302f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1210.87f, -293.118f, 37.46842f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1333.246f, -355.755f, 36.34713f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1440.249f, -420.062f, 35.52185f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1532.737f, -479.0613f, 35.09676f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1637.596f, -560.9938f, 33.11208f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1630.689f, -604.4155f, 32.7567f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1560.134f, -660.6344f, 28.66253f), null),
-                new Tuple<Vector3, Vector3?>(new Vector3(-1516.197f, -711.475f, 27.17746f), new Vector3(1854.16f, 4992.841f, 53.53355f))
+            // West Vinewood 
+            Tuple<Vector3, Vector3?>[] checkpointlist = {
+                new Tuple<Vector3, Vector3?>(new Vector3(-31.20458f, 215.13f, 105.5534f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(4.941189f, 203.2218f, 103.9356f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-3.047211f, 172.0848f, 96.66257f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-34.95789f, 85.41812f, 74.13844f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-57.20152f, -1.112961f, 70.13404f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-68.41341f, -47.59233f, 61.19105f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-97.84596f, -93.5451f, 56.68484f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-169.5122f, -68.69582f, 52.06757f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-303.1286f, -22.01921f, 47.65413f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-351.4349f, -5.117895f, 46.36396f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-428.3386f, 8.799047f, 45.27877f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-520.395f, 12.03447f, 43.53487f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-600.9536f, 5.027071f, 42.0069f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-680.8534f, -6.934255f, 37.51486f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-738.6771f, -33.88528f, 36.88163f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-815.42f, -73.8839f, 36.86637f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-860.4484f, -105.7367f, 36.95527f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-888.5425f, -140.534f, 37.32124f), null),
+                new Tuple<Vector3, Vector3?>(new Vector3(-942.6324f, -168.0043f, 40.88167f), null),
             };
+            // Rockford Hills
 
             this.checkpoints = checkpointlist;
 
