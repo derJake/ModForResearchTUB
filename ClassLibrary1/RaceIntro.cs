@@ -1078,7 +1078,7 @@ namespace ModForResearchTUB
 
             Game.Player.Character.Position = new Vector3(-42.44312f, 208.1661f, 102.1461f);
 
-            Ped michael = ut.createPedAt(PedHash.Michael, new Vector3(-39.91827f, 215.1007f, 106.5534f));
+            Ped michael = ut.createPedAt(PedHash.Michael, new Vector3(-38.70818f, 217.8385f, 106.5534f));
             Ped franklin = ut.createPedAt(PedHash.Franklin, new Vector3(-37.49139f, 215.4538f, 106.5535f));
             Ped trevor = ut.createPedAt(PedHash.Trevor, new Vector3(-36.45705f, 213.0283f, 106.5534f));
 
@@ -1302,6 +1302,7 @@ namespace ModForResearchTUB
 
             loadAndSetPlayerModel(modelName + modelSuffix);
             removeOtherPeds();
+            Game.Player.Character.Position = car_selection;
         }
 
         private void loadAndSetPlayerModel(String pedModelName) {
