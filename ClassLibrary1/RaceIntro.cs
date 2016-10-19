@@ -43,7 +43,10 @@ namespace ModForResearchTUB
             charSelectionActive = false,
             charSelectionConfirmed = false,
             charSelected = false,
-            hintShown = false;
+            hintShown = false,
+            showingMichael = false,
+            showingFranklin = false,
+            showingTrevor = false;
         private int raceEndTime;
 
         private List<Vehicle> cars;
@@ -316,10 +319,15 @@ namespace ModForResearchTUB
             // remove checkpoint graphic
             Function.Call(Hash.DELETE_CHECKPOINT, mock_checkpoint);
 
-            World.RenderingCamera = null;
-            World.DestroyAllCameras();
+            Camera cam4 = World.CreateCamera(
+                new Vector3(-33.90136f, 217.1371f, 107.0533f),
+                new Vector3(3.019554f, 9.071346E-07f, 106.801f),
+                78.80004f
+            );
 
             bmsg.ShowOldMessage(rm.GetString("intro23_0"), regularIntroSceneLength);
+            Wait(regularIntroSceneLength);
+
             charSelection();
 
             Game.Player.CanControlCharacter = true;
@@ -1127,8 +1135,10 @@ namespace ModForResearchTUB
             cam1.IsActive = true;
             World.RenderingCamera = cam1;
 
-            bmsg.ShowOldMessage("Michael", showCharacterFor);
+            //bmsg.ShowOldMessage("Michael", showCharacterFor);
+            showingMichael = true;
             Wait(showCharacterFor);
+            showingMichael = false;
 
             cam1.InterpTo(
                 cam2,
@@ -1138,12 +1148,15 @@ namespace ModForResearchTUB
             );
 
             Wait(interpolationTime);
+            
 
             cam2.IsActive = true;
             World.RenderingCamera = cam2;
 
-            bmsg.ShowOldMessage("Franklin", showCharacterFor);
+            showingFranklin = true;
+            //bmsg.ShowOldMessage("Franklin", showCharacterFor);
             Wait(showCharacterFor);
+            showingFranklin = false;
 
             cam2.InterpTo(
                 cam3,
@@ -1156,8 +1169,10 @@ namespace ModForResearchTUB
             cam3.IsActive = true;
             World.RenderingCamera = cam3;
 
-            bmsg.ShowOldMessage("Trevor", showCharacterFor);
+            showingTrevor = true;
+            //bmsg.ShowOldMessage("Trevor", showCharacterFor);
             Wait(showCharacterFor);
+            showingTrevor = false;
 
             Camera cam = World.CreateCamera(
                 new Vector3(-50.30263f, 210.1201f, 108.0545f),
@@ -1183,6 +1198,8 @@ namespace ModForResearchTUB
         public void handleCharSelection(object sender, EventArgs e) {
             SizeF res = UIMenu.GetScreenResolutionMantainRatio();
             Point safe = UIMenu.GetSafezoneBounds();
+
+            showCharacterName(res, safe);
 
             if (charSelectionActive)
             {
@@ -1411,6 +1428,33 @@ namespace ModForResearchTUB
                 if (Function.Call<bool>(Hash.IS_PED_COMPONENT_VARIATION_VALID, ped, i, properties[i][0], properties[i][1])) {
                     Function.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, i, properties[i][0], properties[i][1], 0);
                 }
+            }
+        }
+
+        private void showCharacterName(SizeF res, Point safe) {
+            String name = "";
+
+            if (showingMichael) {
+                name = "Michael";
+            }
+            if (showingFranklin) {
+                name = "Franklin";
+            }
+            if (showingTrevor) {
+                name = "Trevor";
+            }
+
+            if (!String.IsNullOrEmpty(name)) {
+                UIResText charName = new UIResText(
+                    name, 
+                    new Point(900, 900),
+                    1,
+                    Color.Yellow,
+                    GTA.Font.Pricedown,
+                    UIResText.Alignment.Centered
+                );
+                charName.Outline = true;
+                charName.Draw();
             }
         }
 
