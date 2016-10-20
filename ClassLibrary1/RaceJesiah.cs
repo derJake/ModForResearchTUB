@@ -181,6 +181,17 @@ namespace ModForResearchTUB
             );
             World.RenderingCamera = cam3;
 
+            cam3.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-973.6657f, 4148.937f, 144.0711f),
+                    new Vector3(-15.16198f, -1.707547E-06f, 4.579401f),
+                    46f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
+
             Wait(regularIntroSceneLength);
 
             bmsg.ShowOldMessage(rm.GetString("jesiah_intro_4"), regularIntroSceneLength);
@@ -191,6 +202,17 @@ namespace ModForResearchTUB
                 50f
             );
             World.RenderingCamera = cam4;
+
+            cam4.InterpTo(
+                World.CreateCamera(
+                    new Vector3(-1005.763f, 4223.419f, 119.3582f),
+                    new Vector3(4.233032f, -2.988208E-06f, -168.904f),
+                    63.59999f
+                ),
+                regularIntroSceneLength,
+                true,
+                true
+            );
 
             Wait(regularIntroSceneLength);
 
