@@ -1509,6 +1509,7 @@ namespace ModForResearchTUB
             // get controller values
             gasPedalInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 11) - 127));
             brakingInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) - 127));
+            logBrakePedalQuantified();
             steeringInputs.Add(Game.GameTime.ToString(), Convert.ToDouble(Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9)));
 
             if (debug)
@@ -1567,8 +1568,49 @@ namespace ModForResearchTUB
             }
         }
 
-        protected void logDrivingBackwards() {
+        protected void logBrakePedalQuantified() {
+            if (Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) > 127)
+            {
+                if (lastTimeBrake == 0)
+                {
+                    lastTimeBrake = Game.GameTime;
+                    numBrakeApplied++;
+                }
+            }
+            else {
+                if (lastTimeBrake != 0) {
+                    cumulativeTimeBraking += Game.GameTime - lastTimeBrake;
+                    lastTimeBrake = 0;
+                }
+            }
+        }
 
+        protected void logDrivingBackwards() {
+            if (Game.IsControlPressed(0, GTA.Control.MoveDown)
+                || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 10) > 127)
+            {
+                if (lastFullStop == 0
+                    && isVehicleGoingSlow())
+                {
+                    lastFullStop = Game.GameTime;
+                }
+            }
+            else {
+                if (lastFullStop > 0 && isVehicleGoingSlow()) {
+                    cumulativeTimeDrivingBackwards += Game.GameTime - lastFullStop;
+                    numOfTimesDrivingBackwards++;
+                    lastFullStop = 0;
+                }
+            }
+
+            if (debug) {
+                new UIResText(String.Format("time backwards: {0}", Math.Round((double)cumulativeTimeDrivingBackwards/1000, 2)), new Point(1500, 230), 0.3f, Color.White).Draw();
+                new UIResText(String.Format("times backwards: {0}", numOfTimesDrivingBackwards), new Point(1500, 250), 0.3f, Color.White).Draw();
+            }
+        }
+
+        protected bool isVehicleGoingSlow() {
+            return (Math.Abs(0 - Game.Player.Character.CurrentVehicle.Speed) < 0.1f);
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
