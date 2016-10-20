@@ -84,7 +84,10 @@ namespace ModForResearchTUB
         int startedDrivingAgainstTraffic;
 
         int lastTimeUpsideDown = -1;
-        int numOfTimesUpsideDown = 0;
+        int numOfTimesUpsideDown = 0,
+            lastFullStop = 0,
+            numOfTimesDrivingBackwards = 0,
+            cumulativeTimeDrivingBackwards = 0;
 
         int cumulativeTimeOnPavement;
         int cumulativeTimeDrivingAgainstTraffic;
@@ -1542,6 +1545,8 @@ namespace ModForResearchTUB
             //displayClosestVehicleNode();
 
             logPossibleCollisions();
+
+            logDrivingBackwards();
         }
 
         private void logPossibleCollisions() {
@@ -1560,6 +1565,10 @@ namespace ModForResearchTUB
                     break;
                 }
             }
+        }
+
+        protected void logDrivingBackwards() {
+
         }
 
         protected Boolean checkForRedlights(SizeF res, Point safe) {
@@ -2009,6 +2018,10 @@ namespace ModForResearchTUB
 
             lastTimeUpsideDown = -1;
             numOfTimesUpsideDown = 0;
+
+            lastFullStop = 0;
+            numOfTimesDrivingBackwards = 0;
+            cumulativeTimeDrivingBackwards = 0;
 
             car_health = -1;
 
