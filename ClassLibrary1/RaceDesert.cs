@@ -119,6 +119,7 @@ namespace ModForResearchTUB
         public void handleOnTick(object sender, EventArgs e)
         {
             if (Game.Player.Character.CurrentVehicle != raceVehicle) {
+                raceVehicle.PlaceOnGround();
                 Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
             }
         }
