@@ -1961,6 +1961,8 @@ namespace ModForResearchTUB
                 {"duration_on_pavement", (float)cumulativeTimeOnPavement / 1000},
                 {"duration_against_traffic", (float)cumulativeTimeDrivingAgainstTraffic / 1000},
                 {"upside_down", numOfTimesUpsideDown},
+                {"times_backwards", numOfTimesDrivingBackwards},
+                {"duration_backwards", cumulativeTimeDrivingBackwards},
                 {"possible_vehicle_collisions", possibleCollisions},
                 {"possible_vc_mean_distance", meanDistance},
                 {"resets", timesPlayerWasLost }
