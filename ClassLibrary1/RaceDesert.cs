@@ -194,17 +194,52 @@ namespace ModForResearchTUB
             Game.Player.Character.Task.LookAt(car1_spawnpoint, 2500);
 
             // show wide view of You Tool market and highway
-            cam.Position = new Vector3(2779.671f, 3403.094f, 67.52917f);
-            cam.Rotation = new Vector3(-27.8562f, 8.537737E-07f, 28.48598f);
-	        cam.FieldOfView = 102.0001f;
+            //   cam.Position = new Vector3(2779.671f, 3403.094f, 67.52917f);
+            //   cam.Rotation = new Vector3(-27.8562f, 8.537737E-07f, 28.48598f);
+            //cam.FieldOfView = 102.0001f;
+
+            Camera camRouteOne = World.CreateCamera(
+                new Vector3(2779.085f, 3446.458f, 57.93776f),
+                new Vector3(-3.34089f, -6.670106E-07f, 174.6005f),
+                74.00002f
+            );
+
+            World.RenderingCamera = camRouteOne;
 
             bmsg.ShowOldMessage(rm.GetString("desert_intro_2"), 10000);
-            Wait(10000);
+
+            Wait(4250);
+
+            camRouteOne.InterpTo(
+                World.CreateCamera(
+                    new Vector3(2745.35f, 3431.449f, 60.57384f),
+                    new Vector3(-7.340891f, -1.067217E-06f, 102.5993f),
+                    74.00002f
+                ),
+                1500,
+                true,
+                true
+            );
+
+            Wait(4250);
+
+            World.RenderingCamera = cam;
 
             // show highway and exit
             cam.Position = new Vector3(2558.172f, 3054.789f, 49.60252f);
 	        cam.Rotation = new Vector3(-14.16963f, 0f, 114.9396f);
 	        cam.FieldOfView = 51.6f;
+
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(2561.281f, 3048.602f, 60.39839f),
+                    new Vector3(-11.76962f, 1.920991E-06f, 106.1391f),
+                    37.20001f
+                ),
+                7500,
+                true,
+                true
+            );
 
             bmsg.ShowOldMessage(rm.GetString("desert_intro_3"), 10000);
             Wait(10000);
@@ -213,6 +248,17 @@ namespace ModForResearchTUB
             cam.Position = new Vector3(2585.001f, 3338.31f, 68.397f);
             cam.Rotation = new Vector3(-14.9001f, 0f, 53.79928f);
             cam.FieldOfView = 67.6f;
+
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(2593.02f, 3355.777f, 68.397f),
+                    new Vector3(-19.70008f, 0f, 71.39921f),
+                    67.6f
+                ),
+                7500,
+                true,
+                true
+            );
 
             // create red alt checkpoint markers
             int[] alt_checkpoint_markers = new int[checkpoints.Length - 1];
@@ -256,6 +302,18 @@ namespace ModForResearchTUB
             cam.FieldOfView = 47.6f;
 
             bmsg.ShowOldMessage(rm.GetString("desert_intro_5"), 10000);
+
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(2399.078f, 3552.71f, 81.18214f),
+                    new Vector3(-14.10006f, -4.268868E-07f, 116.9973f),
+                    47.6f
+                ),
+                10000,
+                true,
+                true
+            );
+
             Wait(10000);
 
             // delete checkpoint markers again
