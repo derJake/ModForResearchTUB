@@ -358,6 +358,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The total time spent driving backwards ähnelt.
+        /// </summary>
+        internal static string duration_backwards {
+            get {
+                return ResourceManager.GetString("duration_backwards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How long was the brake pedal applied overall ähnelt.
         /// </summary>
         internal static string duration_brake {
@@ -1209,6 +1218,15 @@ namespace ModForResearchTUB.Properties {
         internal static string times_against_traffic {
             get {
                 return ResourceManager.GetString("times_against_traffic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many times did the player drive backwards? ähnelt.
+        /// </summary>
+        internal static string times_backwards {
+            get {
+                return ResourceManager.GetString("times_backwards", resourceCulture);
             }
         }
         

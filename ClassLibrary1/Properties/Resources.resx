@@ -522,4 +522,10 @@
   <data name="intro25" xml:space="preserve">
     <value>Use the left joystick on the wheel to change the perspective.</value>
   </data>
+  <data name="duration_backwards" xml:space="preserve">
+    <value>The total time spent driving backwards</value>
+  </data>
+  <data name="times_backwards" xml:space="preserve">
+    <value>How many times did the player drive backwards?</value>
+  </data>
 </root>
