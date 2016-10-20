@@ -184,7 +184,7 @@ namespace ModForResearchTUB
                 // start obstacle driving
                 if (obstacleStartTime > 0) {
 
-                    new UIResText(String.Format("obstacle in {0}", obstacleStartTime - Game.GameTime), new Point(400, 20), 0.5f, Color.OrangeRed).Draw();
+                    //new UIResText(String.Format("obstacle in {0}", obstacleStartTime - Game.GameTime), new Point(400, 20), 0.5f, Color.OrangeRed).Draw();
 
                     if (Game.GameTime > obstacleStartTime)
                     {
