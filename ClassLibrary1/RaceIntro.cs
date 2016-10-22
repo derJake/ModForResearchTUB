@@ -1281,6 +1281,7 @@ namespace ModForResearchTUB
 
                             // log the time it took the player
                             singularValues.Add("intro_char_selection_time", Game.GameTime - charSelectionStartedAt);
+                            singularValues.Add("intro_char_selected", selectedCharacter);
 
                             // revert to regular camera
                             World.RenderingCamera = null;

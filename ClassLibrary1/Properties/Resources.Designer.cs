@@ -430,6 +430,15 @@ namespace ModForResearchTUB.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0 = Michael, 1 = Franklin, 2 = Trevor ähnelt.
+        /// </summary>
+        internal static string intro_char_selected {
+            get {
+                return ResourceManager.GetString("intro_char_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die How long did the player take to select a character? ähnelt.
         /// </summary>
         internal static string intro_char_selection_time {
