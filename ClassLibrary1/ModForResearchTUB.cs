@@ -415,6 +415,7 @@ namespace ModForResearchTUB
 
                     setupNextCheckpoint();
                     races[currentRace].startRace();
+                    Game.Player.Character.CurrentVehicle.RadioStation = RadioStation.RadioOff;
 
                     secureCar();
                 }
