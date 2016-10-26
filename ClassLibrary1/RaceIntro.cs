@@ -246,6 +246,7 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = false;
             player.IsInvincible = true;
             raceVehicle.IsInvincible = true;
+            raceVehicle.HandbrakeOn = true;
 
             Camera cam = showVector(
                 new Vector3(-36.50168f, 206.7234f, 107.3275f),
@@ -343,9 +344,12 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro23_0"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
+            Game.Player.CanControlCharacter = true;
+            Game.Player.Character.FreezePosition = true;
+
             charSelection();
 
-            Game.Player.CanControlCharacter = true;
+            raceVehicle.HandbrakeOn = false;
             player.IsInvincible = false;
             //raceVehicle.IsInvincible = false;
         }
@@ -1218,7 +1222,8 @@ namespace ModForResearchTUB
 
             if (charSelectionActive)
             {
-                Game.Player.CanControlCharacter = false;
+                Game.Player.CanControlCharacter = true;
+                Game.Player.Character.FreezePosition = true;
                 Game.Player.IsInvincible = true;
                 var pos = peds[selectedCharacter].Position;
 
@@ -1250,7 +1255,8 @@ namespace ModForResearchTUB
                 {
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
+                        || Game.IsControlJustPressed(0, GTA.Control.MoveLeftOnly))
                     {
                         selectedCharacter = mod(selectedCharacter - 1, peds.Count);
                         lastCharSelectInput = Game.GameTime;
@@ -1258,7 +1264,8 @@ namespace ModForResearchTUB
 
                     // cycle right
                     if (Game.IsKeyPressed(Keys.D)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155
+                        || Game.IsControlJustPressed(0, GTA.Control.MoveLeftOnly))
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
