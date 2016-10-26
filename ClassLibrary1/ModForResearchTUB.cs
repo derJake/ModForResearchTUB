@@ -295,6 +295,8 @@ namespace ModForResearchTUB
                     resetLoggingVariables();
                     return;
                 }
+
+                keepPlayerInVehicle();
             }
 
             // check if player is still in his vehicle and mark it on the map otherwise
@@ -684,6 +686,14 @@ namespace ModForResearchTUB
 
             // don't let player exit his racecar by conventional means
             Game.DisableControlThisFrame(0, GTA.Control.VehicleExit);
+        }
+
+        private void keepPlayerInVehicle() {
+            if (!Game.Player.Character.IsInVehicle()
+                && !Game.Player.Character.IsRagdoll) {
+                Game.Player.Character.LastVehicle.PlaceOnGround();
+                Game.Player.Character.SetIntoVehicle(Game.Player.Character.LastVehicle, VehicleSeat.Driver);
+            }
         }
 
         private void secureCar() {
