@@ -24,6 +24,7 @@ namespace ModForResearchTUB
         private Vector3 car1_spawnpoint = new Vector3(2768.046f, 3456.5f, 55.2822f);
         private float car_spawn_heading = 245.6047f;
         private float car_spawn_player_heading = 165.074f;
+        private Dictionary<string, float> singularValues;
 
         ResourceManager rm;
         Utilities ut;
@@ -68,6 +69,8 @@ namespace ModForResearchTUB
 
             rm = resman;
             ut = utils;
+
+            singularValues = new Dictionary<string, float>();
         }
 
         public void finishRace()
@@ -119,8 +122,10 @@ namespace ModForResearchTUB
         public void handleOnTick(object sender, EventArgs e)
         {
             if (Game.Player.Character.CurrentVehicle != raceVehicle) {
+                Wait(3000);
                 raceVehicle.PlaceOnGround();
                 Game.Player.Character.SetIntoVehicle(raceVehicle, VehicleSeat.Driver);
+                Game.Player.Character.Task.EnterVehicle(raceVehicle, VehicleSeat.Driver);
             }
         }
 
