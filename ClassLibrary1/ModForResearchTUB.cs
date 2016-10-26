@@ -303,6 +303,9 @@ namespace ModForResearchTUB
             if (Game.Player.Character.IsInVehicle()) {
                 if (race_started)
                 {
+                    // try to keep player in car / on motorcycle
+                    secureCar();
+
                     // call race specific onTick instructions
                     if (race_has_on_tick)
                     {
@@ -416,8 +419,6 @@ namespace ModForResearchTUB
                     setupNextCheckpoint();
                     races[currentRace].startRace();
                     Game.Player.Character.CurrentVehicle.RadioStation = RadioStation.RadioOff;
-
-                    secureCar();
                 }
             }
 
