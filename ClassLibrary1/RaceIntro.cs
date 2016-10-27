@@ -137,16 +137,16 @@ namespace ModForResearchTUB
 
             var player = Game.Player.Character;
             World.RenderingCamera = World.CreateCamera(
-                new Vector3(-735.3451f, -67.73662f, 44.34755f),
-                new Vector3(-2.523032f, -1.093897E-06f, 81.00891f),
-                62.79999f
+                new Vector3(-926.2764f, -164.5017f, 45.91834f),
+                new Vector3(-5.055873f, -1.173939E-06f, 106.6668f),
+                47.6f
             );
 
             World.RenderingCamera.InterpTo(
                 World.CreateCamera(
-                    new Vector3(-735.3451f, -67.73662f, 46.14756f),
-                    new Vector3(-2.523032f, -1.093897E-06f, 81.00891f),
-                    63.59999f
+                    new Vector3(-926.2764f, -164.5017f, 48.31835f),
+                    new Vector3(-7.455873f, -1.067217E-06f, 106.6668f),
+                    47.6f
                 ),
                 2750,
                 true,
@@ -246,7 +246,6 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = false;
             player.IsInvincible = true;
             raceVehicle.IsInvincible = true;
-            raceVehicle.HandbrakeOn = true;
 
             Camera cam = showVector(
                 new Vector3(-36.50168f, 206.7234f, 107.3275f),
@@ -344,12 +343,9 @@ namespace ModForResearchTUB
             bmsg.ShowOldMessage(rm.GetString("intro23_0"), regularIntroSceneLength);
             Wait(regularIntroSceneLength);
 
-            Game.Player.CanControlCharacter = true;
-            Game.Player.Character.FreezePosition = true;
-
             charSelection();
 
-            raceVehicle.HandbrakeOn = false;
+            Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
             //raceVehicle.IsInvincible = false;
         }
@@ -1222,8 +1218,7 @@ namespace ModForResearchTUB
 
             if (charSelectionActive)
             {
-                Game.Player.CanControlCharacter = true;
-                Game.Player.Character.FreezePosition = true;
+                Game.Player.CanControlCharacter = false;
                 Game.Player.IsInvincible = true;
                 var pos = peds[selectedCharacter].Position;
 
@@ -1255,8 +1250,7 @@ namespace ModForResearchTUB
                 {
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
-                        || Game.IsControlJustPressed(0, GTA.Control.MoveLeftOnly))
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100)
                     {
                         selectedCharacter = mod(selectedCharacter - 1, peds.Count);
                         lastCharSelectInput = Game.GameTime;
@@ -1264,8 +1258,7 @@ namespace ModForResearchTUB
 
                     // cycle right
                     if (Game.IsKeyPressed(Keys.D)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155
-                        || Game.IsControlJustPressed(0, GTA.Control.MoveLeftOnly))
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
