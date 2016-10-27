@@ -81,6 +81,33 @@ namespace ModForResearchTUB
 
         public void finishRace()
         {
+            Game.Player.CanControlCharacter = false;
+            Game.Player.Character.IsInvincible = true;
+
+            // camera FX
+            Function.Call(Hash._START_SCREEN_EFFECT, "HeistCelebPass", 0, true);
+            if (Game.Player.Character.IsInVehicle())
+                Game.Player.Character.CurrentVehicle.HandbrakeOn = true;
+            World.DestroyAllCameras();
+            World.RenderingCamera = World.CreateCamera(
+                new Vector3(979.2184f, -1403.284f, 32.61693f),
+                new Vector3(0.5409608f, -2.934847E-07f, -88.0972f),
+                91.60009f
+            );
+
+            // play sounds
+            Audio.PlaySoundFrontend("RACE_PLACED", "HUD_AWARDS");
+            Wait(750);
+            Function.Call(Hash.PLAY_SOUND_FRONTEND, 0, "CHECKPOINT_UNDER_THE_BRIDGE", "HUD_MINI_GAME_SOUNDSET");
+            Wait(2000);
+
+            // reset camera stuff
+            Function.Call(Hash._STOP_SCREEN_EFFECT, "HeistCelebPass");
+            World.RenderingCamera = null;
+
+            Game.Player.Character.IsInvincible = false;
+            Game.Player.CanControlCharacter = true;
+
             raceVehicle.Delete();
         }
 
