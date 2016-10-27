@@ -245,12 +245,34 @@ namespace ModForResearchTUB
             player.IsInvincible = true;
             raceVehicle.IsInvincible = true;
 
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(1395.192f, 6509f, 19.67897f),
+                    new Vector3(-1.2f, 0f, 90f),
+                    13.80001f
+                ),
+                10000,
+                true,
+                true
+            );
+
             bmsg.ShowOldMessage(rm.GetString("convoy_intro_1"), 10000);
             Wait(10000);
 
             // show different perspective and instruction
             cam.Position = new Vector3(1330, 6505, 20f);
             cam.Rotation = new Vector3(2, 0, -95f);
+
+            cam.InterpTo(
+                World.CreateCamera(
+                    new Vector3(1330.022f, 6502.61f, 20f),
+                    new Vector3(1.999999f, -2.668042E-08f, -83.79988f),
+                    16.20001f
+                ),
+                5000,
+                true,
+                true
+            );
 
             bmsg.ShowOldMessage(rm.GetString("convoy_intro_2"), 10000);
             Wait(10000);
