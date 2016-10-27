@@ -246,6 +246,7 @@ namespace ModForResearchTUB
             Game.Player.CanControlCharacter = false;
             player.IsInvincible = true;
             raceVehicle.IsInvincible = true;
+            raceVehicle.HandbrakeOn = true;
 
             Camera cam = showVector(
                 new Vector3(-36.50168f, 206.7234f, 107.3275f),
@@ -347,6 +348,7 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
+            raceVehicle.HandbrakeOn = true;
             //raceVehicle.IsInvincible = false;
         }
 
