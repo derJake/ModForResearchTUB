@@ -348,7 +348,7 @@ namespace ModForResearchTUB
 
             Game.Player.CanControlCharacter = true;
             player.IsInvincible = false;
-            raceVehicle.HandbrakeOn = true;
+            raceVehicle.HandbrakeOn = false;
             //raceVehicle.IsInvincible = false;
         }
 
@@ -1232,6 +1232,17 @@ namespace ModForResearchTUB
                     new Vector3(2, 2, 1),
                     Color.Yellow
                 );
+
+                if (charSelectionConfirmed) {
+                    World.DrawMarker(
+                        MarkerType.VerticalCylinder,
+                        pos - new Vector3(0, 0, 1),
+                        new Vector3(),
+                        new Vector3(),
+                        new Vector3(1.5f, 1.5f, 1.5f),
+                        Color.Aqua
+                    );
+                }
 
                 new UIResText(
                     rm.GetString("intro23_2"),
