@@ -1220,7 +1220,8 @@ namespace ModForResearchTUB
 
             if (charSelectionActive)
             {
-                Game.Player.CanControlCharacter = false;
+                Game.Player.CanControlCharacter = true;
+                Game.Player.Character.FreezePosition = true;
                 Game.Player.IsInvincible = true;
                 var pos = peds[selectedCharacter].Position;
 
@@ -1263,7 +1264,8 @@ namespace ModForResearchTUB
                 {
                     // cycle left
                     if (Game.IsKeyPressed(Keys.A)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) < 100
+                        || Game.IsControlPressed(0, GTA.Control.MoveLeft))
                     {
                         selectedCharacter = mod(selectedCharacter - 1, peds.Count);
                         lastCharSelectInput = Game.GameTime;
@@ -1271,7 +1273,8 @@ namespace ModForResearchTUB
 
                     // cycle right
                     if (Game.IsKeyPressed(Keys.D)
-                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155)
+                        || Function.Call<int>(Hash.GET_CONTROL_VALUE, 0, 9) > 155
+                        || Game.IsControlPressed(0, GTA.Control.MoveRight))
                     {
                         selectedCharacter = (selectedCharacter + 1) % peds.Count;
                         lastCharSelectInput = Game.GameTime;
