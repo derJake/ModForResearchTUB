@@ -12,7 +12,10 @@ namespace ModForResearchTUB
     class DBI
     {
         SqlConnection m_dbConnection;
-        String defaultHost = "localhost";
+        String defaultHost = "localhost",
+            defaultUser = "TUBMod4Research",
+            defaultDB = "TUBMod4Research",
+            defaultPass = "123456";
         char[] trim = { ',', ' '};
 
         public DBI(String dbHost) {
@@ -22,12 +25,11 @@ namespace ModForResearchTUB
             }
 
             m_dbConnection =
-            new SqlConnection("user id=TUBMod4Research;" +
-                                "password=123456;server=" +
-                                hostName +
-                                ";" +
+            new SqlConnection("user id=" + defaultUser + ";" +
+                                "password=" + defaultPass + ";" +
+                                "server=" + hostName + ";" +
                                 "Trusted_Connection=yes;" +
-                                "database=TUBMod4Research; " +
+                                "database=" + defaultDB + "; " +
                                 "connection timeout=30");
 
             try
